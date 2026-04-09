@@ -1,0 +1,164 @@
+{
+  "name": "Performance & Load Tester",
+  "role": "tester",
+  "specialty": "performance_load_testing",
+  "description": "Agent chuyên test hiệu năng hệ thống, load testing và stress testing",
+  "version": "1.0.0",
+  "capabilities": [
+    "load_testing",
+    "stress_testing",
+    "endurance_testing",
+    "spike_testing",
+    "resource_monitoring",
+    "bottleneck_identification",
+    "scalability_testing"
+  ],
+  "test_targets": {
+    "api_services": {
+      "identity_service": "http://localhost:5001",
+      "core_service": "http://localhost:5002",
+      "gateway": "http://localhost:5000"
+    },
+    "web_application": {
+      "url": "http://localhost:5003"
+    },
+    "database": {
+      "type": "MongoDB",
+      "connection": "from_config"
+    }
+  },
+  "test_scenarios": [
+    {
+      "name": "Baseline Performance",
+      "description": "Đo hiệu năng cơ bản với 1 user",
+      "concurrent_users": 1,
+      "duration_minutes": 5,
+      "tests": [
+        "API response time",
+        "Page load time",
+        "Database query time",
+        "Memory usage",
+        "CPU usage"
+      ]
+    },
+    {
+      "name": "Load Testing",
+      "description": "Test với tải người dùng thông thường",
+      "concurrent_users": 50,
+      "ramp_up_minutes": 5,
+      "duration_minutes": 15,
+      "tests": [
+        "Login flow",
+        "View employee list",
+        "Search employees",
+        "Create/update employee",
+        "Generate reports"
+      ],
+      "acceptance_criteria": {
+        "avg_response_time_ms": 1000,
+        "95_percentile_ms": 2000,
+        "error_rate_percent": 1
+      }
+    },
+    {
+      "name": "Stress Testing",
+      "description": "Test với tải cao để tìm điểm giới hạn",
+      "concurrent_users": 200,
+      "ramp_up_minutes": 10,
+      "duration_minutes": 20,
+      "tests": [
+        "API endpoints under heavy load",
+        "Database connection pool",
+        "Memory management",
+        "Error handling under stress"
+      ]
+    },
+    {
+      "name": "Spike Testing",
+      "description": "Test với đột ngột tăng tải",
+      "scenarios": [
+        {
+          "phase": "normal",
+          "users": 20,
+          "duration_minutes": 5
+        },
+        {
+          "phase": "spike",
+          "users": 200,
+          "duration_minutes": 2
+        },
+        {
+          "phase": "normal",
+          "users": 20,
+          "duration_minutes": 5
+        }
+      ],
+      "acceptance_criteria": {
+        "recovery_time_seconds": 60,
+        "no_data_loss": true
+      }
+    },
+    {
+      "name": "Endurance Testing",
+      "description": "Test độ bền với thời gian dài",
+      "concurrent_users": 30,
+      "duration_hours": 4,
+      "tests": [
+        "Memory leaks",
+        "Connection leaks",
+        "Performance degradation over time",
+        "Log file growth"
+      ]
+    }
+  ],
+  "monitoring_metrics": {
+    "api_metrics": [
+      "Request rate (req/sec)",
+      "Response time (avg, p50, p95, p99)",
+      "Error rate",
+      "Throughput"
+    ],
+    "system_metrics": [
+      "CPU usage %",
+      "Memory usage (MB)",
+      "Disk I/O",
+      "Network I/O"
+    ],
+    "database_metrics": [
+      "Query execution time",
+      "Connection pool usage",
+      "Lock wait time",
+      "Cache hit ratio"
+    ]
+  },
+  "thresholds": {
+    "api_response_time_ms": {
+      "excellent": 200,
+      "good": 500,
+      "acceptable": 1000,
+      "poor": 2000
+    },
+    "error_rate_percent": {
+      "acceptable": 0.1,
+      "warning": 1,
+      "critical": 5
+    },
+    "cpu_usage_percent": {
+      "normal": 70,
+      "warning": 85,
+      "critical": 95
+    },
+    "memory_usage_percent": {
+      "normal": 70,
+      "warning": 85,
+      "critical": 95
+    }
+  },
+  "reporting": {
+    "include_graphs": true,
+    "include_resource_usage": true,
+    "include_bottleneck_analysis": true,
+    "include_recommendations": true,
+    "log_level": "detailed"
+  }
+}

@@ -1,0 +1,60 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="Study/" Type="Website" DisplayName="Study">
+      <BuildType Project="Debug" />
+      <Properties Name="WebsiteProperties">
+        <Property Name="Debug.AspNetCompiler.Debug" Value="&quot;True&quot;" />
+        <Property Name="Debug.AspNetCompiler.FixedNames" Value="&quot;false&quot;" />
+        <Property Name="Debug.AspNetCompiler.ForceOverwrite" Value="&quot;true&quot;" />
+        <Property Name="Debug.AspNetCompiler.PhysicalPath" Value="&quot;Study\&quot;" />
+        <Property Name="Debug.AspNetCompiler.TargetPath" Value="&quot;PrecompiledWeb\localhost_55968\&quot;" />
+        <Property Name="Debug.AspNetCompiler.Updateable" Value="&quot;true&quot;" />
+        <Property Name="Debug.AspNetCompiler.VirtualPath" Value="&quot;/localhost_55968&quot;" />
+        <Property Name="Release.AspNetCompiler.Debug" Value="&quot;False&quot;" />
+        <Property Name="Release.AspNetCompiler.FixedNames" Value="&quot;false&quot;" />
+        <Property Name="Release.AspNetCompiler.ForceOverwrite" Value="&quot;true&quot;" />
+        <Property Name="Release.AspNetCompiler.PhysicalPath" Value="&quot;Study\&quot;" />
+        <Property Name="Release.AspNetCompiler.TargetPath" Value="&quot;PrecompiledWeb\localhost_55968\&quot;" />
+        <Property Name="Release.AspNetCompiler.Updateable" Value="&quot;true&quot;" />
+        <Property Name="Release.AspNetCompiler.VirtualPath" Value="&quot;/localhost_55968&quot;" />
+        <Property Name="TargetFrameworkMoniker" Value="&quot;.NETFramework,Version%3Dv4.8&quot;" />
+        <Property Name="VWDPort" Value="&quot;55968&quot;" />
+      </Properties>
+    </Project>
+  </Folder>
+  <Folder Name="/src/apps/">
+    <Project Path="src/apps/TTL.ERP.App/TTL.ERP.App.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/apps/attendance/">
+    <Project Path="src/apps/attendance/TTL.Attendance.App/TTL.Attendance.App.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/auth/">
+    <Project Path="src/auth/TTL.Auth.Client/TTL.Auth.Client.csproj" />
+  </Folder>
+  <Folder Name="/src/erp/" />
+  <Folder Name="/src/erp/attendance/" />
+  <Folder Name="/src/erp/hrm/">
+    <Project Path="src/erp/hrm/TTL.HRM.Client/TTL.HRM.Client.csproj" />
+  </Folder>
+  <Folder Name="/src/erp/mes/">
+    <Project Path="src/erp/mes/TTL.MES.Client/TTL.MES.Client.csproj" />
+  </Folder>
+  <Folder Name="/src/erp/oms/">
+    <Project Path="src/erp/oms/TTL.OMS.Client/TTL.OMS.Client.csproj" />
+  </Folder>
+  <Folder Name="/src/erp/rd/">
+    <Project Path="src/erp/rd/TTL.RD.Client/TTL.RD.Client.csproj" />
+  </Folder>
+  <Folder Name="/src/erp/wms/">
+    <Project Path="src/erp/wms/TTL.WMS.Client/TTL.WMS.Client.csproj" />
+  </Folder>
+  <Folder Name="/src/shared/">
+    <Project Path="src/shared/TTL.Shared.Models/TTL.Shared.Models.csproj" />
+    <Project Path="src/shared/TTL.Shared.Services/TTL.Shared.Services.csproj" />
+    <Project Path="src/shared/TTL.Shared.UI/TTL.Shared.UI.csproj" />
+  </Folder>
+</Solution>

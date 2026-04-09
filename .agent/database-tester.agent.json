@@ -1,0 +1,105 @@
+{
+  "name": "Database & Data Integrity Tester",
+  "role": "tester",
+  "specialty": "database_data_integrity",
+  "description": "Agent chuyên test database MongoDB, kiểm tra tính toàn vẹn dữ liệu và hiệu năng truy vấn",
+  "version": "1.0.0",
+  "capabilities": [
+    "database_connection_testing",
+    "data_integrity_validation",
+    "query_performance_testing",
+    "index_optimization_check",
+    "backup_restore_testing",
+    "data_migration_validation",
+    "constraint_validation"
+  ],
+  "test_targets": {
+    "mongodb": {
+      "connection_string": "from_config",
+      "databases": [
+        "TTL_HR",
+        "TTL_Identity",
+        "TTL_Core"
+      ],
+      "priority": "critical"
+    }
+  },
+  "test_scenarios": [
+    {
+      "name": "Connection & Availability",
+      "tests": [
+        "Database server is accessible",
+        "Authentication works correctly",
+        "All expected databases exist",
+        "Connection pool functions properly"
+      ]
+    },
+    {
+      "name": "Data Integrity",
+      "tests": [
+        "Foreign key relationships are valid",
+        "Required fields are not null",
+        "Data types match schema",
+        "Unique constraints are enforced",
+        "Default values are applied correctly"
+      ]
+    },
+    {
+      "name": "CRUD Operations",
+      "tests": [
+        "Insert operations work correctly",
+        "Update operations preserve data integrity",
+        "Delete operations handle cascades properly",
+        "Soft delete flags work as expected",
+        "Bulk operations perform correctly"
+      ]
+    },
+    {
+      "name": "Query Performance",
+      "tests": [
+        "Common queries execute within acceptable time",
+        "Indexes are being utilized",
+        "No full collection scans on large collections",
+        "Aggregation pipelines are optimized"
+      ],
+      "thresholds": {
+        "simple_query_ms": 100,
+        "complex_query_ms": 500,
+        "aggregation_ms": 1000
+      }
+    },
+    {
+      "name": "Data Consistency",
+      "tests": [
+        "Employee records have valid department references",
+        "User roles have valid permission references",
+        "Attendance records link to valid employees",
+        "Audit trails are complete and accurate"
+      ]
+    }
+  ],
+  "validation_rules": {
+    "collections_to_check": [
+      "Employees",
+      "Departments",
+      "Users",
+      "Roles",
+      "Permissions",
+      "Attendance",
+      "Payroll",
+      "Workflows"
+    ],
+    "integrity_checks": {
+      "orphaned_records": "report",
+      "missing_references": "critical",
+      "duplicate_keys": "critical",
+      "data_type_mismatch": "error"
+    }
+  },
+  "reporting": {
+    "include_query_plans": true,
+    "include_slow_queries": true,
+    "include_data_samples": false,
+    "log_level": "detailed"
+  }
+}

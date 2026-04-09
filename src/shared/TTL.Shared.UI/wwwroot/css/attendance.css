@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Color Palette - Tan Tan Loc Theme */
+    --ttl-primary: #1e1e2d;
+    --ttl-success: #198754;
+    --ttl-success-light: #d1e7dd;
+    --ttl-warning: #ffc107;
+    --ttl-danger: #dc3545;
+    --ttl-bg-light: #f4f6f9;
+    --ttl-gray-100: #f8f9fa;
+    --ttl-gray-200: #e9ecef;
+    --ttl-gray-600: #6c757d;
+    --ttl-gray-800: #343a40;
+    --ttl-white: #ffffff;
+    --ttl-border: #e9ecef;
+    --ttl-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    
+    /* Layout Sizes */
+    --ttl-header-height: 75px;
+    --ttl-footer-height: 45px;
+    --ttl-sidebar-width: 320px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--ttl-bg-light);
+    color: var(--ttl-gray-800);
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Layout Structure --- */
+.attendance-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #fff;
+}
+
+/* Header Section */
+.attendance-header {
+    height: var(--ttl-header-height);
+    background-color: var(--ttl-white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid var(--ttl-border);
+    z-index: 100;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-logo {
+    width: 38px;
+    height: 38px;
+    background: #4a6d1d; /* Dark moss green from image */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccff00; /* Neon yellow-green logo color */
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.brand-info h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0;
+    color: #4a6d1d; /* Brand green */
+    letter-spacing: -0.5px;
+}
+
+.brand-info span {
+    font-size: 0.7rem;
+    color: var(--ttl-gray-600);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.clock-time {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #1a1a2e; /* Dark navy */
+    display: block;
+    line-height: 1;
+}
+
+.clock-date {
+    font-size: 0.65rem;
+    color: var(--ttl-gray-600);
+    font-weight: 600;
+    text-align: right;
+    display: block;
+}
+
+/* Main Content Area */
+.attendance-main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    background: #fdfdfd;
+}
+
+/* Sidebar - Scan History */
+.attendance-sidebar {
+    width: var(--ttl-sidebar-width);
+    background: #fff;
+    border-right: 1px solid var(--ttl-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 1.25rem 1rem;
+}
+
+.sidebar-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #1a1a2e;
+    margin-bottom: 1.25rem;
+}
+
+.scan-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.scan-card {
+    background: var(--ttl-white);
+    border-radius: 12px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--ttl-gray-200);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.scan-card:hover {
+    border-color: var(--ttl-success);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.employee-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #eee;
+}
+
+.employee-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.employee-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+    color: #1a1a2e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.employee-id {
+    font-size: 0.7rem;
+    color: #006aff; /* Blue ID links from image */
+    text-decoration: underline;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scan-time {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+    color: #1a1a2e;
+}
+
+.badge-in {
+    background: #d1e7dd;
+    color: #198754;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Operation View - Camera Area */
+.operation-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: #fff;
+}
+
+.camera-container {
+    width: 580px;
+    height: 440px;
+    background: #151a2e; /* Very dark navy block */
+    border-radius: 28px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.camera-actions {
+    margin-top: 2.5rem;
+    width: 320px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 0.85rem 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-in {
+    background: var(--ttl-success);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(25, 135, 84, 0.3);
+}
+
+.btn-out {
+    background: transparent;
+    color: #666;
+}
+
+/* Footer Section */
+.attendance-footer {
+    height: var(--ttl-footer-height);
+    background: #fff;
+    border-top: 1px solid var(--ttl-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    font-size: 0.65rem;
+    color: #888;
+}
+
+.status-items {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.dot-success { background: #198754; }
+.dot-danger { background: #dc3545; }
+
+/* Scrollbar Styling */
+.scan-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scan-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scan-list::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}

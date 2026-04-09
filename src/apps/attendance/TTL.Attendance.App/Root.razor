@@ -1,0 +1,14 @@
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using TTL.Shared.UI
+@using TTL.Shared.UI.Attendance
+@using TTL.Shared.Services.Attendance
+@using TTL.Attendance.App
+<Router AppAssembly="@typeof(TTL.Shared.UI.Attendance.AttendanceDashboard).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="@typeof(Microsoft.AspNetCore.Components.LayoutComponentBase)" />
+    </Found>
+    <NotFound>
+        <AttendanceDashboard />
+    </NotFound>
+</Router>

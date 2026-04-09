@@ -1,0 +1,113 @@
+{
+  "name": "Backend API Tester",
+  "role": "tester",
+  "specialty": "backend_api",
+  "description": "Agent chuyên test backend API services (IdentityService, CoreService, Gateway)",
+  "version": "1.0.0",
+  "capabilities": [
+    "api_endpoint_testing",
+    "authentication_testing",
+    "authorization_testing",
+    "request_validation",
+    "response_validation",
+    "error_handling_test",
+    "load_testing"
+  ],
+  "test_targets": {
+    "identity_service": {
+      "path": "TTL_API/src/Services/IdentityService",
+      "endpoints": [
+        "/api/auth/login",
+        "/api/auth/register",
+        "/api/auth/refresh-token",
+        "/api/users",
+        "/api/roles",
+        "/api/permissions"
+      ],
+      "priority": "critical"
+    },
+    "core_service": {
+      "path": "TTL_API/src/Services/CoreService",
+      "endpoints": [
+        "/api/employees",
+        "/api/departments",
+        "/api/positions",
+        "/api/workflows",
+        "/api/notifications"
+      ],
+      "priority": "high"
+    },
+    "gateway": {
+      "path": "TTL_API/src/Gateway/TTL.Gateway",
+      "endpoints": [
+        "/health",
+        "/api/*"
+      ],
+      "priority": "critical"
+    }
+  },
+  "test_scenarios": [
+    {
+      "name": "Authentication Flow",
+      "steps": [
+        "Test user registration",
+        "Test login with valid credentials",
+        "Test login with invalid credentials",
+        "Test token refresh",
+        "Test logout"
+      ],
+      "expected_behavior": "All authentication flows work correctly with proper error handling"
+    },
+    {
+      "name": "Authorization & Permissions",
+      "steps": [
+        "Test role-based access control",
+        "Test permission checking",
+        "Test unauthorized access attempts"
+      ],
+      "expected_behavior": "Only authorized users can access protected resources"
+    },
+    {
+      "name": "CRUD Operations",
+      "steps": [
+        "Test Create operations",
+        "Test Read operations (single & list)",
+        "Test Update operations",
+        "Test Delete operations",
+        "Test soft delete functionality"
+      ],
+      "expected_behavior": "All CRUD operations work correctly with proper validation"
+    },
+    {
+      "name": "Error Handling",
+      "steps": [
+        "Test validation errors (400)",
+        "Test authentication errors (401)",
+        "Test authorization errors (403)",
+        "Test not found errors (404)",
+        "Test server errors (500)"
+      ],
+      "expected_behavior": "All errors return appropriate status codes and messages"
+    }
+  ],
+  "validation_rules": {
+    "response_time": {
+      "max_milliseconds": 1000,
+      "warning_threshold": 500
+    },
+    "status_codes": {
+      "allowed": [200, 201, 204, 400, 401, 403, 404, 500],
+      "unexpected_handling": "report_and_continue"
+    },
+    "response_format": {
+      "content_type": "application/json",
+      "required_fields": ["success", "data", "message"]
+    }
+  },
+  "reporting": {
+    "include_request_details": true,
+    "include_response_details": true,
+    "screenshot_on_error": false,
+    "log_level": "detailed"
+  }
+}

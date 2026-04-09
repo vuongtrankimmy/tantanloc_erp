@@ -1,0 +1,198 @@
+{
+  "name": "Integration Tester",
+  "role": "tester",
+  "specialty": "integration_testing",
+  "description": "Agent chuyên test tích hợp giữa các module, services và external systems",
+  "version": "1.0.0",
+  "capabilities": [
+    "service_integration_testing",
+    "api_contract_testing",
+    "event_driven_testing",
+    "workflow_testing",
+    "cross_module_testing",
+    "third_party_integration"
+  ],
+  "test_targets": {
+    "internal_integrations": [
+      {
+        "name": "Gateway <-> Identity Service",
+        "type": "api_gateway",
+        "priority": "critical"
+      },
+      {
+        "name": "Gateway <-> Core Service",
+        "type": "api_gateway",
+        "priority": "critical"
+      },
+      {
+        "name": "Web App <-> API Gateway",
+        "type": "frontend_backend",
+        "priority": "critical"
+      },
+      {
+        "name": "Services <-> MongoDB",
+        "type": "data_access",
+        "priority": "critical"
+      },
+      {
+        "name": "HR Module <-> Attendance Module",
+        "type": "cross_module",
+        "priority": "high"
+      }
+    ],
+    "external_integrations": [
+      {
+        "name": "Email Service",
+        "type": "notification",
+        "priority": "medium"
+      },
+      {
+        "name": "File Storage",
+        "type": "storage",
+        "priority": "medium"
+      }
+    ]
+  },
+  "test_scenarios": [
+    {
+      "name": "End-to-End User Flow",
+      "description": "Test luồng hoàn chỉnh từ đầu đến cuối",
+      "flows": [
+        {
+          "flow_name": "Employee Onboarding",
+          "steps": [
+            "Admin logs in via Web App",
+            "Admin creates new user in Identity Service",
+            "User receives email notification",
+            "Admin creates employee record in Core Service",
+            "Employee data synced to Attendance module",
+            "Admin assigns role and permissions",
+            "New employee logs in successfully"
+          ],
+          "validation": [
+            "User created in database",
+            "Employee record exists with correct data",
+            "Permissions are correctly assigned",
+            "Attendance module has employee record"
+          ]
+        },
+        {
+          "flow_name": "Attendance Recording",
+          "steps": [
+            "Employee logs in to mobile app",
+            "Employee checks in at location",
+            "GPS coordinates validated",
+            "Attendance record created",
+            "Notification sent to supervisor",
+            "Record visible in web dashboard"
+          ],
+          "validation": [
+            "Attendance record saved correctly",
+            "GPS data is accurate",
+            "Timestamp is correct",
+            "Dashboard updates in real-time"
+          ]
+        },
+        {
+          "flow_name": "Payroll Processing",
+          "steps": [
+            "HR accesses payroll module",
+            "System fetches attendance data",
+            "System calculates salaries",
+            "HR reviews and approves",
+            "Payroll records generated",
+            "Reports exported"
+          ],
+          "validation": [
+            "Attendance data correctly aggregated",
+            "Salary calculations are accurate",
+            "All employees included",
+            "Reports contain correct data"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Service Communication",
+      "tests": [
+        {
+          "test": "Gateway routes requests correctly",
+          "scenarios": [
+            "Route to Identity Service",
+            "Route to Core Service",
+            "Handle service unavailable",
+            "Timeout handling"
+          ]
+        },
+        {
+          "test": "Service contracts are honored",
+          "scenarios": [
+            "Request/response format matches contract",
+            "Required fields are present",
+            "Data types are correct",
+            "Error responses follow standard format"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Data Consistency",
+      "tests": [
+        "Employee data consistent across services",
+        "Attendance records match employee records",
+        "User permissions synchronized",
+        "Department changes propagate correctly",
+        "Soft deletes handled consistently"
+      ]
+    },
+    {
+      "name": "Event-Driven Workflows",
+      "tests": [
+        {
+          "event": "Employee Created",
+          "expected_effects": [
+            "User account created",
+            "Welcome email sent",
+            "Default permissions assigned",
+            "Attendance profile initialized"
+          ]
+        },
+        {
+          "event": "Employee Terminated",
+          "expected_effects": [
+            "User account disabled",
+            "Access revoked",
+            "Exit notification sent",
+            "Records archived"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Error Propagation",
+      "tests": [
+        "Service failure handled gracefully",
+        "Database connection errors caught",
+        "Partial failures don't corrupt data",
+        "Retry mechanisms work correctly",
+        "Circuit breakers activate properly"
+      ]
+    }
+  ],
+  "validation_rules": {
+    "data_consistency": {
+      "check_interval_minutes": 5,
+      "max_sync_delay_seconds": 10
+    },
+    "api_contracts": {
+      "schema_validation": true,
+      "version_compatibility": true
+    }
+  },
+  "reporting": {
+    "include_flow_diagrams": true,
+    "include_timing_analysis": true,
+    "include_data_snapshots": false,
+    "log_level": "detailed"
+  }
+}

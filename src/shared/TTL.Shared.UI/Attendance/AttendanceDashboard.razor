@@ -1,0 +1,120 @@
+@namespace TTL.Shared.UI.Attendance
+@using Microsoft.JSInterop
+@using TTL.Shared.Services.Attendance
+@implements IDisposable
+@inject IAttendanceService AttendanceService
+@inject IJSRuntime JSRuntime
+
+@* CLEAN STATE - READY FOR CHRONOGRAPH SYSTEM REBUILD *@
+
+<div class="attendance-dashboard">
+    <!-- Navbar / Tabs để chuyển đổi -->
+    <div class="dashboard-tabs">
+        <button class="btn @( _currentView == "Scan" ? "btn-primary" : "btn-outline" )" 
+                @onclick='() => SwitchView("Scan")'>Màn Hình Chấm Công</button>
+        <button class="btn @( _currentView == "CustomForm" ? "btn-primary" : "btn-outline" )" 
+                @onclick='() => SwitchView("CustomForm")'>Form Custom (Tùy Chỉnh)</button>
+    </div>
+
+    <!-- Nội dung hiển thị dựa trên trạng thái _currentView -->
+    <div class="dashboard-content">
+        @if (_currentView == "Scan")
+        {
+            <div class="scan-view">
+                <h3>Chế độ chấm công</h3>
+                <p>Thời gian hiện tại: @_currentTime.ToString("HH:mm:ss")</p>
+                <!-- Thêm giao diện quét thẻ vào đây -->
+            </div>
+        }
+        else if (_currentView == "CustomForm")
+        {
+            <div class="custom-form">
+                <h3>Màn hình Form Custom</h3>
+                <!-- Thêm các ô Input, Label, Textbox của form custom vào đây -->
+                <p>Bạn có thể thiết kế form gì đó riêng ở đây...</p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private string _currentView = "Scan"; // Default view
+    private List<AttendanceRecord> _scans = new();
+    
+    private void SwitchView(string viewName)
+    {
+        _currentView = viewName;
+        StateHasChanged();
+    }
+    private DateTime _currentTime = DateTime.Now;
+    private bool _isProcessing = false;
+    private bool _checkInMode = true;
+    private bool? _lastScanSuccess = null;
+    private string _lastEmployeeName = "";
+    private System.Threading.Timer? _timer;
+    private DotNetObjectReference<AttendanceDashboard>? _objRef;
+
+    protected override void OnInitialized()
+    {
+        AttendanceService.OnDataChanged += HandleDataChanged;
+        RefreshScans();
+        
+        _timer = new System.Threading.Timer(_ => 
+        {
+            InvokeAsync(() => {
+                _currentTime = DateTime.Now;
+                StateHasChanged();
+            });
+        }, null, 0, 1000);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _objRef = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("attendanceScanner.init", _objRef);
+        }
+    }
+
+    private void RefreshScans()
+    {
+        _scans = AttendanceService.GetLastScans().OrderByDescending(r => r.ScanTime).Take(10).ToList();
+    }
+
+    private void HandleDataChanged()
+    {
+        InvokeAsync(() => {
+            RefreshScans();
+            StateHasChanged();
+        });
+    }
+
+    [JSInvokable]
+    public async Task HandleScannerInput(string code)
+    {
+        if (_isProcessing) return;
+        _isProcessing = true;
+        _lastScanSuccess = null;
+        StateHasChanged();
+        await Task.Delay(300);
+        var success = await AttendanceService.ProcessScanAsync(code);
+        _lastScanSuccess = success;
+        if (success) {
+            _lastEmployeeName = _scans.FirstOrDefault()?.EmployeeName ?? "Unknown";
+        }
+        _isProcessing = false;
+        StateHasChanged();
+        _ = Task.Delay(3000).ContinueWith(_ => {
+            _lastScanSuccess = null;
+            InvokeAsync(StateHasChanged);
+        });
+    }
+
+    public void Dispose()
+    {
+        AttendanceService.OnDataChanged -= HandleDataChanged;
+        _timer?.Dispose();
+        _objRef?.Dispose();
+    }
+}

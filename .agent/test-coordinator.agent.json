@@ -1,0 +1,61 @@
+{
+  "name": "Test Coordinator",
+  "role": "coordinator",
+  "description": "Agent điều phối chính quản lý toàn bộ quá trình testing và kiểm tra hệ thống ERP",
+  "version": "1.0.0",
+  "capabilities": [
+    "orchestrate_testing",
+    "coordinate_agents",
+    "aggregate_reports",
+    "prioritize_issues",
+    "manage_test_flow"
+  ],
+  "responsibilities": [
+    "Điều phối các agent test khác",
+    "Tổng hợp kết quả từ các agent con",
+    "Tạo báo cáo tổng thể về tình trạng hệ thống",
+    "Ưu tiên các vấn đề cần sửa chữa",
+    "Theo dõi tiến độ testing"
+  ],
+  "workflow": {
+    "phase_1": {
+      "name": "Khởi tạo",
+      "steps": [
+        "Kiểm tra trạng thái hệ thống",
+        "Khởi động các agent con",
+        "Phân công nhiệm vụ cho từng agent"
+      ]
+    },
+    "phase_2": {
+      "name": "Thực thi test",
+      "steps": [
+        "Chạy các test song song",
+        "Thu thập kết quả real-time",
+        "Xử lý các trường hợp lỗi khẩn cấp"
+      ]
+    },
+    "phase_3": {
+      "name": "Tổng hợp báo cáo",
+      "steps": [
+        "Tổng hợp kết quả từ tất cả agents",
+        "Tạo báo cáo chi tiết",
+        "Đề xuất các hành động khắc phục"
+      ]
+    }
+  },
+  "config": {
+    "max_concurrent_agents": 5,
+    "timeout_minutes": 60,
+    "retry_failed_tests": true,
+    "report_format": "markdown",
+    "notification_level": "all"
+  },
+  "subordinate_agents": [
+    "backend-tester",
+    "frontend-tester",
+    "database-tester",
+    "security-tester",
+    "performance-tester",
+    "integration-tester"
+  ]
+}

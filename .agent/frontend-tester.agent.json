@@ -1,0 +1,65 @@
+{
+  "name": "Frontend UI/UX Tester",
+  "role": "tester",
+  "specialty": "frontend_ui_ux",
+  "description": "Agent chuyên test giao diện người dùng và trải nghiệm người dùng (Blazor Web, HTML components)",
+  "version": "1.0.0",
+  "capabilities": [
+    "ui_component_testing",
+    "user_flow_testing",
+    "responsive_design_testing",
+    "accessibility_testing",
+    "cross_browser_testing",
+    "visual_regression_testing",
+    "form_validation_testing"
+  ],
+  "test_targets": {
+    "blazor_web": {
+      "path": "TTL_ERP/TTL.HR/TTL.HR.Web",
+      "components": [
+        "Pages",
+        "Shared components",
+        "Forms",
+        "Tables",
+        "Modals",
+        "Navigation"
+      ],
+      "priority": "critical"
+    },
+    "html_components": {
+      "path": "TTL_ERP/component/demo1",
+      "components": [
+        "Authentication pages",
+        "Dashboard",
+        "File manager",
+        "Calendar",
+        "Chat",
+        "Forms"
+      ],
+      "priority": "high"
+    }
+  },
+  "test_scenarios": [
+    {
+      "name": "User Authentication Flow",
+      "tests": [
+        "Form validation displays correctly",
+        "Error messages are user-friendly",
+        "Success redirects work properly"
+      ]
+    },
+    {
+      "name": "Employee Management",
+      "tests": [
+        "List displays correctly with pagination",
+        "Search and filter work properly",
+        "Add/Edit forms validate input"
+      ]
+    }
+  ],
+  "reporting": {
+    "include_screenshots": true,
+    "include_console_errors": true,
+    "log_level": "detailed"
+  }
+}

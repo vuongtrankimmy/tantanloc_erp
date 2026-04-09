@@ -1,0 +1,181 @@
+{
+  "name": "Report Generator",
+  "role": "reporter",
+  "specialty": "test_reporting",
+  "description": "Agent chuyên tổng hợp kết quả test và tạo báo cáo chi tiết, dễ hiểu",
+  "version": "1.0.0",
+  "capabilities": [
+    "aggregate_results",
+    "generate_reports",
+    "create_dashboards",
+    "trend_analysis",
+    "issue_prioritization",
+    "recommendation_generation"
+  ],
+  "input_sources": [
+    "backend-tester",
+    "frontend-tester",
+    "database-tester",
+    "security-tester",
+    "performance-tester",
+    "integration-tester"
+  ],
+  "report_types": [
+    {
+      "name": "Executive Summary",
+      "format": "markdown",
+      "sections": [
+        "Overall System Health",
+        "Critical Issues",
+        "Test Coverage Summary",
+        "Key Metrics",
+        "Recommendations"
+      ],
+      "audience": "management"
+    },
+    {
+      "name": "Technical Report",
+      "format": "markdown",
+      "sections": [
+        "Test Execution Summary",
+        "Detailed Test Results by Module",
+        "Performance Metrics",
+        "Security Findings",
+        "Database Health",
+        "Integration Issues",
+        "Bug List with Severity",
+        "Code Quality Metrics"
+      ],
+      "audience": "developers"
+    },
+    {
+      "name": "Test Coverage Report",
+      "format": "html",
+      "sections": [
+        "Overall Coverage %",
+        "Coverage by Module",
+        "Untested Areas",
+        "Test Case Distribution"
+      ],
+      "audience": "qa_team"
+    }
+  ],
+  "metrics_to_track": {
+    "test_execution": {
+      "total_tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "pass_rate_percent": 0,
+      "execution_time_minutes": 0
+    },
+    "quality_metrics": {
+      "critical_bugs": 0,
+      "high_priority_bugs": 0,
+      "medium_priority_bugs": 0,
+      "low_priority_bugs": 0,
+      "code_coverage_percent": 0
+    },
+    "performance_metrics": {
+      "avg_response_time_ms": 0,
+      "p95_response_time_ms": 0,
+      "error_rate_percent": 0,
+      "throughput_req_per_sec": 0
+    },
+    "security_metrics": {
+      "critical_vulnerabilities": 0,
+      "high_vulnerabilities": 0,
+      "medium_vulnerabilities": 0,
+      "low_vulnerabilities": 0,
+      "security_score": 0
+    }
+  },
+  "issue_prioritization": {
+    "critical": {
+      "criteria": [
+        "System crash or data loss",
+        "Security vulnerability allowing unauthorized access",
+        "Complete feature failure",
+        "Database corruption"
+      ],
+      "sla_hours": 4
+    },
+    "high": {
+      "criteria": [
+        "Major feature not working as expected",
+        "Performance degradation > 50%",
+        "High severity security issue",
+        "Data inconsistency"
+      ],
+      "sla_hours": 24
+    },
+    "medium": {
+      "criteria": [
+        "Minor feature issue",
+        "UI/UX problem",
+        "Performance degradation 20-50%",
+        "Medium severity security issue"
+      ],
+      "sla_days": 7
+    },
+    "low": {
+      "criteria": [
+        "Cosmetic issue",
+        "Enhancement request",
+        "Low severity security issue",
+        "Documentation issue"
+      ],
+      "sla_days": 30
+    }
+  },
+  "report_sections": {
+    "executive_summary": {
+      "include": true,
+      "max_length_pages": 2,
+      "highlight_top_issues": 5
+    },
+    "test_coverage": {
+      "include": true,
+      "show_coverage_by_module": true,
+      "show_untested_areas": true
+    },
+    "performance_analysis": {
+      "include": true,
+      "show_trends": true,
+      "compare_with_baseline": true
+    },
+    "security_findings": {
+      "include": true,
+      "group_by_severity": true,
+      "include_remediation": true
+    },
+    "recommendations": {
+      "include": true,
+      "prioritize": true,
+      "include_quick_wins": true,
+      "estimate_effort": true
+    }
+  },
+  "output_formats": [
+    {
+      "format": "markdown",
+      "filename": "test-report-{timestamp}.md",
+      "path": "docs/test-reports"
+    },
+    {
+      "format": "html",
+      "filename": "test-report-{timestamp}.html",
+      "path": "docs/test-reports"
+    },
+    {
+      "format": "json",
+      "filename": "test-results-{timestamp}.json",
+      "path": "docs/test-reports/data"
+    }
+  ],
+  "notifications": {
+    "on_completion": true,
+    "on_critical_issues": true,
+    "channels": ["console", "file"]
+  }
+}

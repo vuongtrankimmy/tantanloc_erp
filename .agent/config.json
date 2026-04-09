@@ -1,0 +1,136 @@
+{
+  "agent_team_config": {
+    "name": "TTL ERP Testing Team",
+    "version": "1.0.0",
+    "description": "Agent team tự động để test và kiểm tra toàn bộ hệ thống ERP",
+    "created_date": "2026-03-19",
+    "environment": {
+      "api_base_url": "http://localhost:5000",
+      "identity_service_url": "http://localhost:5001",
+      "core_service_url": "http://localhost:5002",
+      "web_app_url": "http://localhost:5003",
+      "mongodb_connection": "mongodb://localhost:27017",
+      "test_data_path": "data_gen_test"
+    },
+    "agents": [
+      {
+        "id": "coordinator",
+        "name": "Test Coordinator",
+        "file": "test-coordinator.agent.json",
+        "enabled": true,
+        "role": "master",
+        "auto_start": true
+      },
+      {
+        "id": "backend-tester",
+        "name": "Backend API Tester",
+        "file": "backend-tester.agent.json",
+        "enabled": true,
+        "role": "worker",
+        "depends_on": ["coordinator"]
+      },
+      {
+        "id": "frontend-tester",
+        "name": "Frontend UI/UX Tester",
+        "file": "frontend-tester.agent.json",
+        "enabled": true,
+        "role": "worker",
+        "depends_on": ["coordinator"]
+      },
+      {
+        "id": "database-tester",
+        "name": "Database & Data Integrity Tester",
+        "file": "database-tester.agent.json",
+        "enabled": true,
+        "role": "worker",
+        "depends_on": ["coordinator"]
+      },
+      {
+        "id": "security-tester",
+        "name": "Security & Vulnerability Tester",
+        "file": "security-tester.agent.json",
+        "enabled": true,
+        "role": "worker",
+        "depends_on": ["coordinator"]
+      },
+      {
+        "id": "performance-tester",
+        "name": "Performance & Load Tester",
+        "file": "performance-tester.agent.json",
+        "enabled": true,
+        "role": "worker",
+        "depends_on": ["coordinator"]
+      },
+      {
+        "id": "integration-tester",
+        "name": "Integration Tester",
+        "file": "integration-tester.agent.json",
+        "enabled": true,
+        "role": "worker",
+        "depends_on": ["backend-tester", "frontend-tester"]
+      },
+      {
+        "id": "report-generator",
+        "name": "Report Generator",
+        "file": "report-generator.agent.json",
+        "enabled": true,
+        "role": "reporter",
+        "depends_on": ["*"]
+      }
+    ],
+    "execution_strategy": {
+      "mode": "parallel",
+      "max_parallel_agents": 5,
+      "timeout_minutes": 120,
+      "retry_on_failure": true,
+      "max_retries": 2,
+      "continue_on_error": true
+    },
+    "test_phases": [
+      {
+        "phase": 1,
+        "name": "Infrastructure & Database",
+        "agents": ["database-tester"],
+        "description": "Kiểm tra database và infrastructure trước"
+      },
+      {
+        "phase": 2,
+        "name": "Backend Services",
+        "agents": ["backend-tester", "security-tester"],
+        "description": "Test các backend services và security"
+      },
+      {
+        "phase": 3,
+        "name": "Frontend & Performance",
+        "agents": ["frontend-tester", "performance-tester"],
+        "description": "Test frontend và performance"
+      },
+      {
+        "phase": 4,
+        "name": "Integration",
+        "agents": ["integration-tester"],
+        "description": "Test tích hợp end-to-end"
+      },
+      {
+        "phase": 5,
+        "name": "Reporting",
+        "agents": ["report-generator"],
+        "description": "Tạo báo cáo tổng hợp"
+      }
+    ],
+    "notifications": {
+      "enabled": true,
+      "on_start": true,
+      "on_completion": true,
+      "on_error": true,
+      "on_critical_issue": true
+    },
+    "reporting": {
+      "output_directory": "docs/test-reports",
+      "formats": ["markdown", "html", "json"],
+      "include_screenshots": true,
+      "include_logs": true,
+      "archive_results": true
+    }
+  }
+}

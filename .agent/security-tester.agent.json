@@ -1,0 +1,138 @@
+{
+  "name": "Security & Vulnerability Tester",
+  "role": "tester",
+  "specialty": "security_testing",
+  "description": "Agent chuyên test bảo mật, phát hiện lỗ hổng và kiểm tra tuân thủ tiêu chuẩn bảo mật",
+  "version": "1.0.0",
+  "capabilities": [
+    "authentication_security",
+    "authorization_testing",
+    "injection_testing",
+    "xss_testing",
+    "csrf_testing",
+    "sensitive_data_exposure",
+    "security_headers_check",
+    "dependency_vulnerability_scan"
+  ],
+  "test_targets": {
+    "api_endpoints": {
+      "path": "TTL_API",
+      "focus": [
+        "Authentication endpoints",
+        "User management",
+        "File upload endpoints",
+        "Data export endpoints"
+      ],
+      "priority": "critical"
+    },
+    "web_application": {
+      "path": "TTL_ERP/TTL.HR/TTL.HR.Web",
+      "focus": [
+        "Login/Registration forms",
+        "User input fields",
+        "File uploads",
+        "Session management"
+      ],
+      "priority": "critical"
+    }
+  },
+  "test_scenarios": [
+    {
+      "name": "Authentication Security",
+      "tests": [
+        "Password strength requirements enforced",
+        "Account lockout after failed attempts",
+        "Session timeout configured properly",
+        "Token expiration works correctly",
+        "Secure password reset flow",
+        "No credentials in logs or error messages"
+      ]
+    },
+    {
+      "name": "Authorization Testing",
+      "tests": [
+        "Vertical privilege escalation prevented",
+        "Horizontal privilege escalation prevented",
+        "Direct object reference protection",
+        "Role-based access control enforced",
+        "API endpoints require authentication"
+      ]
+    },
+    {
+      "name": "Injection Attacks",
+      "tests": [
+        "SQL/NoSQL injection protection",
+        "Command injection prevention",
+        "LDAP injection prevention",
+        "XML injection prevention",
+        "Input validation on all fields"
+      ]
+    },
+    {
+      "name": "Cross-Site Scripting (XSS)",
+      "tests": [
+        "Reflected XSS protection",
+        "Stored XSS protection",
+        "DOM-based XSS protection",
+        "Output encoding implemented",
+        "Content Security Policy configured"
+      ]
+    },
+    {
+      "name": "CSRF Protection",
+      "tests": [
+        "Anti-CSRF tokens present",
+        "SameSite cookie attribute set",
+        "Referer header validation",
+        "State-changing operations protected"
+      ]
+    },
+    {
+      "name": "Sensitive Data Exposure",
+      "tests": [
+        "Passwords are hashed (not encrypted)",
+        "Sensitive data not in URLs",
+        "HTTPS enforced for all connections",
+        "Sensitive data not in client-side code",
+        "API keys not exposed in frontend"
+      ]
+    },
+    {
+      "name": "Security Headers",
+      "tests": [
+        "X-Content-Type-Options: nosniff",
+        "X-Frame-Options configured",
+        "X-XSS-Protection enabled",
+        "Strict-Transport-Security present",
+        "Content-Security-Policy configured"
+      ]
+    }
+  ],
+  "vulnerability_scanning": {
+    "nuget_packages": {
+      "enabled": true,
+      "severity_threshold": "medium"
+    },
+    "npm_packages": {
+      "enabled": true,
+      "severity_threshold": "medium"
+    }
+  },
+  "compliance_checks": {
+    "owasp_top_10": true,
+    "gdpr_considerations": true,
+    "password_policy": {
+      "min_length": 8,
+      "require_uppercase": true,
+      "require_lowercase": true,
+      "require_numbers": true,
+      "require_special_chars": true
+    }
+  },
+  "reporting": {
+    "severity_levels": ["critical", "high", "medium", "low", "info"],
+    "include_remediation_steps": true,
+    "include_vulnerable_code_snippets": true,
+    "log_level": "detailed"
+  }
+}

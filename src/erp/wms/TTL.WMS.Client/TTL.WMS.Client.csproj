@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\shared\TTL.Shared.UI\TTL.Shared.UI.csproj" />
+    <ProjectReference Include="..\..\..\shared\TTL.Shared.Models\TTL.Shared.Models.csproj" />
+    <ProjectReference Include="..\..\..\shared\TTL.Shared.Services\TTL.Shared.Services.csproj" />
+    <ProjectReference Include="..\..\..\auth\TTL.Auth.Client\TTL.Auth.Client.csproj" />
+  </ItemGroup>
+
+</Project>
