@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
         <TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
@@ -21,8 +21,17 @@
         <EnableDefaultCssItems>false</EnableDefaultCssItems>
         <Nullable>enable</Nullable>
 
+        <!-- CPU, GC and Threading Optimization for Stable Runtime -->
+        <ServerGarbageCollection>false</ServerGarbageCollection>
+        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+        <RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+        <ThreadPoolMinThreads>100</ThreadPoolMinThreads>
+        <ThreadPoolMaxThreads>1000</ThreadPoolMaxThreads>
+        <TieredCompilation>true</TieredCompilation>
+        <TieredPGO>true</TieredPGO>
+
         <!-- Display name -->
-        <ApplicationTitle>TTL.Attendance.App</ApplicationTitle>
+        <ApplicationTitle>Hệ thống chấm công Tân Tấn Lộc</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.ttl.attendance.app</ApplicationId>

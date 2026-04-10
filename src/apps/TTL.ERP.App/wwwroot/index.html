@@ -16,17 +16,27 @@
     <link rel="stylesheet" href="TTL.ERP.App.styles.css" />
 
     <style>
-        html, body {
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
             width: 100%;
-        }
-        #app {
-            height: 100%;
             display: flex;
             flex-direction: column;
-            width: 100%;
+        }
+        #app {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
     </style>
 </head>

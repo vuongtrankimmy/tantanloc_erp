@@ -9,6 +9,6 @@ public partial class App : Application
 
 	protected override Window CreateWindow(IActivationState? activationState)
 	{
-		return new Window(new MainPage()) { Title = "TTL.Attendance.App" };
+		return new Window(new MainPage()) { Title = "Hệ thống chấm công Tân Tấn Lộc" };
 	}
 }

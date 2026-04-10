@@ -1,91 +1,113 @@
 @namespace TTL.Shared.UI.Attendance
 
-<div class="d-flex flex-column w-100 vh-100 overflow-hidden bg-white" style="font-family: 'Inter', 'Segoe UI', sans-serif;">
+@if (_isDarkTheme)
+{
+    <style>
+        /* Ghi đè tự động giao diện Dark Mode lên các class Bootstrap gốc */
+        .bg-white { background-color: #18191a !important; }
+        .card { background-color: #242526 !important; }
+        .text-dark { color: #e4e6eb !important; }
+        .bg-light { background-color: #3a3b3c !important; }
+        .text-muted { color: #b0b3b8 !important; }
+        .border-bottom, .border { border-color: #3e4042 !important; }
+    </style>
+}
+
+<div class="d-flex flex-column position-absolute start-0 end-0 top-0 bottom-0 overflow-hidden bg-white" style="font-family: 'Inter', 'Segoe UI', sans-serif;">
     
     <!-- HEADER BAR (Matches Image) -->
-    <div class="d-flex align-items-center justify-content-between p-4 px-6 border-bottom flex-shrink-0">
+    <div class="d-flex align-items-center justify-content-between p-4 px-4 border-bottom flex-shrink-0">
         <!-- Left: Logo & Title -->
         <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center justify-content-center bg-warning text-white rounded-3 me-4 shadow-sm" style="width: 48px; height: 48px; background-color: #ff6f00 !important;">
+            <div class="d-flex align-items-center justify-content-center text-white rounded-3 me-4 shadow-sm" style="width: 48px; height: 48px; background-color: @_primaryColor !important;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/><path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/></svg>
             </div>
             <div class="d-flex flex-column">
-                <h1 class="fs-3 fw-bolder text-dark mb-0">Hệ Thống Chấm Công</h1>
+                <h1 class="fs-3 fw-bolder text-dark mb-0">Hệ thống chấm công Tân Tấn Lộc</h1>
                 <span class="fs-7 text-muted fw-semibold mt-1">Trụ sở chính - Sảnh chính</span>
             </div>
         </div>
         
         <!-- Right: Time & Settings -->
-        <div class="d-flex align-items-center gap-6">
-            <div class="d-flex flex-column align-items-end me-4">
-                <span class="fs-2x fw-bolder text-warning lh-1" style="font-size: 2.2rem; letter-spacing: 1px; color: #ff6f00 !important;">@_currentTime.ToString("HH:mm:ss")</span>
-                <span class="fs-7 text-muted fw-bold text-uppercase mt-1" style="letter-spacing: 1px;">@_currentTime.ToString("dddd, dd 'THÁNG' MM, yyyy", new System.Globalization.CultureInfo("vi-VN"))</span>
-            </div>
+        <div class="d-flex align-items-center">
             
-            <button class="btn btn-icon bg-light text-hover-primary rounded-circle border-0 me-2 shadow-sm d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;" title="Cài đặt">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-gray-700" viewBox="0 0 16 16"><path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/><path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/></svg>
+            <button class="btn btn-icon bg-light rounded-circle border-0 me-2 shadow-sm d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; color: @_primaryColor;" title="Ẩn/hiển thị danh sách lịch sử" @onclick="ToggleHistory">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+                    <path d="M5 2v12h1V2H5z"/>
+                </svg>
             </button>
-            <div class="d-flex align-items-center justify-content-center text-white fw-bolder rounded-circle shadow-sm cursor-pointer" style="width: 45px; height: 45px; background: #ffcca5;" @onclick="CloseApp" title="Đóng hệ thống">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M2 13.5v-.5c0-1.136.9-2.072 2.055-2.22 1.22-.156 2.628-.28 3.945-.28s2.725.124 3.945.28c1.155.148 2.055 1.084 2.055 2.22v.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5z"/></svg>
-            </div>
+
+            <button class="btn btn-icon bg-light rounded-circle border-0 me-2 shadow-sm d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; color: @_primaryColor;" title="Cài đặt" @onclick="ToggleSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/><path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/></svg>
+            </button>
+            <button type="button" class="btn btn-icon rounded-circle border-0 shadow-sm d-flex align-items-center justify-content-center text-white" style="width: 45px; height: 45px; background-color: #dc3545;" title="Tắt hệ thống" @onclick="PromptCloseApp">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                  <path d="M7.5 1v7h1V1h-1z"/>
+                  <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                </svg>
+            </button>
         </div>
     </div>
 
     <!-- MAIN DASHBOARD CONTENT -->
-    <div class="flex-grow-1 px-8 py-6 overflow-hidden" style="background: #fafafc;">
-        <div class="row g-8 h-100">
+    <div class="flex-grow-1 p-4 overflow-hidden" style="background: @(_isDarkTheme ? "#121212" : "#e8f5e9");">
+        <div class="row h-100 pb-2">
             
             <!-- LEFT: HISTORY LIST -->
-            <div class="col-xl-4 h-100">
-                <div class="card shadow-sm border-0 h-100 d-flex flex-column" style="background: white; border-radius: 12px;">
-                    <div class="card-header border-bottom-0 pt-6 pb-2 px-6 d-flex justify-content-between align-items-center flex-shrink-0">
-                        <div class="d-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-warning me-2" style="color: #ff6f00 !important;" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
-                            <h3 class="card-title fw-bolder text-dark fs-4 m-0">Lượt quét gần nhất</h3>
+            @if (_showHistory)
+            {
+                <div class="col-12 col-xl-4 h-100 d-none d-xl-block" style="transition: all 0.3s ease;">
+                    <div class="card shadow-sm border-0 h-100 d-flex flex-column bg-white" style="border-radius: 12px;">
+                        <div class="card-header border-bottom-0 pt-6 pb-2 px-6 d-flex justify-content-between align-items-center flex-shrink-0">
+                            <div class="d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2" style="color: @_primaryColor !important;" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+                                <h3 class="card-title fw-bolder text-dark fs-4 m-0">Lượt quét gần nhất</h3>
+                            </div>
+                            <span class="badge px-3 py-2 fw-bold" style="border-radius: 20px;color: @_primaryColor !important;">Trực tuyến</span>
                         </div>
-                        <span class="badge text-warning px-3 py-2 fw-bold" style="border-radius: 20px; background-color: #fff2e5; color: #ff6f00 !important;">Trực tuyến</span>
-                    </div>
-                    <div class="card-body px-4 py-2 mt-4 flex-grow-1" style="overflow-y: auto; height: 0;">
-                        @if(!_scans.Any())
-                        {
-                            <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                                <span class="text-muted fw-semibold fs-5">Chưa có dữ liệu...</span>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex flex-column gap-3">
-                                @foreach (var scan in _scans)
-                                {
-                                    <div class="d-flex align-items-center p-4 rounded bg-white transition-base" style="border: 1px solid transparent;">
-                                        <!-- Avatar -->
-                                        <div class="position-relative me-4">
-                                            <div class="d-flex justify-content-center align-items-center rounded-circle bg-dark text-white fw-bolder fs-5 shadow-sm" style="width: 45px; height: 45px;">
-                                                @(string.IsNullOrEmpty(scan.EmployeeName) ? "?" : scan.EmployeeName.Substring(0, 1))
+                        <div class="card-body px-4 py-2 mt-4 flex-grow-1" style="overflow-y: auto; height: 0;">
+                            @if(!_scans.Any())
+                            {
+                                <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                    <span class="text-muted fw-semibold fs-5">Chưa có dữ liệu...</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex flex-column gap-3">
+                                    @foreach (var scan in _scans)
+                                    {
+                                        <div class="d-flex align-items-center p-4 rounded bg-white transition-base" style="border: 1px solid transparent;">
+                                            <!-- Avatar -->
+                                            <div class="position-relative me-4">
+                                                <div class="d-flex justify-content-center align-items-center rounded-circle bg-dark text-white fw-bolder fs-5 shadow-sm" style="width: 45px; height: 45px;">
+                                                    @(string.IsNullOrEmpty(scan.EmployeeName) ? "?" : scan.EmployeeName.Substring(0, 1))
+                                                </div>
+                                                <span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-white border-2 rounded-circle" style="margin-right: -4px;"></span>
                                             </div>
-                                            <span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-white border-2 rounded-circle" style="margin-right: -4px;"></span>
+                                            <!-- Info -->
+                                            <div class="flex-grow-1 d-flex flex-column">
+                                                <span class="text-dark fw-bold fs-6">@scan.EmployeeName</span>
+                                                <span class="text-muted fw-semibold" style="font-size: 0.8rem;">Mã NV: @scan.EmployeeId</span>
+                                            </div>
+                                            <!-- Time & Status -->
+                                            <div class="d-flex flex-column align-items-end">
+                                                <span class="text-dark fw-bold fs-6 mb-1">@scan.ScanTime.ToString("HH:mm:ss")</span>
+                                                <span class="badge text-success px-2 py-1" style="font-size: 0.7rem; font-weight: 800; background: #e8f5e9;">GIỜ VÀO</span>
+                                            </div>
                                         </div>
-                                        <!-- Info -->
-                                        <div class="flex-grow-1 d-flex flex-column">
-                                            <span class="text-dark fw-bold fs-6">@scan.EmployeeName</span>
-                                            <span class="text-muted fw-semibold" style="font-size: 0.8rem;">Mã NV: @scan.EmployeeId</span>
-                                        </div>
-                                        <!-- Time & Status -->
-                                        <div class="d-flex flex-column align-items-end">
-                                            <span class="text-dark fw-bold fs-6 mb-1">@scan.ScanTime.ToString("HH:mm:ss")</span>
-                                            <span class="badge text-success px-2 py-1" style="font-size: 0.7rem; font-weight: 800; background: #e8f5e9;">GIỜ VÀO</span>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        }
+                                    }
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
 
             <!-- RIGHT: MAIN SCANNER VIEW -->
-            <div class="col-xl-8 h-100">
-                <div class="card shadow-sm border-0 h-100 d-flex flex-column" style="background: white; border-radius: 12px;">
+            <div class="col-12 @(_showHistory ? "col-xl-8" : "col-xl-12") h-100" style="transition: all 0.3s ease;">
+                <div class="card shadow-sm border-0 h-100 d-flex flex-column bg-white" style="border-radius: 12px;">
                     <div class="card-body d-flex flex-column align-items-center position-relative py-10 flex-grow-1" style="overflow-y: auto; height: 0;">
                         
                         <!-- Top Status Indicator -->
@@ -111,8 +133,44 @@
                             }
                         </div>
 
+                        <!-- Add Scan Animation Style -->
+                        <style>
+                            @@keyframes scanline {
+                                0% { top: 5%; opacity: 0; }
+                                10% { opacity: 1; }
+                                50% { top: 95%; opacity: 1; }
+                                90% { opacity: 1; }
+                                100% { top: 5%; opacity: 0; }
+                            }
+                        </style>
+
                         <!-- Camera/Scanner Placeholder Rectangle -->
-                        <div class="position-relative d-flex justify-content-center align-items-center rounded-4 mb-6 shadow-sm" style="width: 260px; height: 260px; background-color: #589f8d; border: 4px solid #ff6f00;">
+                        <div class="position-relative d-flex justify-content-center align-items-center rounded-4 mb-6 shadow-sm overflow-hidden" 
+                             style="width: 260px; height: 260px; background-color: @(_isDarkTheme ? "#1e1e1e" : "#fafafc"); border: 2px solid @(_isDarkTheme ? "#333" : "#e1e3ea"); box-shadow: inset 0 0 20px rgba(0,0,0,0.03) !important;">
+                            
+                            <!-- Corner brackets simulating camera view -->
+                            <div class="position-absolute top-0 start-0 m-4" style="width: 40px; height: 40px; border-top: 4px solid @_primaryColor; border-left: 4px solid @_primaryColor; border-top-left-radius: 12px; opacity: 0.8;"></div>
+                            <div class="position-absolute top-0 end-0 m-4" style="width: 40px; height: 40px; border-top: 4px solid @_primaryColor; border-right: 4px solid @_primaryColor; border-top-right-radius: 12px; opacity: 0.8;"></div>
+                            <div class="position-absolute bottom-0 start-0 m-4" style="width: 40px; height: 40px; border-bottom: 4px solid @_primaryColor; border-left: 4px solid @_primaryColor; border-bottom-left-radius: 12px; opacity: 0.8;"></div>
+                            <div class="position-absolute bottom-0 end-0 m-4" style="width: 40px; height: 40px; border-bottom: 4px solid @_primaryColor; border-right: 4px solid @_primaryColor; border-bottom-right-radius: 12px; opacity: 0.8;"></div>
+                            
+                            <!-- Central Vector (QR/Barcode Illustration) -->
+                            <div class="text-muted d-flex flex-column align-items-center opacity-50 transition-base" style="transition: opacity 0.3s; @(_lastScanSuccess == null ? "opacity: 0.8;" : "opacity: 0.3;")">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="mb-3" viewBox="0 0 16 16">
+                                    <path d="M2 2h2v2H2V2Z"/>
+                                    <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
+                                    <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
+                                    <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
+                                    <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
+                                </svg>
+                                <span class="fw-bolder text-dark" style="letter-spacing: 2px; font-size: 0.85rem;">QUÉT MÃ QR</span>
+                            </div>
+
+                            <!-- Animated Scan Line overlay -->
+                            @if (_lastScanSuccess == null)
+                            {
+                                <div class="position-absolute w-100 start-0" style="height: 3px; background: linear-gradient(90deg, rgba(255,111,0,0) 0%, rgba(255,111,0,1) 50%, rgba(255,111,0,0) 100%); box-shadow: 0 0 10px 2px rgba(255,111,0,0.4); animation: scanline 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;"></div>
+                            }
                         </div>
 
                         <!-- Employee Info -->
@@ -135,15 +193,15 @@
                         }
 
                         <!-- Segmented Toggle Buttons -->
-                        <div class="d-flex align-items-center p-2 rounded-pill mb-6 shadow-sm" style="background: #ffffff; border: 1px solid #e1e3ea; display: inline-block;">
-                            <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(_checkInMode ? "text-success shadow-sm" : "bg-transparent text-muted")" 
-                                    style="font-size: 1rem; color: #589f8d; background-color: @(_checkInMode ? "white" : "transparent"); border: @(_checkInMode ? "1px solid #e1e3ea !important" : "none");" 
+                        <div class="d-flex align-items-center p-2 rounded-pill mb-6 shadow-sm border" style="background: @(_isDarkTheme ? "#2a2a2a" : "#ffffff"); display: inline-block;">
+                            <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(_checkInMode ? "shadow-sm" : "bg-transparent text-muted")" 
+                                    style="font-size: 1rem; color: @(_checkInMode ? "#589f8d" : "inherit"); background-color: @(_checkInMode ? (_isDarkTheme ? "#1e1e1e" : "white") : "transparent");" 
                                     @onclick="() => SetCheckInMode(true)">
                                 <span class="text-muted fw-semibold" style="font-size: 0.65rem; display: block; line-height: 1; margin-bottom: 2px;">TRẠNG THÁI</span>
                                 GIỜ VÀO
                             </button>
                             <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(!_checkInMode ? "text-white shadow" : "bg-transparent text-muted")" 
-                                    style="font-size: 1rem; background-color: @(!_checkInMode ? "#ff6f00" : "transparent");" 
+                                    style="font-size: 1rem; background-color: @(!_checkInMode ? _primaryColor : "transparent");" 
                                     @onclick="() => SetCheckInMode(false)">
                                 <span class="fw-semibold" style="font-size: 0.65rem; display: block; line-height: 1; margin-bottom: 2px; color: @(!_checkInMode ? "rgba(255,255,255,0.8)" : "inherit");">TRẠNG THÁI</span>
                                 GIỜ RA
@@ -167,14 +225,153 @@
     </div>
 
     <!-- SYSTEM FOOTER -->
-    <div class="d-flex justify-content-between align-items-center px-6 py-2 bg-white flex-shrink-0" style="font-size: 0.65rem; border-top: 1px solid #e1e3ea;">
-        <div class="d-flex gap-6 fw-bolder">
-            <span class="d-flex align-items-center text-muted" style="letter-spacing: 0.5px;"><span class="bg-success rounded-circle me-2" style="width: 5px; height: 5px;"></span>CAMERA ACTIVE</span>
-            <span class="d-flex align-items-center text-muted" style="letter-spacing: 0.5px;"><span class="bg-success rounded-circle me-2" style="width: 5px; height: 5px;"></span>DATABASE SYNCED</span>
-            <span class="d-flex align-items-center text-muted" style="letter-spacing: 0.5px;"><span class="bg-warning rounded-circle me-2" style="width: 5px; height: 5px; background-color: #ff6f00 !important;"></span>LIVE MONITOR</span>
+    <div class="d-flex justify-content-between align-items-center px-4 py-3 bg-white flex-shrink-0" style="font-size: 0.7rem; border-top: 1px solid @(_isDarkTheme ? "#333" : "#e1e3ea");">
+        <div class="d-flex gap-4 fw-bolder">
+            <span class="d-flex align-items-center @(_isScannerConnected ? "text-muted" : "text-danger")" style="letter-spacing: 0.5px; transition: color 0.3s;">
+                @if (!_isScannerConnected) {
+                    <span class="spinner-grow spinner-grow-sm text-danger me-2" style="width: 10px; height: 10px;" role="status"></span>
+                } else {
+                    <span class="bg-success rounded-circle me-2 shadow-sm" style="width: 10px; height: 10px;"></span>
+                }
+                @(_isScannerConnected ? "SCANNER ACTIVE" : @_scannerCheckStatus)
+            </span>
+
+            <span class="d-flex align-items-center @(_isDbConnected ? "text-muted" : "text-warning")" style="letter-spacing: 0.5px; transition: color 0.3s;">
+                @if (!_isDbConnected) {
+                    <span class="spinner-grow spinner-grow-sm text-warning me-2" style="width: 10px; height: 10px;" role="status"></span>
+                } else {
+                    <span class="bg-success rounded-circle me-2 shadow-sm" style="width: 10px; height: 10px;"></span>
+                }
+                @(_isDbConnected ? "DATABASE SYNCED" : "CONNECTING DB...")
+            </span>
+
+            <span class="d-flex align-items-center @(_isNetworkActive ? "text-muted" : "text-info")" style="letter-spacing: 0.5px; transition: color 0.3s;">
+                @if (!_isNetworkActive) {
+                    <span class="spinner-grow spinner-grow-sm text-info me-2" style="width: 10px; height: 10px;" role="status"></span>
+                } else {
+                    <span class="bg-info rounded-circle me-2 shadow-sm" style="width: 10px; height: 10px;"></span>
+                }
+                @(_isNetworkActive ? @_networkStatusMsg : "TESTING NETWORK...")
+            </span>
         </div>
         <div class="text-muted fw-bold" style="letter-spacing: 0.5px;">
             VERSION 4.2.0-STABLE | &copy; 2024 TECHATTENDANCE
         </div>
     </div>
 </div>
+
+<!-- SETTINGS MODAL -->
+@if (_showSettings)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.6); z-index: 1050; padding-top: 5vh;">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 450px;">
+            <div class="modal-content shadow-lg border-0 rounded-4" style="background-color: @(_isDarkTheme ? "#1e1e1e" : "#ffffff");">
+                
+                <div class="modal-header border-bottom-0 bg-light p-4 pb-3" style="border-radius: 1rem 1rem 0 0;">
+                    <h5 class="modal-title fw-bolder text-dark d-flex align-items-center fs-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 text-muted" viewBox="0 0 16 16"><path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/><path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/></svg>
+                        Hệ thống & Giao diện
+                    </h5>
+                    <button type="button" class="btn-close d-flex align-items-center justify-content-center bg-transparent border-0" style="filter: @(_isDarkTheme ? "invert(1)" : "none"); opacity: 0.6;" @onclick="ToggleSettings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg>
+                    </button>
+                </div>
+
+                <div class="modal-body p-4 pt-4">
+                    
+                    <!-- THEME MODE -->
+                    <div class="mb-5">
+                        <span class="text-muted fw-bold d-block mb-3 fs-7 text-uppercase" style="letter-spacing: 1px;">Hiển thị giao diện</span>
+                        <div class="d-flex gap-3">
+                            <button class="btn w-50 py-3 fw-bold @(!_isDarkTheme ? "text-white" : "text-muted")" 
+                                    style="background-color: @(!_isDarkTheme ? _primaryColor : (_isDarkTheme ? "#2a2a2a" : "#f1f1f4")); transition: all 0.3s ease; box-shadow: @(!_isDarkTheme ? "0 .5rem 1rem rgba(0,0,0,0.15)" : "none");" 
+                                    @onclick="() => SetTheme(false)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/></svg> 
+                                SÁNG
+                            </button>
+                            <button class="btn w-50 py-3 fw-bold @(_isDarkTheme ? "text-white" : "text-muted")" 
+                                    style="background-color: @(_isDarkTheme ? _primaryColor : "#f1f1f4"); transition: all 0.3s ease; box-shadow: @(_isDarkTheme ? "0 .5rem 1rem rgba(0,0,0,0.15)" : "none");" 
+                                    @onclick="() => SetTheme(true)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
+                                TỐI
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- COLOR CHOOSER -->
+                    <div class="mb-5">
+                        <span class="text-muted fw-bold d-block mb-3 fs-7 text-uppercase" style="letter-spacing: 1px;">Màu sắc chủ đạo</span>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-icon rounded-circle d-flex align-items-center justify-content-center p-0 position-relative shadow-sm" style="width: 42px; height: 42px; background: #ff6f00; border: @(_primaryColor == "#ff6f00" ? "3px solid white" : "0"); outline: @(_primaryColor == "#ff6f00" ? "2px solid #ff6f00" : "0");" @onclick='() => SetPrimaryColor("#ff6f00")'></button>
+                            <button class="btn btn-icon rounded-circle d-flex align-items-center justify-content-center p-0 position-relative shadow-sm" style="width: 42px; height: 42px; background: #0088cc; border: @(_primaryColor == "#0088cc" ? "3px solid white" : "0"); outline: @(_primaryColor == "#0088cc" ? "2px solid #0088cc" : "0");" @onclick='() => SetPrimaryColor("#0088cc")'></button>
+                            <button class="btn btn-icon rounded-circle d-flex align-items-center justify-content-center p-0 position-relative shadow-sm" style="width: 42px; height: 42px; background: #4caf50; border: @(_primaryColor == "#4caf50" ? "3px solid white" : "0"); outline: @(_primaryColor == "#4caf50" ? "2px solid #4caf50" : "0");" @onclick='() => SetPrimaryColor("#4caf50")'></button>
+                            <button class="btn btn-icon rounded-circle d-flex align-items-center justify-content-center p-0 position-relative shadow-sm" style="width: 42px; height: 42px; background: #e91e63; border: @(_primaryColor == "#e91e63" ? "3px solid white" : "0"); outline: @(_primaryColor == "#e91e63" ? "2px solid #e91e63" : "0");" @onclick='() => SetPrimaryColor("#e91e63")'></button>
+                            <button class="btn btn-icon rounded-circle d-flex align-items-center justify-content-center p-0 position-relative shadow-sm" style="width: 42px; height: 42px; background: #673ab7; border: @(_primaryColor == "#673ab7" ? "3px solid white" : "0"); outline: @(_primaryColor == "#673ab7" ? "2px solid #673ab7" : "0");" @onclick='() => SetPrimaryColor("#673ab7")'></button>
+                        </div>
+                    </div>
+
+                    <!-- SYSTEM METRICS -->
+                    <div>
+                        <span class="text-muted fw-bold d-block mb-3 fs-7 text-uppercase" style="letter-spacing: 1px;">Tài nguyên Kiosk (Real-time)</span>
+                        <div class="d-flex flex-column gap-2 p-4 rounded-3 border" style="background-color: @(_isDarkTheme ? "#2a2a2a" : "#f8f9fa"); border-color: @(_isDarkTheme ? "#333 !important" : "#e1e3ea");">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted fw-semibold d-flex align-items-center fs-7">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="me-2" viewBox="0 0 16 16"><path d="M2.5 1A1.5 1.5 0 0 0 1 2.5v11A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 13.5 1h-11zM14 2.5v11a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5zM4 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 1 0v-3A.5.5 0 0 0 4 6zm3 0a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 1 0v-3A.5.5 0 0 0 7 6zm3 0a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 1 0v-3A.5.5 0 0 0 10 6z"/></svg> 
+                                    MEMORY USAGE
+                                </span>
+                                <span class="fw-bolder" style="color: @_primaryColor">@_memoryInfo</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted fw-semibold d-flex align-items-center fs-7">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="me-2" viewBox="0 0 16 16"><path d="M12 3a3 3 0 1 0-6 0 3 3 0 0 0 6 0zm-3 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM9 1a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm3.5 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm0 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM9 15a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg> 
+                                    DB STORAGE
+                                </span>
+                                <span class="fw-bolder text-success">@_diskInfo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- HỘP THOẠI XÁC NHẬN TẮT KIOSK (EXIT CONFIRM MODAL) -->
+@if (_showExitConfirm)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.85); z-index: 1100; padding-top: 20vh;">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 450px;">
+            <div class="modal-content shadow-lg border-0 rounded-4" style="background-color: @(_isDarkTheme ? "#1e1e1e" : "#ffffff");">
+                <div class="modal-body p-5 text-center">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 80px; height: 80px; background-color: rgba(220, 53, 69, 0.1);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#dc3545" class="bi bi-power" viewBox="0 0 16 16">
+                          <path d="M7.5 1v7h1V1h-1z"/>
+                          <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="fw-bolder mb-2 @(_isDarkTheme ? "text-light" : "text-dark")">Tắt ứng dụng?</h3>
+                    <p class="text-muted fw-semibold mb-4 fs-6 px-3">Dữ liệu quẹt thẻ Offline chưa đồng bộ. Bạn vẫn muốn tiếp tục?</p>
+                    
+                    <!-- BỘ ĐẾM NGƯỢC (COUNTDOWN BAR) -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-end mb-2">
+                            <span class="text-danger fw-bolder fs-6">Đóng thiết bị tự động sau...</span>
+                            <span class="text-danger fw-bolder fs-5">@(_exitCountdown)s</span>
+                        </div>
+                        <div class="progress" style="height: 8px; border-radius: 4px; background-color: @(_isDarkTheme ? "#333" : "#e9ecef");">
+                            <!-- Thanh chạy co ngược từ 100% tỷ lệ thuận vs 30s về 0% -->
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: @((_exitCountdown * 100.0) / 30.0)%; transition: width 1s linear;"></div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="button" class="btn @(_isDarkTheme ? "btn-outline-secondary text-light" : "btn-light text-dark") w-50 py-3 fw-bold fs-6 shadow-sm" style="border: 1px solid @(_isDarkTheme ? "#555" : "#ddd");" @onclick="CancelCloseApp">HỦY</button>
+                        <button type="button" class="btn btn-danger w-50 py-3 fw-bolder fs-6 shadow text-white" @onclick="CloseApp">TIẾP TỤC</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

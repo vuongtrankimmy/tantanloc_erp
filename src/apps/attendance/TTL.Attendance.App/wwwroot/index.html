@@ -3,13 +3,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <title>TTL.Attendance.App</title>
+    <title>Hệ thống chấm công Tân Tấn Lộc</title>
     <base href="/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="_content/TTL.Shared.UI/css/attendance.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="TTL.Attendance.App.styles.css" />
     <link rel="icon" href="data:,">
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #app {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>

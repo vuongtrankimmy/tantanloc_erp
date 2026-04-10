@@ -8,6 +8,9 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
+		// Cấu hình ThreadPool chịu tải cao (Hardware/Scanner Events) chạy nền ổn định
+		ThreadPool.SetMinThreads(100, 100);
+
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
