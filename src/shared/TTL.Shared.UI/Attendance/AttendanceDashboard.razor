@@ -1,120 +1,180 @@
 @namespace TTL.Shared.UI.Attendance
-@using Microsoft.JSInterop
-@using TTL.Shared.Services.Attendance
-@implements IDisposable
-@inject IAttendanceService AttendanceService
-@inject IJSRuntime JSRuntime
 
-@* CLEAN STATE - READY FOR CHRONOGRAPH SYSTEM REBUILD *@
-
-<div class="attendance-dashboard">
-    <!-- Navbar / Tabs để chuyển đổi -->
-    <div class="dashboard-tabs">
-        <button class="btn @( _currentView == "Scan" ? "btn-primary" : "btn-outline" )" 
-                @onclick='() => SwitchView("Scan")'>Màn Hình Chấm Công</button>
-        <button class="btn @( _currentView == "CustomForm" ? "btn-primary" : "btn-outline" )" 
-                @onclick='() => SwitchView("CustomForm")'>Form Custom (Tùy Chỉnh)</button>
+<div class="d-flex flex-column w-100 vh-100 overflow-hidden bg-white" style="font-family: 'Inter', 'Segoe UI', sans-serif;">
+    
+    <!-- HEADER BAR (Matches Image) -->
+    <div class="d-flex align-items-center justify-content-between p-4 px-6 border-bottom flex-shrink-0">
+        <!-- Left: Logo & Title -->
+        <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center justify-content-center bg-warning text-white rounded-3 me-4 shadow-sm" style="width: 48px; height: 48px; background-color: #ff6f00 !important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/><path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/></svg>
+            </div>
+            <div class="d-flex flex-column">
+                <h1 class="fs-3 fw-bolder text-dark mb-0">Hệ Thống Chấm Công</h1>
+                <span class="fs-7 text-muted fw-semibold mt-1">Trụ sở chính - Sảnh chính</span>
+            </div>
+        </div>
+        
+        <!-- Right: Time & Settings -->
+        <div class="d-flex align-items-center gap-6">
+            <div class="d-flex flex-column align-items-end me-4">
+                <span class="fs-2x fw-bolder text-warning lh-1" style="font-size: 2.2rem; letter-spacing: 1px; color: #ff6f00 !important;">@_currentTime.ToString("HH:mm:ss")</span>
+                <span class="fs-7 text-muted fw-bold text-uppercase mt-1" style="letter-spacing: 1px;">@_currentTime.ToString("dddd, dd 'THÁNG' MM, yyyy", new System.Globalization.CultureInfo("vi-VN"))</span>
+            </div>
+            
+            <button class="btn btn-icon bg-light text-hover-primary rounded-circle border-0 me-2 shadow-sm d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;" title="Cài đặt">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-gray-700" viewBox="0 0 16 16"><path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/><path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/></svg>
+            </button>
+            <div class="d-flex align-items-center justify-content-center text-white fw-bolder rounded-circle shadow-sm cursor-pointer" style="width: 45px; height: 45px; background: #ffcca5;" @onclick="CloseApp" title="Đóng hệ thống">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M2 13.5v-.5c0-1.136.9-2.072 2.055-2.22 1.22-.156 2.628-.28 3.945-.28s2.725.124 3.945.28c1.155.148 2.055 1.084 2.055 2.22v.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5z"/></svg>
+            </div>
+        </div>
     </div>
 
-    <!-- Nội dung hiển thị dựa trên trạng thái _currentView -->
-    <div class="dashboard-content">
-        @if (_currentView == "Scan")
-        {
-            <div class="scan-view">
-                <h3>Chế độ chấm công</h3>
-                <p>Thời gian hiện tại: @_currentTime.ToString("HH:mm:ss")</p>
-                <!-- Thêm giao diện quét thẻ vào đây -->
+    <!-- MAIN DASHBOARD CONTENT -->
+    <div class="flex-grow-1 px-8 py-6 overflow-hidden" style="background: #fafafc;">
+        <div class="row g-8 h-100">
+            
+            <!-- LEFT: HISTORY LIST -->
+            <div class="col-xl-4 h-100">
+                <div class="card shadow-sm border-0 h-100 d-flex flex-column" style="background: white; border-radius: 12px;">
+                    <div class="card-header border-bottom-0 pt-6 pb-2 px-6 d-flex justify-content-between align-items-center flex-shrink-0">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-warning me-2" style="color: #ff6f00 !important;" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+                            <h3 class="card-title fw-bolder text-dark fs-4 m-0">Lượt quét gần nhất</h3>
+                        </div>
+                        <span class="badge text-warning px-3 py-2 fw-bold" style="border-radius: 20px; background-color: #fff2e5; color: #ff6f00 !important;">Trực tuyến</span>
+                    </div>
+                    <div class="card-body px-4 py-2 mt-4 flex-grow-1" style="overflow-y: auto; height: 0;">
+                        @if(!_scans.Any())
+                        {
+                            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                <span class="text-muted fw-semibold fs-5">Chưa có dữ liệu...</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex flex-column gap-3">
+                                @foreach (var scan in _scans)
+                                {
+                                    <div class="d-flex align-items-center p-4 rounded bg-white transition-base" style="border: 1px solid transparent;">
+                                        <!-- Avatar -->
+                                        <div class="position-relative me-4">
+                                            <div class="d-flex justify-content-center align-items-center rounded-circle bg-dark text-white fw-bolder fs-5 shadow-sm" style="width: 45px; height: 45px;">
+                                                @(string.IsNullOrEmpty(scan.EmployeeName) ? "?" : scan.EmployeeName.Substring(0, 1))
+                                            </div>
+                                            <span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-white border-2 rounded-circle" style="margin-right: -4px;"></span>
+                                        </div>
+                                        <!-- Info -->
+                                        <div class="flex-grow-1 d-flex flex-column">
+                                            <span class="text-dark fw-bold fs-6">@scan.EmployeeName</span>
+                                            <span class="text-muted fw-semibold" style="font-size: 0.8rem;">Mã NV: @scan.EmployeeId</span>
+                                        </div>
+                                        <!-- Time & Status -->
+                                        <div class="d-flex flex-column align-items-end">
+                                            <span class="text-dark fw-bold fs-6 mb-1">@scan.ScanTime.ToString("HH:mm:ss")</span>
+                                            <span class="badge text-success px-2 py-1" style="font-size: 0.7rem; font-weight: 800; background: #e8f5e9;">GIỜ VÀO</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-        }
-        else if (_currentView == "CustomForm")
-        {
-            <div class="custom-form">
-                <h3>Màn hình Form Custom</h3>
-                <!-- Thêm các ô Input, Label, Textbox của form custom vào đây -->
-                <p>Bạn có thể thiết kế form gì đó riêng ở đây...</p>
+
+            <!-- RIGHT: MAIN SCANNER VIEW -->
+            <div class="col-xl-8 h-100">
+                <div class="card shadow-sm border-0 h-100 d-flex flex-column" style="background: white; border-radius: 12px;">
+                    <div class="card-body d-flex flex-column align-items-center position-relative py-10 flex-grow-1" style="overflow-y: auto; height: 0;">
+                        
+                        <!-- Top Status Indicator -->
+                        <div class="d-flex flex-column align-items-center mb-6">
+                            @if (_lastScanSuccess == true)
+                            {
+                                <div class="d-flex align-items-center justify-content-center rounded-circle mb-3 shadow-sm" style="width: 45px; height: 45px; background: #e8f5e9;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-success" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                </div>
+                                <h2 class="fs-2 fw-bolder text-dark">Chấm công thành công!</h2>
+                            }
+                            else if (_lastScanSuccess == false)
+                            {
+                                <div class="d-flex align-items-center justify-content-center bg-light-danger rounded-circle mb-3 shadow-sm" style="width: 45px; height: 45px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-danger" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/></svg>
+                                </div>
+                                <h2 class="fs-2 fw-bolder text-danger">Chấm công thất bại!</h2>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center justify-content-center rounded-circle mb-3 opacity-0" style="width: 45px; height: 45px;"></div>
+                                <h2 class="fs-2 fw-bolder text-transparent">Chưa quét</h2>
+                            }
+                        </div>
+
+                        <!-- Camera/Scanner Placeholder Rectangle -->
+                        <div class="position-relative d-flex justify-content-center align-items-center rounded-4 mb-6 shadow-sm" style="width: 260px; height: 260px; background-color: #589f8d; border: 4px solid #ff6f00;">
+                        </div>
+
+                        <!-- Employee Info -->
+                        @if (_lastScanSuccess == true && !string.IsNullOrEmpty(_lastEmployeeName))
+                        {
+                            <h1 class="fw-bolder text-dark mb-1 text-uppercase" style="font-size: 1.8rem; letter-spacing: 0.5px;">@_lastEmployeeName</h1>
+                            <span class="fs-6 text-muted fw-semibold mb-4">Phòng Kế toán & Tài chính</span>
+                            <div class="d-flex gap-3 mb-8">
+                                <span class="badge bg-light text-dark fw-semibold px-3 py-2 border" style="font-size: 0.75rem;">ID: @_scans.FirstOrDefault()?.EmployeeId</span>
+                                <span class="badge bg-light text-dark fw-semibold px-3 py-2 border" style="font-size: 0.75rem;">Ca: Hành chính</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <h1 class="fw-bolder text-transparent mb-1 text-uppercase" style="font-size: 1.8rem;">-</h1>
+                            <span class="fs-6 text-transparent fw-semibold mb-4">-</span>
+                            <div class="d-flex gap-3 mb-8 opacity-0">
+                                <span class="badge px-3 py-2 border">-</span>
+                            </div>
+                        }
+
+                        <!-- Segmented Toggle Buttons -->
+                        <div class="d-flex align-items-center p-2 rounded-pill mb-6 shadow-sm" style="background: #ffffff; border: 1px solid #e1e3ea; display: inline-block;">
+                            <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(_checkInMode ? "text-success shadow-sm" : "bg-transparent text-muted")" 
+                                    style="font-size: 1rem; color: #589f8d; background-color: @(_checkInMode ? "white" : "transparent"); border: @(_checkInMode ? "1px solid #e1e3ea !important" : "none");" 
+                                    @onclick="() => SetCheckInMode(true)">
+                                <span class="text-muted fw-semibold" style="font-size: 0.65rem; display: block; line-height: 1; margin-bottom: 2px;">TRẠNG THÁI</span>
+                                GIỜ VÀO
+                            </button>
+                            <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(!_checkInMode ? "text-white shadow" : "bg-transparent text-muted")" 
+                                    style="font-size: 1rem; background-color: @(!_checkInMode ? "#ff6f00" : "transparent");" 
+                                    @onclick="() => SetCheckInMode(false)">
+                                <span class="fw-semibold" style="font-size: 0.65rem; display: block; line-height: 1; margin-bottom: 2px; color: @(!_checkInMode ? "rgba(255,255,255,0.8)" : "inherit");">TRẠNG THÁI</span>
+                                GIỜ RA
+                            </button>
+                        </div>
+
+                        <!-- Footer Time -->
+                        <div class="d-flex align-items-center flex-column mt-auto pb-2">
+                            <div class="d-flex align-items-center text-dark fw-bolder fs-4 mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2 text-muted" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+                                @_currentTime.ToString("HH:mm:ss")
+                            </div>
+                            <span class="text-muted fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">THỜI GIAN GHI NHẬN</span>
+                            <span class="text-muted mt-6" style="font-size: 0.8rem; font-style: italic;">Cảm ơn bạn đã hoàn thành công việc. Hẹn gặp lại!</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        }
+
+        </div>
+    </div>
+
+    <!-- SYSTEM FOOTER -->
+    <div class="d-flex justify-content-between align-items-center px-6 py-2 bg-white flex-shrink-0" style="font-size: 0.65rem; border-top: 1px solid #e1e3ea;">
+        <div class="d-flex gap-6 fw-bolder">
+            <span class="d-flex align-items-center text-muted" style="letter-spacing: 0.5px;"><span class="bg-success rounded-circle me-2" style="width: 5px; height: 5px;"></span>CAMERA ACTIVE</span>
+            <span class="d-flex align-items-center text-muted" style="letter-spacing: 0.5px;"><span class="bg-success rounded-circle me-2" style="width: 5px; height: 5px;"></span>DATABASE SYNCED</span>
+            <span class="d-flex align-items-center text-muted" style="letter-spacing: 0.5px;"><span class="bg-warning rounded-circle me-2" style="width: 5px; height: 5px; background-color: #ff6f00 !important;"></span>LIVE MONITOR</span>
+        </div>
+        <div class="text-muted fw-bold" style="letter-spacing: 0.5px;">
+            VERSION 4.2.0-STABLE | &copy; 2024 TECHATTENDANCE
+        </div>
     </div>
 </div>
-
-@code {
-    private string _currentView = "Scan"; // Default view
-    private List<AttendanceRecord> _scans = new();
-    
-    private void SwitchView(string viewName)
-    {
-        _currentView = viewName;
-        StateHasChanged();
-    }
-    private DateTime _currentTime = DateTime.Now;
-    private bool _isProcessing = false;
-    private bool _checkInMode = true;
-    private bool? _lastScanSuccess = null;
-    private string _lastEmployeeName = "";
-    private System.Threading.Timer? _timer;
-    private DotNetObjectReference<AttendanceDashboard>? _objRef;
-
-    protected override void OnInitialized()
-    {
-        AttendanceService.OnDataChanged += HandleDataChanged;
-        RefreshScans();
-        
-        _timer = new System.Threading.Timer(_ => 
-        {
-            InvokeAsync(() => {
-                _currentTime = DateTime.Now;
-                StateHasChanged();
-            });
-        }, null, 0, 1000);
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            _objRef = DotNetObjectReference.Create(this);
-            await JSRuntime.InvokeVoidAsync("attendanceScanner.init", _objRef);
-        }
-    }
-
-    private void RefreshScans()
-    {
-        _scans = AttendanceService.GetLastScans().OrderByDescending(r => r.ScanTime).Take(10).ToList();
-    }
-
-    private void HandleDataChanged()
-    {
-        InvokeAsync(() => {
-            RefreshScans();
-            StateHasChanged();
-        });
-    }
-
-    [JSInvokable]
-    public async Task HandleScannerInput(string code)
-    {
-        if (_isProcessing) return;
-        _isProcessing = true;
-        _lastScanSuccess = null;
-        StateHasChanged();
-        await Task.Delay(300);
-        var success = await AttendanceService.ProcessScanAsync(code);
-        _lastScanSuccess = success;
-        if (success) {
-            _lastEmployeeName = _scans.FirstOrDefault()?.EmployeeName ?? "Unknown";
-        }
-        _isProcessing = false;
-        StateHasChanged();
-        _ = Task.Delay(3000).ContinueWith(_ => {
-            _lastScanSuccess = null;
-            InvokeAsync(StateHasChanged);
-        });
-    }
-
-    public void Dispose()
-    {
-        AttendanceService.OnDataChanged -= HandleDataChanged;
-        _timer?.Dispose();
-        _objRef?.Dispose();
-    }
-}

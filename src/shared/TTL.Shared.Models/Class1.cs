@@ -1,4 +1,4 @@
-﻿namespace TTL.Shared.Models;
+namespace TTL.Shared.Models;
 
 public class Class1
 {

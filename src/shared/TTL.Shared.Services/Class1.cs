@@ -1,4 +1,4 @@
-﻿namespace TTL.Shared.Services;
+namespace TTL.Shared.Services;
 
 public class Class1
 {

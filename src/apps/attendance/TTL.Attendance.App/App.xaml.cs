@@ -1,4 +1,4 @@
-﻿namespace TTL.Attendance.App;
+namespace TTL.Attendance.App;
 
 public partial class App : Application
 {

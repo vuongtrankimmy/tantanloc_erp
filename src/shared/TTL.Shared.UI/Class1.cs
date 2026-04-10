@@ -1,4 +1,4 @@
-﻿namespace TTL.Shared.UI;
+namespace TTL.Shared.UI;
 
 public class Class1
 {

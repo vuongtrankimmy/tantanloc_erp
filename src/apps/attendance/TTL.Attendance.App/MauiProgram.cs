@@ -17,7 +17,7 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddMauiBlazorWebView();
-		builder.Services.AddScoped<IAttendanceService, MockAttendanceService>();
+		builder.Services.AddScoped<IAttendanceService, SqliteAttendanceService>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();

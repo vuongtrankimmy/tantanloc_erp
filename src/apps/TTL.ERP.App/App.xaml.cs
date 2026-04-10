@@ -1,4 +1,4 @@
-﻿namespace TTL.ERP.App;
+namespace TTL.ERP.App;
 
 public partial class App : Application
 {
