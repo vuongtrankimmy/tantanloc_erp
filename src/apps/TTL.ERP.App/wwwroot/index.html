@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>TTL.ERP.App</title>
+    <base href="/" />
+    
+    <!-- Metronic Global Stylesheets -->
+    <link href="_content/TTL.Shared.UI/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="_content/TTL.Shared.UI/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="_content/TTL.Shared.UI/css/attendance.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="TTL.ERP.App.styles.css" />
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        #app {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="status-bar-safe-area"></div>
+
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui" style="display: none;">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <!-- Metronic Global Javascript Bundle -->
+    <script src="_content/TTL.Shared.UI/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="_content/TTL.Shared.UI/assets/js/scripts.bundle.js"></script>
+    <script src="_content/TTL.Shared.UI/js/scanner-listener.js"></script>
+
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+</body>
+</html>
