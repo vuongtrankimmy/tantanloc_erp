@@ -23,8 +23,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/><path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/></svg>
             </div>
             <div class="d-flex flex-column">
-                <h1 class="fs-3 fw-bolder text-dark mb-0">Hệ thống chấm công Tân Tấn Lộc</h1>
-                <span class="fs-7 text-muted fw-semibold mt-1">Trụ sở chính - Sảnh chính</span>
+                <h1 class="fs-3 fw-bolder text-dark mb-0">Hệ thống chấm công</h1>
+               @*  <span class="fs-7 text-muted fw-semibold mt-1">Trụ sở chính - Sảnh chính</span> *@
             </div>
         </div>
         
@@ -51,14 +51,14 @@
     </div>
 
     <!-- MAIN DASHBOARD CONTENT -->
-    <div class="flex-grow-1 p-4 overflow-hidden" style="background: @(_isDarkTheme ? "#121212" : "#e8f5e9");">
-        <div class="row h-100 pb-2">
+    <div class="flex-grow-1 p-4 px-4 overflow-hidden" style="background: @(_isDarkTheme ? "#121212" : "#e8f5e9");">
+        <div class="d-flex gap-4 h-100 pb-2 w-100">
             
             <!-- LEFT: HISTORY LIST -->
             @if (_showHistory)
             {
-                <div class="col-12 col-xl-4 h-100 d-none d-xl-block" style="transition: all 0.3s ease;">
-                    <div class="card shadow-sm border-0 h-100 d-flex flex-column bg-white" style="border-radius: 12px;">
+                <div class="h-100 d-none d-xl-flex flex-column" style="flex: 0 0 calc(33.333% - 12px); transition: all 0.3s ease;">
+                    <div class="card shadow-sm border-0 h-100 d-flex flex-column bg-white w-100" style="border-radius: 12px;">
                         <div class="card-header border-bottom-0 pt-6 pb-2 px-6 d-flex justify-content-between align-items-center flex-shrink-0">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2" style="color: @_primaryColor !important;" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
@@ -106,8 +106,8 @@
             }
 
             <!-- RIGHT: MAIN SCANNER VIEW -->
-            <div class="col-12 @(_showHistory ? "col-xl-8" : "col-xl-12") h-100" style="transition: all 0.3s ease;">
-                <div class="card shadow-sm border-0 h-100 d-flex flex-column bg-white" style="border-radius: 12px;">
+            <div class="h-100 d-flex flex-column flex-grow-1" style="transition: all 0.3s ease; width: @(_showHistory ? "calc(66.666% - 12px)" : "100%");">
+                <div class="card shadow-sm border-0 h-100 d-flex flex-column bg-white w-100" style="border-radius: 12px;">
                     <div class="card-body d-flex flex-column align-items-center position-relative py-10 flex-grow-1" style="overflow-y: auto; height: 0;">
                         
                         <!-- Top Status Indicator -->
@@ -129,7 +129,7 @@
                             else
                             {
                                 <div class="d-flex align-items-center justify-content-center rounded-circle mb-3 opacity-0" style="width: 45px; height: 45px;"></div>
-                                <h2 class="fs-2 fw-bolder text-transparent">Chưa quét</h2>
+                                <h2 class="fs-2 fw-bolder text-transparent"></h2>
                             }
                         </div>
 
@@ -185,27 +185,37 @@
                         }
                         else
                         {
-                            <h1 class="fw-bolder text-transparent mb-1 text-uppercase" style="font-size: 1.8rem;">-</h1>
-                            <span class="fs-6 text-transparent fw-semibold mb-4">-</span>
+                            <h1 class="fw-bolder text-transparent mb-1 text-uppercase" style="font-size: 1.8rem;"></h1>
+                            <span class="fs-6 text-transparent fw-semibold mb-4"></span>
                             <div class="d-flex gap-3 mb-8 opacity-0">
-                                <span class="badge px-3 py-2 border">-</span>
+                                <span class="badge px-3 py-2 border"></span>
                             </div>
                         }
 
                         <!-- Segmented Toggle Buttons -->
-                        <div class="d-flex align-items-center p-2 rounded-pill mb-6 shadow-sm border" style="background: @(_isDarkTheme ? "#2a2a2a" : "#ffffff"); display: inline-block;">
-                            <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(_checkInMode ? "shadow-sm" : "bg-transparent text-muted")" 
-                                    style="font-size: 1rem; color: @(_checkInMode ? "#589f8d" : "inherit"); background-color: @(_checkInMode ? (_isDarkTheme ? "#1e1e1e" : "white") : "transparent");" 
-                                    @onclick="() => SetCheckInMode(true)">
-                                <span class="text-muted fw-semibold" style="font-size: 0.65rem; display: block; line-height: 1; margin-bottom: 2px;">TRẠNG THÁI</span>
-                                GIỜ VÀO
-                            </button>
-                            <button class="btn rounded-pill border-0 px-8 py-3 fw-bolder transition-base @(!_checkInMode ? "text-white shadow" : "bg-transparent text-muted")" 
-                                    style="font-size: 1rem; background-color: @(!_checkInMode ? _primaryColor : "transparent");" 
-                                    @onclick="() => SetCheckInMode(false)">
-                                <span class="fw-semibold" style="font-size: 0.65rem; display: block; line-height: 1; margin-bottom: 2px; color: @(!_checkInMode ? "rgba(255,255,255,0.8)" : "inherit");">TRẠNG THÁI</span>
-                                GIỜ RA
-                            </button>
+                        <div class="d-flex flex-column text-center mb-6">
+                            <p class="text-muted fw-semibold mb-2" style="font-size: 0.65rem; letter-spacing: 1px;">TRẠNG THÁI</p>
+                            <div class="position-relative d-inline-flex rounded-pill p-1 shadow-sm border" style="background-color: @(_isDarkTheme ? "#2a2a2a" : "#f1f1f4");">
+                                
+                                <!-- Sliding Background -->
+                                <div class="position-absolute shadow-sm" 
+                                     style="width: 140px; height: calc(100% - 8px); left: 4px; top: 4px; border-radius: 50rem; transform: translateX(@(_checkInMode ? "0" : "100%")); background-color: @(_checkInMode ? (_isDarkTheme ? "#1e1e1e" : "white") : _primaryColor); z-index: 1; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease;">
+                                </div>
+                        
+                                <!-- Check In Button -->
+                                <button class="btn rounded-pill border-0 py-3 fw-bolder position-relative" 
+                                        style="font-size: 1rem; width: 140px; color: @(_checkInMode ? "#589f8d" : "#a0a0a0"); z-index: 2; outline: none; box-shadow: none; background: transparent; transition: color 0.4s ease;" 
+                                        @onclick="() => SetCheckInMode(true)">
+                                    GIỜ VÀO
+                                </button>
+                                
+                                <!-- Check Out Button -->
+                                <button class="btn rounded-pill border-0 py-3 fw-bolder position-relative" 
+                                        style="font-size: 1rem; width: 140px; color: @(!_checkInMode ? "white" : "#a0a0a0"); z-index: 2; outline: none; box-shadow: none; background: transparent; transition: color 0.4s ease;" 
+                                        @onclick="() => SetCheckInMode(false)">
+                                    GIỜ RA
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Footer Time -->
@@ -215,7 +225,9 @@
                                 @_currentTime.ToString("HH:mm:ss")
                             </div>
                             <span class="text-muted fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">THỜI GIAN GHI NHẬN</span>
-                            <span class="text-muted mt-6" style="font-size: 0.8rem; font-style: italic;">Cảm ơn bạn đã hoàn thành công việc. Hẹn gặp lại!</span>
+                            <span class="text-muted mt-6 transition-base" style="font-size: 0.8rem; font-style: italic;">
+                                @(_checkInMode ? "Chúc bạn một ngày làm việc tràn đầy năng lượng và hiệu quả!" : "Cảm ơn bạn đã hoàn thành công việc. Hẹn gặp lại!")
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -255,7 +267,7 @@
             </span>
         </div>
         <div class="text-muted fw-bold" style="letter-spacing: 0.5px;">
-            VERSION 4.2.0-STABLE | &copy; 2024 TECHATTENDANCE
+            VERSION 1.0.0-STABLE | &copy; 2026 TÂN TẤN LỘC
         </div>
     </div>
 </div>

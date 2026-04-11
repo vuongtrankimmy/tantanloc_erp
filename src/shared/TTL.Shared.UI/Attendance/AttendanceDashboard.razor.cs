@@ -229,20 +229,6 @@ namespace TTL.Shared.UI.Attendance
                 _objRef = DotNetObjectReference.Create(this);
                 // Fire and forget or handle securely
                 _ = JSRuntime.InvokeVoidAsync("attendanceScanner.init", _objRef).AsTask();
-
-                try
-                {
-                    var showHistoryStr = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "AttendanceShowHistory");
-                    if (!string.IsNullOrEmpty(showHistoryStr))
-                    {
-                        if (bool.TryParse(showHistoryStr, out bool parsedVal) && _showHistory != parsedVal)
-                        {
-                            _showHistory = parsedVal;
-                            StateHasChanged();
-                        }
-                    }
-                }
-                catch { }
             }
         }
 
@@ -279,11 +265,6 @@ namespace TTL.Shared.UI.Attendance
         private void ToggleHistory()
         {
             _showHistory = !_showHistory;
-            try
-            {
-                _ = JSRuntime.InvokeVoidAsync("localStorage.setItem", "AttendanceShowHistory", _showHistory.ToString().ToLower());
-            }
-            catch { }
             StateHasChanged();
         }
 
