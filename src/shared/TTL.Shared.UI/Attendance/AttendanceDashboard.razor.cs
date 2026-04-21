@@ -22,8 +22,10 @@ namespace TTL.Shared.UI.Attendance
         private bool _checkInMode = true;
         private bool? _lastScanSuccess = null;
         private string _lastEmployeeName = "";
+        private string _lastRawCodeScanned = "";
         private System.Threading.Timer? _timer;
         private DotNetObjectReference<AttendanceDashboard>? _objRef;
+        private bool _isFocused = true;
 
         private bool _isScannerConnected = false;
         private bool _isDbConnected = false;
@@ -41,6 +43,14 @@ namespace TTL.Shared.UI.Attendance
         private string _memoryInfo = "0 MB";
         private string _diskInfo = "0 GB";
 
+        private bool _disposed = false;
+        
+        // Timer tracking để đóng giao diện
+        private int _scanUiSessionId = 0;
+        
+        // Cache chống trùng lặp dữ liệu (Debouncer)
+        private Dictionary<string, DateTime> _lastScannedCodes = new();
+
         protected override void OnInitialized()
         {
             AttendanceService.OnDataChanged += HandleDataChanged;
@@ -48,14 +58,36 @@ namespace TTL.Shared.UI.Attendance
             
             _timer = new System.Threading.Timer(_ => 
             {
-                InvokeAsync(async () => {
+                InvokeAsync(() => {
                     _currentTime = SecureTimeProvider.Instance.Now;
-                    
-                    _hardwareCheckCounter++;
-                    // Cập nhật trạng thái Hardware mỗi 5 giây (để không làm nặng CPU)
-                    if (_hardwareCheckCounter >= 5) 
+
+                    if (_showExitConfirm)
                     {
-                        _hardwareCheckCounter = 0;
+                        if (_exitCountdown > 0)
+                        {
+                            _exitCountdown--;
+                            if (_exitCountdown <= 0)
+                            {
+                                CloseApp();
+                            }
+                        }
+                    }
+                    
+                    StateHasChanged();
+                });
+            }, null, 0, 1000);
+
+            // Chạy luồng kiểm tra ngầm (Background Task) độc lập - Chống đứng giật UI và Đẩy nhanh tốc độ nhận diện
+            _ = Task.Run(async () => {
+                while (!_disposed)
+                {
+                    try
+                    {
+                        bool oldDb = _isDbConnected;
+                        bool oldNet = _isNetworkActive;
+                        bool oldScanner = _isScannerConnected;
+                        string oldScannerMsg = _scannerCheckStatus;
+
                         _isDbConnected = CheckDatabaseConnection();
                         
                         var netCheck = await CheckNetworkConnectionAsync();
@@ -79,39 +111,17 @@ namespace TTL.Shared.UI.Attendance
                         {
                             UpdateSystemMetrics();
                         }
-                    }
 
-                    if (_showExitConfirm)
-                    {
-                        if (_exitCountdown > 0)
+                        // Chỉ đâm ngắt giao diện nếu có sự thay đổi (Tối ưu hóa re-rendering)
+                        if (oldDb != _isDbConnected || oldNet != _isNetworkActive || oldScanner != _isScannerConnected || oldScannerMsg != _scannerCheckStatus)
                         {
-                            _exitCountdown--;
-                            if (_exitCountdown <= 0)
-                            {
-                                CloseApp();
-                            }
+                            await InvokeAsync(StateHasChanged);
                         }
                     }
-                    
-                    StateHasChanged();
-                });
-            }, null, 0, 1000);
+                    catch { }
 
-            // Thực hiện kiểm tra thiết bị & kết nối thực tế
-            _ = Task.Run(async () => {
-                _isDbConnected = CheckDatabaseConnection();
-                
-                var initNet = await CheckNetworkConnectionAsync();
-                _isNetworkActive = initNet.IsActive;
-                _networkLatencyMs = initNet.Latency;
-                if (_isNetworkActive) _networkStatusMsg = $"ONLINE ({_networkLatencyMs}ms)";
-                else _networkStatusMsg = "DISCONNECTED";
-
-                await InvokeAsync(StateHasChanged);
-                
-                // Hardware specific check for COM/USB
-                _isScannerConnected = await VerifyScannerHardwareAsync();
-                await InvokeAsync(StateHasChanged);
+                    await Task.Delay(2000); // Quét lại siêu tốc mỗi 2 giây
+                }
             });
         }
 
@@ -179,37 +189,51 @@ namespace TTL.Shared.UI.Attendance
 
                     if (deviceId.StartsWith("ACPI") || deviceId.StartsWith("ROOT") || deviceId.StartsWith("PCI")) continue;
 
-                    // Nhận diện theo tên POS (Tránh các từ dễ bị sai như "pos" nằm trong "composite", "reader" nằm trong "card reader")
+                    // 1. Nhận diện theo tên Hãng hoặc Model POS cụ thể
                     if (name.Contains("barcode") || desc.Contains("barcode") ||
                         name.Contains("qr scanner") || name.Contains("qr reader") || 
                         name.Contains("datalogic") || name.Contains("zebra") || 
                         name.Contains("honeywell") || name.Contains("symbol") || 
                         name.Contains("symcode") || name.Contains("netum") || 
-                        name.Contains("eyoyo"))
+                        name.Contains("eyoyo") || name.Contains("scanner") ||
+                        name.Contains("ds4308") || name.Contains("ds9208") ||
+                        name.Contains("1452g") || name.Contains("1900gsr") || name.Contains("1900g"))
                     {
-                        return true; // Chắc chắn 100% là máy quét
+                        isScannerFound = true;
+                        _scannerCheckStatus = $"ON: {name.ToUpper()}";
+                        break;
                     }
 
-                    // Nhận diện nếu máy quét được cài ở chế độ cổng COM ảo qua cáp USB
-                    if (pnpClass == "PORTS" && deviceId.Contains("USB\\VID"))
+                    // 2. Nhận diện Scanner cài đặt dưới dạng Serial COM
+                    if (pnpClass == "PORTS" && (deviceId.Contains("USB\\VID") || name.Contains("serial") || name.Contains("com")))
                     {
-                        isScannerFound = true; // Lưu là true, xem như một thiết bị đọc ngầm chuẩn COM
+                        isScannerFound = true;
+                        _scannerCheckStatus = $"ON: COM PORT SCANNER";
+                        break;
                     }
 
-                    // Nhận diện theo VID phần cứng Keyboard Wedge
+                    // 3. Nhận diện theo VID phần cứng (Hardware ID) của dòng cao cấp
+                    // Zebra/Symbol (05E0, 1D5B, 080C, 060E)
                     if (deviceId.Contains("VID_05E0") || deviceId.Contains("VID_0C2E") || 
                         deviceId.Contains("VID_0536") || deviceId.Contains("VID_05F9") || 
                         deviceId.Contains("VID_1EAB") || deviceId.Contains("VID_2DD6") || 
-                        deviceId.Contains("VID_1D5B") || deviceId.Contains("VID_080C"))
+                        deviceId.Contains("VID_1D5B") || deviceId.Contains("VID_080C") ||
+                        deviceId.Contains("VID_0483") || deviceId.Contains("VID_11CA") ||
+                        deviceId.Contains("VID_16EE") || deviceId.Contains("VID_060E"))
                     {
                         isScannerFound = true;
+                        // Phân tích tên nếu bị Windows gán thành USB Input Device
+                        string brandText = (deviceId.Contains("05E0") || deviceId.Contains("060E")) ? "ZEBRA/SYMBOL" : 
+                                          (deviceId.Contains("0C2E") || deviceId.Contains("16EE")) ? "HONEYWELL" : "POS SCANNER";
+                                          
+                        _scannerCheckStatus = $"ON: {brandText} WEDGE [{deviceId.Split('\\').LastOrDefault()}]";
                         break;
                     }
                 }
                 
                 if (!isScannerFound)
                 {
-                    _scannerCheckStatus = "NO DEVICE CONNECTED";
+                    _scannerCheckStatus = "CẦN GẮN HOẶC KẾT NỐI ĐẦU QUÉT (ZEBRA/HONEYWELL)";
                 }
                 return isScannerFound;
 #pragma warning restore CA1416
@@ -302,29 +326,65 @@ namespace TTL.Shared.UI.Attendance
         public async Task HandleScannerInput(string code)
         {
             if (_isProcessing) return;
+            
+            // XỬ LÝ CHỐNG QUÉT ĐÚP (DEBOUNCE): Ngăn người dùng quẹt liên tục 1 mã thẻ trong 15 giây
+            var now = SecureTimeProvider.Instance.Now;
+            if (_lastScannedCodes.TryGetValue(code, out var lastTime))
+            {
+                if ((now - lastTime).TotalSeconds < 15)
+                {
+                    return; // Lờ đi tín hiệu này vì vừa quét xong
+                }
+            }
+            _lastScannedCodes[code] = now;
+            
             _isProcessing = true;
+            _scanUiSessionId++; // Đánh dấu ID phiên quét hiện tại
+            var currentSessionId = _scanUiSessionId;
+            
             _lastScanSuccess = null;
+            _lastRawCodeScanned = code;
             StateHasChanged();
             
             await Task.Delay(300); // Simulate processing time
             
-            var success = await AttendanceService.ProcessScanAsync(code);
-            _lastScanSuccess = success;
+            var success = await AttendanceService.ProcessScanAsync(code, _checkInMode);
+            
+            // Lấy lại danh sách ngay lập tức để tránh lỗi bất đồng bộ với sự kiện OnDataChanged
             if (success) {
+                RefreshScans();
                 _lastEmployeeName = _scans.FirstOrDefault()?.EmployeeName ?? "Unknown";
             }
             
+            _lastScanSuccess = success;
             _isProcessing = false;
             StateHasChanged();
             
-            _ = Task.Delay(3000).ContinueWith(_ => {
-                _lastScanSuccess = null;
-                InvokeAsync(StateHasChanged);
+            _ = Task.Delay(3500).ContinueWith(_ => {
+                // Chỉ dọn dẹp màn hình nếu chưa có người nhân viên nào khác xen ngang
+                if (_scanUiSessionId == currentSessionId)
+                {
+                    _lastScanSuccess = null;
+                    _lastRawCodeScanned = "";
+                    InvokeAsync(StateHasChanged);
+                }
             });
+        }
+
+        [JSInvokable]
+        public void UpdateFocusStatus(bool isFocused)
+        {
+            _isFocused = isFocused;
+            InvokeAsync(StateHasChanged);
         }
 
         public void Dispose()
         {
+            _disposed = true;
+            try {
+                _ = JSRuntime.InvokeVoidAsync("attendanceScanner.dispose").AsTask();
+            } catch {}
+            
             if (AttendanceService != null)
             {
                 AttendanceService.OnDataChanged -= HandleDataChanged;

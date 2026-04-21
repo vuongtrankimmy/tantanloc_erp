@@ -26,6 +26,7 @@
     <Project Path="src/apps/TTL.ERP.App/TTL.ERP.App.csproj">
       <Deploy Solution="Debug|*" />
     </Project>
+    <Project Path="src/apps/TTL.HRM.WebApp/TTL.HRM.WebApp.csproj" />
   </Folder>
   <Folder Name="/src/apps/attendance/">
     <Project Path="src/apps/attendance/TTL.Attendance.App/TTL.Attendance.App.csproj">

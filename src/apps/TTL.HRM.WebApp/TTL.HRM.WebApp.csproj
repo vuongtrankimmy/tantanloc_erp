@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\erp\hrm\TTL.HRM.Client\TTL.HRM.Client.csproj" />
+    <ProjectReference Include="..\..\shared\TTL.Shared.UI\TTL.Shared.UI.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+    <AssemblyVersion>2026.4.21.7</AssemblyVersion>
+    <FileVersion>2026.4.21.7</FileVersion>
+  </PropertyGroup>
+
+</Project>

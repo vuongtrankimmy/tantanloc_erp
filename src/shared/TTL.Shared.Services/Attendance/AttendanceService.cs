@@ -8,7 +8,7 @@ namespace TTL.Shared.Services.Attendance
 {
     public interface IAttendanceService
     {
-        Task<bool> ProcessScanAsync(string code);
+        Task<bool> ProcessScanAsync(string code, bool isCheckIn = true);
         event Action? OnDataChanged;
         List<AttendanceRecord> GetLastScans();
     }
@@ -69,12 +69,26 @@ namespace TTL.Shared.Services.Attendance
             if (!Employees.Any())
             {
                 Employees.AddRange(
-                    new Employee { EmployeeId = "1001", EmployeeName = "Trần Phú", Department = "Ban Giám Đốc", AvatarUrl = "https://ui-avatars.com/api/?name=Tran+Phu&background=28a745&color=fff" },
+                    new Employee { EmployeeId = "1001", EmployeeName = "Trần Phú", Department = "Ban Giám Đốc", AvatarUrl = "https://i.pinimg.com/736x/b7/91/44/b79144e03dc4996ce319ff59118caf65.jpg" },
                     new Employee { EmployeeId = "1002", EmployeeName = "Lê Hoàng Yến", Department = "Hành chính - Nhân sự", AvatarUrl = "https://ui-avatars.com/api/?name=Le+Hoang+Yen&background=17a2b8&color=fff" },
                     new Employee { EmployeeId = "1003", EmployeeName = "Nguyễn Minh Khang", Department = "IT", AvatarUrl = "https://ui-avatars.com/api/?name=Nguyen+Minh+Khang&background=dc3545&color=fff" },
                     new Employee { EmployeeId = "1004", EmployeeName = "Đặng Thùy Trâm", Department = "Kế toán", AvatarUrl = "https://ui-avatars.com/api/?name=Dang+Thuy+Tram&background=ffc107&color=000" }
                 );
                 SaveChanges();
+            }
+            else
+            {
+                // Tự động Cập nhật ảnh Avatar mới nhất từ Seed Code xuống Database Cũ (Do code bị kẹt ở DB cũ)
+                bool updated = false;
+                foreach (var emp in Employees)
+                {
+                    if (emp.EmployeeId == "1001" && emp.AvatarUrl != "https://i.pinimg.com/736x/b7/91/44/b79144e03dc4996ce319ff59118caf65.jpg")
+                    {
+                        emp.AvatarUrl = "https://i.pinimg.com/736x/b7/91/44/b79144e03dc4996ce319ff59118caf65.jpg";
+                        updated = true;
+                    }
+                }
+                if (updated) SaveChanges();
             }
         }
     }
@@ -89,7 +103,7 @@ namespace TTL.Shared.Services.Attendance
             db.EnsureSeedData();
         }
 
-        public async Task<bool> ProcessScanAsync(string code)
+        public async Task<bool> ProcessScanAsync(string code, bool isCheckIn = true)
         {
             using var db = new AttendanceDbContext();
             
@@ -111,6 +125,7 @@ namespace TTL.Shared.Services.Attendance
                 EmployeeId = employee.EmployeeId, 
                 EmployeeName = employee.EmployeeName, 
                 ScanTime = SecureTimeProvider.Instance.Now, 
+                Status = isCheckIn ? "VAO" : "RA",
                 AvatarUrl = employee.AvatarUrl 
             };
             

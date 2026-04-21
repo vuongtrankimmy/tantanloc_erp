@@ -1,0 +1,47 @@
+@using TTL.Shared.UI.Layouts.Component.Footer
+@using TTL.Shared.UI.Layouts.Component.Header
+@inherits LayoutComponentBase
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div id="kt_aside" class="aside aside-extended" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+            <!--begin::Primary-->
+            <Asidebar_primary />
+            <!--end::Primary-->
+            <!--begin::Secondary-->
+            <Asidebar_secondary />
+            <!--end::Secondary-->
+            <!--begin::Aside Toggle-->
+            <button id="kt_aside_toggle" class="aside-toggle btn btn-sm btn-icon bg-body btn-color-gray-700 btn-active-primary position-absolute translate-middle start-100 end-0 bottom-0 shadow-sm d-none d-lg-flex mb-5" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
+                <i class="ki-duotone ki-arrow-left fs-2 rotate-180">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                </i>
+            </button>
+            <!--end::Aside Toggle-->
+        </div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <Header/>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Container-->
+                @Body
+                <!--end::Container-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+           <Footer/>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Root-->
+

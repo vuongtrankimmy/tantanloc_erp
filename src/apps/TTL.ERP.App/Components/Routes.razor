@@ -1,11 +1,11 @@
 <Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="new[] { typeof(TTL.Auth.Client.Pages.Login).Assembly, typeof(TTL.Shared.UI._Imports).Assembly, typeof(TTL.HRM.Client.Pages.HrmDashboard).Assembly }">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(TTL.Shared.UI.Layouts.ErpMainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(Layout.MainLayout)">
+        <LayoutView Layout="@typeof(TTL.Shared.UI.Layouts.ErpMainLayout)">
             <p role="alert">Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>

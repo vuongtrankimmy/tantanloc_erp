@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <ResourcePreloader />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Metronic Global Stylesheets -->
+    <link href="_content/TTL.Shared.UI/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="_content/TTL.Shared.UI/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["TTL.HRM.WebApp.styles.css"]" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet />
+</head>
+
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <Routes />
+    <ReconnectModal />
+    
+    <!-- Metronic Global Javascript Bundle -->
+    <script src="_content/TTL.Shared.UI/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="_content/TTL.Shared.UI/assets/js/scripts.bundle.js"></script>
+    
+    <script src="@Assets["_framework/blazor.web.js"]"></script>
+</body>
+
+</html>
