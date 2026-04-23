@@ -4,8 +4,8 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyVersion>2026.4.21.7</AssemblyVersion>
-    <FileVersion>2026.4.21.7</FileVersion>
+    <AssemblyVersion>2026.4.23.39</AssemblyVersion>
+    <FileVersion>2026.4.23.39</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +17,10 @@
     <ProjectReference Include="..\..\..\shared\TTL.Shared.Models\TTL.Shared.Models.csproj" />
     <ProjectReference Include="..\..\..\shared\TTL.Shared.Services\TTL.Shared.Services.csproj" />
     <ProjectReference Include="..\..\..\auth\TTL.Auth.Client\TTL.Auth.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Me\" />
   </ItemGroup>
 
 </Project>

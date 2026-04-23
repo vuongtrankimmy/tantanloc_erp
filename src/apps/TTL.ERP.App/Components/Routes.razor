@@ -1,4 +1,4 @@
-<Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="new[] { typeof(TTL.Auth.Client.Pages.Login).Assembly, typeof(TTL.Shared.UI._Imports).Assembly, typeof(TTL.HRM.Client.Pages.HrmDashboard).Assembly }">
+<Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="new[] { typeof(TTL.Auth.Client.Pages.Login.Account.Account).Assembly, typeof(TTL.Shared.UI._Imports).Assembly, typeof(TTL.HRM.Client.Pages.Index.Index).Assembly }">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(TTL.Shared.UI.Layouts.ErpMainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />

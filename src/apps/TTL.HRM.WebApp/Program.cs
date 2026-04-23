@@ -23,6 +23,6 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddAdditionalAssemblies(typeof(TTL.HRM.Client.Pages.HrmDashboard).Assembly);
+    .AddAdditionalAssemblies(typeof(TTL.HRM.Client.Pages.Index.Index).Assembly, typeof(TTL.Auth.Client.Pages.Login.Account.Account).Assembly);
 
 app.Run();
