@@ -40,8 +40,8 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-        <AssemblyVersion>2026.4.23.11</AssemblyVersion>
-        <FileVersion>2026.4.23.11</FileVersion>
+        <AssemblyVersion>2026.4.25.12</AssemblyVersion>
+        <FileVersion>2026.4.25.12</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
