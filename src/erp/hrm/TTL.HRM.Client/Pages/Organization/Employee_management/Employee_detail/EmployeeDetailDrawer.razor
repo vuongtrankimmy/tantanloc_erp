@@ -1,0 +1,441 @@
+@using TTL.Shared.Models.HRM.Organization
+
+<div id="kt_drawer_employee_detail" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="employee_detail" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'100%', 'md': '600px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle=".kt_drawer_employee_detail_toggle" data-kt-drawer-close="#kt_drawer_employee_detail_close">
+    
+    @if (Employee != null)
+    {
+        <div class="card w-100 rounded-0 border-0">
+            <!-- HEADER -->
+            <div class="card-header pe-5">
+                <div class="card-title">
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Chi tiết nhân sự</a>
+                    </div>
+                </div>
+                <div class="card-toolbar">
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_employee_detail_close">
+                        <i class="ki-outline ki-cross fs-2"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body hover-scroll-overlay-y">
+                <!-- Profile Overview -->
+                <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
+                    <div class="me-7 mb-4">
+                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                            <img src="https://ui-avatars.com/api/?name=@(Uri.EscapeDataString(Employee.FullName))&background=@Employee.AvatarColor&color=fff" alt="@Employee.FullName" />
+                            @{
+                                string statusColor = Employee.Status == "Đang làm việc" ? "bg-success" : "bg-warning";
+                            }
+                            <div class="position-absolute translate-middle bottom-0 start-100 mb-6 @statusColor rounded-circle border border-4 border-body h-20px w-20px"></div>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">@Employee.FullName</a>
+                                </div>
+                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                    <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                        <i class="ki-outline ki-briefcase fs-4 me-1"></i> @Employee.Position
+                                    </a>
+                                    <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
+                                        <i class="ki-outline ki-sms fs-4 me-1"></i> @Employee.Email
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold" role="tablist">
+                    <li class="nav-item mt-2" role="presentation">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5 @GetActiveTabCss(DetailTab.GeneralInfo)" data-bs-toggle="tab" href="#kt_tab_general_info" @onclick="() => SetActiveTab(DetailTab.GeneralInfo)">Thông tin chung</a>
+                    </li>
+                    <li class="nav-item mt-2" role="presentation">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5 @GetActiveTabCss(DetailTab.AccountPerms)" data-bs-toggle="tab" href="#kt_tab_account_perms" @onclick="() => SetActiveTab(DetailTab.AccountPerms)">Tài khoản & Phân quyền</a>
+                    </li>
+                    <li class="nav-item mt-2" role="presentation">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5 @GetActiveTabCss(DetailTab.Attendance)" data-bs-toggle="tab" href="#kt_tab_attendance" @onclick="() => SetActiveTab(DetailTab.Attendance)">Lịch sử Chấm công</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-5">
+                    <!-- Tab 1: Thông tin chung -->
+                    <div class="tab-pane fade @GetShowActiveTabCss(DetailTab.GeneralInfo)" id="kt_tab_general_info" role="tabpanel">
+                        <!-- Personal Info -->
+                        <div class="card card-flush py-4 mb-5">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Thông tin cá nhân</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row mb-5">
+                                    <div class="col-6">
+                                        <label class="form-label">Họ tên</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.FullName" readonly />
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Mã nhân viên</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.Code" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-6">
+                                        <label class="form-label">Căn cước công dân</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.CitizenId" readonly />
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Số điện thoại</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.PhoneNumber" readonly />
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-6">
+                                        <label class="form-label">Ngày sinh</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.DateOfBirth" readonly />
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Giới tính</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.Gender" readonly />
+                                    </div>
+                                </div>
+                                <div class="mb-5">
+                                    <label class="form-label">Địa chỉ</label>
+                                    <textarea class="form-control form-control-solid" rows="2" readonly>@Employee.Address</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contract & Salary -->
+                        <div class="card card-flush py-4 mb-5">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Hợp đồng & Lương</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="form-label">Mức lương cơ bản</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.BasicSalary" readonly />
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Trạng thái hợp đồng</label>
+                                        <input type="text" class="form-control form-control-solid" value="@Employee.ContractType" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Tài khoản & Phân quyền -->
+                    <div class="tab-pane fade @GetShowActiveTabCss(DetailTab.AccountPerms)" id="kt_tab_account_perms" role="tabpanel">
+                        <!-- Active ERP Account -->
+                        <div class="border border-primary border-opacity-25 bg-light-primary rounded p-5 d-flex flex-stack mb-8">
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-40px me-4">
+                                    <span class="symbol-label bg-white shadow-sm">
+                                        <i class="ki-outline ki-power fs-1 text-primary"></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="fw-bold fs-5 text-gray-900">Kích hoạt tài khoản ERP</span>
+                                    <span class="fs-7 text-gray-500">Cho phép nhân viên này truy cập vào hệ thống ERP</span>
+                                </div>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid">
+                                <input class="form-check-input h-25px w-45px" type="checkbox" checked="@Employee.IsActiveAccount" />
+                            </div>
+                        </div>
+
+                        <!-- Account Information -->
+                        <div class="mb-8">
+                            <h3 class="fs-6 fw-bold text-gray-800 text-uppercase mb-4">
+                                <i class="ki-outline ki-profile-circle fs-3 me-2 text-primary"></i> Thông tin tài khoản
+                            </h3>
+                            <div class="border rounded p-5">
+                                <div class="row g-5 mb-5">
+                                    <div class="col-6">
+                                        <label class="form-label fs-8 fw-bold text-gray-500 text-uppercase">Tên đăng nhập (Username)</label>
+                                        <input type="text" class="form-control form-control-solid" value="nguyenvana_erp" readonly />
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label fs-8 fw-bold text-gray-500 text-uppercase">Mật khẩu (Password)</label>
+                                        <div class="position-relative">
+                                            <input type="password" class="form-control form-control-solid pe-12" value="........" readonly />
+                                            <span class="btn btn-sm btn-icon position-absolute translate-middle-y top-50 end-0">
+                                                <i class="ki-outline ki-eye fs-3 text-gray-500"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-sm btn-light"><i class="ki-outline ki-arrows-circle fs-4"></i> Tạo mới / Reset mật khẩu</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Permissions Configuration -->
+                        <div class="mb-5">
+                            <h3 class="fs-6 fw-bold text-gray-800 text-uppercase mb-4">
+                                <i class="ki-outline ki-shield-tick fs-3 me-2 text-primary"></i> Cấu hình phân quyền
+                            </h3>
+                            <div class="border rounded p-5">
+                                <!-- Nav Pills -->
+                                <ul class="nav nav-pills nav-pills-custom bg-light rounded p-1 mb-5 d-flex flex-row flex-nowrap" role="tablist">
+                                    <li class="nav-item w-50" role="presentation">
+                                        <a class="nav-link w-100 d-flex justify-content-center @GetActivePermTabCss(PermissionTab.RoleBased)" data-bs-toggle="tab" href="#tab_role_based" @onclick="() => SetActivePermissionTab(PermissionTab.RoleBased)">
+                                            <i class="ki-outline ki-profile-user fs-4 me-2 @(ActivePermissionTab == PermissionTab.RoleBased ? "text-primary" : "")"></i> Phân quyền theo vai trò
+                                        </a>
+                                    </li>
+                                    <li class="nav-item w-50" role="presentation">
+                                        <a class="nav-link w-100 d-flex justify-content-center @GetActivePermTabCss(PermissionTab.CustomPerms)" data-bs-toggle="tab" href="#tab_custom_perms" @onclick="() => SetActivePermissionTab(PermissionTab.CustomPerms)">
+                                            <i class="ki-outline ki-setting-2 fs-4 me-2 @(ActivePermissionTab == PermissionTab.CustomPerms ? "text-primary" : "")"></i> Tùy chỉnh quyền chi tiết
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <!-- Role-based Tab -->
+                                    <div class="tab-pane fade @GetShowActivePermTabCss(PermissionTab.RoleBased)" id="tab_role_based">
+                                        <div class="mb-5">
+                                            <label class="form-label fs-8 fw-bold text-gray-500 text-uppercase">Chọn vai trò hệ thống</label>
+                                            <select class="form-select form-select-solid" value="@Employee.RoleId">
+                                                <option value="1">Nhân viên (Staff)</option>
+                                                <option value="2">Trưởng phòng</option>
+                                                <option value="3">Quản trị viên</option>
+                                            </select>
+                                            <div class="text-muted fs-8 fst-italic mt-2">* Vai trò này sẽ tự động áp dụng bộ quyền mặc định cho các module.</div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <label class="form-label fs-8 fw-bold text-gray-500 text-uppercase mb-0">Quyền hạn module chi tiết</label>
+                                            <a href="javascript:void(0);" class="fs-8 fw-bold text-primary text-hover-primary">Chọn tất cả</a>
+                                        </div>
+                                        
+                                        <div class="table-responsive border rounded">
+                                            <table class="table align-middle table-row-dashed fs-7 gy-4 mb-0">
+                                                <thead class="bg-light">
+                                                    <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+                                                        <th class="ps-4 min-w-150px">Module</th>
+                                                        <th class="text-center w-70px">Xem</th>
+                                                        <th class="text-center w-70px">Thêm</th>
+                                                        <th class="text-center w-70px">Sửa</th>
+                                                        <th class="text-center w-70px">Xóa</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="fw-semibold text-gray-600">
+                                                    <tr>
+                                                        <td class="ps-4 text-gray-800 fw-bold">Quản lý Nhân sự</td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" checked="checked" /></td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="ps-4 text-gray-800 fw-bold">Quản lý Chấm công</td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" checked="checked" /></td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                                                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="ps-4 text-gray-800 fw-bold border-bottom-0">Quản lý Lương thưởng</td>
+                                                        <td class="text-center border-bottom-0"><input class="form-check-input" type="checkbox" checked="checked" /></td>
+                                                        <td class="text-center border-bottom-0"><input class="form-check-input" type="checkbox" /></td>
+                                                        <td class="text-center border-bottom-0"><input class="form-check-input" type="checkbox" /></td>
+                                                        <td class="text-center border-bottom-0"><input class="form-check-input" type="checkbox" /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Custom perms tab -->
+                                    <div class="tab-pane fade @GetShowActivePermTabCss(PermissionTab.CustomPerms)" id="tab_custom_perms">
+                                        <div class="text-center text-muted py-10">Tùy chỉnh quyền chi tiết sẽ khả dụng ở phiên bản sau.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Lịch sử chấm công -->
+                    <div class="tab-pane fade @GetShowActiveTabCss(DetailTab.Attendance)" id="kt_tab_attendance" role="tabpanel">
+                        <!--begin::Calendar-->
+                        <div class="card card-flush py-0 mb-5 border-0">
+                            <div class="card-header px-0">
+                                <div class="card-title">
+                                    <h2 class="fs-6 fw-bold text-gray-800 text-uppercase">
+                                        <i class="ki-outline ki-calendar fs-3 me-2 text-primary"></i> Lịch chấm công chi tiết
+                                    </h2>
+                                </div>
+                                <div class="card-toolbar">
+                                    <button class="btn btn-sm btn-icon btn-active-light-primary"><i class="ki-outline ki-left"></i></button>
+                                    <span class="fs-7 fw-bold mx-2">Tháng 05/2024</span>
+                                    <button class="btn btn-sm btn-icon btn-active-light-primary"><i class="ki-outline ki-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body pt-2 px-0">
+                                <div class="border rounded p-4">
+                                    <!-- Days Header -->
+                                    <div class="row gx-1 mb-2 text-center fs-8 fw-bold text-gray-400">
+                                        <div class="col">CN</div><div class="col">T2</div><div class="col">T3</div><div class="col">T4</div><div class="col">T5</div><div class="col">T6</div><div class="col">T7</div>
+                                    </div>
+                                    <!-- Row 1 -->
+                                    <div class="row gx-1 mb-1 text-center fs-7">
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">28</div></div>
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">29</div></div>
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">30</div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">1</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">2</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">3</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">4</div></div>
+                                    </div>
+                                    <!-- Row 2 -->
+                                    <div class="row gx-1 mb-1 text-center fs-7">
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">5</div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">6</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">7</div><div class="h-4px w-4px rounded-circle bg-warning mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">8</div><div class="h-4px w-4px rounded-circle bg-danger mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">9</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">10</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">11</div></div>
+                                    </div>
+                                    <!-- Row 3 -->
+                                    <div class="row gx-1 mb-1 text-center fs-7">
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">12</div></div>
+                                        <div class="col"><div class="rounded py-2 fw-bold border border-primary text-primary"><div class="mb-1">13</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">14</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">15</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">16</div><div class="h-4px w-4px rounded-circle bg-success mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 fw-semibold"><div class="mb-1">17</div><div class="h-4px w-4px rounded-circle bg-warning mx-auto"></div></div></div>
+                                        <div class="col"><div class="rounded py-2 text-gray-400 bg-light-secondary">18</div></div>
+                                    </div>
+                                    
+                                    <!-- Legend -->
+                                    <div class="d-flex justify-content-center mt-5 fs-8 fw-semibold text-gray-600">
+                                        <div class="d-flex align-items-center me-6"><div class="h-6px w-6px rounded-circle bg-success me-2"></div>Đúng giờ</div>
+                                        <div class="d-flex align-items-center me-6"><div class="h-6px w-6px rounded-circle bg-warning me-2"></div>Đi muộn</div>
+                                        <div class="d-flex align-items-center"><div class="h-6px w-6px rounded-circle bg-danger me-2"></div>Nghỉ</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Calendar-->
+
+                        <!--begin::Quick Stats-->
+                        <div class="card card-flush py-0 mb-5 border-0">
+                            <div class="card-header px-0 pt-0">
+                                <div class="card-title">
+                                    <h2 class="fs-6 fw-bold text-gray-800 text-uppercase">
+                                        <i class="ki-outline ki-chart-line-up fs-3 me-2 text-primary"></i> Thống kê nhanh tháng
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-2 px-0">
+                                <div class="row g-4">
+                                    <div class="col-6">
+                                        <div class="border rounded p-4 h-100">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="fs-8 fw-bold text-gray-500 text-uppercase">Số công chuẩn</span>
+                                                <i class="ki-outline ki-calendar-tick fs-4 text-gray-400"></i>
+                                            </div>
+                                            <div class="fs-2 fw-bold text-gray-900">22 <span class="fs-7 fw-semibold text-gray-500">ngày</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border rounded p-4 h-100">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="fs-8 fw-bold text-gray-500 text-uppercase">Số công thực tế</span>
+                                                <i class="ki-outline ki-verify fs-4 text-success"></i>
+                                            </div>
+                                            <div class="fs-2 fw-bold text-gray-900">21.5 <span class="fs-7 fw-semibold text-gray-500">ngày</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border rounded p-4 h-100">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="fs-8 fw-bold text-gray-500 text-uppercase">Số giờ tăng ca</span>
+                                                <i class="ki-outline ki-time fs-4 text-primary"></i>
+                                            </div>
+                                            <div class="fs-2 fw-bold text-gray-900">12 <span class="fs-7 fw-semibold text-gray-500">giờ</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border rounded p-4 h-100">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="fs-8 fw-bold text-gray-500 text-uppercase">Số lần đi muộn</span>
+                                                <i class="ki-outline ki-watch fs-4 text-warning"></i>
+                                            </div>
+                                            <div class="fs-2 fw-bold text-gray-900">02 <span class="fs-7 fw-semibold text-gray-500">lần</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Quick Stats-->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOOTER BUTTONS -->
+            <div class="card-footer px-5 py-4 border-top d-flex justify-content-between align-items-center">
+                @if (ActiveTab == DetailTab.AccountPerms)
+                {
+                    <button type="button" class="btn btn-primary"><i class="ki-outline ki-check-circle fs-4"></i> Cập nhật cấu hình</button>
+                    <button type="button" class="btn btn-light" data-kt-drawer-dismiss="true">Hủy</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary"><i class="ki-outline ki-file-down fs-4"></i> Xuất báo cáo cá nhân</button>
+                    <button type="button" class="btn btn-light" data-kt-drawer-dismiss="true">Đóng</button>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public EmployeeModel? Employee { get; set; }
+
+    public enum DetailTab
+    {
+        GeneralInfo,
+        AccountPerms,
+        Attendance
+    }
+
+    public enum PermissionTab
+    {
+        RoleBased,
+        CustomPerms
+    }
+
+    private DetailTab ActiveTab { get; set; } = DetailTab.GeneralInfo;
+    private PermissionTab ActivePermissionTab { get; set; } = PermissionTab.RoleBased;
+
+    private async Task SetActiveTab(DetailTab tab)
+    {
+        ActiveTab = tab;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task SetActivePermissionTab(PermissionTab tab)
+    {
+        ActivePermissionTab = tab;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private string GetActiveTabCss(DetailTab tab) => ActiveTab == tab ? "active" : string.Empty;
+    private string GetShowActiveTabCss(DetailTab tab) => ActiveTab == tab ? "show active" : string.Empty;
+    
+    private string GetActivePermTabCss(PermissionTab tab) => ActivePermissionTab == tab ? "active bg-white shadow-sm text-primary fw-bold" : "text-gray-600 fw-bold";
+    private string GetShowActivePermTabCss(PermissionTab tab) => ActivePermissionTab == tab ? "show active" : string.Empty;
+}

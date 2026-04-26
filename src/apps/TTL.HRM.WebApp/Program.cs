@@ -3,6 +3,7 @@ using TTL.HRM.WebApp.Components;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(sp.GetRequiredService<Microsoft.AspNetCore.Components.NavigationManager>().BaseUri) });
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "name": "Ban Giám đốc",
+    "code": "BGD",
+    "manager": "Nguyễn Văn A",
+    "headcount": 5,
+    "status": "published",
+    "created_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "2",
+    "name": "Hành chính - Nhân sự",
+    "code": "HCNS",
+    "manager": "Trần Thị B",
+    "headcount": 12,
+    "status": "published",
+    "created_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Công nghệ thông tin",
+    "code": "IT",
+    "manager": "Lê Văn C",
+    "headcount": 8,
+    "status": "published",
+    "created_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Kiểm soát chất lượng",
+    "code": "QC",
+    "manager": "Phạm Thị D",
+    "headcount": 15,
+    "status": "published",
+    "created_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "5",
+    "name": "Kế toán - Tài chính",
+    "code": "KTTC",
+    "manager": "Hoàng Văn E",
+    "headcount": 6,
+    "status": "published",
+    "created_at": "2026-01-01T00:00:00Z"
+  }
+]

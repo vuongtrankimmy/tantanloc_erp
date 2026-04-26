@@ -1,0 +1,85 @@
+<div id="kt_drawer_benefit_detail" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="benefit_detail" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle=".kt_drawer_benefit_detail_toggle" data-kt-drawer-close="#kt_drawer_benefit_detail_close">
+    <div class="card shadow-none rounded-0 w-100">
+        <!--begin::Header-->
+        <div class="card-header" id="kt_drawer_benefit_detail_header">
+            <h3 class="card-title fw-bolder text-dark">Cấu hình khoản chi tiết</h3>
+            <div class="card-toolbar">
+                <button type="button" class="btn btn-sm btn-icon btn-active-light-primary me-n5" id="kt_drawer_benefit_detail_close">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span><span class="path2"></span>
+                    </i>
+                </button>
+            </div>
+        </div>
+        <!--end::Header-->
+
+        <!--begin::Body-->
+        <div class="card-body position-relative" id="kt_drawer_benefit_detail_body">
+            @if (BenefitItem != null)
+            {
+                <div class="scroll-y me-n5 pe-5" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_drawer_benefit_detail_body" data-kt-scroll-dependencies="#kt_drawer_benefit_detail_header, #kt_drawer_benefit_detail_footer" data-kt-scroll-offset="0px">
+                    <div class="mb-5">
+                        <div class="mb-7">
+                            <label class="required fw-semibold fs-6 mb-2">Tên khoản chi</label>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" @bind="BenefitItem.name" />
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="fw-semibold fs-6 mb-2">Mã khoản (Tùy chọn)</label>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" @bind="BenefitItem.id" />
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="required fw-semibold fs-6 mb-2">Mô tả (Mục đích chi)</label>
+                            <textarea class="form-control form-control-solid" rows="3" @bind="BenefitItem.description"></textarea>
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="required fw-semibold fs-6 mb-2">Loại chi phí</label>
+                            <select class="form-select form-select-solid" @bind="BenefitItem.type">
+                                <option value="CỐ ĐỊNH">Cố định hàng tháng</option>
+                                <option value="BIẾN ĐỔI">Biến đổi theo sự kiện/ngày</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="required fw-semibold fs-6 mb-2">Định mức / Giá trị</label>
+                            <div class="input-group input-group-solid mb-5">
+                                <input type="number" class="form-control" @bind="BenefitItem.amount" />
+                                <span class="input-group-text">VND</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="required fw-semibold fs-6 mb-2">Đối tượng áp dụng</label>
+                            <select class="form-select form-select-solid" @bind="BenefitItem.target">
+                                <option value="Toàn công ty">Toàn công ty</option>
+                                <option value="Chính thức">Nhân viên chính thức</option>
+                                <option value="Phòng Kinh doanh">Phòng Kinh doanh</option>
+                                <option value="Cấp Quản lý">Cấp Quản lý</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex flex-column flex-center h-100">
+                    <img src="assets/media/illustrations/sketchy-1/5.png" class="mw-100 mh-200px mb-7" alt="" />
+                    <div class="fs-5 fw-bold text-gray-500 mb-2">Vui lòng chọn một khoản chi để cấu hình.</div>
+                </div>
+            }
+        </div>
+        <!--end::Body-->
+
+        <!--begin::Footer-->
+        @if (BenefitItem != null)
+        {
+            <div class="card-footer py-5 d-flex justify-content-end" id="kt_drawer_benefit_detail_footer">
+                <button class="btn btn-light me-3" id="kt_drawer_benefit_detail_close_btn" data-kt-drawer-dismiss="true">Hủy</button>
+                <button class="btn btn-primary" @onclick="Save">Lưu thay đổi</button>
+            </div>
+        }
+        <!--end::Footer-->
+    </div>
+</div>

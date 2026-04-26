@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Phụ cấp ăn trưa",
+    "description": "Hỗ trợ cơm trưa",
+    "type": "Cố định hàng tháng",
+    "amount": 730000,
+    "target": "Tất cả nhân sự",
+    "status": "Đang áp dụng"
+  },
+  {
+    "id": "2",
+    "name": "Phụ cấp xăng xe",
+    "description": "Hỗ trợ đi lại",
+    "type": "Cố định hàng tháng",
+    "amount": 500000,
+    "target": "12 nhân sự",
+    "status": "Đang áp dụng"
+  },
+  {
+    "id": "3",
+    "name": "Phụ cấp xăng",
+    "description": "XĂ- G820 - Phụ cấp xăng",
+    "type": "Cố định hàng tháng",
+    "amount": 400000,
+    "target": "8 nhân sự",
+    "status": "Đang áp dụng"
+  }
+]

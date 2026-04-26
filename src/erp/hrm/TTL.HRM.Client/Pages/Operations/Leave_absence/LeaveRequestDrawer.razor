@@ -1,0 +1,136 @@
+@using TTL.Shared.Models.HRM.Operations
+
+<div id="kt_drawer_leave_request" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="leave_request" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '450px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle=".kt_drawer_leave_request_toggle" data-kt-drawer-close="#kt_drawer_leave_request_close">
+    <div class="card shadow-none rounded-0 w-100">
+        <!--begin::Header-->
+        <div class="card-header" id="kt_drawer_leave_request_header">
+            <h3 class="card-title fw-bolder text-dark">
+                <div class="d-flex flex-column">
+                    <span>Chi tiết đơn xin nghỉ</span>
+                    <span class="fs-7 fw-semibold text-muted mt-1">Mã đơn: @(Request?.id ?? "N/A")</span>
+                </div>
+            </h3>
+            <div class="card-toolbar">
+                <button type="button" class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_leave_request_close">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span><span class="path2"></span>
+                    </i>
+                </button>
+            </div>
+        </div>
+        <!--end::Header-->
+
+        <!--begin::Body-->
+        <div class="card-body position-relative" id="kt_drawer_leave_request_body">
+            @if (Request != null)
+            {
+                <div class="scroll-y me-n5 pe-5" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_drawer_leave_request_body" data-kt-scroll-dependencies="#kt_drawer_leave_request_header, #kt_drawer_leave_request_footer" data-kt-scroll-offset="0px">
+                    <div class="mb-5">
+                        <!-- User Info -->
+                        <div class="d-flex flex-stack bg-light rounded p-4 mb-7">
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-40px symbol-circle me-4">
+                                    <span class="symbol-label bg-light-primary text-primary fw-bolder">@Request.employee_name.Substring(0, 1)</span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="fw-bolder text-gray-900 fs-6">@Request.employee_name</span>
+                                    <span class="text-muted fw-semibold fs-7">@Request.department - @Request.position</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column align-items-end">
+                                <span class="text-muted fw-bold fs-8">CÒN LẠI</span>
+                                <span class="text-primary fw-bolder fs-4">@Request.remaining_leave_days.ToString("0") <span class="fs-7 text-muted fw-semibold">ngày</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Thông tin kỳ nghỉ -->
+                        <div class="mb-7">
+                            <div class="d-flex align-items-center mb-4">
+                                <i class="ki-duotone ki-information-5 text-gray-500 fs-3 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                <span class="fw-bolder text-gray-900 fs-6">Thông tin kỳ nghỉ</span>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-4 text-muted fw-semibold fs-7">Loại nghỉ</div>
+                                <div class="col-8">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bullet bullet-dot bg-warning me-2"></span>
+                                        <span class="fw-bold text-gray-900 fs-7">@Request.leave_type</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-4 text-muted fw-semibold fs-7">Thời gian</div>
+                                <div class="col-8">
+                                    <span class="fw-bold text-gray-900 fs-7">@Request.start_date.ToString("dd/MM/yyyy") - @Request.end_date.ToString("dd/MM/yyyy")</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-4 text-muted fw-semibold fs-7">Tổng cộng</div>
+                                <div class="col-8">
+                                    <span class="fw-bold text-gray-900 fs-7">@Request.total_days.ToString("0") ngày</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-4 text-muted fw-semibold fs-7">Lý do</div>
+                                <div class="col-8">
+                                    <span class="fw-bold text-gray-900 fs-7">@Request.reason</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tài liệu đính kèm -->
+                        <div class="mb-7">
+                            <div class="d-flex align-items-center mb-4">
+                                <i class="ki-duotone ki-paper-clip text-gray-500 fs-3 me-2"><span class="path1"></span><span class="path2"></span></i>
+                                <span class="fw-bolder text-gray-900 fs-6">Tài liệu đính kèm</span>
+                            </div>
+                            <div class="d-flex">
+                                <div class="border border-dashed border-gray-300 rounded d-flex flex-column align-items-center justify-content-center p-3 me-3" style="width: 80px; height: 80px; background-color: #F9F9F9;">
+                                    <i class="ki-duotone ki-file text-gray-600 fs-1 mb-2"><span class="path1"></span><span class="path2"></span></i>
+                                    <span class="text-gray-600 fs-8 text-truncate w-100 text-center" title="Giay_kham_benh.pdf">Giay_kha...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nhân sự nghỉ cùng thời gian -->
+                        <div class="mb-7">
+                            <div class="d-flex align-items-center flex-stack">
+                                <div class="d-flex align-items-center">
+                                    <i class="ki-duotone ki-people text-gray-500 fs-3 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                    <span class="fw-bolder text-gray-900 fs-6">Nhân sự nghỉ cùng thời gian</span>
+                                </div>
+                                <span class="badge badge-light-warning fw-bold px-3 py-1">Có người trùng lịch</span>
+                            </div>
+                        </div>
+
+                        <!-- Ý kiến phản hồi -->
+                        <div class="mb-2">
+                            <div class="d-flex align-items-center mb-4">
+                                <span class="fw-bolder text-gray-900 fs-7 text-uppercase">Ý KIẾN PHẢN HỒI (TÙY CHỌN)</span>
+                            </div>
+                            <textarea class="form-control form-control-solid" rows="3" placeholder="Nhập lý do phê duyệt hoặc từ chối..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex flex-column flex-center h-100">
+                    <img src="assets/media/illustrations/sketchy-1/5.png" class="mw-100 mh-200px mb-7" alt="" />
+                    <div class="fs-5 fw-bold text-gray-500 mb-2">Vui lòng chọn một yêu cầu để xem chi tiết.</div>
+                </div>
+            }
+        </div>
+        <!--end::Body-->
+
+        <!--begin::Footer-->
+        @if (Request != null)
+        {
+            <div class="card-footer py-5 d-flex justify-content-between" id="kt_drawer_leave_request_footer">
+                <button class="btn btn-light border" style="width: 48%;">Từ chối</button>
+                <button class="btn btn-primary" style="width: 48%;">Xác nhận phê duyệt</button>
+            </div>
+        }
+        <!--end::Footer-->
+    </div>
+</div>

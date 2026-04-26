@@ -1,0 +1,17 @@
+[
+  {
+    "status_id": 1,
+    "status_name": "Cố định",
+    "description": "Ca làm việc có giờ vào và ra cố định."
+  },
+  {
+    "status_id": 2,
+    "status_name": "Linh hoạt",
+    "description": "Ca làm việc có giờ linh hoạt, không giới hạn chặt thời gian bắt đầu."
+  },
+  {
+    "status_id": 3,
+    "status_name": "Không xác định",
+    "description": "Chưa được thiết lập trạng thái cụ thể."
+  }
+]

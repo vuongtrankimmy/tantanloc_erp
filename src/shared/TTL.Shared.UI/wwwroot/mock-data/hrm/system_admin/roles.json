@@ -1,0 +1,49 @@
+[
+  {
+    "id": "1",
+    "role_name": "Quản trị viên",
+    "role_code": "FULL ACCESS",
+    "description": "Toàn quyền truy cập và cấu hình hệ thống ERP.",
+    "status": "Hoạt động",
+    "members": [
+      { "id": "m1", "name": "Nguyễn Văn A", "avatar_url": "" },
+      { "id": "m2", "name": "Trần Thị B", "avatar_url": "" },
+      { "id": "m3", "name": "Lê Văn C", "avatar_url": "" }
+    ]
+  },
+  {
+    "id": "2",
+    "role_name": "Nhân viên kho",
+    "role_code": "STOCK CONTROL",
+    "description": "Quản lý nhập xuất tồn, kiểm kê hàng hóa tại kho.",
+    "status": "Hoạt động",
+    "members": [
+      { "id": "m4", "name": "Ngô Thị D", "avatar_url": "" },
+      { "id": "m5", "name": "Phạm Văn E", "avatar_url": "" },
+      { "id": "m6", "name": "Vũ Thị F", "avatar_url": "" },
+      { "id": "m7", "name": "User 7", "avatar_url": "" },
+      { "id": "m8", "name": "User 8", "avatar_url": "" },
+      { "id": "m9", "name": "User 9", "avatar_url": "" },
+      { "id": "m10", "name": "User 10", "avatar_url": "" },
+      { "id": "m11", "name": "User 11", "avatar_url": "" },
+      { "id": "m12", "name": "User 12", "avatar_url": "" },
+      { "id": "m13", "name": "User 13", "avatar_url": "" },
+      { "id": "m14", "name": "User 14", "avatar_url": "" },
+      { "id": "m15", "name": "User 15", "avatar_url": "" }
+    ]
+  },
+  {
+    "id": "3",
+    "role_name": "Kế toán tổng hợp",
+    "role_code": "FINANCE",
+    "description": "Quản lý dòng tiền, báo cáo tài chính và công nợ.",
+    "status": "Hoạt động",
+    "members": [
+      { "id": "m16", "name": "Bùi Văn G", "avatar_url": "" },
+      { "id": "m17", "name": "Đặng Thị H", "avatar_url": "" },
+      { "id": "m18", "name": "Hồ Văn I", "avatar_url": "" },
+      { "id": "m19", "name": "Lý Thị K", "avatar_url": "" },
+      { "id": "m20", "name": "Đỗ Văn L", "avatar_url": "" }
+    ]
+  }
+]

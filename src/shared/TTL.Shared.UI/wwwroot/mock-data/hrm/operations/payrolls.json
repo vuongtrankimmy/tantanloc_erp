@@ -1,0 +1,110 @@
+[
+  {
+    "code": "PR122026",
+    "payroll_name": "Bảng lương tháng 12/2026 (Chưa khởi tạo)",
+    "month_year": "12/2026",
+    "employee_count": 0,
+    "total_payment": 0,
+    "status_id": 1,
+    "status_name": "Chưa khởi tạo"
+  },
+  {
+    "code": "PR112026",
+    "payroll_name": "Bảng lương tháng 11/2026 (Chưa khởi tạo)",
+    "month_year": "11/2026",
+    "employee_count": 0,
+    "total_payment": 0,
+    "status_id": 1,
+    "status_name": "Chưa khởi tạo"
+  },
+  {
+    "code": "PR102026",
+    "payroll_name": "Bảng lương tháng 10/2026 (Chưa khởi tạo)",
+    "month_year": "10/2026",
+    "employee_count": 0,
+    "total_payment": 0,
+    "status_id": 1,
+    "status_name": "Chưa khởi tạo"
+  },
+  {
+    "code": "PR092026",
+    "payroll_name": "Bảng lương tháng 09/2026 (Chưa khởi tạo)",
+    "month_year": "09/2026",
+    "employee_count": 0,
+    "total_payment": 0,
+    "status_id": 1,
+    "status_name": "Chưa khởi tạo"
+  },
+  {
+    "code": "PR082026",
+    "payroll_name": "Bảng lương tháng 08/2026",
+    "month_year": "08/2026",
+    "employee_count": 8,
+    "total_payment": 33550000,
+    "status_id": 2,
+    "status_name": "Dự thảo"
+  },
+  {
+    "code": "PR072026",
+    "payroll_name": "Bảng lương tháng 07/2026",
+    "month_year": "07/2026",
+    "employee_count": 8,
+    "total_payment": 33550000,
+    "status_id": 2,
+    "status_name": "Dự thảo"
+  },
+  {
+    "code": "PR062026",
+    "payroll_name": "Bảng lương tháng 06/2026",
+    "month_year": "06/2026",
+    "employee_count": 8,
+    "total_payment": 33550000,
+    "status_id": 2,
+    "status_name": "Dự thảo"
+  },
+  {
+    "code": "PR052026",
+    "payroll_name": "Bảng lương tháng 05/2026",
+    "month_year": "05/2026",
+    "employee_count": 8,
+    "total_payment": 33550000,
+    "status_id": 2,
+    "status_name": "Dự thảo"
+  },
+  {
+    "code": "PR042026",
+    "payroll_name": "Bảng lương tháng 04/2026",
+    "month_year": "04/2026",
+    "employee_count": 8,
+    "total_payment": 33550000,
+    "status_id": 2,
+    "status_name": "Dự thảo"
+  },
+  {
+    "code": "PR032026",
+    "payroll_name": "Bảng lương tháng 03/2026",
+    "month_year": "03/2026",
+    "employee_count": 8,
+    "total_payment": 24870000,
+    "status_id": 2,
+    "status_name": "Dự thảo"
+  },
+  {
+    "code": "PR022026",
+    "payroll_name": "Bảng lương tháng 02/2026",
+    "month_year": "02/2026",
+    "employee_count": 30,
+    "total_payment": 107918750,
+    "status_id": 4,
+    "status_name": "Đã chốt"
+  },
+  {
+    "code": "PR012026",
+    "payroll_name": "Bảng lương tháng 01/2026",
+    "month_year": "01/2026",
+    "employee_count": 30,
+    "total_payment": 24870000,
+    "status_id": 3,
+    "status_name": "Chờ duyệt"
+  }
+]
