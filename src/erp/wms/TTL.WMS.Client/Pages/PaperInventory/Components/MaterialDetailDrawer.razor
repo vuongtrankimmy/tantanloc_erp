@@ -1,0 +1,452 @@
+@namespace TTL.WMS.Client.Pages.PaperInventory.Components
+
+<div id="kt_drawer_material_detail" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="material_detail" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'350px', 'md': '700px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_material_detail_toggle" data-kt-drawer-close="#kt_drawer_material_detail_close">
+    
+    <div class="card w-100 rounded-0 border-0 bg-transparent">
+        <!--begin::Card header-->
+        <div class="card-header pe-5 border-bottom-0 pb-0 pt-10 px-10">
+            <div class="d-flex align-items-start w-100">
+                <div class="me-4 mt-1">
+                    <i class="ki-duotone ki-file text-primary fs-3x"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge badge-light-warning text-warning fw-bold fs-8 px-3 py-1 text-uppercase tracking-wider">SẮP HẾT HÀNG</span>
+                    </div>
+                    <h2 class="fs-1 fw-bold text-gray-900 mb-3">Giấy Kraft Nhập Khẩu</h2>
+                    <div class="text-muted fs-7 fw-semibold">
+                        <div class="mb-1">Nhà cung cấp: <a href="#" class="text-primary text-hover-primary fw-bold">Công ty Giấy Việt Nam</a></div>
+                        <div>MÃ VẬT TƯ: <span class="text-gray-700 fw-bold">VT - G - KRAFT - 01</span></div>
+                    </div>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn btn-sm btn-icon btn-active-light-primary text-gray-500 hover-primary" id="kt_drawer_material_detail_close">
+                        <i class="ki-duotone ki-cross fs-2x">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Card header-->
+        
+        <!--begin::Card body-->
+        <div class="card-body px-0 pt-8 pb-0">
+            <!-- Tabs -->
+            <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-8 fs-6 border-bottom px-10 fw-bold text-gray-500">
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary active px-5 py-3 text-gray-600" data-bs-toggle="tab" href="#kt_tab_pane_thong_tin_chung">Thông tin chung</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary px-5 py-3 text-gray-600" data-bs-toggle="tab" href="#kt_tab_pane_ton_kho">Tồn kho</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary px-5 py-3 text-gray-600" data-bs-toggle="tab" href="#kt_tab_pane_nhom_giay">Nhóm giấy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary px-5 py-3 text-gray-600" data-bs-toggle="tab" href="#kt_tab_pane_gia">Giá</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary px-5 py-3 text-gray-600" data-bs-toggle="tab" href="#kt_tab_pane_lich_su">Lịch sử</a>
+                </li>
+            </ul>
+
+            <div class="tab-content px-10" id="myTabContent">
+                <div class="tab-pane fade show active" id="kt_tab_pane_thong_tin_chung" role="tabpanel">
+                    <h3 class="fs-4 fw-bold text-gray-900 mb-7 mt-2">Thông số kỹ thuật</h3>
+                    
+                    <div class="card border border-gray-200 shadow-sm bg-white rounded-4">
+                        <div class="card-body p-8">
+                            <div class="row g-8">
+                                <div class="col-md-4">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold mb-2 tracking-wider text-gray-500">ĐỊNH LƯỢNG</div>
+                                    <div class="fs-4 fw-bold text-gray-900">175 gsm</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold mb-2 tracking-wider text-gray-500">KHỔ GIẤY</div>
+                                    <div class="fs-4 fw-bold text-gray-900">120 cm</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold mb-2 tracking-wider text-gray-500">ĐỘ BỤC (KGF/CM2)</div>
+                                    <div class="fs-4 fw-bold text-gray-900">3.5 kgf/cm2</div>
+                                </div>
+                                <div class="col-md-4 pt-4">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold mb-2 tracking-wider line-height-sm text-gray-500">KHẢ NĂNG CHỐNG THẤM<br/>(G/M2)</div>
+                                    <div class="fs-4 fw-bold text-gray-900 mt-2">35 g/m2</div>
+                                </div>
+                                <div class="col-md-4 pt-4">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold mb-2 tracking-wider line-height-sm text-gray-500">ĐỘ CHỊU NÉN VÒNG<br/>(KGF/6INCH)</div>
+                                    <div class="fs-4 fw-bold text-gray-900 mt-2">15.5 kgf/6inch</div>
+                                </div>
+                                <div class="col-md-4 pt-4">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold mb-2 tracking-wider text-gray-500">ĐỘ TRẮNG (% ISO)</div>
+                                    <div class="fs-4 fw-bold text-gray-900">82% ISO</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="kt_tab_pane_ton_kho" role="tabpanel">
+                    <div class="row g-5 mb-8 mt-2">
+                        <div class="col-md-6">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="ki-duotone ki-box fs-2 text-gray-500 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider">TỔNG TỒN THỰC TẾ</div>
+                                    </div>
+                                    <div class="d-flex align-items-end mt-4">
+                                        <div class="fs-2hx fw-bold text-gray-900 me-2 lh-1">1,250</div>
+                                        <div class="fs-6 fw-bold text-gray-500 mb-1">KG</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="ki-duotone ki-abstract-26 fs-2 text-gray-500 me-2"><span class="path1"></span><span class="path2"></span></i>
+                                        <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider">TỔNG TỒN THEO ĐƠN VỊ</div>
+                                    </div>
+                                    <div class="d-flex align-items-end mt-4">
+                                        <div class="fs-2hx fw-bold text-gray-900 me-2 lh-1">03</div>
+                                        <div class="fs-6 fw-bold text-gray-500 mb-1">CUỘN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <div class="d-flex align-items-center">
+                            <i class="ki-duotone ki-kanban fs-1 text-primary me-2"><span class="path1"></span><span class="path2"></span></i>
+                            <h3 class="fs-5 fw-bold text-gray-900 mb-0">Tồn kho</h3>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-link text-primary fw-bold px-0 d-flex align-items-center text-hover-primary">
+                            <i class="ki-duotone ki-file-down fs-4 me-1"><span class="path1"></span><span class="path2"></span></i> Tải báo cáo
+                        </a>
+                    </div>
+
+                    <div class="card border border-gray-200 shadow-sm bg-white rounded-4 mb-8">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed table-row-gray-200 fs-6 gy-4 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                            <th class="ps-6 py-4">VỊ TRÍ</th>
+                                            <th class="py-4">KHỐI LƯỢNG (KG)</th>
+                                            <th class="pe-6 py-4">SỐ CUỘN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                        <tr>
+                                            <td class="ps-6 text-gray-900">Kho xưởng 1</td>
+                                            <td class="text-gray-900 fw-bold">500</td>
+                                            <td class="pe-6 text-gray-700">12</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900">Kho xưởng 2</td>
+                                            <td class="text-gray-900 fw-bold">300</td>
+                                            <td class="pe-6 text-gray-700">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900">Đang giao</td>
+                                            <td class="text-gray-900 fw-bold">150</td>
+                                            <td class="pe-6 fw-bold text-gray-900">450</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900">Đang đặt</td>
+                                            <td class="text-gray-900 fw-bold">250</td>
+                                            <td class="pe-6 text-gray-700">6</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 border-bottom-0">NCC còn lại</td>
+                                            <td class="text-gray-900 fw-bold border-bottom-0">200</td>
+                                            <td class="pe-6 text-gray-700 border-bottom-0">5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="kt_tab_pane_nhom_giay" role="tabpanel">
+                    <div class="d-flex flex-stack mb-5 mt-2">
+                        <div class="d-flex align-items-center">
+                            <i class="ki-duotone ki-element-11 fs-1 text-primary me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                            <h3 class="fs-5 fw-bold text-gray-900 mb-0">Danh mục nhóm</h3>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-link text-primary fw-bold px-0 d-flex align-items-center text-hover-primary">
+                            <i class="ki-duotone ki-file-down fs-4 me-1"><span class="path1"></span><span class="path2"></span></i> Tải báo cáo
+                        </a>
+                    </div>
+
+                    <div class="card border border-gray-200 shadow-sm bg-white rounded-4 mb-8">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed table-row-gray-200 fs-6 gy-4 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                            <th class="ps-6 py-4 min-w-100px">MÃ NHÓM</th>
+                                            <th class="py-4">TÊN NHÓM DÙNG CHUNG</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 fw-bold">KRAFT-JP</td>
+                                            <td class="text-gray-700">Giấy Kraft Nhật</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 fw-bold">MED-115</td>
+                                            <td class="text-gray-700">Giấy Medium định lượng 115</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 fw-bold">TEST-150</td>
+                                            <td class="text-gray-700">Giấy Testliner 150g</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 fw-bold">WH-KR-120</td>
+                                            <td class="text-gray-700">Giấy Kraft trắng 120</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 fw-bold">DUP-250</td>
+                                            <td class="text-gray-700">Giấy Duplex 250</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-900 fw-bold border-bottom-0">BRW-175</td>
+                                            <td class="text-gray-700 border-bottom-0">Giấy Nâu định lượng 175</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="kt_tab_pane_gia" role="tabpanel">
+                    <div class="d-flex flex-stack mb-5 mt-2">
+                        <h3 class="fs-5 fw-bold text-gray-900 mb-0">Lịch sử thay đổi giá</h3>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-sm btn-primary fw-bold d-flex align-items-center px-4" data-bs-toggle="modal" data-bs-target="#kt_modal_update_price">
+                                <i class="ki-duotone ki-plus fs-4 me-1"></i> Cập nhật giá mới
+                            </button>
+                            <button class="btn btn-sm btn-outline btn-outline-dashed btn-outline-default text-gray-700 fw-bold d-flex align-items-center bg-white px-4">
+                                <i class="ki-duotone ki-filter fs-4 me-1"><span class="path1"></span><span class="path2"></span></i> Lọc
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border border-gray-200 shadow-sm bg-white rounded-4 mb-5">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed table-row-gray-200 fs-6 gy-4 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                            <th class="ps-6 py-4">ĐƠN GIÁ</th>
+                                            <th class="py-4">NGÀY ÁP DỤNG</th>
+                                            <th class="pe-6 py-4">TRẠNG THÁI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">5,400đ</td>
+                                            <td class="text-gray-700">01/10/2023</td>
+                                            <td class="pe-6">
+                                                <span class="badge badge-light-success text-success fw-bold px-3 py-1">Đang áp dụng</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">5,200đ</td>
+                                            <td class="text-gray-700">15/08/2023</td>
+                                            <td class="pe-6">
+                                                <span class="badge badge-light text-gray-600 fw-bold px-3 py-1">Hết hạn</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">5,500đ</td>
+                                            <td class="text-gray-700">01/06/2023</td>
+                                            <td class="pe-6">
+                                                <span class="badge badge-light text-gray-600 fw-bold px-3 py-1">Hết hạn</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">5,100đ</td>
+                                            <td class="text-gray-700">20/04/2023</td>
+                                            <td class="pe-6">
+                                                <span class="badge badge-light text-gray-600 fw-bold px-3 py-1">Hết hạn</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700 border-bottom-0">5,050đ</td>
+                                            <td class="text-gray-700 border-bottom-0">10/01/2023</td>
+                                            <td class="pe-6 border-bottom-0">
+                                                <span class="badge badge-light text-gray-600 fw-bold px-3 py-1">Hết hạn</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-5 mb-8">
+                        <div class="col-md-6">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider mb-2">GIÁ THẤP NHẤT</div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold text-gray-900 me-2">5,050đ</div>
+                                        <div class="fs-7 fw-bold text-success">-6.5%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider mb-2">GIÁ TRUNG BÌNH</div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold text-gray-900 me-2">5,250đ</div>
+                                        <div class="fs-8 fw-bold text-gray-500">LTM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="kt_tab_pane_lich_su" role="tabpanel">
+                    <div class="d-flex flex-stack mb-5 mt-2">
+                        <h3 class="fs-5 fw-bold text-gray-900 mb-0">Lịch sử thay đổi</h3>
+                        <button class="btn btn-sm btn-outline btn-outline-dashed btn-outline-default text-gray-700 fw-bold d-flex align-items-center bg-white px-4">
+                            <i class="ki-duotone ki-filter fs-4 me-1"><span class="path1"></span><span class="path2"></span></i> Lọc
+                        </button>
+                    </div>
+
+                    <div class="card border border-gray-200 shadow-sm bg-white rounded-4 mb-5">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed table-row-gray-200 fs-7 gy-4 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                            <th class="ps-6 py-4 min-w-100px">THỜI GIAN THỰC HIỆN</th>
+                                            <th class="py-4 min-w-100px">NỘI DUNG BIẾN ĐỘNG</th>
+                                            <th class="py-4 min-w-70px">GIÁ TRỊ GỐC</th>
+                                            <th class="py-4 min-w-80px">GIÁ TRỊ THAY ĐỔI</th>
+                                            <th class="py-4 min-w-80px">GIÁ TRỊ SAU KHI ĐỔI</th>
+                                            <th class="pe-6 py-4 min-w-125px">GHI CHÚ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">
+                                                <div>20/10/2023</div>
+                                                <div>14:30 bởi Nguyễn Văn A</div>
+                                            </td>
+                                            <td class="text-gray-700">Nhập kho</td>
+                                            <td class="text-gray-700">750<br/>kg</td>
+                                            <td>
+                                                <span class="badge badge-light-success text-success fw-bold px-2 py-1">+500kg</span>
+                                            </td>
+                                            <td class="text-gray-900 fw-bold">1,250<br/>kg</td>
+                                            <td class="pe-6 text-gray-700">Nhập hàng định kỳ tháng 10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">
+                                                <div>18/10/2023</div>
+                                                <div>09:15 bởi Trần Thị B</div>
+                                            </td>
+                                            <td class="text-gray-700">Xuất kho</td>
+                                            <td class="text-gray-700">950<br/>kg</td>
+                                            <td>
+                                                <span class="badge badge-light-danger text-danger fw-bold px-2 py-1">-200kg</span>
+                                            </td>
+                                            <td class="text-gray-900 fw-bold">750 kg</td>
+                                            <td class="pe-6 text-gray-700">Sản xuất đơn hàng #DH-102</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700">
+                                                <div>15/10/2023</div>
+                                                <div>16:45 bởi Lê Văn C</div>
+                                            </td>
+                                            <td class="text-gray-700">Cập nhật giá</td>
+                                            <td class="text-gray-700">3,050<br/>đ</td>
+                                            <td>
+                                                <span class="badge badge-light-primary text-primary fw-bold px-2 py-1">+2,000 đ</span>
+                                            </td>
+                                            <td class="text-gray-900 fw-bold">5,050 đ</td>
+                                            <td class="pe-6 text-gray-700">Điều chỉnh theo biến động thị trường</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-6 text-gray-700 border-bottom-0">
+                                                <div>10/10/2023 11:00</div>
+                                                <div>bởi Nguyễn Văn A</div>
+                                            </td>
+                                            <td class="text-gray-700 border-bottom-0">Điều chỉnh thông số</td>
+                                            <td class="text-gray-700 border-bottom-0">-</td>
+                                            <td class="border-bottom-0">
+                                                <span class="badge badge-light text-gray-600 fw-bold px-2 py-1">N/A</span>
+                                            </td>
+                                            <td class="text-gray-900 fw-bold border-bottom-0">-</td>
+                                            <td class="pe-6 text-gray-700 border-bottom-0">Cập nhật lại độ trắng chuẩn ISO</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-5 mb-8">
+                        <div class="col-md-4">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider mb-2">GIÁ MỚI NHẤT</div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-4 fw-bold text-gray-900 me-2">5,050đ</div>
+                                        <div class="fs-8 fw-bold text-success">-6.5%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider mb-2">TỔNG TỒN KHO (KG)</div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-4 fw-bold text-gray-900">1,250 kg</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border border-gray-200 shadow-sm bg-white rounded-4 h-100">
+                                <div class="card-body p-6">
+                                    <div class="text-uppercase text-muted fs-8 fw-bold tracking-wider mb-2">TỔNG TỒN KHO (CUỘN)</div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-4 fw-bold text-gray-900">450 cuộn</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Card body-->
+    </div>
+</div>
+
+<style>
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+    .line-height-sm {
+        line-height: 1.2;
+    }
+    #kt_drawer_material_detail {
+        background-color: #f8f9fa !important;
+    }
+</style>
+
+<PriceUpdateModal />

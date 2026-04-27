@@ -1,0 +1,197 @@
+@namespace TTL.WMS.Client.Pages.StockMovement.Components
+
+<div id="kt_drawer_stock_entry_create" class="bg-white" data-kt-drawer="true" data-kt-drawer-name="stock_entry_create" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'350px', 'md': '800px', 'lg': '900px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_stock_entry_create_toggle" data-kt-drawer-close="#kt_drawer_stock_entry_create_close">
+    <!--begin::Card-->
+    <div class="card w-100 rounded-0 border-0">
+        <!--begin::Card header-->
+        <div class="card-header pe-5 border-bottom-0 pb-0 pt-7">
+            <div class="card-title">
+                <div class="d-flex justify-content-center flex-column me-3">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="ki-duotone ki-home fs-6 text-primary"><span class="path1"></span><span class="path2"></span></i>
+                        <span class="fs-8 fw-bold text-muted text-uppercase tracking-wider">NHẬP KHO THÀNH PHẨM</span>
+                    </div>
+                    <span class="fs-2 fw-bold text-primary lh-1">Tạo Phiếu Nhập Kho - PO-2023-1001</span>
+                </div>
+            </div>
+            <div class="card-toolbar align-items-start">
+                <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_stock_entry_create_close">
+                    <i class="ki-duotone ki-cross fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+        </div>
+        <!--end::Card header-->
+        
+        <!--begin::Card body-->
+        <div class="card-body hover-scroll-overlay-y px-10 py-7">
+            
+            <!--begin::Section 1: Thông tin chung-->
+            <div class="mb-10">
+                <div class="d-flex align-items-center mb-7">
+                    <div class="bg-primary w-4px h-25px me-3 rounded"></div>
+                    <h3 class="fs-4 fw-bold text-gray-900 m-0">Thông tin chung</h3>
+                </div>
+                
+                <div class="row g-8">
+                    <div class="col-md-6">
+                        <label class="form-label text-uppercase text-muted fs-8 fw-bold">MÃ PHIẾU NHẬP</label>
+                        <div class="position-relative d-flex align-items-center bg-light-primary rounded p-3">
+                            <span class="text-gray-800 fw-bold fs-6 ms-2">GRN-2023-085</span>
+                            <span class="badge badge-light-primary border border-primary border-opacity-25 ms-3 fs-9">Tự động</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-uppercase text-muted fs-8 fw-bold">NGÀY NHẬP</label>
+                        <div class="position-relative">
+                            <i class="ki-duotone ki-calendar-8 position-absolute top-50 translate-middle-y ms-4 text-gray-500 fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                            <input type="text" class="form-control form-control-solid ps-12 text-gray-800 fw-semibold bg-white border border-gray-300" value="26/10/2023" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-uppercase text-muted fs-8 fw-bold">NGƯỜI THỰC HIỆN</label>
+                        <div class="d-flex align-items-center rounded p-3 bg-light-primary border border-transparent">
+                            <div class="symbol symbol-30px symbol-circle me-3">
+                                <span class="symbol-label bg-primary text-white fs-8 fw-bold">NV</span>
+                            </div>
+                            <span class="text-gray-800 fw-semibold fs-6">Nguyễn Văn A</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-uppercase text-muted fs-8 fw-bold">KHO NHẬN</label>
+                        <select class="form-select form-select-solid text-gray-800 fw-semibold bg-white border border-gray-300" data-control="select2" data-hide-search="true">
+                            <option value="1" selected>Kho số 1 - TP.HCM</option>
+                            <option value="2">Kho số 2 - Bình Dương</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--end::Section 1-->
+
+            <!--begin::Section 2: Danh sách vật tư nhập kho-->
+            <div class="mb-10">
+                <div class="d-flex align-items-center justify-content-between mb-5">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary w-4px h-25px me-3 rounded"></div>
+                        <h3 class="fs-4 fw-bold text-gray-900 m-0">Danh sách vật tư nhập kho</h3>
+                    </div>
+                    <span class="badge badge-light-secondary text-gray-600 fw-semibold fs-8 px-3 py-2">3 items</span>
+                </div>
+
+                <div class="table-responsive border border-gray-200 rounded">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                        <thead>
+                            <tr class="text-start text-muted fw-bold fs-8 text-uppercase gs-0 bg-light">
+                                <th class="ps-5 w-60px rounded-start">STT</th>
+                                <th class="min-w-200px">MÃ/TÊN VẬT TƯ</th>
+                                <th class="min-w-100px text-center">ĐVT</th>
+                                <th class="min-w-100px text-end">SỐ LƯỢNG</th>
+                                <th class="min-w-120px text-end pe-5 rounded-end">SL NHẬP</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 fw-semibold">
+                            <tr>
+                                <td class="ps-5 text-gray-800">01</td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span class="text-primary fw-bold mb-1 fs-6">PAP-KRA-001</span>
+                                        <span class="text-muted fs-8">Giấy Kraft Nhật (Cuộn)</span>
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="badge badge-light fw-bold text-gray-700 px-3 py-2">Cuộn</span></td>
+                                <td class="text-end text-gray-800 fw-bold fs-5">10</td>
+                                <td class="text-end pe-5">
+                                    <input type="number" class="form-control form-control-sm form-control-solid border border-gray-300 w-80px ms-auto text-center fw-bold text-primary fs-5 bg-white" value="2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-gray-800">02</td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span class="text-primary fw-bold mb-1 fs-6">INK-BLK-002</span>
+                                        <span class="text-muted fs-8">Mực in Flexo Đen (Kg)</span>
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="badge badge-light fw-bold text-gray-700 px-3 py-2">Kg</span></td>
+                                <td class="text-end text-gray-800 fw-bold fs-5">50</td>
+                                <td class="text-end pe-5">
+                                    <input type="number" class="form-control form-control-sm form-control-solid border border-gray-300 w-80px ms-auto text-center fw-bold text-gray-600 fs-5 bg-white" value="0" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-gray-800">03</td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span class="text-primary fw-bold mb-1 fs-6">GLU-IND-005</span>
+                                        <span class="text-muted fs-8">Keo dán thùng (Can 20L)</span>
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="badge badge-light fw-bold text-gray-700 px-3 py-2">Can</span></td>
+                                <td class="text-end text-gray-800 fw-bold fs-5">5</td>
+                                <td class="text-end pe-5">
+                                    <input type="number" class="form-control form-control-sm form-control-solid border border-primary w-80px ms-auto text-center fw-bold text-primary fs-5 bg-white" value="5" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end::Section 2-->
+
+            <!--begin::Section 3: Tài liệu & Chứng từ-->
+            <div>
+                <div class="d-flex align-items-center mb-5">
+                    <div class="bg-warning w-4px h-25px me-3 rounded" style="background-color: #d97706 !important;"></div>
+                    <h3 class="fs-4 fw-bold text-gray-900 m-0">Tài liệu & Chứng từ</h3>
+                </div>
+                
+                <div class="row g-8">
+                    <div class="col-md-5">
+                        <div class="dropzone dropzone-queue mb-2 border border-dashed border-primary bg-light-primary rounded d-flex flex-center" style="min-height: 140px; background-color: #f5f8fa;">
+                            <div class="dropzone-panel text-center">
+                                <i class="ki-duotone ki-cloud-upload fs-3x text-primary"><span class="path1"></span><span class="path2"></span></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="d-flex flex-column h-100 justify-content-center">
+                            <span class="text-uppercase text-muted fs-8 fw-bold mb-3 tracking-wider">TỆP ĐÃ CHỌN</span>
+                            <div class="d-flex align-items-center bg-white border border-gray-200 rounded p-4 shadow-sm">
+                                <i class="ki-duotone ki-file fs-2x text-danger me-4"><span class="path1"></span><span class="path2"></span></i>
+                                <div class="d-flex flex-column flex-grow-1">
+                                    <span class="text-gray-800 fw-bold fs-7 mb-1">Bien-ban-giao-hang-085.pdf</span>
+                                    <span class="text-muted fs-8">1.2 MB • Hoàn thành</span>
+                                </div>
+                                <button class="btn btn-icon btn-sm btn-active-color-danger ms-3">
+                                    <i class="ki-duotone ki-trash fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Section 3-->
+
+        </div>
+        <!--end::Card body-->
+        
+        <!--begin::Card footer-->
+        <div class="card-footer d-flex justify-content-end py-6 px-10 border-top">
+            <button type="button" class="btn btn-light btn-active-light-primary me-4 fw-bold text-gray-600 bg-white" id="kt_drawer_stock_entry_create_cancel" data-kt-drawer-dismiss="true">HỦY BỎ</button>
+            <button type="button" class="btn btn-primary fw-bold d-flex align-items-center gap-2 px-8" id="kt_drawer_stock_entry_create_submit">
+                <i class="ki-duotone ki-archive fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                XÁC NHẬN NHẬP KHO
+            </button>
+        </div>
+        <!--end::Card footer-->
+    </div>
+    <!--end::Card-->
+</div>
+
+<style>
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+</style>
