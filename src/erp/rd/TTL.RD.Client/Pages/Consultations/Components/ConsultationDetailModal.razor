@@ -1,0 +1,208 @@
+@namespace TTL.RD.Client.Pages.Consultations.Components
+
+<div class="modal fade" tabindex="-1" id="kt_modal_consultation_detail">
+    <div class="modal-dialog modal-dialog-centered mw-1000px">
+        <div class="modal-content shadow-none border-0 rounded-4">
+            <!-- Modal Header -->
+            <div class="modal-header px-8 py-6 pb-0 border-0 d-flex justify-content-between align-items-start">
+                <div>
+                    <span class="text-primary fw-bolder fs-8 tracking-widest text-uppercase mb-1 d-block">R&D Technical Workspace</span>
+                    <h2 class="fw-bolder fs-1 text-gray-900 mb-4">Tư vấn kích thước và kết cấu giấy</h2>
+                    
+                    <div class="bg-gray-100 rounded-3 p-4 d-flex gap-10">
+                        <div>
+                            <div class="text-gray-500 fs-8 text-uppercase fw-semibold mb-1">Tên sản phẩm</div>
+                            <div class="text-gray-900 fw-bold fs-6">Thùng Carton 5 Lớp - Apple Global Export</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500 fs-8 text-uppercase fw-semibold mb-1">Khách hàng</div>
+                            <div class="text-gray-900 fw-bold fs-6">Công ty TNHH Apple Việt Nam</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500 fs-8 text-uppercase fw-semibold mb-1">Mã yêu cầu</div>
+                            <div class="text-primary fw-bold fs-6">#RD-00924-VN</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-8 py-6 pt-8">
+                <div class="row g-8">
+                    
+                    <!-- LEFT COLUMN -->
+                    <div class="col-lg-5">
+                        <div class="d-flex align-items-center mb-6">
+                            <span class="bullet bullet-vertical h-20px bg-warning w-4px rounded-pill me-3"></span>
+                            <h3 class="fw-bolder fs-4 text-gray-900 mb-0 text-uppercase">Yêu cầu kỹ thuật cơ bản</h3>
+                        </div>
+                        
+                        <!-- Box 1 -->
+                        <div class="border border-gray-200 rounded-3 p-6 mb-6">
+                            <h4 class="fw-bold fs-6 text-primary mb-6 d-flex align-items-center">
+                                <i class="ki-duotone ki-ruler fs-3 text-primary me-2"><span class="path1"></span><span class="path2"></span></i>
+                                1. Kích thước & Quy cách
+                            </h4>
+                            
+                            <div class="mb-5">
+                                <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Quy cách sản phẩm (D x R x C) mm</label>
+                                <div class="d-flex align-items-center gap-3">
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="600" readonly />
+                                    <span class="text-gray-500 fw-bold">x</span>
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="400" readonly />
+                                    <span class="text-gray-500 fw-bold">x</span>
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="350" readonly />
+                                </div>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Quy cách tấm (D x R) mm</label>
+                                <div class="d-flex align-items-center gap-3">
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="1250" readonly />
+                                    <span class="text-gray-500 fw-bold">x</span>
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="820" readonly />
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Số lượng dự kiến</label>
+                                <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold w-150px" value="5.000" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Box 2 -->
+                        <div class="border border-gray-200 rounded-3 p-6">
+                            <h4 class="fw-bold fs-6 text-primary mb-6 d-flex align-items-center">
+                                <i class="ki-duotone ki-verify fs-3 text-primary me-2"><span class="path1"></span><span class="path2"></span></i>
+                                2. Kỳ vọng chất lượng
+                            </h4>
+                            
+                            <div class="mb-5">
+                                <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Chất lượng giấy</label>
+                                <select class="form-select form-select-solid bg-gray-100 fw-bold" disabled>
+                                    <option selected>Giấy nhập khẩu (Thái/Đài)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="row g-4">
+                                <div class="col-6">
+                                    <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Lực bục (Bursting)</label>
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="1200 kPa" readonly />
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Nén biên (ECT)</label>
+                                    <input type="text" class="form-control form-control-solid bg-gray-100 fw-bold" value="≥ 8.5 kN/m" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RIGHT COLUMN -->
+                    <div class="col-lg-7">
+                        <div class="d-flex align-items-center mb-6">
+                            <i class="ki-duotone ki-setting-2 fs-1 text-primary me-2"><span class="path1"></span><span class="path2"></span></i>
+                            <h3 class="fw-bolder fs-4 text-primary mb-0 text-uppercase">Nội dung đề xuất (R&D)</h3>
+                        </div>
+                        
+                        <div class="bg-light-primary bg-opacity-20 border border-primary border-opacity-25 rounded-3 p-6">
+                            
+                            <div class="mb-6">
+                                <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Kích thước phôi đề xuất (Sheet Dimensions)</label>
+                                <div class="row g-4">
+                                    <div class="col-6 position-relative">
+                                        <div class="position-absolute top-50 start-0 translate-middle-y ms-4 text-gray-500 fs-8 fw-bold">DÀI</div>
+                                        <input type="text" class="form-control bg-white fw-bold ps-12" value="1250" />
+                                        <div class="position-absolute top-50 end-0 translate-middle-y me-4 text-gray-400 fs-8">mm</div>
+                                    </div>
+                                    <div class="col-6 position-relative">
+                                        <div class="position-absolute top-50 start-0 translate-middle-y ms-4 text-gray-500 fs-8 fw-bold">RỘNG</div>
+                                        <input type="text" class="form-control bg-white fw-bold ps-14" value="820" />
+                                        <div class="position-absolute top-50 end-0 translate-middle-y me-4 text-gray-400 fs-8">mm</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row g-6 mb-8">
+                                <div class="col-5">
+                                    <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Số con (Số lượng trên tờ phôi)</label>
+                                    <input type="number" class="form-control bg-white fw-bold" value="1" />
+                                    <div class="form-text text-gray-500 fs-8 mt-2 fst-italic">Số lượng SP/tờ phôi.</div>
+                                </div>
+                                <div class="col-7">
+                                    <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase">Cấn lằn (mm)</label>
+                                    <input type="text" class="form-control bg-white fw-bold" placeholder="Ví dụ: 30-340-30" />
+                                    <div class="form-text text-gray-500 fs-8 mt-2 fst-italic">Thông số cấn lằn chi tiết.</div>
+                                </div>
+                            </div>
+                            
+                            <hr class="border-gray-300 border-dashed my-6" />
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <label class="form-label fs-8 fw-semibold text-gray-600 text-uppercase mb-0">Kết cấu giấy đề xuất</label>
+                                <button class="btn btn-sm btn-light-primary fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_structure_selection">
+                                    <i class="ki-duotone ki-filter-search fs-3"><span class="path1"></span><span class="path2"></span></i> Chọn kết cấu giấy
+                                </button>
+                            </div>
+                            
+                            <div class="d-flex flex-column gap-3">
+                                <div class="d-flex align-items-center bg-white rounded-2 border border-gray-200 px-4 py-2">
+                                    <div class="w-100px text-gray-500 fs-8 fw-bold text-uppercase">Lớp mặt</div>
+                                    <select class="form-select form-select-transparent fw-bold text-gray-800">
+                                        <option selected>Kraft Vàng 175g (Nhập khẩu)</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex align-items-center bg-white rounded-2 border border-gray-200 px-4 py-2">
+                                    <div class="w-100px text-gray-500 fs-8 fw-bold text-uppercase">Sóng 1 (B)</div>
+                                    <select class="form-select form-select-transparent fw-bold text-gray-800">
+                                        <option selected>Medium 125g (Gia seo)</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex align-items-center bg-white rounded-2 border border-gray-200 px-4 py-2">
+                                    <div class="w-100px text-gray-500 fs-8 fw-bold text-uppercase">Lớp giữa</div>
+                                    <select class="form-select form-select-transparent fw-bold text-gray-800">
+                                        <option selected>Testliner 125g (Việt Trì)</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex align-items-center bg-white rounded-2 border border-gray-200 px-4 py-2">
+                                    <div class="w-100px text-gray-500 fs-8 fw-bold text-uppercase">Sóng 2 (C)</div>
+                                    <select class="form-select form-select-transparent fw-bold text-gray-800">
+                                        <option selected>Medium 125g (Gia seo)</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex align-items-center bg-white rounded-2 border border-gray-200 px-4 py-2">
+                                    <div class="w-100px text-gray-500 fs-8 fw-bold text-uppercase">Lớp đáy</div>
+                                    <select class="form-select form-select-transparent fw-bold text-gray-800">
+                                        <option selected>Testliner 125g (Việt Trì)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer px-8 py-5 border-top border-gray-200 justify-content-end bg-gray-50 rounded-bottom-4">
+                <button type="button" class="btn btn-light-primary fw-bold me-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_inventory_selection">
+                    <i class="ki-duotone ki-abstract-14 fs-3"><span class="path1"></span><span class="path2"></span></i>
+                    Chọn từ danh sách tấm
+                </button>
+                <button type="button" class="btn btn-light fw-bold me-3" data-bs-dismiss="modal">Lưu bản nháp</button>
+                <button type="button" class="btn btn-primary fw-bold">
+                    Hoàn tất & Chuyển tiếp 
+                    <i class="ki-duotone ki-arrow-right fs-3 ms-1"><span class="path1"></span><span class="path2"></span></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tracking-widest {
+        letter-spacing: 0.1em;
+    }
+</style>

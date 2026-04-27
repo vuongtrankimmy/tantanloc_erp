@@ -1,0 +1,171 @@
+@namespace TTL.RD.Client.Pages.Consultations.Components
+
+<div class="modal fade" tabindex="-1" id="kt_modal_inventory_selection">
+    <div class="modal-dialog modal-dialog-centered mw-900px">
+        <div class="modal-content shadow-none border-0 rounded-4">
+            <!-- Modal Header -->
+            <div class="modal-header px-8 py-6 pb-4 border-0 justify-content-between align-items-center">
+                <div>
+                    <h2 class="fw-bolder fs-1 text-gray-900 mb-1">Chọn tấm từ danh sách</h2>
+                    <span class="text-gray-500 fw-bold fs-7 tracking-widest text-uppercase">Inventory Selection</span>
+                </div>
+                
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-8 py-0">
+                <!-- Filters -->
+                <div class="d-flex gap-4 mb-6">
+                    <div class="position-relative w-100 flex-grow-1">
+                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle-y ms-4"><span class="path1"></span><span class="path2"></span></i>
+                        <input type="text" class="form-control form-control-solid bg-gray-100 ps-12" placeholder="Tìm theo mã hoặc tên tấm..." />
+                    </div>
+                    <div class="w-200px">
+                        <select class="form-select form-select-solid bg-gray-100">
+                            <option value="">Định lượng (gsm)</option>
+                        </select>
+                    </div>
+                    <div class="w-200px">
+                        <select class="form-select form-select-solid bg-gray-100">
+                            <option value="">Loại sóng</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="border border-gray-200 rounded-3 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                            <thead>
+                                <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 bg-gray-100">
+                                    <th class="w-50px pe-0 ps-5"></th>
+                                    <th class="min-w-100px">Mã tấm</th>
+                                    <th class="min-w-200px">Tên tấm phôi</th>
+                                    <th class="min-w-150px">Quy cách (mm)</th>
+                                    <th class="min-w-200px">Kết cấu giấy</th>
+                                    <th class="min-w-100px text-end pe-5">Tồn kho</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fw-semibold text-gray-600">
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="ps-5">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="inventory_selection" value="1" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">SH-2309-001</a>
+                                    </td>
+                                    <td class="text-gray-900 fw-bold">Tấm Carton 3 lớp Sóng B</td>
+                                    <td>1200 × 2400</td>
+                                    <td>
+                                        <span class="badge bg-gray-200 text-gray-600 fw-bold fs-9 tracking-wider">K125/M125/K125</span>
+                                    </td>
+                                    <td class="text-end text-gray-900 fw-bold pe-5">1,250</td>
+                                </tr>
+                                <!-- Row 2 (Selected) -->
+                                <tr class="bg-light-primary">
+                                    <td class="ps-5">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="inventory_selection" value="2" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">SH-2309-042</a>
+                                    </td>
+                                    <td class="text-gray-900 fw-bold">Tấm Carton 5 lớp Sóng BC</td>
+                                    <td>1500 × 2000</td>
+                                    <td>
+                                        <span class="badge bg-light-primary text-primary fw-bold fs-9 tracking-wider">V175/M150/M150/M150/V175</span>
+                                    </td>
+                                    <td class="text-end text-gray-900 fw-bold pe-5">840</td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="ps-5">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="inventory_selection" value="3" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">SH-2310-115</a>
+                                    </td>
+                                    <td class="text-gray-900 fw-bold">Tấm Phôi Trắng Sóng E</td>
+                                    <td>800 × 1200</td>
+                                    <td>
+                                        <span class="badge bg-gray-200 text-gray-600 fw-bold fs-9 tracking-wider">W140/M125/K125</span>
+                                    </td>
+                                    <td class="text-end text-gray-900 fw-bold pe-5">3,100</td>
+                                </tr>
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="ps-5 border-bottom-0">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="inventory_selection" value="4" />
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">SH-2310-201</a>
+                                    </td>
+                                    <td class="border-bottom-0 text-gray-900 fw-bold">Tấm Carton Chống Thấm 3 lớp</td>
+                                    <td class="border-bottom-0">1000 × 1000</td>
+                                    <td class="border-bottom-0">
+                                        <span class="badge bg-gray-200 text-gray-600 fw-bold fs-9 tracking-wider">WP150/M150/WP150</span>
+                                    </td>
+                                    <td class="border-bottom-0 text-end text-gray-900 fw-bold pe-5">450</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-6 mb-6">
+                    <div class="text-gray-500 fs-8 fw-semibold">
+                        Hiển thị <span class="fw-bold text-gray-700">4</span> trên <span class="fw-bold text-gray-700">128</span> tấm phôi
+                    </div>
+                    <ul class="pagination pagination-sm m-0">
+                        <li class="page-item previous disabled"><a href="#" class="page-link bg-gray-100 text-gray-600 px-4"><i class="previous"></i> Trước</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link bg-gray-100 text-gray-600">2</a></li>
+                        <li class="page-item next"><a href="#" class="page-link bg-gray-100 text-gray-600 px-4">Sau <i class="next"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer px-8 py-5 border-top border-gray-200 d-flex justify-content-between align-items-center bg-white rounded-bottom-4">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-40px bg-light-primary rounded-3 me-4 d-flex justify-content-center align-items-center">
+                        <i class="ki-duotone ki-archive fs-2 text-primary"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                    </div>
+                    <div>
+                        <div class="text-gray-500 fs-9 fw-bolder text-uppercase mb-1 tracking-wider">Đã chọn</div>
+                        <div class="text-gray-900 fw-bold fs-6">SH-2309-042 - Tấm Carton 5 lớp Sóng BC</div>
+                    </div>
+                </div>
+                
+                <div class="d-flex gap-3">
+                    <button type="button" class="btn btn-light fw-bold px-6" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" class="btn btn-primary fw-bold px-8" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#kt_modal_inventory_confirmation">Xác nhận chọn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tracking-widest {
+        letter-spacing: 0.1em;
+    }
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+    #kt_modal_inventory_selection .table-row-dashed tr {
+        border-bottom: 1px dashed var(--bs-gray-300);
+    }
+</style>

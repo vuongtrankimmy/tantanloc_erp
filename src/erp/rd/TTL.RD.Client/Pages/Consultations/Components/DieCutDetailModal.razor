@@ -1,0 +1,219 @@
+@namespace TTL.RD.Client.Pages.Consultations.Components
+
+<div class="modal fade" tabindex="-1" id="kt_modal_diecut_detail">
+    <div class="modal-dialog modal-dialog-centered mw-1000px">
+        <div class="modal-content shadow-none border-0 rounded-4">
+            <!-- Modal Header -->
+            <div class="modal-header px-8 py-6 pb-0 border-0 justify-content-between align-items-start">
+                <div>
+                    <h2 class="fw-bolder fs-1 text-gray-900 mb-1">Tư vấn & Thiết kế Khuôn bế</h2>
+                    <span class="text-gray-500 fw-semibold fs-7 d-block mb-6">Phiếu yêu cầu kỹ thuật #DK-2024-0892</span>
+                    
+                    <div class="d-flex gap-4 mb-2">
+                        <div class="bg-gray-100 rounded-3 p-4 flex-grow-1">
+                            <div class="text-gray-500 fs-8 text-uppercase fw-bold mb-1">Dimensions (Kích thước)</div>
+                            <div class="text-gray-900 fw-bolder fs-6">Thành phẩm: 240 × 180 × 60 mm</div>
+                        </div>
+                        <div class="bg-gray-100 rounded-3 p-4 flex-grow-1">
+                            <div class="text-gray-500 fs-8 text-uppercase fw-bold mb-1">Trải khổ</div>
+                            <div class="text-gray-900 fw-bolder fs-6">540 × 420 mm</div>
+                        </div>
+                        <div class="bg-gray-100 rounded-3 p-4 flex-grow-1">
+                            <div class="text-gray-500 fs-8 text-uppercase fw-bold mb-1">Yêu cầu chất lượng</div>
+                            <div class="text-gray-800 fw-semibold fs-7 fst-italic">"Cấn không bị bế giấy, mép cắt sắc nét, khớp cài chắc chắn."</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-8 py-6">
+                <div class="row g-8">
+                    
+                    <!-- LEFT COLUMN -->
+                    <div class="col-lg-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="symbol symbol-30px bg-primary rounded-2 me-3 d-flex justify-content-center align-items-center">
+                                <i class="ki-duotone ki-down text-white fs-4"><span class="path1"></span><span class="path2"></span></i>
+                            </div>
+                            <h3 class="fw-bolder fs-4 text-gray-900 mb-0">Nội dung yêu cầu từ Sales</h3>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-3 p-6 h-100 d-flex flex-column">
+                            <div class="mb-6">
+                                <label class="form-label fs-7 fw-bold text-gray-700">Quy cách giấy</label>
+                                <input type="text" class="form-control form-control-solid bg-gray-100 fw-semibold text-gray-800 border-gray-300" value="Duplex 350gsm + Sóng E (Nâu)" readonly />
+                            </div>
+                            
+                            <div class="flex-grow-1">
+                                <label class="form-label fs-7 fw-bold text-gray-700 mb-3">File đính kèm từ Kinh doanh</label>
+                                
+                                <!-- File 1 -->
+                                <div class="d-flex align-items-center border border-gray-200 rounded-3 p-3 mb-3 bg-white">
+                                    <div class="symbol symbol-40px bg-light-danger rounded-2 me-3 d-flex justify-content-center align-items-center">
+                                        <span class="text-danger fw-bolder fs-8">PDF</span>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary fs-7 mb-1 text-truncate" style="max-width: 150px;">Ban_ve_ky_thuat_V1.pdf</a>
+                                        <span class="text-gray-500 fw-semibold fs-8">3.2 MB • Đã tải lên</span>
+                                    </div>
+                                    <button class="btn btn-icon btn-sm btn-light btn-active-light-danger ms-2">
+                                        <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- File 2 -->
+                                <div class="d-flex align-items-center border border-gray-200 rounded-3 p-3 bg-white">
+                                    <div class="symbol symbol-40px bg-light-primary rounded-2 me-3 d-flex justify-content-center align-items-center">
+                                        <span class="text-primary fw-bolder fs-8">CAD</span>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary fs-7 mb-1 text-truncate" style="max-width: 150px;">Khuon_be_tham_khao.dwg</a>
+                                        <span class="text-gray-500 fw-semibold fs-8">1.8 MB • Đã tải lên</span>
+                                    </div>
+                                    <button class="btn btn-icon btn-sm btn-light btn-active-light-danger ms-2">
+                                        <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <hr class="border-gray-200 my-5" />
+                            
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-40px symbol-circle me-3">
+                                    <img alt="Pic" src="_content/TTL.Shared.UI/assets/media/avatars/300-1.jpg" />
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="text-gray-900 fw-bolder fs-6">Nguyễn Văn A</span>
+                                    <span class="text-gray-500 fw-semibold fs-8">Phòng Kinh doanh • 10/10/2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RIGHT COLUMN -->
+                    <div class="col-lg-8">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-30px bg-light-primary rounded-2 me-3 d-flex justify-content-center align-items-center border border-primary border-dashed">
+                                    <i class="ki-duotone ki-pencil fs-4 text-primary"><span class="path1"></span><span class="path2"></span></i>
+                                </div>
+                                <h3 class="fw-bolder fs-4 text-gray-900 mb-0">Nội dung đề xuất - Khuôn bế</h3>
+                            </div>
+                            <span class="badge bg-light-info text-info fw-bolder px-3 py-2 text-uppercase fs-9 tracking-wider">Đang soạn thảo</span>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-3 p-6 h-100">
+                            
+                            <div class="row g-6">
+                                <!-- Col Left -->
+                                <div class="col-6">
+                                    <div class="mb-6">
+                                        <label class="form-label fs-7 fw-bold text-gray-700 mb-3">Loại khuôn</label>
+                                        <div class="d-flex flex-column gap-3">
+                                            <label class="form-check form-check-custom form-check-solid bg-gray-100 rounded-2 p-3">
+                                                <input class="form-check-input ms-2" type="radio" name="diecut_type" checked="checked" />
+                                                <span class="form-check-label fw-semibold text-gray-800">Khuôn phẳng</span>
+                                            </label>
+                                            <label class="form-check form-check-custom form-check-solid bg-gray-100 rounded-2 p-3">
+                                                <input class="form-check-input ms-2" type="radio" name="diecut_type" />
+                                                <span class="form-check-label fw-semibold text-gray-800">Khuôn tròn (Rotary)</span>
+                                            </label>
+                                            <label class="form-check form-check-custom form-check-solid bg-gray-100 rounded-2 p-3">
+                                                <input class="form-check-input ms-2" type="radio" name="diecut_type" />
+                                                <span class="form-check-label fw-semibold text-gray-800">Khuôn bế + Ép kim</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label class="form-label fs-7 fw-bold text-gray-700">Số con trên khuôn</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control form-control-solid bg-gray-100 text-gray-900 fw-bold border-0 pe-12" value="2" />
+                                            <div class="position-absolute top-50 end-0 translate-middle-y me-4 text-gray-500 fs-8 fw-bolder text-uppercase tracking-wider">Con</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="form-label fs-7 fw-bold text-gray-700 mb-3">Máy bế gia công</label>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <div class="badge bg-light-primary text-primary fw-semibold fs-7 border border-primary border-opacity-25 px-3 py-2 d-flex align-items-center gap-2">
+                                                Heidelberg XL 106 <i class="ki-duotone ki-cross fs-5 text-primary cursor-pointer"><span class="path1"></span><span class="path2"></span></i>
+                                            </div>
+                                            <div class="badge bg-light-primary text-primary fw-semibold fs-7 border border-primary border-opacity-25 px-3 py-2 d-flex align-items-center gap-2">
+                                                Bobst VisionCut <i class="ki-duotone ki-cross fs-5 text-primary cursor-pointer"><span class="path1"></span><span class="path2"></span></i>
+                                            </div>
+                                            <button class="btn btn-sm btn-outline btn-outline-dashed btn-outline-gray-300 text-gray-600 fw-semibold bg-white d-flex align-items-center px-3 py-1">
+                                                <i class="ki-duotone ki-plus fs-6 me-1"><span class="path1"></span><span class="path2"></span></i> Thêm máy
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Col Right -->
+                                <div class="col-6 d-flex flex-column">
+                                    <div class="mb-6">
+                                        <label class="form-label fs-7 fw-bold text-gray-700">Vị trí dao bế</label>
+                                        <textarea class="form-control form-control-solid bg-gray-100 text-gray-600 border-0" rows="3" placeholder="Nhập tọa độ hoặc ghi chú vị trí dao..."></textarea>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label class="form-label fs-7 fw-bold text-gray-700">Đường cấn/gân</label>
+                                        <select class="form-select form-select-solid bg-gray-100 border-0 text-gray-800 fw-semibold">
+                                            <option selected>Cấn lằn (Creasing)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="flex-grow-1 d-flex flex-column">
+                                        <label class="form-label fs-7 fw-bold text-gray-700 mb-3">Bản vẽ kỹ thuật Khuôn bế</label>
+                                        <div class="border border-gray-300 border-dashed rounded-3 bg-light d-flex flex-column justify-content-center align-items-center flex-grow-1 min-h-150px cursor-pointer hover-elevate-up position-relative overflow-hidden">
+                                            <!-- Faint Background -->
+                                            <div class="position-absolute w-100 h-100" style="background-image: url('_content/TTL.Shared.UI/assets/media/illustrations/sketchy-1/17.png'); background-size: cover; background-position: center; opacity: 0.1;"></div>
+                                            
+                                            <!-- Content -->
+                                            <div class="position-relative z-index-1 text-center">
+                                                <div class="symbol symbol-40px bg-gray-200 rounded-circle mb-3 d-flex justify-content-center align-items-center mx-auto">
+                                                    <i class="ki-duotone ki-cloud-change fs-1 text-gray-600"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                                </div>
+                                                <div class="text-gray-600 fw-bolder fs-8 text-uppercase tracking-wider">TẢI LÊN BẢN VẼ (PDF/CAD)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer px-8 py-5 border-top border-gray-200 justify-content-between bg-gray-50 rounded-bottom-4">
+                <a href="#" class="text-gray-600 fw-bold fs-7 text-hover-primary d-flex align-items-center">
+                    <i class="ki-duotone ki-history fs-3 me-2"><span class="path1"></span><span class="path2"></span></i>
+                    Xem lịch sử chỉnh sửa
+                </a>
+                <div class="d-flex gap-3">
+                    <button type="button" class="btn btn-light fw-bold bg-white border border-gray-300 d-flex align-items-center">
+                        <i class="ki-duotone ki-save-2 fs-3 me-2"><span class="path1"></span><span class="path2"></span></i>
+                        Lưu bản nháp
+                    </button>
+                    <button type="button" class="btn btn-primary fw-bold d-flex align-items-center">
+                        Lưu & Gửi đề xuất 
+                        <i class="ki-duotone ki-arrow-right fs-3 ms-2"><span class="path1"></span><span class="path2"></span></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+</style>

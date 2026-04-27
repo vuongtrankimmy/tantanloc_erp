@@ -1,0 +1,197 @@
+@page "/rd/consultations/queue"
+@namespace TTL.RD.Client.Pages.Consultations
+
+<div class="d-flex flex-column flex-column-fluid">
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-1 flex-column justify-content-center my-0">Tư vấn kích thước và kết cấu giấy</h1>
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                    <li class="breadcrumb-item text-muted">Quản lý hàng đợi nghiên cứu và phát triển sản phẩm</li>
+                </ul>
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <!-- Avatar group -->
+                <div class="symbol-group symbol-hover me-3">
+                    <div class="symbol symbol-35px symbol-circle">
+                        <img alt="Pic" src="_content/TTL.Shared.UI/assets/media/avatars/300-1.jpg" />
+                    </div>
+                    <div class="symbol symbol-35px symbol-circle">
+                        <img alt="Pic" src="_content/TTL.Shared.UI/assets/media/avatars/300-2.jpg" />
+                    </div>
+                    <div class="symbol symbol-35px symbol-circle">
+                        <img alt="Pic" src="_content/TTL.Shared.UI/assets/media/avatars/300-3.jpg" />
+                    </div>
+                    <div class="symbol symbol-35px symbol-circle">
+                        <span class="symbol-label bg-light text-gray-800 fw-bold">+5</span>
+                    </div>
+                </div>
+                <!-- Filter -->
+                <a href="#" class="btn btn-sm bg-white fw-bold border border-gray-300 text-gray-700 btn-active-light-primary">
+                    <i class="ki-duotone ki-filter fs-3 text-muted me-1"><span class="path1"></span><span class="path2"></span></i>Bộ lọc
+                </a>
+            </div>
+            <!--end::Actions-->
+        </div>
+    </div>
+    <!--end::Toolbar-->
+
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <div id="kt_app_content_container" class="app-container container-fluid">
+            <!--begin::Kanban-->
+            <div class="d-flex overflow-auto h-100 min-h-600px gap-6">
+                
+                <!-- Column 1: Yêu cầu mới -->
+                <div class="w-350px min-w-350px d-flex flex-column rounded-3 bg-light-danger bg-opacity-50 border border-gray-200">
+                    <!-- Column Header -->
+                    <div class="d-flex align-items-center justify-content-between p-5 pb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="bullet bullet-vertical h-20px bg-danger w-4px rounded-pill"></span>
+                            <h3 class="fw-bold fs-5 mb-0 text-gray-900">Yêu cầu mới</h3>
+                            <span class="badge bg-white text-gray-700 fw-bold border border-gray-200 fs-8">4</span>
+                        </div>
+                        <button class="btn btn-icon btn-sm btn-active-color-primary">
+                            <i class="ki-duotone ki-dots-horizontal fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                        </button>
+                    </div>
+                    <!-- Column Body (Scrollable) -->
+                    <div class="d-flex flex-column gap-4 p-5 pt-0 h-100 overflow-auto">
+                        <!-- Card 1 -->
+                        <div class="card bg-white shadow-sm border-0 border-start border-danger border-3 rounded-2 cursor-pointer hover-elevate-up" data-bs-toggle="modal" data-bs-target="#kt_modal_consultation_detail">
+                            <div class="card-body p-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge badge-light-danger text-danger fw-bold fs-9 tracking-wider">KHẨN CẤP</span>
+                                    <span class="text-gray-500 fs-8 fw-semibold tracking-wider">RD-4402</span>
+                                </div>
+                                <div class="text-gray-900 fw-bold fs-5 mb-2">Hộp Carton 5 Lớp - Sóng BC Phức Hợp</div>
+                                <div class="text-gray-600 fs-7 mb-6">Khách hàng: Vinamilk Corporation</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold">
+                                        <i class="ki-duotone ki-calendar-8 fs-5 text-gray-500 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                                        24 thg 10, 2023
+                                    </div>
+                                    <div class="symbol symbol-25px symbol-circle">
+                                        <img alt="Pic" src="_content/TTL.Shared.UI/assets/media/avatars/300-1.jpg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="card bg-white shadow-sm border-0 border-start border-gray-400 border-3 rounded-2 cursor-pointer hover-elevate-up" data-bs-toggle="modal" data-bs-target="#kt_modal_consultation_detail">
+                            <div class="card-body p-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-gray-200 text-gray-700 fw-bold fs-9 tracking-wider">BÌNH THƯỜNG</span>
+                                    <span class="text-gray-500 fs-8 fw-semibold tracking-wider">RD-4405</span>
+                                </div>
+                                <div class="text-gray-900 fw-bold fs-5 mb-2">Kết cấu giấy Kraft chịu lực 300gsm</div>
+                                <div class="text-gray-600 fs-7 mb-6">Khách hàng: Logi Logistics Ltd</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold">
+                                        <i class="ki-duotone ki-calendar-8 fs-5 text-gray-500 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                                        26 thg 10, 2023
+                                    </div>
+                                    <div class="symbol symbol-25px symbol-circle">
+                                        <span class="symbol-label bg-gray-200 text-gray-600 fw-bold fs-8">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Đang xử lý -->
+                <div class="w-350px min-w-350px d-flex flex-column rounded-3 bg-light-primary bg-opacity-50 border border-gray-200">
+                    <div class="d-flex align-items-center justify-content-between p-5 pb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="bullet bullet-vertical h-20px bg-primary w-4px rounded-pill"></span>
+                            <h3 class="fw-bold fs-5 mb-0 text-gray-900">Đang xử lý</h3>
+                            <span class="badge bg-white text-primary fw-bold border border-gray-200 fs-8">2</span>
+                        </div>
+                        <button class="btn btn-icon btn-sm btn-active-color-primary">
+                            <i class="ki-duotone ki-dots-horizontal fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                        </button>
+                    </div>
+                    <div class="d-flex flex-column gap-4 p-5 pt-0 h-100 overflow-auto">
+                        <!-- Card 3 -->
+                        <div class="card bg-white shadow-sm border-0 border-start border-danger border-3 rounded-2 cursor-pointer hover-elevate-up" data-bs-toggle="modal" data-bs-target="#kt_modal_consultation_detail">
+                            <div class="card-body p-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge badge-light-danger text-danger fw-bold fs-9 tracking-wider">GẤP</span>
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold tracking-wider">
+                                        <i class="ki-duotone ki-flash fs-6 text-primary me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                                        RD-4398
+                                    </div>
+                                </div>
+                                <div class="text-gray-900 fw-bold fs-5 mb-2">Thiết kế hộp quà tặng cao cấp Tết 2024</div>
+                                <div class="text-gray-600 fs-7 mb-6">Khách hàng: Trung Nguyen Coffee</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold">
+                                        <i class="ki-duotone ki-time fs-5 text-gray-500 me-2"><span class="path1"></span><span class="path2"></span></i>
+                                        Bắt đầu 2 ngày trước
+                                    </div>
+                                    <div class="symbol symbol-25px symbol-circle">
+                                        <img alt="Pic" src="_content/TTL.Shared.UI/assets/media/avatars/300-2.jpg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Đã hoàn thành -->
+                <div class="w-350px min-w-350px d-flex flex-column rounded-3 bg-light-success bg-opacity-50 border border-gray-200">
+                    <div class="d-flex align-items-center justify-content-between p-5 pb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="bullet bullet-vertical h-20px bg-success w-4px rounded-pill"></span>
+                            <h3 class="fw-bold fs-5 mb-0 text-gray-900">Đã hoàn thành</h3>
+                            <span class="badge bg-white text-success fw-bold border border-gray-200 fs-8">12</span>
+                        </div>
+                        <button class="btn btn-icon btn-sm btn-active-color-primary">
+                            <i class="ki-duotone ki-dots-horizontal fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                        </button>
+                    </div>
+                    <div class="d-flex flex-column gap-4 p-5 pt-0 h-100 overflow-auto">
+                        <!-- Card 4 -->
+                        <div class="card bg-white shadow-sm border-0 border-start border-success border-3 rounded-2 cursor-pointer hover-elevate-up" data-bs-toggle="modal" data-bs-target="#kt_modal_consultation_detail">
+                            <div class="card-body p-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge badge-light-success text-success fw-bold fs-9 tracking-wider">HOÀN THÀNH</span>
+                                </div>
+                                <div class="text-gray-900 fw-bold fs-5 mb-2">Tư vấn khay giấy đựng linh k...</div>
+                                <div class="text-gray-600 fs-7 mb-6">Khách hàng: Samsung Electronics</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center text-success fs-8 fw-semibold">
+                                        <i class="ki-duotone ki-check-circle fs-5 text-success me-2"><span class="path1"></span><span class="path2"></span></i>
+                                        Xong 20 thg 10
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Kanban-->
+        </div>
+    </div>
+    <!--end::Content-->
+</div>
+
+<TTL.RD.Client.Pages.Consultations.Components.ConsultationDetailModal />
+<TTL.RD.Client.Pages.Consultations.Components.InventorySelectionModal />
+<TTL.RD.Client.Pages.Consultations.Components.StructureSelectionModal />
+<TTL.RD.Client.Pages.Consultations.Components.InventoryConfirmationModal />
+
+<style>
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+    .min-h-600px {
+        min-height: 600px;
+    }
+</style>
