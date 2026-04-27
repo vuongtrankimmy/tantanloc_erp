@@ -1,0 +1,190 @@
+@namespace TTL.RD.Client.Pages.Consultations.Components
+
+<div class="modal fade" tabindex="-1" id="kt_modal_structure_selection">
+    <div class="modal-dialog modal-dialog-centered mw-900px">
+        <div class="modal-content shadow-none border-0 rounded-4">
+            <!-- Modal Header -->
+            <div class="modal-header px-8 py-6 pb-4 border-0 justify-content-between align-items-center">
+                <div>
+                    <h2 class="fw-bolder fs-1 text-gray-900 mb-1">Chọn kết cấu giấy</h2>
+                    <span class="text-gray-500 fw-bold fs-7 tracking-widest text-uppercase">Structure Selection</span>
+                </div>
+                
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-8 py-0">
+                <!-- Filters -->
+                <div class="d-flex gap-4 mb-6">
+                    <div class="position-relative w-100 flex-grow-1">
+                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle-y ms-4"><span class="path1"></span><span class="path2"></span></i>
+                        <input type="text" class="form-control form-control-solid bg-gray-100 ps-12" placeholder="Tìm theo mã hoặc loại sóng..." />
+                    </div>
+                    <div class="w-150px">
+                        <select class="form-select form-select-solid bg-gray-100">
+                            <option value="">Số lớp</option>
+                            <option value="3">3 lớp</option>
+                            <option value="5">5 lớp</option>
+                            <option value="7">7 lớp</option>
+                        </select>
+                    </div>
+                    <div class="w-150px">
+                        <select class="form-select form-select-solid bg-gray-100">
+                            <option value="">Loại sóng</option>
+                            <option value="B">Sóng B</option>
+                            <option value="C">Sóng C</option>
+                            <option value="E">Sóng E</option>
+                            <option value="BC">Sóng BC</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="border border-gray-200 rounded-3 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                            <thead>
+                                <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 bg-gray-100">
+                                    <th class="w-50px pe-0 ps-5"></th>
+                                    <th class="min-w-150px">Mã kết cấu</th>
+                                    <th class="min-w-250px">Chi tiết các lớp</th>
+                                    <th class="min-w-100px text-center">Định lượng</th>
+                                    <th class="min-w-100px text-end">Độ bục (kPa)</th>
+                                    <th class="min-w-100px text-end pe-5">Nén biên</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fw-semibold text-gray-600">
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="ps-5">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="structure_selection" value="1" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="text-primary fw-bold text-hover-primary mb-1">ST-3L-B-02</a>
+                                            <span class="text-gray-500 fs-8">3 lớp, Sóng B</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-gray-200 text-gray-600 fw-bold fs-9 tracking-wider">K125 / M125 / K125</span>
+                                    </td>
+                                    <td class="text-center text-gray-900 fw-bold">375 gsm</td>
+                                    <td class="text-end text-gray-900 fw-bold">850</td>
+                                    <td class="text-end text-gray-900 fw-bold pe-5">5.2</td>
+                                </tr>
+                                <!-- Row 2 (Selected) -->
+                                <tr class="bg-light-primary">
+                                    <td class="ps-5">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="structure_selection" value="2" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="text-primary fw-bold text-hover-primary mb-1">ST-5L-BC-01</a>
+                                            <span class="text-primary opacity-75 fs-8">5 lớp, Sóng BC</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-light-primary text-primary fw-bold fs-9 tracking-wider border border-primary border-dashed">V175 / M150 / M150 / M150 / V175</span>
+                                    </td>
+                                    <td class="text-center text-gray-900 fw-bold">775 gsm</td>
+                                    <td class="text-end text-gray-900 fw-bold">1250</td>
+                                    <td class="text-end text-gray-900 fw-bold pe-5">8.5</td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="ps-5">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="structure_selection" value="3" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="text-primary fw-bold text-hover-primary mb-1">ST-3L-E-05</a>
+                                            <span class="text-gray-500 fs-8">3 lớp, Sóng E</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-gray-200 text-gray-600 fw-bold fs-9 tracking-wider">W140 / M125 / K125</span>
+                                    </td>
+                                    <td class="text-center text-gray-900 fw-bold">390 gsm</td>
+                                    <td class="text-end text-gray-900 fw-bold">920</td>
+                                    <td class="text-end text-gray-900 fw-bold pe-5">5.8</td>
+                                </tr>
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="ps-5 border-bottom-0">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" name="structure_selection" value="4" />
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="text-primary fw-bold text-hover-primary mb-1">ST-5L-AB-03</a>
+                                            <span class="text-gray-500 fs-8">5 lớp, Sóng AB</span>
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <span class="badge bg-gray-200 text-gray-600 fw-bold fs-9 tracking-wider">K200 / M150 / M150 / M150 / K200</span>
+                                    </td>
+                                    <td class="border-bottom-0 text-center text-gray-900 fw-bold">850 gsm</td>
+                                    <td class="border-bottom-0 text-end text-gray-900 fw-bold">1450</td>
+                                    <td class="border-bottom-0 text-end text-gray-900 fw-bold pe-5">9.2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-6 mb-6">
+                    <div class="text-gray-500 fs-8 fw-semibold">
+                        Hiển thị <span class="fw-bold text-gray-700">4</span> trên <span class="fw-bold text-gray-700">45</span> kết cấu
+                    </div>
+                    <ul class="pagination pagination-sm m-0">
+                        <li class="page-item previous disabled"><a href="#" class="page-link bg-gray-100 text-gray-600 px-4"><i class="previous"></i> Trước</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link bg-gray-100 text-gray-600">2</a></li>
+                        <li class="page-item next"><a href="#" class="page-link bg-gray-100 text-gray-600 px-4">Sau <i class="next"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer px-8 py-5 border-top border-gray-200 d-flex justify-content-between align-items-center bg-white rounded-bottom-4">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-40px bg-light-primary rounded-3 me-4 d-flex justify-content-center align-items-center">
+                        <i class="ki-duotone ki-layers fs-2 text-primary"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <div>
+                        <div class="text-gray-500 fs-9 fw-bolder text-uppercase mb-1 tracking-wider">Đã chọn kết cấu</div>
+                        <div class="text-gray-900 fw-bold fs-6">ST-5L-BC-01 (V175/M150/M150/M150/V175)</div>
+                    </div>
+                </div>
+                
+                <div class="d-flex gap-3">
+                    <button type="button" class="btn btn-light fw-bold px-6" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" class="btn btn-primary fw-bold px-8">Xác nhận chọn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tracking-widest {
+        letter-spacing: 0.1em;
+    }
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+    #kt_modal_structure_selection .table-row-dashed tr {
+        border-bottom: 1px dashed var(--bs-gray-300);
+    }
+</style>

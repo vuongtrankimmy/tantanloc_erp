@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\erp\hrm\TTL.HRM.Client\TTL.HRM.Client.csproj" />
     <ProjectReference Include="..\..\erp\wms\TTL.WMS.Client\TTL.WMS.Client.csproj" />
+    <ProjectReference Include="..\..\erp\rd\TTL.RD.Client\TTL.RD.Client.csproj" />
     <ProjectReference Include="..\..\shared\TTL.Shared.UI\TTL.Shared.UI.csproj" />
     <ProjectReference Include="..\..\auth\TTL.Auth.Client\TTL.Auth.Client.csproj" />
   </ItemGroup>
@@ -12,8 +13,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <AssemblyVersion>2026.4.27.235</AssemblyVersion>
-    <FileVersion>2026.4.27.235</FileVersion>
+    <AssemblyVersion>2026.4.27.247</AssemblyVersion>
+    <FileVersion>2026.4.27.247</FileVersion>
   </PropertyGroup>
 
 </Project>

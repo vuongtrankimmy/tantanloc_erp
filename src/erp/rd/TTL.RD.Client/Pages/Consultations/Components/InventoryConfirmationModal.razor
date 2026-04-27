@@ -1,0 +1,64 @@
+@namespace TTL.RD.Client.Pages.Consultations.Components
+
+<div class="modal fade" tabindex="-1" id="kt_modal_inventory_confirmation">
+    <div class="modal-dialog modal-dialog-centered mw-500px">
+        <div class="modal-content shadow-none border-0 rounded-4 overflow-hidden">
+            <!-- Modal Header -->
+            <div class="modal-header px-8 py-6 border-0 justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-40px bg-light-primary rounded-3 me-4 d-flex justify-content-center align-items-center">
+                        <i class="ki-duotone ki-archive fs-2 text-primary"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                    </div>
+                    <div>
+                        <h2 class="fw-bolder fs-3 text-gray-900 mb-1">Xác nhận áp dụng</h2>
+                        <span class="text-gray-500 fw-bold fs-8 tracking-widest text-uppercase">Cấu hình sản xuất</span>
+                    </div>
+                </div>
+                
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-8 py-0 position-relative">
+                <!-- Info Box -->
+                <div class="bg-light-primary rounded-3 p-5 mb-4 border border-primary border-dashed border-opacity-25">
+                    <div class="text-gray-700 fs-6">
+                        Bạn đã áp dụng kết cấu của tấm 
+                        <span class="text-primary fw-bold">'SH-2309-042 - Tấm Carton 5 lớp Sóng BC'</span> 
+                        cho yêu cầu này.
+                    </div>
+                </div>
+
+                <!-- Warning Box -->
+                <div class="bg-light-warning rounded-3 p-5 mb-8 border border-warning border-dashed border-opacity-25 d-flex">
+                    <i class="ki-duotone ki-information-5 fs-1 text-warning me-4 mt-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                    <div class="text-gray-700 fs-6">
+                        Hành động này sẽ cập nhật toàn bộ thông số kỹ thuật cho lệnh sản xuất hiện tại. Bạn có chắc không?
+                    </div>
+                </div>
+                
+                <!-- Factory Illustration -->
+                <div class="text-center mb-5 opacity-50">
+                    <img src="_content/TTL.Shared.UI/assets/media/illustrations/sketchy-1/2.png" alt="Factory" class="mw-100 mh-100px" onerror="this.style.display='none'" />
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer px-8 py-5 border-0 justify-content-center bg-gray-50 rounded-bottom-4">
+                <button type="button" class="btn btn-light fw-bold px-8 me-4" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary fw-bold px-8 d-flex align-items-center">
+                    <i class="ki-duotone ki-check-circle fs-3 me-2"><span class="path1"></span><span class="path2"></span></i>
+                    Xác nhận áp dụng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tracking-widest {
+        letter-spacing: 0.1em;
+    }
+</style>

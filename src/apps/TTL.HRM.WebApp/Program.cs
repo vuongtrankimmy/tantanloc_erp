@@ -28,6 +28,6 @@ app.UseStaticFiles();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddAdditionalAssemblies(typeof(TTL.HRM.Client.Pages.Index.Index).Assembly, typeof(TTL.Auth.Client.Pages.Login.Account.Account).Assembly, typeof(TTL.WMS.Client.Pages.Suppliers.SupplierList).Assembly);
+    .AddAdditionalAssemblies(typeof(TTL.HRM.Client.Pages.Index.Index).Assembly, typeof(TTL.Auth.Client.Pages.Login.Account.Account).Assembly, typeof(TTL.WMS.Client.Pages.Suppliers.SupplierList).Assembly, typeof(TTL.RD.Client.Pages.Consultations.ConsultationQueue).Assembly);
 
 app.Run();

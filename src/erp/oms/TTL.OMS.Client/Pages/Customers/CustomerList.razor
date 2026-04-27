@@ -1,0 +1,285 @@
+@page "/oms/customers"
+@namespace TTL.OMS.Client.Pages.Customers
+
+<div class="d-flex flex-column flex-column-fluid">
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-1 flex-column justify-content-center my-0">Danh sách khách hàng</h1>
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                    <li class="breadcrumb-item text-muted">Quản lý và theo dõi thông tin đối tác của bạn</li>
+                </ul>
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <button class="btn btn-primary fw-bold">
+                    <i class="ki-duotone ki-plus fs-2"></i> Thêm khách hàng mới
+                </button>
+            </div>
+            <!--end::Actions-->
+        </div>
+    </div>
+    <!--end::Toolbar-->
+
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <div id="kt_app_content_container" class="app-container container-fluid">
+            
+            <!-- Filter box -->
+            <div class="card shadow-sm border-0 mb-6">
+                <div class="card-body p-5">
+                    <div class="d-flex align-items-center gap-4 flex-wrap">
+                        <!-- Search -->
+                        <div class="position-relative flex-grow-1 min-w-250px">
+                            <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle-y ms-4"><span class="path1"></span><span class="path2"></span></i>
+                            <input type="text" class="form-control form-control-solid bg-gray-100 ps-12" placeholder="Tìm kiếm theo mã, tên hoặc số điện thoại..." />
+                        </div>
+                        
+                        <!-- Filter Group -->
+                        <div class="w-200px">
+                            <select class="form-select form-select-solid bg-gray-100 fw-semibold">
+                                <option value="">Nhóm khách hàng</option>
+                                <option value="1">Bán lẻ</option>
+                                <option value="2">Bán buôn</option>
+                                <option value="3">Đại lý</option>
+                            </select>
+                        </div>
+                        
+                        <div class="w-150px">
+                            <select class="form-select form-select-solid bg-gray-100 fw-semibold">
+                                <option value="">Trạng thái</option>
+                                <option value="1">Hoạt động</option>
+                                <option value="2">Đang chờ duyệt</option>
+                                <option value="3">Tạm dừng</option>
+                                <option value="4">Nháp</option>
+                            </select>
+                        </div>
+                        
+                        <div class="w-150px">
+                            <div class="input-group input-group-solid bg-gray-100 rounded">
+                                <input type="text" class="form-control bg-transparent border-0 text-gray-600 fw-semibold px-4" placeholder="Ngày tạo" readonly />
+                                <span class="input-group-text border-0 bg-transparent pe-4">
+                                    <i class="ki-duotone ki-calendar-8 fs-4 text-gray-600"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-icon btn-light border border-gray-300">
+                            <i class="ki-duotone ki-filter fs-3 text-gray-700"><span class="path1"></span><span class="path2"></span></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Table -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                            <thead>
+                                <tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0 bg-light-secondary px-5">
+                                    <th class="ps-6 min-w-100px">MÃ KHÁCH HÀNG</th>
+                                    <th class="min-w-150px">TÊN KHÁCH HÀNG</th>
+                                    <th class="min-w-200px">ĐỊA CHỈ KHO</th>
+                                    <th class="min-w-100px">NHÓM KHÁCH HÀNG</th>
+                                    <th class="min-w-150px">NHÂN VIÊN KINH DOANH</th>
+                                    <th class="min-w-120px">TRẠNG THÁI</th>
+                                    <th class="text-end pe-6 min-w-100px">THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fw-semibold text-gray-600">
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="ps-6">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">KH001</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-900 fw-bold">Công ty TNHH Minh Anh</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-600">Kho A - KCN Quang Minh</div>
+                                        <div class="text-gray-600">Kho B - KCN VSIP</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-light-primary text-primary fw-bold px-3">Bán lẻ</span>
+                                    </td>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="bullet bullet-dot bg-success me-2 h-8px w-8px"></span>
+                                            <span class="text-success fw-bold text-uppercase fs-8">HOẠT ĐỘNG</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-6">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                <i class="ki-duotone ki-pencil fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-active-light-danger w-30px h-30px">
+                                                <i class="ki-duotone ki-trash fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td class="ps-6">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">KH002</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-900 fw-bold">Tập đoàn Đại Nam</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-600">Kho Trung Tâm - Hà Nội</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-light-info text-info fw-bold px-3" style="background-color: #F8F5FF !important; color: #7239EA !important;">Bán buôn</span>
+                                    </td>
+                                    <td>Trần Thị B</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="bullet bullet-dot bg-warning me-2 h-8px w-8px"></span>
+                                            <span class="text-warning fw-bold text-uppercase fs-8">ĐANG CHỜ DUYỆT</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-6">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                <i class="ki-duotone ki-pencil fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-active-light-danger w-30px h-30px">
+                                                <i class="ki-duotone ki-trash fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="ps-6">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">KH003</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-900 fw-bold">Cửa hàng Gia dụng Hùng Phát</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-600">Kho Chi nhánh - Đà Nẵng</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-light-warning text-warning fw-bold px-3" style="color: #E67A20 !important;">Đại lý</span>
+                                    </td>
+                                    <td>Lê Văn C</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="bullet bullet-dot bg-gray-400 me-2 h-8px w-8px"></span>
+                                            <span class="text-gray-500 fw-bold text-uppercase fs-8">TẠM DỪNG</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-6">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                <i class="ki-duotone ki-pencil fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-active-light-danger w-30px h-30px">
+                                                <i class="ki-duotone ki-trash fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="ps-6">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">KH004</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-900 fw-bold">Công ty CP TechVibe</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-600">Kho 1 - Quận 7</div>
+                                        <div class="text-gray-600">Kho 2 - TP. Thủ Đức</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-light-primary text-primary fw-bold px-3">Bán lẻ</span>
+                                    </td>
+                                    <td>Phạm Minh D</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="bullet bullet-dot bg-gray-500 me-2 h-8px w-8px"></span>
+                                            <span class="text-gray-600 fw-bold text-uppercase fs-8">NHÁP</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-6">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                <i class="ki-duotone ki-pencil fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-active-light-danger w-30px h-30px">
+                                                <i class="ki-duotone ki-trash fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Row 5 -->
+                                <tr>
+                                    <td class="ps-6">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary">KH005</a>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-900 fw-bold">Hợp tác xã Nông nghiệp</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-gray-600">Kho Nông sản - Tiền Giang</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-light-warning text-warning fw-bold px-3" style="color: #E67A20 !important;">Đại lý</span>
+                                    </td>
+                                    <td>Hoàng Anh E</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="bullet bullet-dot bg-success me-2 h-8px w-8px"></span>
+                                            <span class="text-success fw-bold text-uppercase fs-8">HOẠT ĐỘNG</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-6">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                <i class="ki-duotone ki-pencil fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+                                            </button>
+                                            <button class="btn btn-icon btn-active-light-danger w-30px h-30px">
+                                                <i class="ki-duotone ki-trash fs-5 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="d-flex flex-stack px-6 py-5 border-top border-gray-200">
+                        <div class="fs-7 fw-semibold text-gray-500">
+                            Hiển thị từ <span class="fw-bolder text-gray-700">1</span> đến <span class="fw-bolder text-gray-700">5</span> trong tổng số <span class="fw-bolder text-gray-700">42</span> khách hàng
+                        </div>
+                        <ul class="pagination pagination-circle">
+                            <li class="page-item previous disabled"><a href="#" class="page-link"><i class="previous"></i></a></li>
+                            <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link px-2">...</a></li>
+                            <li class="page-item"><a href="#" class="page-link">9</a></li>
+                            <li class="page-item next"><a href="#" class="page-link"><i class="next"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!--end::Content-->
+</div>
