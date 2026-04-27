@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using TTL.Shared.Models.HRM.Operations;
@@ -112,6 +113,19 @@ namespace TTL.HRM.Client.Pages.Operations.Leave_absence
                 "Từ chối" => "badge-light-danger",
                 _ => "badge-light-primary"
             };
+        }
+
+        [Inject]
+        protected Microsoft.JSInterop.IJSRuntime JS { get; set; } = default!;
+
+        protected override async System.Threading.Tasks.Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await System.Threading.Tasks.Task.Delay(50);
+                await JS.InvokeVoidAsync("KTComponents.init");
+                await JS.InvokeVoidAsync("KTMenu.createInstances");
+            }
         }
     }
 }

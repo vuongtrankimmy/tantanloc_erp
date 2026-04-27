@@ -3,7 +3,6 @@
 @inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
-@implements IDisposable
 
 <!--begin::Root-->
 <div class="d-flex flex-column flex-root overflow-x-hidden">
@@ -52,44 +51,5 @@
 <!--end::Root-->
 
 @code {
-    protected override void OnInitialized()
-    {
-        NavigationManager.LocationChanged += OnLocationChanged;
-    }
 
-    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        // 1. CHỜ DOM CẬP NHẬT MỚI TỪ BLAZOR
-        await Task.Delay(300);
-
-        // 2. KHỞI TẠO LẠI JS VÀ TRIGGER REFLOW CSS ĐỂ TRÁNH VỠ LAYOUT
-        await JSRuntime.InvokeVoidAsync("eval", @"
-            var contentElem = document.getElementById('kt_content');
-            if(contentElem) {
-                contentElem.removeAttribute('data-kt-initialized');
-                if (typeof KTComponents !== 'undefined') {
-                    KTComponents.init('kt_content');
-                }
-                if (typeof KTApp !== 'undefined') {
-                    KTApp.init();
-                }
-                if (typeof KTThemeMode !== 'undefined') {
-                    KTThemeMode.init();
-                }
-            }
-            // Trigger browser reflow để sửa lỗi mất layout / padding / background
-            var wrapper = document.getElementById('kt_wrapper');
-            if (wrapper) {
-                wrapper.style.display = 'none';
-                wrapper.offsetHeight; 
-                wrapper.style.display = '';
-            }
-        ");
-        StateHasChanged();
-    }
-
-    public void Dispose()
-    {
-        NavigationManager.LocationChanged -= OnLocationChanged;
-    }
 }

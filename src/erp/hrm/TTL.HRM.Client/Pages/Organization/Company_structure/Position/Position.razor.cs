@@ -15,6 +15,13 @@ namespace TTL.HRM.Client.Pages.Organization.Company_structure.Position
 
         protected List<PositionData>? positions;
         private bool _dataLoaded = false;
+        protected string? selectedPosCode;
+
+        protected void ShowDetail(string code)
+        {
+            selectedPosCode = code;
+            StateHasChanged();
+        }
 
         protected override async Task OnInitializedAsync()
         {

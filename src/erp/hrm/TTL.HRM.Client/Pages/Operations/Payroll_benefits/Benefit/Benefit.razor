@@ -1,4 +1,5 @@
 @page "/hrm/benefit"
+@rendermode InteractiveServer
 
 <SectionContent SectionName="PageTitle">Danh mục Phụ cấp & Phúc lợi</SectionContent>
 
@@ -87,9 +88,19 @@
                                 <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Toàn công ty</span>
                             </td>
                             <td class="text-end pe-4">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary kt_drawer_benefit_detail_toggle" @onclick='() => SelectBenefit("PC-XX-01", "Phụ cấp Xăng xe", "Phụ cấp di chuyển hàng tháng", "CỐ ĐỊNH", 500000, "Toàn công ty")'>
-                                    <i class="ki-duotone ki-pencil fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
                                 </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PC-XX-01", "Phụ cấp Xăng xe", "Phụ cấp di chuyển hàng tháng", "CỐ ĐỊNH", 500000, "Toàn công ty")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- Row 2 -->
@@ -120,9 +131,19 @@
                                 <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Chính thức</span>
                             </td>
                             <td class="text-end pe-4">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary kt_drawer_benefit_detail_toggle" @onclick='() => SelectBenefit("PL-SN-02", "Quà sinh nhật", "Phúc lợi dịp sinh nhật", "BIẾN ĐỔI", 1000000, "Chính thức")'>
-                                    <i class="ki-duotone ki-pencil fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
                                 </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PL-SN-02", "Quà sinh nhật", "Phúc lợi dịp sinh nhật", "BIẾN ĐỔI", 1000000, "Chính thức")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- Row 3 -->
@@ -153,9 +174,19 @@
                                 <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Toàn công ty</span>
                             </td>
                             <td class="text-end pe-4">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary kt_drawer_benefit_detail_toggle" @onclick='() => SelectBenefit("PC-AT-03", "Phụ cấp Ăn trưa", "Theo ngày công thực tế", "CỐ ĐỊNH", 30000, "Toàn công ty")'>
-                                    <i class="ki-duotone ki-pencil fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
                                 </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PC-AT-03", "Phụ cấp Ăn trưa", "Theo ngày công thực tế", "CỐ ĐỊNH", 30000, "Toàn công ty")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- Row 4 -->
@@ -189,9 +220,19 @@
                                 </div>
                             </td>
                             <td class="text-end pe-4">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary kt_drawer_benefit_detail_toggle" @onclick='() => SelectBenefit("PC-ĐT-04", "Phụ cấp Điện thoại", "Dành cho bộ phận kinh doanh", "CỐ ĐỊNH", 200000, "Phòng Kinh doanh")'>
-                                    <i class="ki-duotone ki-pencil fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
                                 </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PC-ĐT-04", "Phụ cấp Điện thoại", "Dành cho bộ phận kinh doanh", "CỐ ĐỊNH", 200000, "Phòng Kinh doanh")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- Row 5 -->
@@ -222,9 +263,19 @@
                                 <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Cấp Quản lý</span>
                             </td>
                             <td class="text-end pe-4">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary kt_drawer_benefit_detail_toggle" @onclick='() => SelectBenefit("PL-BH-05", "Bảo hiểm sức khỏe", "PVI Care cao cấp", "CỐ ĐỊNH", 5000000, "Cấp Quản lý")'>
-                                    <i class="ki-duotone ki-pencil fs-3"><span class="path1"></span><span class="path2"></span></i>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
                                 </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PL-BH-05", "Bảo hiểm sức khỏe", "PVI Care cao cấp", "CỐ ĐỊNH", 5000000, "Cấp Quản lý")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

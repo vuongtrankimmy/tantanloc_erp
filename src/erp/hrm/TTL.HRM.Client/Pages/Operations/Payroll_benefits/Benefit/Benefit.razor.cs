@@ -65,10 +65,9 @@ namespace TTL.HRM.Client.Pages.Operations.Payroll_benefits.Benefit
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (_dataLoaded)
+            if (firstRender)
             {
-                _dataLoaded = false;
-                await Task.Delay(50);
+                await Task.Delay(500);
                 await JS.InvokeVoidAsync("KTComponents.init");
                 await JS.InvokeVoidAsync("KTMenu.createInstances");
             }

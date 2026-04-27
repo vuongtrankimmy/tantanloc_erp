@@ -61,9 +61,9 @@
         <!--end::Search-->
         <!--begin::Actions-->
         <div class="d-flex my-0 gap-3">
-            <button type="button" class="btn btn-sm btn-light-primary fw-bold">
-                <i class="ki-outline ki-abstract-14 fs-2"></i> Sơ đồ tổng quát
-            </button>
+            <a href="/hrm/attendance/shifts/schedule" class="btn btn-sm btn-light-primary fw-bold">
+                <i class="ki-outline ki-abstract-14 fs-2"></i> Sơ đồ phân ca
+            </a>
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_shift" @onclick="CreateNew">
                 <i class="ki-outline ki-plus fs-2"></i> Thêm ca mới
             </button>
@@ -145,11 +145,11 @@
                                         <a href="javascript:void(0);" class="menu-link px-3"><i class="ki-outline ki-setting-2 fs-5 me-2 text-primary"></i> Cấu hình</a>
                                     </div>
                                     <div class="menu-item px-3">
-                                        <a href="/attendance/shifts/allocate/@shift.Code" class="menu-link px-3"><i class="ki-outline ki-profile-user fs-5 me-2 text-info"></i> Nhân sự</a>
+                                        <a href="/hrm/attendance/shifts/allocate/@shift.Code" class="menu-link px-3"><i class="ki-outline ki-profile-user fs-5 me-2 text-info"></i> Nhân sự</a>
                                     </div>
                                     <div class="separator my-2"></div>
                                     <div class="menu-item px-3">
-                                        <a href="javascript:void(0);" class="menu-link px-3"><i class="ki-outline ki-eye fs-5 me-2 text-success"></i> Xem chi tiết</a>
+                                        <a href="/hrm/attendance/shifts/detail/@shift.Code" class="menu-link px-3"><i class="ki-outline ki-eye fs-5 me-2 text-success"></i> Xem chi tiết</a>
                                     </div>
                                     <div class="menu-item px-3">
                                         <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_shift" @onclick="() => EditShift(shift)"><i class="ki-outline ki-pencil fs-5 me-2 text-warning"></i> Chỉnh sửa</a>

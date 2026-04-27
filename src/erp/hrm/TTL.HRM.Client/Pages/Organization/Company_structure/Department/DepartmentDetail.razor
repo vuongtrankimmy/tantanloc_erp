@@ -1,0 +1,64 @@
+@using TTL.Shared.Models.HRM.Organization
+
+@if (string.IsNullOrEmpty(Code))
+{
+    <div class="p-9 text-center text-muted">
+        <span>Vui lòng chọn phòng ban...</span>
+    </div>
+}
+else
+{
+    <div class="card border-0 shadow-none">
+        <div class="card-header border-0 cursor-pointer pt-5">
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0">Thông tin chung</h3>
+            </div>
+            <div class="card-toolbar">
+                <a href="/hrm/department/edit/@Code" class="btn btn-sm btn-light-primary align-self-center">Sửa</a>
+            </div>
+        </div>
+        <div class="card-body p-9">
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Mã phòng ban</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">@Code</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Tên phòng ban</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Phòng ban @Code</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Quản lý</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Nguyễn Văn A</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Định biên nhân sự</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">15 / 20</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Trạng thái</label>
+                <div class="col-lg-8">
+                    <span class="badge badge-light-primary">Hoạt động</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Mô tả</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Chức năng quản lý điều hành hoạt động của phòng...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string? Code { get; set; }
+}

@@ -1,0 +1,95 @@
+@page "/hrm/position/edit/{Code}"
+@using TTL.Shared.Models.HRM.Organization
+
+<SectionContent SectionName="PageTitle">Sửa chức vụ</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Tổ chức & Nhân sự</li>
+    <li class="breadcrumb-item text-muted">Cấu trúc công ty</li>
+    <li class="breadcrumb-item text-muted">
+        <a href="/hrm/position" class="text-muted text-hover-primary">Chức vụ</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">Sửa</li>
+</SectionContent>
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+        <div class="card-title m-0">
+            <h3 class="fw-bold m-0">Sửa thông tin chức vụ</h3>
+        </div>
+    </div>
+    <div id="kt_account_settings_profile_details" class="collapse show">
+        <form id="kt_account_profile_details_form" class="form">
+            <div class="card-body border-top p-9">
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Mã chức vụ</label>
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" class="form-control form-control-lg form-control-solid" value="@Code" readonly />
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Tên chức danh</label>
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" name="name" class="form-control form-control-lg form-control-solid" placeholder="Nhập tên chức danh" value="Chức vụ @Code" />
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                        <span class="required">Chuyên môn</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Nhóm chuyên môn tương ứng"></i>
+                    </label>
+                    <div class="col-lg-8 fv-row">
+                        <select name="job_group" class="form-select form-select-solid form-select-lg fw-semibold">
+                            <option value="">Chọn nhóm chuyên môn...</option>
+                            <option value="1" selected>Quản lý</option>
+                            <option value="2">Kỹ thuật</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Cấp độ</label>
+                    <div class="col-lg-8 fv-row">
+                        <select name="level" class="form-select form-select-solid form-select-lg fw-semibold">
+                            <option value="">Chọn cấp độ...</option>
+                            <option value="1" selected>Cấp quản lý (Manager)</option>
+                            <option value="2">Nhân viên (Staff)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Trạng thái</label>
+                    <div class="col-lg-8 fv-row">
+                        <div class="d-flex align-items-center mt-3">
+                            <label class="form-check form-check-custom form-check-inline form-check-solid me-5">
+                                <input class="form-check-input" name="status" type="radio" value="1" checked />
+                                <span class="fw-semibold ps-2 fs-6">Hoạt động</span>
+                            </label>
+                            <label class="form-check form-check-custom form-check-inline form-check-solid">
+                                <input class="form-check-input" name="status" type="radio" value="0" />
+                                <span class="fw-semibold ps-2 fs-6">Tạm ngưng</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Mô tả / Yêu cầu</label>
+                    <div class="col-lg-8 fv-row">
+                        <textarea class="form-control form-control-lg form-control-solid" rows="4">Có kinh nghiệm quản lý, điều hành dự án...</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <a href="/hrm/position" class="btn btn-light btn-active-light-primary me-2">Hủy</a>
+                <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Lưu thay đổi</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Code { get; set; } = default!;
+}

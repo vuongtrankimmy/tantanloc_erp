@@ -1,29 +1,23 @@
 @using TTL.Shared.Models.HRM.Operations
 
-<div id="kt_drawer_leave_request" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="leave_request" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '450px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle=".kt_drawer_leave_request_toggle" data-kt-drawer-close="#kt_drawer_leave_request_close">
-    <div class="card shadow-none rounded-0 w-100">
-        <!--begin::Header-->
-        <div class="card-header" id="kt_drawer_leave_request_header">
-            <h3 class="card-title fw-bolder text-dark">
-                <div class="d-flex flex-column">
-                    <span>Chi tiết đơn xin nghỉ</span>
-                    <span class="fs-7 fw-semibold text-muted mt-1">Mã đơn: @(Request?.id ?? "N/A")</span>
-                </div>
-            </h3>
-            <div class="card-toolbar">
-                <button type="button" class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_leave_request_close">
-                    <i class="ki-duotone ki-cross fs-1">
-                        <span class="path1"></span><span class="path2"></span>
-                    </i>
-                </button>
+<div class="offcanvas offcanvas-end w-400px w-md-500px" tabindex="-1" id="kt_leave_request_detail_panel">
+    <!--begin::Header-->
+    <div class="offcanvas-header border-bottom">
+        <h3 class="offcanvas-title fw-bolder text-dark">
+            <div class="d-flex flex-column">
+                <span>Chi tiết đơn xin nghỉ</span>
+                <span class="fs-7 fw-semibold text-muted mt-1">Mã đơn: @(Request?.id ?? "N/A")</span>
             </div>
-        </div>
-        <!--end::Header-->
+        </h3>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!--end::Header-->
 
-        <!--begin::Body-->
-        <div class="card-body position-relative" id="kt_drawer_leave_request_body">
-            @if (Request != null)
-            {
+    <!--begin::Body-->
+    <div class="offcanvas-body p-0 bg-light">
+        @if (Request != null)
+        {
+            <div class="p-9">
                 <div class="scroll-y me-n5 pe-5" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_drawer_leave_request_body" data-kt-scroll-dependencies="#kt_drawer_leave_request_header, #kt_drawer_leave_request_footer" data-kt-scroll-offset="0px">
                     <div class="mb-5">
                         <!-- User Info -->
@@ -112,25 +106,25 @@
                         </div>
                     </div>
                 </div>
-            }
-            else
-            {
-                <div class="d-flex flex-column flex-center h-100">
-                    <img src="assets/media/illustrations/sketchy-1/5.png" class="mw-100 mh-200px mb-7" alt="" />
-                    <div class="fs-5 fw-bold text-gray-500 mb-2">Vui lòng chọn một yêu cầu để xem chi tiết.</div>
-                </div>
-            }
-        </div>
-        <!--end::Body-->
-
-        <!--begin::Footer-->
-        @if (Request != null)
-        {
-            <div class="card-footer py-5 d-flex justify-content-between" id="kt_drawer_leave_request_footer">
-                <button class="btn btn-light border" style="width: 48%;">Từ chối</button>
-                <button class="btn btn-primary" style="width: 48%;">Xác nhận phê duyệt</button>
             </div>
         }
-        <!--end::Footer-->
+        else
+        {
+            <div class="d-flex flex-column flex-center h-100 p-9">
+                <img src="assets/media/illustrations/sketchy-1/5.png" class="mw-100 mh-200px mb-7" alt="" />
+                <div class="fs-5 fw-bold text-gray-500 mb-2">Vui lòng chọn một yêu cầu để xem chi tiết.</div>
+            </div>
+        }
     </div>
+    <!--end::Body-->
+
+    <!--begin::Footer-->
+    @if (Request != null)
+    {
+        <div class="offcanvas-footer border-top p-5 d-flex justify-content-between">
+            <button class="btn btn-light border" style="width: 48%;">Từ chối</button>
+            <button class="btn btn-primary" style="width: 48%;">Xác nhận phê duyệt</button>
+        </div>
+    }
+    <!--end::Footer-->
 </div>

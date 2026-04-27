@@ -1,5 +1,8 @@
 using TTL.HRM.WebApp.Components;
 
+// Prevent IIS Express ThreadPool starvation deadlock when components make local HTTP requests
+ThreadPool.SetMinThreads(100, 100);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

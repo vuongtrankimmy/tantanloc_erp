@@ -39,5 +39,13 @@ namespace TTL.HRM.Client.Pages.Organization.Company_structure.Department
                 await JS.InvokeVoidAsync("KTMenu.createInstances");
             }
         }
+
+        protected string? selectedDeptCode;
+
+        protected void ShowDetail(string code)
+        {
+            selectedDeptCode = code;
+            StateHasChanged();
+        }
     }
 }

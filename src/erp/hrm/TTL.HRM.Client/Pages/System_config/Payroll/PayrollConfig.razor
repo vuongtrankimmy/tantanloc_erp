@@ -1,0 +1,360 @@
+@page "/hrm/setting/payroll"
+@using TTL.HRM.Client.Pages.System_config.Payroll.Components
+
+<SectionContent SectionName="PageTitle">Cấu hình tham số tính lương</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Quản trị hệ thống</li>
+    <li class="breadcrumb-item text-muted">Cài đặt & cấu hình</li>
+    <li class="breadcrumb-item text-gray-900">Tính lương</li>
+</SectionContent>
+
+<!--begin::Header-->
+<div class="d-flex flex-stack mb-5">
+    <div>
+        <h3 class="fw-bold fs-2 text-gray-900 mb-1">Cấu hình tham số tính lương</h3>
+        <span class="text-muted fs-6">Thiết lập các quy tắc bảo hiểm, thuế và mức lương cơ sở vùng theo quy định hiện hành.</span>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-light border d-flex align-items-center">
+            <i class="ki-duotone ki-time fs-3 me-2">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+            Lịch sử cập nhật
+        </button>
+        <button class="btn btn-sm btn-primary">Lưu thay đổi</button>
+    </div>
+</div>
+<!--end::Header-->
+
+<!--begin::Tabs Card-->
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header card-header-stretch pb-0 border-bottom">
+        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-6 fw-bold" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link text-active-primary text-gray-700 ms-0 me-10 py-4 active" data-bs-toggle="tab" href="#kt_tab_pane_1">
+                    <i class="ki-duotone ki-shield-tick fs-2 me-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    Tham số bảo hiểm
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-active-primary text-gray-700 ms-0 me-10 py-4" data-bs-toggle="tab" href="#kt_tab_pane_2">
+                    <i class="ki-duotone ki-wallet fs-2 me-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                        <span class="path4"></span>
+                    </i>
+                    Biểu thuế TNCN
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-active-primary text-gray-700 ms-0 me-10 py-4" data-bs-toggle="tab" href="#kt_tab_pane_3">
+                    <i class="ki-duotone ki-gift fs-2 me-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                        <span class="path4"></span>
+                    </i>
+                    Phụ cấp & Phúc lợi
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content" id="myTabContent">
+            <!--begin::Tab 1-->
+            <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
+                <!-- Danh mục tham số đóng bảo hiểm -->
+                <div class="d-flex flex-stack mb-5 mt-2">
+                    <h4 class="fw-bold fs-4 m-0 text-gray-900">Danh mục tham số đóng bảo hiểm</h4>
+                    <span class="text-muted fs-7"><i class="ki-duotone ki-information fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> Các giá trị này được dùng để tự động tính toán lương hằng tháng.</span>
+                </div>
+                
+                <div class="table-responsive border rounded mb-10">
+                    <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4 m-0">
+                        <thead class="bg-light">
+                            <tr class="fw-bold text-muted fs-7 text-uppercase gs-0">
+                                <th class="ps-5 min-w-250px">TÊN THAM SỐ</th>
+                                <th class="min-w-100px">NV ĐÓNG (%)</th>
+                                <th class="min-w-100px">CÔNG TY ĐÓNG (%)</th>
+                                <th class="min-w-125px">GIÁ TRỊ CỐ ĐỊNH</th>
+                                <th class="min-w-125px">NGÀY ÁP DỤNG</th>
+                                <th class="pe-5 text-end min-w-100px">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Item BHXH -->
+                            <tr>
+                                <td class="ps-5">
+                                    <div class="fw-bold text-gray-800 fs-6">BHXH (Bảo hiểm xã hội)</div>
+                                    <div class="text-muted fs-7">Hưu trí, tử tuất, ốm đau...</div>
+                                </td>
+                                <td>8.0%</td>
+                                <td>17.5%</td>
+                                <td>--</td>
+                                <td><span class="badge badge-light border text-gray-700">01/07/2023</span></td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7">Chỉnh sửa</a></td>
+                            </tr>
+                            <!-- Item BHYT -->
+                            <tr>
+                                <td class="ps-5">
+                                    <div class="fw-bold text-gray-800 fs-6">BHYT (Bảo hiểm y tế)</div>
+                                    <div class="text-muted fs-7">Chăm sóc sức khỏe cộng đồng</div>
+                                </td>
+                                <td>1.5%</td>
+                                <td>3.0%</td>
+                                <td>--</td>
+                                <td><span class="badge badge-light border text-gray-700">01/07/2023</span></td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7">Chỉnh sửa</a></td>
+                            </tr>
+                            <!-- Item BHTN -->
+                            <tr>
+                                <td class="ps-5">
+                                    <div class="fw-bold text-gray-800 fs-6">BHTN (Bảo hiểm thất nghiệp)</div>
+                                    <div class="text-muted fs-7">Hỗ trợ khi mất việc làm</div>
+                                </td>
+                                <td>1.0%</td>
+                                <td>1.0%</td>
+                                <td>--</td>
+                                <td><span class="badge badge-light border text-gray-700">01/07/2023</span></td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7">Chỉnh sửa</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="fw-bold fs-4 mb-5 text-gray-900">Mức giảm trừ & Lương vùng</h4>
+                <div class="row g-5 mb-10">
+                    <div class="col-md-6">
+                        <div class="border rounded p-6 bg-light-primary bg-opacity-10">
+                            <div class="d-flex flex-stack mb-2">
+                                <div>
+                                    <div class="fw-bold text-gray-900 fs-5">Giảm trừ gia cảnh (Bản thân)</div>
+                                    <div class="text-muted fs-7">Áp dụng cho người nộp thuế TNCN</div>
+                                </div>
+                                <a href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail"><i class="ki-duotone ki-pencil fs-2 text-primary"><span class="path1"></span><span class="path2"></span></i></a>
+                            </div>
+                            <div class="d-flex align-items-baseline">
+                                <div class="fs-1 fw-bolder text-gray-900 me-2">11.000.000</div>
+                                <span class="text-muted fs-6 fw-bold">VNĐ / tháng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="border rounded p-6 bg-light-primary bg-opacity-10">
+                            <div class="d-flex flex-stack mb-2">
+                                <div>
+                                    <div class="fw-bold text-gray-900 fs-5">Giảm trừ người phụ thuộc</div>
+                                    <div class="text-muted fs-7">Mỗi người phụ thuộc hợp lệ</div>
+                                </div>
+                                <a href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail"><i class="ki-duotone ki-pencil fs-2 text-primary"><span class="path1"></span><span class="path2"></span></i></a>
+                            </div>
+                            <div class="d-flex align-items-baseline">
+                                <div class="fs-1 fw-bolder text-gray-900 me-2">4.400.000</div>
+                                <span class="text-muted fs-6 fw-bold">VNĐ / tháng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border rounded">
+                    <div class="bg-light p-5 border-bottom rounded-top">
+                        <div class="fw-bold text-gray-800 fs-6">Lương tối thiểu theo Vùng</div>
+                    </div>
+                    <div class="p-5 d-flex flex-stack border-bottom">
+                        <div class="text-gray-800 fw-semibold">Vùng I (Hà Nội, TP.HCM,...)</div>
+                        <div class="d-flex align-items-center">
+                            <div class="fw-bolder text-gray-900 fs-5 me-5">4.680.000 VNĐ</div>
+                            <a href="javascript:;" class="btn btn-icon btn-sm btn-light-primary"><i class="ki-duotone ki-dots-horizontal fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a>
+                        </div>
+                    </div>
+                    <div class="p-5 d-flex flex-stack">
+                        <div class="text-gray-800 fw-semibold">Vùng II (Đà Nẵng, Cần Thơ,...)</div>
+                        <div class="d-flex align-items-center">
+                            <div class="fw-bolder text-gray-900 fs-5 me-5">4.160.000 VNĐ</div>
+                            <a href="javascript:;" class="btn btn-icon btn-sm btn-light-primary"><i class="ki-duotone ki-dots-horizontal fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Tab 1-->
+
+            <!--begin::Tab 2-->
+            <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
+                <div class="d-flex flex-stack mb-5 mt-2">
+                    <h4 class="fw-bold fs-4 m-0 text-gray-900">Biểu thuế lũy tiến từng phần</h4>
+                    <span class="text-muted fs-7"><i class="ki-duotone ki-information fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> Dành cho người lao động cư trú ký HĐLĐ từ 3 tháng trở lên.</span>
+                </div>
+                <div class="table-responsive border rounded mb-5">
+                    <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4 m-0">
+                        <thead class="bg-light">
+                            <tr class="fw-bold text-muted fs-7 text-uppercase gs-0">
+                                <th class="ps-5 min-w-100px text-center">BẬC THUẾ</th>
+                                <th class="min-w-200px">PHẦN THU NHẬP TÍNH THUẾ/THÁNG</th>
+                                <th class="min-w-100px text-center">THUẾ SUẤT (%)</th>
+                                <th class="pe-5 text-end min-w-100px">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 1</span></td>
+                                <td class="fw-semibold text-gray-800">Đến 5 triệu VNĐ</td>
+                                <td class="text-center fw-bold">5%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 2</span></td>
+                                <td class="fw-semibold text-gray-800">Trên 5 triệu VNĐ đến 10 triệu VNĐ</td>
+                                <td class="text-center fw-bold">10%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 3</span></td>
+                                <td class="fw-semibold text-gray-800">Trên 10 triệu VNĐ đến 18 triệu VNĐ</td>
+                                <td class="text-center fw-bold">15%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 4</span></td>
+                                <td class="fw-semibold text-gray-800">Trên 18 triệu VNĐ đến 32 triệu VNĐ</td>
+                                <td class="text-center fw-bold">20%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 5</span></td>
+                                <td class="fw-semibold text-gray-800">Trên 32 triệu VNĐ đến 52 triệu VNĐ</td>
+                                <td class="text-center fw-bold">25%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 6</span></td>
+                                <td class="fw-semibold text-gray-800">Trên 52 triệu VNĐ đến 80 triệu VNĐ</td>
+                                <td class="text-center fw-bold">30%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5 text-center"><span class="badge badge-light border text-gray-700">Bậc 7</span></td>
+                                <td class="fw-semibold text-gray-800">Trên 80 triệu VNĐ</td>
+                                <td class="text-center fw-bold">35%</td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_tax_deduction_detail">Chỉnh sửa</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end::Tab 2-->
+
+            <!--begin::Tab 3-->
+            <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
+                <div class="d-flex flex-stack mb-5 mt-2">
+                    <h4 class="fw-bold fs-4 m-0 text-gray-900">Danh sách Phụ cấp & Phúc lợi</h4>
+                    <button class="btn btn-sm btn-light-primary"><i class="ki-duotone ki-plus fs-3"></i>Thêm phụ cấp</button>
+                </div>
+                <div class="table-responsive border rounded mb-5">
+                    <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4 m-0">
+                        <thead class="bg-light">
+                            <tr class="fw-bold text-muted fs-7 text-uppercase gs-0">
+                                <th class="ps-5 min-w-200px">TÊN PHỤ CẤP</th>
+                                <th class="min-w-100px text-center">LOẠI</th>
+                                <th class="min-w-125px text-end">MỨC CỐ ĐỊNH</th>
+                                <th class="min-w-100px text-center">TÍNH THUẾ</th>
+                                <th class="min-w-100px text-center">TÍNH BHXH</th>
+                                <th class="pe-5 text-end min-w-100px">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ps-5">
+                                    <div class="fw-bold text-gray-800 fs-6">Phụ cấp ăn trưa</div>
+                                    <div class="text-muted fs-7">Hỗ trợ cơm trưa hàng ngày</div>
+                                </td>
+                                <td class="text-center"><span class="badge badge-light-primary border text-primary">Cố định</span></td>
+                                <td class="text-end fw-bold">730.000 VNĐ</td>
+                                <td class="text-center"><i class="ki-duotone ki-cross-circle fs-2 text-danger"><span class="path1"></span><span class="path2"></span></i></td>
+                                <td class="text-center"><i class="ki-duotone ki-cross-circle fs-2 text-danger"><span class="path1"></span><span class="path2"></span></i></td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5">
+                                    <div class="fw-bold text-gray-800 fs-6">Phụ cấp xăng xe</div>
+                                    <div class="text-muted fs-7">Hỗ trợ đi lại</div>
+                                </td>
+                                <td class="text-center"><span class="badge badge-light-primary border text-primary">Cố định</span></td>
+                                <td class="text-end fw-bold">500.000 VNĐ</td>
+                                <td class="text-center"><i class="ki-duotone ki-check-circle fs-2 text-success"><span class="path1"></span><span class="path2"></span></i></td>
+                                <td class="text-center"><i class="ki-duotone ki-cross-circle fs-2 text-danger"><span class="path1"></span><span class="path2"></span></i></td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7">Chỉnh sửa</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-5">
+                                    <div class="fw-bold text-gray-800 fs-6">Phụ cấp điện thoại</div>
+                                    <div class="text-muted fs-7">Giao tiếp công việc</div>
+                                </td>
+                                <td class="text-center"><span class="badge badge-light-primary border text-primary">Cố định</span></td>
+                                <td class="text-end fw-bold">300.000 VNĐ</td>
+                                <td class="text-center"><i class="ki-duotone ki-check-circle fs-2 text-success"><span class="path1"></span><span class="path2"></span></i></td>
+                                <td class="text-center"><i class="ki-duotone ki-cross-circle fs-2 text-danger"><span class="path1"></span><span class="path2"></span></i></td>
+                                <td class="pe-5 text-end"><a href="javascript:;" class="text-primary fw-semibold fs-7">Chỉnh sửa</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end::Tab 3-->
+        </div>
+    </div>
+</div>
+<!--end::Tabs Card-->
+
+<!--begin::Info boxes-->
+<div class="row g-5">
+    <div class="col-md-4">
+        <div class="alert bg-light-primary border border-primary border-opacity-20 d-flex align-items-center p-5 mb-0 h-100">
+            <i class="ki-duotone ki-document fs-2hx text-primary me-4">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+            <div class="d-flex flex-column">
+                <h4 class="mb-1 text-gray-900 fw-bold fs-5">Cơ sở pháp lý</h4>
+                <span class="text-muted fs-7">Theo Nghị định 24/2023/NĐ-CP và Nghị quyết về biểu thuế TNCN mới nhất.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="alert bg-light-warning border border-warning border-opacity-20 d-flex align-items-center p-5 mb-0 h-100">
+            <i class="ki-duotone ki-warning-2 fs-2hx text-warning me-4">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+            </i>
+            <div class="d-flex flex-column">
+                <h4 class="mb-1 text-warning fw-bold fs-5">Lưu ý quyết toán</h4>
+                <span class="text-muted fs-7">Việc thay đổi tham số sẽ ảnh hưởng đến các phiếu lương chưa chốt của kỳ hiện tại.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="alert bg-light-info border border-info border-opacity-20 d-flex align-items-center p-5 mb-0 h-100">
+            <i class="ki-duotone ki-question-2 fs-2hx text-info me-4">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+            </i>
+            <div class="d-flex flex-column">
+                <h4 class="mb-1 text-info fw-bold fs-5">Hỗ trợ nghiệp vụ</h4>
+                <span class="text-muted fs-7">Liên hệ bộ phận Kế toán - Thuế để được hướng dẫn về các định mức vùng mới nhất.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Info boxes-->
+
+<TaxDeductionDetailDrawer />

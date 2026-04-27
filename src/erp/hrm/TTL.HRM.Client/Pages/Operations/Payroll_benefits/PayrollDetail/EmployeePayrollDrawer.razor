@@ -176,7 +176,7 @@
                         </div>
 
                         <!-- TỔNG THU NHẬP BOX -->
-                        <div class="card bg-primary shadow-sm rounded-4 mt-8">
+                        <div class="card bg-success shadow-sm rounded-4 mt-8 mb-8">
                             <div class="card-body p-6">
                                 <div class="d-flex flex-stack">
                                     <!--begin::Wrapper-->
@@ -190,7 +190,7 @@
                                     <!--end::Wrapper-->
                                     
                                     <!--begin::Icon-->
-                                    <div class="symbol symbol-60px symbol-circle symbol-light-primary bg-white bg-opacity-10 d-none d-sm-flex">
+                                    <div class="symbol symbol-60px symbol-circle symbol-light-success bg-white bg-opacity-10 d-none d-sm-flex">
                                         <span class="symbol-label">
                                             <i class="ki-outline ki-wallet fs-2x text-white"></i>
                                         </span>
@@ -200,12 +200,72 @@
                             </div>
                         </div>
 
+                        <!-- CÁC KHOẢN KHẤU TRỪ -->
+                        <div class="d-flex flex-stack mb-6">
+                            <h4 class="fw-bold text-gray-800 m-0 text-uppercase fs-7">CÁC KHOẢN KHẤU TRỪ</h4>
+                        </div>
+
+                        <!-- Bảo hiểm -->
+                        <div class="border border-gray-300 border-dashed rounded p-5 mb-5">
+                            <div class="d-flex flex-stack mb-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px symbol-light-warning me-4">
+                                        <span class="symbol-label">
+                                            <i class="ki-outline ki-shield-tick fs-2 text-warning"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <span class="fw-bold text-gray-800 fs-5">Bảo hiểm bắt buộc</span>
+                                        <span class="text-gray-500 fw-semibold fs-8">BHXH (8%), BHYT (1.5%), BHTN (1%)</span>
+                                    </div>
+                                </div>
+                                <span class="fw-bold text-danger fs-4">-@((PayrollDetail.Deduction * 0.8m).ToString("N0")) đ</span>
+                            </div>
+                        </div>
+
+                        <!-- Thuế TNCN -->
+                        <div class="border border-gray-300 border-dashed rounded p-5 mb-8">
+                            <div class="d-flex flex-stack mb-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px symbol-light-danger me-4">
+                                        <span class="symbol-label">
+                                            <i class="ki-outline ki-document fs-2 text-danger"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <span class="fw-bold text-gray-800 fs-5">Thuế thu nhập cá nhân</span>
+                                        <span class="text-gray-500 fw-semibold fs-8">Tạm tính theo biểu thuế lũy tiến</span>
+                                    </div>
+                                </div>
+                                <span class="fw-bold text-danger fs-4">-@((PayrollDetail.Deduction * 0.2m).ToString("N0")) đ</span>
+                            </div>
+                        </div>
+
+                        <!-- TỔNG KHẤU TRỪ BOX -->
+                        <div class="card bg-warning shadow-sm rounded-4 mb-8">
+                            <div class="card-body p-6">
+                                <div class="d-flex flex-stack">
+                                    <div class="d-flex flex-column me-3">
+                                        <div class="text-white opacity-75 fw-semibold fs-7 mb-1 text-uppercase">TỔNG KHẤU TRỪ</div>
+                                        <div class="text-white fw-bold fs-2x mb-1">
+                                            @PayrollDetail.Deduction.ToString("N0") <span class="fs-4 opacity-75">đ</span>
+                                        </div>
+                                    </div>
+                                    <div class="symbol symbol-60px symbol-circle symbol-light-warning bg-white bg-opacity-10 d-none d-sm-flex">
+                                        <span class="symbol-label">
+                                            <i class="ki-outline ki-minus-folder fs-2x text-white"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- NET SALARY BOX -->
                         <div class="card bg-danger shadow-sm rounded-4 mt-8">
                             <div class="card-body p-6">
                                 <div class="d-flex flex-stack">
                                     <div class="d-flex flex-column me-3">
-                                        <div class="text-white opacity-75 fw-semibold fs-7 mb-1 text-uppercase">Thực lĩnh cuối cùng</div>
+                                        <div class="text-white opacity-75 fw-semibold fs-7 mb-1 text-uppercase">Thực lĩnh cuối cùng (NET)</div>
                                         <div class="text-white fw-bold fs-2x mb-1">
                                             @PayrollDetail.NetSalary.ToString("N0") <span class="fs-4 opacity-75">đ</span>
                                         </div>
@@ -349,7 +409,7 @@
                             <div class="card-body p-6">
                                 <div class="d-flex flex-stack">
                                     <div class="d-flex flex-column me-3">
-                                        <div class="text-white opacity-75 fw-semibold fs-7 mb-1 text-uppercase">Thực lĩnh cuối cùng</div>
+                                        <div class="text-white opacity-75 fw-semibold fs-7 mb-1 text-uppercase">Thực lĩnh cuối cùng (NET)</div>
                                         <div class="text-white fw-bold fs-2x mb-1">
                                             @PayrollDetail.NetSalary.ToString("N0") <span class="fs-4 opacity-75">đ</span>
                                         </div>
