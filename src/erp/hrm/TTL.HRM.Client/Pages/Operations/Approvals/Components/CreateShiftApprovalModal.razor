@@ -1,0 +1,105 @@
+<div class="modal fade" id="kt_modal_create_shift_request" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <div class="modal-content">
+            <!--begin::Header-->
+            <div class="modal-header bg-primary text-white" id="kt_modal_create_shift_request_header">
+                <h2 class="fw-bold text-white mb-0">Gửi yêu cầu đổi ca</h2>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-2x text-white"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+            <!--end::Header-->
+
+            <!--begin::Body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <form id="kt_modal_create_shift_request_form" class="form">
+                    
+                    <!-- Nhân viên -->
+                    <div class="d-flex flex-column mb-7 fv-row">
+                        <label class="required fs-6 fw-semibold mb-2">Nhân viên được yêu cầu ID</label>
+                        <select class="form-select form-select-solid" data-control="select2" data-close-on-select="false" data-placeholder="Chọn nhân viên..." data-allow-clear="true" multiple="multiple">
+                            <option value="1" selected>Nguyễn Văn An</option>
+                            <option value="2">Lê Thị Bình</option>
+                            <option value="3">Phạm Văn Cường</option>
+                        </select>
+                        <div class="text-primary fs-8 mt-2 fw-semibold"><i class="ki-duotone ki-plus-square text-primary fs-6 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> Chọn thêm/chọn tất cả</div>
+                    </div>
+
+                    <!-- Thời gian -->
+                    <div class="d-flex flex-column flex-md-row gap-5 mb-7">
+                        <div class="flex-row-fluid">
+                            <label class="required fs-6 fw-semibold mb-2">Từ ngày</label>
+                            <div class="position-relative d-flex align-items-center">
+                                <i class="ki-duotone ki-calendar-8 fs-2 position-absolute mx-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                                <input class="form-control form-control-solid ps-12" type="date" value="2023-04-27" />
+                            </div>
+                        </div>
+                        <div class="flex-row-fluid">
+                            <label class="fs-6 fw-semibold mb-2">Đến ngày (Tùy chọn)</label>
+                            <div class="position-relative d-flex align-items-center">
+                                <i class="ki-duotone ki-calendar-8 fs-2 position-absolute mx-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                                <input class="form-control form-control-solid ps-12" type="date" />
+                            </div>
+                        </div>
+                        <div class="w-md-100px d-flex align-items-end pb-3">
+                            <label class="form-check form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1" />
+                                <span class="form-check-label text-gray-700 fw-bold text-nowrap">Vô hạn</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Chọn Ca Mới -->
+                    <div class="d-flex flex-column mb-7 fv-row">
+                        <label class="required fs-6 fw-semibold mb-2">Chọn ca mới</label>
+                        <select class="form-select form-select-solid">
+                            <option value="">-- Chọn ca dự kiến --</option>
+                            <option value="HC">Ca Hành chính (08:00 - 17:00)</option>
+                            <option value="S">Ca Sáng (06:00 - 14:00)</option>
+                            <option value="C">Ca Chiều (14:00 - 22:00)</option>
+                            <option value="D">Ca Đêm (22:00 - 06:00)</option>
+                        </select>
+                    </div>
+
+                    <!-- Lý do -->
+                    <div class="d-flex flex-column mb-7 fv-row">
+                        <label class="required fs-6 fw-semibold mb-2">Lý do</label>
+                        <textarea class="form-control form-control-solid" rows="3" placeholder="Nhập lý do đổi ca..."></textarea>
+                    </div>
+
+                    <!-- Tự động phê duyệt -->
+                    <div class="d-flex flex-stack mb-7">
+                        <div>
+                            <label class="fs-6 fw-semibold form-label text-gray-900 mb-0">Tự động phê duyệt</label>
+                            <div class="fs-8 fw-semibold text-muted">Đơn sẽ có hiệu lực ngay lập tức sau khi lưu</div>
+                        </div>
+                        <label class="form-check form-switch form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="1" />
+                        </label>
+                    </div>
+
+                    <!-- Chỉ định người duyệt -->
+                    <div class="d-flex flex-column mb-7 fv-row">
+                        <label class="fs-6 fw-semibold mb-2">Chỉ định người duyệt (Tùy chọn)</label>
+                        <select class="form-select form-select-solid">
+                            <option value="">-- Mặc định (Quản lý trực tiếp) --</option>
+                            <option value="1">Giám đốc nhân sự</option>
+                            <option value="2">Trưởng phòng kỹ thuật</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <!--end::Body-->
+
+            <!--begin::Footer-->
+            <div class="modal-footer flex-center">
+                <button type="reset" class="btn btn-light fw-bold me-3" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary fw-bold" data-bs-dismiss="modal">
+                    Gửi yêu cầu
+                </button>
+            </div>
+            <!--end::Footer-->
+        </div>
+    </div>
+</div>

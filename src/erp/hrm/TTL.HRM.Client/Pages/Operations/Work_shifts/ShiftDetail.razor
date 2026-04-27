@@ -1,0 +1,182 @@
+@page "/hrm/attendance/shifts/detail/{Code}"
+@using TTL.Shared.Models.HRM.Operations
+@using TTL.HRM.Client.Pages.Operations.Work_shifts
+
+<SectionContent SectionName="PageTitle">Chi tiết ca làm việc</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Chấm công</li>
+    <li class="breadcrumb-item text-muted">
+        <a href="/hrm/attendance/shifts" class="text-muted text-hover-primary">Danh mục ca</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">Chi tiết ca</li>
+</SectionContent>
+
+@if (Shift == null)
+{
+    <div class="d-flex justify-content-center p-10">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else
+{
+    <div class="d-flex flex-column flex-xl-row gap-7 gap-xl-10">
+        <!-- Sidebar -->
+        <div class="flex-column flex-lg-row-auto w-100 w-xl-350px">
+            <div class="card mb-5 mb-xl-8">
+                <div class="card-body pt-15">
+                    <div class="d-flex flex-center flex-column mb-5">
+                        <div class="symbol symbol-100px symbol-circle mb-7">
+                            <div class="symbol-label fs-1 bg-light-@Shift.Color text-@Shift.Color">@Shift.Name.Substring(0, 1)</div>
+                        </div>
+                        <span class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">@Shift.Name</span>
+                        <div class="fs-5 fw-semibold text-muted mb-6">Mã ca: @Shift.ShiftCode</div>
+                        
+                        <div class="d-flex flex-wrap flex-center gap-2">
+                            <span class="badge badge-light-@(Shift.IsFlexible ? "info" : "success") fw-bold fs-7 px-3 py-2">@(Shift.IsFlexible ? "Ca Linh Hoạt" : "Ca Cố Định")</span>
+                            @if (Shift.IsDefault)
+                            {
+                                <span class="badge badge-light-danger fw-bold fs-7 px-3 py-2">Ca Mặc Định</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-stack fs-4 py-3">
+                        <div class="fw-bold text-gray-800">Thông tin chung</div>
+                    </div>
+                    <div class="separator separator-dashed my-3"></div>
+
+                    <div class="pb-5 fs-6">
+                        <div class="fw-bold mt-5">Giờ làm việc</div>
+                        <div class="text-gray-600">@Shift.StartTime - @Shift.EndTime</div>
+
+                        <div class="fw-bold mt-5">Ngày áp dụng</div>
+                        <div class="text-gray-600">@GetDaysText(Shift.AppliedDays)</div>
+
+                        <div class="fw-bold mt-5">Hiệu lực từ</div>
+                        <div class="text-gray-600">@(Shift.ValidFrom?.ToString("dd/MM/yyyy") ?? "Không giới hạn")</div>
+
+                        <div class="fw-bold mt-5">Hiệu lực đến</div>
+                        <div class="text-gray-600">@(Shift.ValidTo?.ToString("dd/MM/yyyy") ?? "Không giới hạn")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-lg-row-fluid">
+            <!-- Tabs -->
+            <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_shift_general">Cấu hình ca</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_shift_employees">Nhân sự áp dụng</a>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="myTabContent">
+                <!-- Cấu hình ca Tab -->
+                <div class="tab-pane fade show active" id="kt_shift_general" role="tabpanel">
+                    <div class="card mb-5 mb-xl-10">
+                        <div class="card-header cursor-pointer">
+                            <div class="card-title m-0">
+                                <h3 class="fw-bold m-0">Luật & Cấu hình ca</h3>
+                            </div>
+                            <div class="card-toolbar">
+                                <a href="/hrm/attendance/shifts" class="btn btn-sm btn-light-primary fw-bold">Sửa cấu hình</a>
+                            </div>
+                        </div>
+                        <div class="card-body p-9">
+                            <div class="row mb-7">
+                                <label class="col-lg-4 fw-semibold text-muted">Thời gian nghỉ giữa ca</label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800">12:00 - 13:00 (60 phút)</span>
+                                </div>
+                            </div>
+                            <div class="row mb-7">
+                                <label class="col-lg-4 fw-semibold text-muted">Luật đi trễ</label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800">Cho phép trễ 15 phút. Sau 15 phút tính nửa ngày nghỉ.</span>
+                                </div>
+                            </div>
+                            <div class="row mb-7">
+                                <label class="col-lg-4 fw-semibold text-muted">Luật về sớm</label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800">Không cho phép về sớm quá 10 phút.</span>
+                                </div>
+                            </div>
+                            <div class="row mb-7">
+                                <label class="col-lg-4 fw-semibold text-muted">Xác thực chấm công</label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800">GPS, FaceID</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nhân sự áp dụng Tab -->
+                <div class="tab-pane fade" id="kt_shift_employees" role="tabpanel">
+                    <div class="card mb-5 mb-xl-10">
+                        <div class="card-header cursor-pointer">
+                            <div class="card-title m-0">
+                                <h3 class="fw-bold m-0">Danh sách nhân sự đang áp dụng (@AssignedEmployees.Count)</h3>
+                            </div>
+                            <div class="card-toolbar">
+                                <a href="/hrm/attendance/shifts/allocate/@Shift.Code" class="btn btn-sm btn-primary fw-bold">Thêm nhân sự</a>
+                            </div>
+                        </div>
+                        <div class="card-body py-3">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                    <thead>
+                                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="min-w-200px">Nhân viên</th>
+                                            <th class="min-w-150px">Chức vụ</th>
+                                            <th class="min-w-150px">Phòng ban</th>
+                                            <th class="text-end min-w-100px">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                        @foreach(var emp in AssignedEmployees)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="symbol symbol-circle symbol-40px overflow-hidden me-3">
+                                                            <div class="symbol-label fs-3 bg-light-@emp.AvatarColor text-@emp.AvatarColor">
+                                                                @emp.EmployeeName.Substring(0, 1)
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <a href="#" class="text-gray-800 text-hover-primary mb-1">@emp.EmployeeName</a>
+                                                            <span>@emp.EmployeeCode</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>@emp.Position</td>
+                                                <td>@emp.Department</td>
+                                                <td class="text-end">
+                                                    <button class="btn btn-icon btn-light-danger btn-sm">
+                                                        <i class="ki-outline ki-trash fs-5"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

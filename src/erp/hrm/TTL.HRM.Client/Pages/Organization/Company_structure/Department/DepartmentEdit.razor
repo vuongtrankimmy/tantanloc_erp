@@ -1,0 +1,91 @@
+@page "/hrm/department/edit/{Code}"
+@using TTL.Shared.Models.HRM.Organization
+
+<SectionContent SectionName="PageTitle">Sửa phòng ban</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Tổ chức & Nhân sự</li>
+    <li class="breadcrumb-item text-muted">Cấu trúc công ty</li>
+    <li class="breadcrumb-item text-muted">
+        <a href="/hrm/department" class="text-muted text-hover-primary">Phòng ban</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">Sửa</li>
+</SectionContent>
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+        <div class="card-title m-0">
+            <h3 class="fw-bold m-0">Sửa thông tin phòng ban</h3>
+        </div>
+    </div>
+    <div id="kt_account_settings_profile_details" class="collapse show">
+        <form id="kt_account_profile_details_form" class="form">
+            <div class="card-body border-top p-9">
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Mã phòng ban</label>
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" class="form-control form-control-lg form-control-solid" value="@Code" readonly />
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Tên phòng ban</label>
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" name="name" class="form-control form-control-lg form-control-solid" placeholder="Nhập tên phòng ban" value="Phòng ban @Code" />
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                        <span class="required">Quản lý</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Người phụ trách chính của phòng"></i>
+                    </label>
+                    <div class="col-lg-8 fv-row">
+                        <select name="manager" class="form-select form-select-solid form-select-lg fw-semibold">
+                            <option value="">Chọn quản lý...</option>
+                            <option value="1" selected>Nguyễn Văn A</option>
+                            <option value="2">Trần Thị B</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Định biên nhân sự tối đa</label>
+                    <div class="col-lg-8 fv-row">
+                        <input type="number" name="headcount" class="form-control form-control-lg form-control-solid" placeholder="Số lượng" value="20" />
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Trạng thái</label>
+                    <div class="col-lg-8 fv-row">
+                        <div class="d-flex align-items-center mt-3">
+                            <label class="form-check form-check-custom form-check-inline form-check-solid me-5">
+                                <input class="form-check-input" name="status" type="radio" value="1" checked />
+                                <span class="fw-semibold ps-2 fs-6">Hoạt động</span>
+                            </label>
+                            <label class="form-check form-check-custom form-check-inline form-check-solid">
+                                <input class="form-check-input" name="status" type="radio" value="0" />
+                                <span class="fw-semibold ps-2 fs-6">Tạm ngưng</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Mô tả chi tiết</label>
+                    <div class="col-lg-8 fv-row">
+                        <textarea class="form-control form-control-lg form-control-solid" rows="4">Chức năng quản lý điều hành hoạt động của phòng...</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <a href="/hrm/department" class="btn btn-light btn-active-light-primary me-2">Hủy</a>
+                <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Lưu thay đổi</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Code { get; set; } = default!;
+}

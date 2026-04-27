@@ -1,4 +1,4 @@
-﻿<div class="aside-secondary d-flex flex-row-fluid">
+<div class="aside-secondary d-flex flex-row-fluid">
     <!--begin::Workspace-->
     <div class="aside-workspace my-5 p-5" id="kt_aside_wordspace">
         <div class="d-flex h-100 flex-column">
@@ -40,24 +40,24 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/department">
+                                            <NavLink class="menu-link" href="hrm/department" Match="NavLinkMatch.Prefix">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
                                                 <span class="menu-title">Phòng ban</span>
-                                            </a>
+                                            </NavLink>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/position">
+                                            <NavLink class="menu-link" href="hrm/position" Match="NavLinkMatch.Prefix">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
                                                 <span class="menu-title">Chức vụ</span>
-                                            </a>
+                                            </NavLink>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
@@ -95,7 +95,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/contact">
+                                            <a class="menu-link" href="hrm/contract">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
@@ -140,12 +140,12 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/benifit">
+                                            <NavLink class="menu-link" href="hrm/benefit" Match="NavLinkMatch.Prefix">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Chế độ & phúc lợi</span>
-                                            </a>
+                                                <span class="menu-title">Phụ cấp & Phúc lợi</span>
+                                            </NavLink>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
@@ -194,7 +194,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/shift">
+                                            <a class="menu-link" href="hrm/attendance/shifts">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
@@ -206,12 +206,12 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/shift/asignee">
+                                            <NavLink class="menu-link" href="hrm/attendance/shifts/schedule">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
                                                 <span class="menu-title">Sơ đồ phân ca</span>
-                                            </a>
+                                            </NavLink>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
@@ -227,6 +227,18 @@
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item">
+                                            <!--begin:Menu link-->
+                                            <NavLink class="menu-link" href="hrm/approvals/shifts" Match="NavLinkMatch.Prefix">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">Phê duyệt đổi ca</span>
+                                            </NavLink>
+                                            <!--end:Menu link-->
+                                        </div>
+                                        <!--end:Menu item-->
                                     </div>
                                     <!--end:Menu sub-->
                                 </div>
@@ -234,7 +246,7 @@
                                 <!--begin:Menu item-->
                                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                     <!--begin:Menu link-->
-                                    <a class="menu-link" href="hrm/absense">
+                                    <span class="menu-link">
                                         <span class="menu-icon">
                                             <i class="ki-duotone ki-address-book fs-2">
                                                 <span class="path1"></span>
@@ -243,7 +255,49 @@
                                             </i>
                                         </span>
                                         <span class="menu-title">Nghỉ phép & vắng mặt</span>
-                                    </a>
+                                        <span class="menu-arrow"></span>
+                                    </span>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu sub-->
+                                    <div class="menu-sub menu-sub-accordion">
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item">
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link" href="leave/requests">
+                                                <span class="menu-bullet">
+                                                    <span class="bullet bullet-dot"></span>
+                                                </span>
+                                                <span class="menu-title">Đơn xin nghỉ</span>
+                                            </a>
+                                            <!--end:Menu link-->
+                                        </div>
+                                        <!--end:Menu item-->
+                                    </div>
+                                    <!--end:Menu sub-->
+                                </div>
+                                <!--end:Menu item-->
+                                <!--begin:Menu item-->
+                                <div class="menu-item pt-5">
+                                    <!--begin:Menu content-->
+                                    <div class="menu-content">
+                                        <span class="menu-heading fw-bold text-uppercase fs-7">QUẢN LÝ KHO</span>
+                                    </div>
+                                    <!--end:Menu content-->
+                                </div>
+                                <!--end:Menu item-->
+                                <!--begin:Menu item-->
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <NavLink class="menu-link" href="wms/suppliers" Match="NavLinkMatch.Prefix">
+                                        <span class="menu-icon">
+                                            <i class="ki-duotone ki-delivery fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                                <span class="path3"></span>
+                                            </i>
+                                        </span>
+                                        <span class="menu-title">Nhà cung cấp</span>
+                                    </NavLink>
                                     <!--end:Menu link-->
                                 </div>
                                 <!--end:Menu item-->
@@ -312,24 +366,24 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/setting/payroll">
+                                            <NavLink class="menu-link" href="hrm/setting/payroll" Match="NavLinkMatch.Prefix">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
-                                                <span class="menu-title">Cấu hình bàng lương</span>
-                                            </a>
+                                                <span class="menu-title">Cấu hình tính lương</span>
+                                            </NavLink>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="hrm/setting">
+                                            <NavLink class="menu-link" href="hrm/setting/general" Match="NavLinkMatch.Prefix">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>
                                                 <span class="menu-title">Cài đặt chung</span>
-                                            </a>
+                                            </NavLink>
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
@@ -338,17 +392,14 @@
                                 </div>
                                 <!--end:Menu item-->
                                 <!--begin:Menu item-->
-                                <div class="menu-item pt-5">
-                                    <!--begin:Menu content-->
+                                <!-- <div class="menu-item pt-5">
                                     <div class="menu-content">
                                         <span class="menu-heading fw-bold text-uppercase fs-7">HỖ TRỢ & TIỆN ÍCH</span>
                                     </div>
-                                    <!--end:Menu content-->
-                                </div>
+                                </div> -->
                                 <!--end:Menu item-->
                                 <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item">
-                                    <!--begin:Menu link-->
+                                <!-- <div data-kt-menu-trigger="click" class="menu-item">
                                     <a class="menu-link" href="hrm/support/tool/hr">
                                         <span class="menu-icon">
                                             <i class="ki-duotone ki-address-book fs-2">
@@ -359,8 +410,6 @@
                                         </span>
                                         <span class="menu-title">Công cụ HR</span>
                                     </a>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu link-->
                                     <a class="menu-link" href="hrm/support/guide">
                                         <span class="menu-icon">
                                             <i class="ki-duotone ki-address-book fs-2">
@@ -371,8 +420,7 @@
                                         </span>
                                         <span class="menu-title">Hướng dẫn sử dụng</span>
                                     </a>
-                                    <!--end:Menu link-->
-                                </div>
+                                </div> -->
                                 <!--end:Menu item-->
                             </div>
                         </div>
@@ -396,7 +444,7 @@
                                 <!--begin:Menu item-->
                                 <div class="menu-item">
                                     <!--begin:Menu link-->
-                                    <a class="menu-link" href="#">
+                                    <a class="menu-link" href="wms/suppliers">
                                         <span class="menu-icon">
                                             <i class="ki-duotone ki-address-book fs-2">
                                                 <span class="path1"></span>

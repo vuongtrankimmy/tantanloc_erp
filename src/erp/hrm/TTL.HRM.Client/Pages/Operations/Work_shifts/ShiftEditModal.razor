@@ -1,0 +1,107 @@
+@using TTL.Shared.Models.HRM.Operations
+
+<div class="modal fade" id="kt_modal_add_shift" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <div class="modal-content">
+            <div class="modal-header" id="kt_modal_add_shift_header">
+                <h2 class="fw-bold">@((string.IsNullOrEmpty(Model.Code) ? "Thêm ca mới" : "Cập nhật ca làm việc"))</h2>
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
+                    <i class="ki-outline ki-cross fs-1"></i>
+                </div>
+            </div>
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <form id="kt_modal_add_shift_form" class="form" action="#">
+                    <!-- Tên ca làm việc -->
+                    <div class="d-flex flex-column mb-7 fv-row">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span class="required">Tên ca làm việc</span>
+                        </label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Ví dụ: Ca Hành Chính (Thứ 2 - Thứ 6)" @bind="Model.Name" />
+                    </div>
+
+                    <!-- Row: Mã ca & Màu sắc -->
+                    <div class="row g-9 mb-7">
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Mã ca</label>
+                            <input class="form-control form-control-solid" placeholder="HC-T2-T6" @bind="Model.ShiftCode" />
+                        </div>
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Màu sắc hiển thị</label>
+                            <div class="d-flex flex-wrap gap-2">
+                                @foreach(var color in Colors)
+                                {
+                                    <div class="form-check form-check-custom form-check-solid form-check-sm">
+                                        <input class="form-check-input w-25px h-25px bg-@color" type="radio" value="@color" name="color_selection" 
+                                               checked="@(Model.Color == color)" 
+                                               @onchange="@(() => Model.Color = color)"
+                                               style="border-color: var(--bs-@color);" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ca linh động Switch -->
+                    <div class="d-flex flex-stack mb-7">
+                        <div class="me-5">
+                            <label class="fs-6 fw-semibold form-label">Ca linh động</label>
+                            <div class="fs-7 fw-semibold text-muted">Tự động phân chia thời gian làm việc linh hoạt</div>
+                        </div>
+                        <label class="form-check form-switch form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" @bind="Model.IsFlexible" />
+                        </label>
+                    </div>
+
+                    <!-- Row: Thời gian bắt đầu & kết thúc -->
+                    <div class="row g-9 mb-7">
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Thời gian bắt đầu</label>
+                            <input type="time" class="form-control form-control-solid" value="@Model.StartTime" @onchange="@(e => Model.StartTime = e.Value?.ToString() ?? string.Empty)" />
+                        </div>
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Thời gian kết thúc</label>
+                            <input type="time" class="form-control form-control-solid" value="@Model.EndTime" @onchange="@(e => Model.EndTime = e.Value?.ToString() ?? string.Empty)" />
+                        </div>
+                    </div>
+
+                    <!-- Row: Ngày áp dụng từ & đến -->
+                    <div class="row g-9 mb-7">
+                        <div class="col-md-6 fv-row">
+                            <label class="fs-6 fw-semibold mb-2">Ngày áp dụng từ</label>
+                            <input type="date" class="form-control form-control-solid" value="@Model.ValidFrom?.ToString("yyyy-MM-dd")" @onchange="@(e => { if (DateTime.TryParse(e.Value?.ToString(), out var dt)) Model.ValidFrom = dt; else Model.ValidFrom = null; })" />
+                        </div>
+                        <div class="col-md-6 fv-row">
+                            <label class="fs-6 fw-semibold mb-2">Đến ngày</label>
+                            <input type="date" class="form-control form-control-solid" value="@Model.ValidTo?.ToString("yyyy-MM-dd")" @onchange="@(e => { if (DateTime.TryParse(e.Value?.ToString(), out var dt)) Model.ValidTo = dt; else Model.ValidTo = null; })" />
+                        </div>
+                    </div>
+
+                    <!-- Thời gian áp dụng mặc định -->
+                    <div class="d-flex flex-column mb-7 fv-row">
+                        <label class="fs-6 fw-semibold mb-2">Thời gian áp dụng mặc định</label>
+                        <div class="d-flex flex-wrap gap-5">
+                            @foreach(var day in DaysOfWeek)
+                            {
+                                <div class="form-check form-check-custom form-check-solid form-check-sm">
+                                    <input class="form-check-input" type="checkbox" 
+                                           checked="@Model.AppliedDays.Contains(day.Value)"
+                                           @onchange="@((e) => ToggleDay(day.Value, e.Value))" />
+                                    <label class="form-check-label fw-bold">@day.Key</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    
+                    <!-- Actions -->
+                    <div class="text-center pt-15">
+                        <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="Save">
+                            <span class="indicator-label">Lưu thông tin</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

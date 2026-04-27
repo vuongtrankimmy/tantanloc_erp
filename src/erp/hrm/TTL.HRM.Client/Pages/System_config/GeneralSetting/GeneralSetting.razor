@@ -1,0 +1,1326 @@
+@page "/hrm/setting/general"
+
+<SectionContent SectionName="PageTitle">Cài đặt chung</SectionContent>
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Quản trị hệ thống</li>
+    <li class="breadcrumb-item text-gray-900">Cài đặt chung</li>
+</SectionContent>
+
+<div class="d-flex flex-stack mb-5">
+    <div>
+        <h3 class="fw-bold fs-2 text-gray-900 mb-1">Cài đặt hệ thống</h3>
+        <span class="text-muted fs-6">Cấu hình chung toàn hệ thống HR</span>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-light border d-flex align-items-center text-gray-700">
+            <i class="ki-duotone ki-cross fs-3 me-2">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+            Hủy thay đổi
+        </button>
+        <button class="btn btn-sm btn-primary">Lưu cấu hình</button>
+    </div>
+</div>
+
+<div class="d-flex flex-column flex-lg-row">
+    <!-- Sidebar -->
+    <div class="flex-column flex-lg-row-auto w-100 w-lg-300px w-xl-350px mb-8 mb-lg-0 me-lg-9">
+        <div class="card card-flush">
+            <div class="card-body p-5">
+                <ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column mb-3 mb-md-0 fs-6">
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary active text-gray-800" data-bs-toggle="tab" href="#tab_company_info">
+                            <i class="ki-duotone ki-bank fs-2 me-3"><span class="path1"></span><span class="path2"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Thông tin công ty</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_language">
+                            <i class="ki-duotone ki-global fs-2 me-3"><span class="path1"></span><span class="path2"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Vùng & Ngôn ngữ</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_working_policy">
+                            <i class="ki-duotone ki-briefcase fs-2 me-3"><span class="path1"></span><span class="path2"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Chính sách làm việc</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_holiday">
+                            <i class="ki-duotone ki-calendar-tick fs-2 me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Ngày nghỉ lễ & Phép</span>
+                            </span>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_recruitment">
+                            <i class="ki-duotone ki-profile-user fs-2 me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Cấu hình tuyển dụng</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_training">
+                            <i class="ki-duotone ki-teacher fs-2 me-3"><span class="path1"></span><span class="path2"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Cấu hình đào tạo</span>
+                            </span>
+                        </a>
+                    </li> -->
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_payroll">
+                            <i class="ki-duotone ki-wallet fs-2 me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Cấu hình Lương & Thuế</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_notification">
+                            <i class="ki-duotone ki-notification-bing fs-2 me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Thông báo & Email</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_id_generation">
+                            <i class="ki-duotone ki-barcode fs-2 me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Cấu hình sinh mã định danh</span>
+                            </span>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item me-0 mb-md-2">
+                        <a class="nav-link btn btn-flex btn-active-light-primary text-gray-800" data-bs-toggle="tab" href="#tab_menu">
+                            <i class="ki-duotone ki-element-4 fs-2 me-3"><span class="path1"></span><span class="path2"></span></i>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-6 fw-bold">Cấu hình Menu & Điều hướng</span>
+                            </span>
+                        </a>
+                    </li> -->
+                </ul>
+
+                <div class="alert bg-light-primary border border-primary border-opacity-20 d-flex flex-column p-5 mt-5 mb-0 rounded-2">
+                    <h4 class="mb-1 text-primary fw-bold fs-6">Lưu ý bảo mật</h4>
+                    <span class="text-muted fs-7">Các thay đổi sẽ áp dụng ngay lập tức cho toàn bộ nhân viên. Vui lòng kiểm tra kỹ trước khi lưu.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="flex-lg-row-fluid">
+        <div class="card card-flush">
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <!-- Tab Thông tin doanh nghiệp -->
+                    <div class="tab-pane fade show active" id="tab_company_info" role="tabpanel">
+                        <h4 class="fw-bold fs-4 text-gray-900 mb-7">Thông tin doanh nghiệp</h4>
+                        
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Logo công ty</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <!-- Image input -->
+                                <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
+                                    <div class="image-input-wrapper w-125px h-125px bg-light-primary border-dashed" style="background-image: url('assets/media/logos/default-dark.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Thay đổi Logo">
+                                        <i class="ki-duotone ki-pencil fs-7"><span class="path1"></span><span class="path2"></span></i>
+                                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                                        <input type="hidden" name="avatar_remove" />
+                                    </label>
+                                </div>
+                                <div class="form-text mt-3">Định dạng file cho phép: png, jpg, jpeg. Kích thước tối đa: 2MB.</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Favicon (Biểu tượng trình duyệt)</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
+                                    <div class="image-input-wrapper w-75px h-75px bg-light-primary border-dashed" style="background-image: url('assets/media/logos/default-small.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Thay đổi Favicon">
+                                        <i class="ki-duotone ki-pencil fs-7"><span class="path1"></span><span class="path2"></span></i>
+                                        <input type="file" name="favicon" accept=".ico, .png" />
+                                        <input type="hidden" name="favicon_remove" />
+                                    </label>
+                                </div>
+                                <div class="form-text mt-3">Khuyên dùng tỷ lệ vuông 1:1, kích thước 32x32px.</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Tên công ty</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <input type="text" class="form-control form-control-solid bg-light-primary bg-opacity-10" value="CÔNG TY TNHH PHẦN MỀM TTL" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Mã số thuế</div>
+                            </div>
+                            <div class="col-xl-3">
+                                <input type="text" class="form-control form-control-solid" value="0312345678" />
+                            </div>
+                            <div class="col-xl-2">
+                                <div class="fs-6 fw-semibold mt-2 mb-3 text-end">Website</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <input type="text" class="form-control form-control-solid" value="https://ttl.com.vn" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Số điện thoại</div>
+                            </div>
+                            <div class="col-xl-3">
+                                <input type="text" class="form-control form-control-solid" value="028 3812 4568" />
+                            </div>
+                            <div class="col-xl-2">
+                                <div class="fs-6 fw-semibold mt-2 mb-3 text-end">Email đại diện</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <input type="text" class="form-control form-control-solid" value="contact@ttl.com.vn" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Địa chỉ trụ sở</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <input type="text" class="form-control form-control-solid" value="Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Vùng & Ngôn ngữ -->
+                    <div class="tab-pane fade" id="tab_language" role="tabpanel">
+                        <h4 class="fw-bold fs-4 text-gray-900 mb-7">Vùng & Ngôn ngữ</h4>
+                        
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Múi giờ hệ thống</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <select class="form-select form-select-solid" data-control="select2">
+                                    <option value="GMT+7" selected>(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Ngôn ngữ mặc định</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true">
+                                    <option value="vi" selected>Tiếng Việt</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-1">
+                                <div class="fs-6 fw-semibold mt-2 mb-3 text-end">Tiền tệ</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true">
+                                    <option value="VND" selected>Việt Nam Đồng (VND)</option>
+                                    <option value="USD">US Dollar (USD)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Định dạng ngày tháng</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="d-flex align-items-center mt-3">
+                                    <label class="form-check form-check-custom form-check-solid me-10">
+                                        <input class="form-check-input h-20px w-20px" type="radio" name="date_format" value="DD/MM/YYYY" checked="checked" />
+                                        <span class="form-check-label fw-semibold text-gray-800">DD/MM/YYYY</span>
+                                    </label>
+                                    <label class="form-check form-check-custom form-check-solid me-10">
+                                        <input class="form-check-input h-20px w-20px" type="radio" name="date_format" value="MM/DD/YYYY" />
+                                        <span class="form-check-label fw-semibold text-gray-800">MM/DD/YYYY</span>
+                                    </label>
+                                    <label class="form-check form-check-custom form-check-solid">
+                                        <input class="form-check-input h-20px w-20px" type="radio" name="date_format" value="YYYY-MM-DD" />
+                                        <span class="form-check-label fw-semibold text-gray-800">YYYY-MM-DD</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3">Định dạng số</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="fs-7 text-muted mb-2">Dấu phân cách hàng nghìn</div>
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true">
+                                    <option value="," selected>Dấu phẩy (,)</option>
+                                    <option value=".">Dấu chấm (.)</option>
+                                    <option value=" ">Khoảng trắng ( )</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-5">
+                                <div class="fs-7 text-muted mb-2">Dấu phân cách thập phân</div>
+                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true">
+                                    <option value=".">Dấu chấm (.)</option>
+                                    <option value="," selected>Dấu phẩy (,)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Preview section -->
+                        <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-6">
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <div class="fw-semibold">
+                                    <h4 class="text-primary fw-bold mb-4 fs-6">Xem trước định dạng</h4>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-body border rounded px-4 py-2 me-4">
+                                            <span class="text-muted fs-7 me-2">Ngày:</span>
+                                            <span class="text-gray-900 fw-bold fs-7">27/04/2026</span>
+                                        </div>
+                                        <div class="bg-body border rounded px-4 py-2 me-4">
+                                            <span class="text-muted fs-7 me-2">Tiền tệ:</span>
+                                            <span class="text-gray-900 fw-bold fs-7">25,000,000 VNĐ</span>
+                                        </div>
+                                        <div class="bg-body border rounded px-4 py-2">
+                                            <span class="text-muted fs-7 me-2">Múi giờ:</span>
+                                            <span class="text-gray-900 fw-bold fs-7">SE Asia Standard Time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other tabs -->
+                    <div class="tab-pane fade" id="tab_working_policy" role="tabpanel">
+                        <div class="d-flex flex-stack mb-7">
+                            <h4 class="fw-bold fs-4 text-gray-900 m-0">Chính sách thời gian làm việc</h4>
+                            <a href="javascript:;" class="text-primary fw-semibold fs-7">Danh sách chuẩn</a>
+                        </div>
+                        
+                        <!-- Giờ làm việc -->
+                        <div class="row mb-8 align-items-center">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold">Giờ làm việc</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group input-group-solid">
+                                    <span class="input-group-text bg-light-primary bg-opacity-10 border-0 text-muted fs-7">Bắt đầu</span>
+                                    <input class="form-control form-control-solid bg-light-primary bg-opacity-10" placeholder="Pick time" value="08:00 AM" />
+                                    <span class="input-group-text bg-light-primary bg-opacity-10 border-0"><i class="ki-duotone ki-time fs-2"><span class="path1"></span><span class="path2"></span></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 text-center">
+                                <span class="text-muted fs-6"><i class="ki-duotone ki-arrow-right fs-4"></i></span>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group input-group-solid">
+                                    <span class="input-group-text bg-light border-0 text-muted fs-7">Kết thúc</span>
+                                    <input class="form-control form-control-solid" placeholder="Pick time" value="05:30 PM" />
+                                    <span class="input-group-text bg-light border-0"><i class="ki-duotone ki-time fs-2"><span class="path1"></span><span class="path2"></span></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Giờ nghỉ trưa -->
+                        <div class="row mb-8 align-items-center">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold">Giờ nghỉ trưa</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group input-group-solid">
+                                    <span class="input-group-text bg-light border-0 text-muted fs-7">Bắt đầu</span>
+                                    <input class="form-control form-control-solid" placeholder="Pick time" value="12:00 PM" />
+                                    <span class="input-group-text bg-light border-0"><i class="ki-duotone ki-time fs-2"><span class="path1"></span><span class="path2"></span></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 text-center">
+                                <span class="text-muted fs-6"><i class="ki-duotone ki-arrow-right fs-4"></i></span>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group input-group-solid">
+                                    <span class="input-group-text bg-light border-0 text-muted fs-7">Kết thúc</span>
+                                    <input class="form-control form-control-solid" placeholder="Pick time" value="01:30 PM" />
+                                    <span class="input-group-text bg-light border-0"><i class="ki-duotone ki-time fs-2"><span class="path1"></span><span class="path2"></span></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thời gian đi trễ/về sớm -->
+                        <div class="row mb-8 align-items-center">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold">Thời gian đi trễ / về sớm tối đa</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="input-group input-group-solid w-150px">
+                                    <input type="number" class="form-control form-control-solid text-end" value="15" />
+                                    <span class="input-group-text bg-light border-0 text-muted">phút</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Các ngày làm việc -->
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-3">Các ngày làm việc</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary active px-4 py-2">
+                                        <input class="btn-check" type="checkbox" checked="checked" name="working_days" value="1"/>Thứ 2
+                                    </label>
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary active px-4 py-2">
+                                        <input class="btn-check" type="checkbox" checked="checked" name="working_days" value="2"/>Thứ 3
+                                    </label>
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary active px-4 py-2">
+                                        <input class="btn-check" type="checkbox" checked="checked" name="working_days" value="3"/>Thứ 4
+                                    </label>
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary active px-4 py-2">
+                                        <input class="btn-check" type="checkbox" checked="checked" name="working_days" value="4"/>Thứ 5
+                                    </label>
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary active px-4 py-2">
+                                        <input class="btn-check" type="checkbox" checked="checked" name="working_days" value="5"/>Thứ 6
+                                    </label>
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary px-4 py-2">
+                                        <input class="btn-check" type="checkbox" name="working_days" value="6"/>Thứ 7
+                                    </label>
+                                    <label class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary px-4 py-2">
+                                        <input class="btn-check" type="checkbox" name="working_days" value="0"/>Chủ nhật
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thời gian linh hoạt -->
+                        <div class="row mb-8 align-items-center">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold">Thời gian linh hoạt</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="form-check form-switch form-check-custom form-check-solid mt-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexTime" />
+                                    <label class="form-check-label text-gray-700" for="flexTime">
+                                        Cho phép nhân viên tự sắp xếp thời gian làm việc (Flexitime)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tự động duyệt nghỉ phép -->
+                        <div class="row mb-4 align-items-start">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-3">Tự động duyệt nghỉ phép</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="input-group input-group-solid w-250px mb-2">
+                                    <span class="input-group-text bg-light border-0 text-muted">Dưới</span>
+                                    <input type="number" class="form-control form-control-solid text-end" value="2" />
+                                    <span class="input-group-text bg-light border-0 text-muted">ngày</span>
+                                </div>
+                                <div class="text-muted fs-7">Các yêu cầu nghỉ phép dưới số ngày này sẽ được hệ thống <span class="fw-bold text-success">Tự động duyệt</span>.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab_holiday" role="tabpanel">
+                        <div class="d-flex flex-stack mb-7">
+                            <div class="d-flex align-items-center">
+                                <h4 class="fw-bold fs-4 text-gray-900 m-0 me-4">Cấu hình Ngày nghỉ lễ</h4>
+                                <select class="form-select form-select-sm form-select-solid w-125px" data-control="select2" data-hide-search="true">
+                                    <option value="2025">Năm 2025</option>
+                                    <option value="2026" selected>Năm 2026</option>
+                                </select>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <button type="button" class="btn btn-sm btn-light-primary text-primary fw-bold">
+                                    <i class="ki-duotone ki-arrows-circle fs-3 text-primary"><span class="path1"></span><span class="path2"></span></i>
+                                    Đồng bộ ngày lễ
+                                </button>
+                                <button type="button" class="btn btn-sm btn-primary">
+                                    <i class="ki-duotone ki-plus fs-3"></i>
+                                    Thêm ngày nghỉ
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive border rounded mb-8">
+                            <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                                <thead>
+                                    <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0 bg-light-primary bg-opacity-10 border-bottom border-gray-200">
+                                        <th class="min-w-200px ps-4">Tên ngày lễ</th>
+                                        <th class="min-w-150px">Từ ngày</th>
+                                        <th class="min-w-150px">Đến ngày</th>
+                                        <th class="min-w-150px text-center">Lặp lại hàng năm</th>
+                                        <th class="min-w-100px text-end pe-4">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600 fw-semibold">
+                                    <tr>
+                                        <td class="ps-4">
+                                            <input type="text" class="form-control form-control-sm form-control-transparent" value="Tết Dương lịch 2026" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="01/01/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="01/01/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <input type="text" class="form-control form-control-sm form-control-transparent" value="Giải Phóng Miền Nam 2026" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="30/04/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="30/04/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <input type="text" class="form-control form-control-sm form-control-transparent" value="Quốc Tế Lao động 2026" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="01/05/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="01/05/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <input type="text" class="form-control form-control-sm form-control-transparent" value="Quốc khánh 2026" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="02/09/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="02/09/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <input type="text" class="form-control form-control-sm form-control-transparent" value="Tết Nguyên Đán (Âm lịch) 2026" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="16/02/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="22/02/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid justify-content-center">
+                                                <input class="form-check-input" type="checkbox" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <input type="text" class="form-control form-control-sm form-control-transparent" value="Giỗ tổ Hùng Vương 2026" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="26/04/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control" value="26/04/2026" />
+                                                <span class="input-group-text"><i class="ki-duotone ki-calendar-8 fs-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i></span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid justify-content-center">
+                                                <input class="form-check-input" type="checkbox" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Alert Notice -->
+                        <div class="alert bg-light-primary border border-primary border-dashed d-flex align-items-center p-5 mb-0">
+                            <i class="ki-duotone ki-information-5 fs-2 text-primary me-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <div class="d-flex flex-column">
+                                <span class="text-muted fs-7">
+                                    <span class="fw-bold">Lưu ý:</span> Đối với các ngày lễ có đánh dấu "Lặp lại hàng năm" (như Tết Dương, Quốc Khánh, v.v.), hệ thống sẽ tự động cập nhật và gia hạn vào năm tiếp theo trong lịch làm việc, chấm công. Giúp bạn không cần gia hạn/thêm lại hàng năm đối với các ngày lễ cố định theo dương lịch.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="tab_recruitment" role="tabpanel"><h4 class="fw-bold fs-4 text-gray-900 mb-7">Cấu hình tuyển dụng</h4></div>
+                    <div class="tab-pane fade" id="tab_training" role="tabpanel"><h4 class="fw-bold fs-4 text-gray-900 mb-7">Cấu hình đào tạo</h4></div> -->
+                    <div class="tab-pane fade" id="tab_payroll" role="tabpanel">
+                        <div class="mb-7">
+                            <h4 class="fw-bold fs-4 text-gray-900 m-0">Cấu hình Lương, Bảo hiểm & Thuế</h4>
+                        </div>
+                        
+                        <!-- Tham số Lương & Bảo hiểm -->
+                        <div class="row gx-10 mb-10">
+                            <!-- Left: Tham số Lương -->
+                            <div class="col-lg-6">
+                                <h5 class="fw-bold text-gray-900 mb-6">Tham số Lương & Bảo hiểm</h5>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">Số ngày công chuẩn / tháng</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="number" class="form-control text-end" value="26.0" step="0.5" />
+                                            <span class="input-group-text bg-light border-0 text-muted">Ngày</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">Mức lương cơ sở (NN)</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="text" class="form-control text-end" value="2,340,000" />
+                                            <span class="input-group-text bg-light border-0 text-muted">VNĐ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">Giảm trừ gia cảnh bản thân</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="text" class="form-control text-end" value="11,000,000" />
+                                            <span class="input-group-text bg-light border-0 text-muted">VNĐ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">Giảm trừ người phụ thuộc</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="text" class="form-control text-end" value="4,400,000" />
+                                            <span class="input-group-text bg-light border-0 text-muted">VNĐ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right: Tỷ lệ đóng bảo hiểm -->
+                            <div class="col-lg-6">
+                                <h5 class="fw-bold text-gray-900 mb-6">Tỷ lệ đóng bảo hiểm (Nhân viên)</h5>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">BHXH (%)</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="number" class="form-control text-end" value="8" step="0.5" />
+                                            <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">BHYT (%)</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="number" class="form-control text-end" value="1.5" step="0.5" />
+                                            <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-xl-5">
+                                        <div class="fs-6 fw-semibold text-gray-700">BHTN (%)</div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="input-group input-group-sm input-group-solid">
+                                            <input type="number" class="form-control text-end" value="1" step="0.5" />
+                                            <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="separator mb-10"></div>
+
+                        <!-- Biểu thuế lũy tiến -->
+                        <div class="d-flex flex-stack mb-5">
+                            <h5 class="fw-bold text-gray-900 m-0">Biểu thuế lũy tiến Thuế TNCN</h5>
+                            <button type="button" class="btn btn-sm btn-light-primary text-primary fw-bold">
+                                <i class="ki-duotone ki-plus fs-3"></i> Thêm bậc thuế
+                            </button>
+                        </div>
+                        
+                        <div class="table-responsive mb-6">
+                            <table class="table align-middle table-row-dashed fs-6 gy-3 mb-0">
+                                <thead>
+                                    <tr class="text-start text-muted fw-bold fs-8 text-uppercase gs-0 bg-light-primary bg-opacity-10 border-bottom border-gray-200">
+                                        <th class="min-w-200px ps-4">Mức thu nhập (trên) (>)</th>
+                                        <th class="min-w-150px text-center">Thuế suất (%)</th>
+                                        <th class="min-w-200px text-end">Số tiền trừ lùi</th>
+                                        <th class="min-w-50px text-end pe-4"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600 fw-semibold">
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="0" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.05" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="0" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="5,000,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.1" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="250,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="10,000,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.15" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="750,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="18,000,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.2" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="1,650,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="32,000,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.25" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="3,250,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="52,000,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.3" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="5,850,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control form-control-transparent" value="80,000,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="input-group input-group-sm input-group-solid w-100px mx-auto">
+                                                <input type="number" class="form-control text-center" value="0.35" step="0.01" />
+                                                <span class="input-group-text bg-light border-0 text-muted">%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="input-group input-group-sm input-group-solid">
+                                                <input type="text" class="form-control text-end form-control-transparent" value="9,850,000" />
+                                                <span class="input-group-text bg-transparent border-0 text-muted">VNĐ</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Ghi chú & Giải thích -->
+                        <div class="row mb-8">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-bold mt-2">Ghi chú & Giải thích</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="text-muted fs-7 lh-lg">
+                                    <div><span class="fw-bold">Giải thích:</span> Thuế TNCN được tính theo công thức lũy tiến từng phần.</div>
+                                    <div><span class="fw-bold">Công thức:</span> Thuế = (Thu nhập tính thuế * Thuế suất) - Số tiền trừ lùi.</div>
+                                    <div><span class="fw-bold">Ví dụ:</span> Bậc 2: Thu nhập từ 5.000.000 đến 10.000.000. Thuế suất 10%, Số tiền trừ lùi 250.000.</div>
+                                    <div>Cấu hình: Mức thu nhập (trên) > 5.000.000, Thuế suất 0.1, Số tiền trừ lùi 250.000.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert Notice -->
+                        <div class="alert bg-light-warning border border-warning border-dashed d-flex align-items-center p-5 mb-0">
+                            <i class="ki-duotone ki-information-5 fs-2 text-warning me-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <div class="d-flex flex-column">
+                                <span class="text-gray-800 fs-7">
+                                    <span class="fw-bold">Lưu ý:</span> Các mức giảm trừ gia cảnh và công thức tính Thuế TNCN được cập nhật theo quy định hiện hành của Nhà nước. Vui lòng tham khảo Luật Thuế trước khi thay đổi tham số.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab_notification" role="tabpanel">
+                        <div class="mb-7">
+                            <h4 class="fw-bold fs-4 text-gray-900 m-0">Thông báo & Email</h4>
+                        </div>
+                        
+                        <!-- SMTP Configuration -->
+                        <div class="row mb-10">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3 text-gray-700">Máy chủ SMTP</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="row gx-3">
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control form-control-solid" value="smtp.gmail.com" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group input-group-solid">
+                                            <span class="input-group-text border-0 text-muted">Cổng</span>
+                                            <input type="text" class="form-control" value="587" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-10">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3 text-gray-700">Tài khoản gửi Email</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <input type="email" class="form-control form-control-solid" value="noreply@tantanloc.com" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-10">
+                            <div class="col-xl-3">
+                                <div class="fs-6 fw-semibold mt-2 mb-3 text-gray-700">Mật khẩu ứng dụng (SMTP Password)</div>
+                            </div>
+                            <div class="col-xl-9">
+                                <input type="password" class="form-control form-control-solid" placeholder="Bỏ trống nếu không thay đổi mật khẩu" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-10">
+                            <div class="col-xl-3"></div>
+                            <div class="col-xl-9">
+                                <div class="form-check form-switch form-check-custom form-check-solid form-check-primary">
+                                    <input class="form-check-input" type="checkbox" value="" id="emailActive" checked="checked" />
+                                    <label class="form-check-label text-gray-700 fw-semibold" for="emailActive">
+                                        Kích hoạt gửi thông báo qua email
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="separator mb-10"></div>
+
+                        <!-- System Notification Options -->
+                        <div class="mb-5">
+                            <h5 class="fw-bold text-gray-900 m-0">Tùy chọn thông báo hệ thống</h5>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                                <thead>
+                                    <tr class="text-start text-muted fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                        <th class="min-w-250px">LOẠI THÔNG BÁO</th>
+                                        <th class="min-w-200px text-center">HÌNH THỨC</th>
+                                        <th class="min-w-250px text-end">ĐIỀU KIỆN / THỜI GIAN</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600 fw-semibold">
+                                    <tr>
+                                        <td class="text-gray-800">Yêu cầu nghỉ phép/đi công tác</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid form-check-primary justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end text-muted fs-7">Thông báo cho người quản lý/người duyệt</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-gray-800">Phê duyệt nghỉ phép/đi công tác</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid form-check-primary justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end text-muted fs-7">Thông báo cho nhân viên yêu cầu</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-gray-800">Hợp đồng sắp hết hạn</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid form-check-primary justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="d-flex align-items-center justify-content-end gap-2 text-muted fs-7">
+                                                Thông báo trước
+                                                <input type="number" class="form-control form-control-sm form-control-solid w-60px text-center px-1" value="30" />
+                                                ngày
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-gray-800">Kết thúc thử việc</td>
+                                        <td class="text-center">
+                                            <div class="form-check form-check-custom form-check-solid form-check-primary justify-content-center">
+                                                <input class="form-check-input" type="checkbox" checked="checked" />
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="d-flex align-items-center justify-content-end gap-2 text-muted fs-7">
+                                                Thông báo trước
+                                                <input type="number" class="form-control form-control-sm form-control-solid w-60px text-center px-1" value="7" />
+                                                ngày
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-gray-800">Sinh nhật & Kỷ niệm</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-6">
+                                                <div class="form-check form-check-custom form-check-solid form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" checked="checked" id="cb_birthday" />
+                                                    <label class="form-check-label text-gray-700" for="cb_birthday">Sinh nhật</label>
+                                                </div>
+                                                <div class="form-check form-check-custom form-check-solid form-check-primary">
+                                                    <input class="form-check-input" type="checkbox" checked="checked" id="cb_anniversary" />
+                                                    <label class="form-check-label text-gray-700" for="cb_anniversary">Kỷ niệm</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end text-muted fs-7">Thông báo hiển thị trên màn hình chính</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab_id_generation" role="tabpanel">
+                        <div class="d-flex flex-stack mb-7">
+                            <h4 class="fw-bold fs-4 text-gray-900 m-0">Cấu hình sinh mã định danh</h4>
+                        </div>
+                        
+                        <!-- Header nav pills / tabs for targets -->
+                        <div class="d-flex align-items-center mb-9">
+                            <span class="fs-6 fw-semibold text-gray-700 me-5">Chọn đối tượng:</span>
+                            <div class="nav nav-pills nav-custom nav-pills-sm">
+                                <a class="nav-link btn btn-sm btn-color-muted btn-active-light-primary active text-white bg-primary me-2" data-bs-toggle="tab" href="#kt_id_gen_1">
+                                    Số hiệu cán bộ (NV)
+                                </a>
+                                <a class="nav-link btn btn-sm btn-color-muted btn-active-light-primary btn-light me-2" data-bs-toggle="tab" href="#kt_id_gen_2">
+                                    Mã ứng viên (UV)
+                                </a>
+                                <a class="nav-link btn btn-sm btn-color-muted btn-active-light-primary btn-light me-4" data-bs-toggle="tab" href="#kt_id_gen_3">
+                                    Mã tài sản (TS)
+                                </a>
+                                <button type="button" class="btn btn-sm btn-icon btn-light-success"><i class="ki-duotone ki-plus fs-3"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Preview Banner -->
+                        <div class="d-flex flex-stack bg-light-primary border border-primary border-dashed rounded p-6 mb-10">
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-50px symbol-circle me-5">
+                                    <div class="symbol-label bg-primary text-white">
+                                        <i class="ki-duotone ki-eye fs-2x text-white"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="text-muted fw-bold fs-8 text-uppercase">Generated Preview</span>
+                                    <span class="text-primary fw-bolder fs-2hx">NV-000101</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center bg-body border border-gray-300 rounded p-3">
+                                <div class="d-flex flex-column text-end me-4">
+                                    <span class="text-muted fs-8 fw-semibold">Current Sequence</span>
+                                    <span class="text-gray-900 fs-5 fw-bold">#000100</span>
+                                </div>
+                                <button type="button" class="btn btn-icon btn-light-danger btn-sm"><i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></button>
+                            </div>
+                        </div>
+
+                        <div class="row g-10 mb-10">
+                            <!-- Left: Cấu trúc định danh -->
+                            <div class="col-lg-6">
+                                <h5 class="fw-bold text-gray-900 mb-6 d-flex align-items-center">
+                                    <i class="ki-duotone ki-slider-horizontal fs-2 me-2 text-primary"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                    Cấu trúc định danh (Structure)
+                                </h5>
+
+                                <div class="mb-5">
+                                    <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Tên hiển thị & Mã đối tượng</label>
+                                    <div class="input-group input-group-sm input-group-solid">
+                                        <input type="text" class="form-control" value="Số hiệu cán bộ (NV)" />
+                                        <span class="input-group-text bg-light border-0 text-muted">Employee</span>
+                                    </div>
+                                </div>
+
+                                <div class="row g-5 mb-5">
+                                    <div class="col-md-6">
+                                        <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Tiền tố (Prefix)</label>
+                                        <input type="text" class="form-control form-control-sm form-control-solid" value="NV" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Ký tự phân cách</label>
+                                        <select class="form-select form-select-sm form-select-solid">
+                                            <option value="-">Gạch ngang (-)</option>
+                                            <option value="_">Gạch dưới (_)</option>
+                                            <option value="">Không có</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row g-5 mb-5">
+                                    <div class="col-md-6">
+                                        <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Định dạng (Format)</label>
+                                        <select class="form-select form-select-sm form-select-solid">
+                                            <option value="">-- Mặc định --</option>
+                                            <option value="YYMM">YYMM (Năm Tháng)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Hậu tố (Suffix)</label>
+                                        <input type="text" class="form-control form-control-sm form-control-solid" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="alert bg-light-warning border border-warning border-dashed d-flex align-items-center p-4 mb-0">
+                                    <i class="ki-duotone ki-information-5 fs-2 text-warning me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                    <div class="d-flex flex-column">
+                                        <span class="text-gray-800 fs-8">
+                                            <span class="fw-bold">Lưu ý:</span> Bạn có thể tích hợp thêm hậu tố năm/tháng/ngày vào mã cấu hình. Ví dụ: NV-01-2024.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Quy tắc hệ thống -->
+                            <div class="col-lg-6">
+                                <div class="d-flex flex-stack mb-6">
+                                    <h5 class="fw-bold text-gray-900 m-0 d-flex align-items-center">
+                                        <i class="ki-duotone ki-setting-2 fs-2 me-2 text-primary"><span class="path1"></span><span class="path2"></span></i>
+                                        Quy tắc hệ thống (Logic)
+                                    </h5>
+                                    <div class="nav-group nav-group-outline nav-group-fluid p-1" style="width: 150px;">
+                                        <label>
+                                            <input type="radio" class="btn-check" name="logic_type" value="Auto" checked="checked" />
+                                            <span class="btn btn-sm btn-color-muted btn-active btn-active-primary px-3">Auto</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="btn-check" name="logic_type" value="Random" />
+                                            <span class="btn btn-sm btn-color-muted btn-active btn-active-primary px-3">Random</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row g-5 mb-5">
+                                    <div class="col-md-6">
+                                        <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Bắt đầu từ (Start value)</label>
+                                        <input type="number" class="form-control form-control-sm form-control-solid" value="101" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Độ dài cơ sở (Base length)</label>
+                                        <input type="number" class="form-control form-control-sm form-control-solid" value="6" />
+                                    </div>
+                                </div>
+
+                                <div class="mb-8">
+                                    <label class="form-label fs-7 fw-semibold text-gray-700 text-uppercase">Tần suất làm mới (Reset frequency)</label>
+                                    <div class="d-flex gap-3">
+                                        <label class="btn btn-sm btn-outline btn-outline-dashed btn-active-light-primary active d-flex flex-center flex-grow-1" for="freq_none">
+                                            <input class="btn-check" type="radio" name="reset_freq" id="freq_none" checked="checked" />
+                                            <span class="fs-7 fw-bold">Không</span>
+                                        </label>
+                                        <label class="btn btn-sm btn-outline btn-outline-dashed btn-active-light-primary d-flex flex-center flex-grow-1" for="freq_day">
+                                            <input class="btn-check" type="radio" name="reset_freq" id="freq_day" />
+                                            <span class="fs-7 fw-bold">Ngày</span>
+                                        </label>
+                                        <label class="btn btn-sm btn-outline btn-outline-dashed btn-active-light-primary d-flex flex-center flex-grow-1" for="freq_month">
+                                            <input class="btn-check" type="radio" name="reset_freq" id="freq_month" />
+                                            <span class="fs-7 fw-bold">Tháng</span>
+                                        </label>
+                                        <label class="btn btn-sm btn-outline btn-outline-dashed btn-active-light-primary d-flex flex-center flex-grow-1" for="freq_year">
+                                            <input class="btn-check" type="radio" name="reset_freq" id="freq_year" />
+                                            <span class="fs-7 fw-bold">Năm</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center bg-light-success border border-success border-dashed rounded p-4">
+                                    <div class="form-check form-switch form-check-custom form-check-solid form-check-success me-4">
+                                        <input class="form-check-input" type="checkbox" value="" id="activeGen" checked="checked" />
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label class="fs-6 fw-bold text-gray-900 mb-1 cursor-pointer" for="activeGen">Kích hoạt bộ sinh mã này</label>
+                                        <span class="text-muted fs-8">Tự động điền mã định danh cấu hình này khi thêm mới đối tượng.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Danh sách mã dự kiến -->
+                        <div class="mb-5">
+                            <h5 class="fw-bold text-gray-900 m-0 d-flex align-items-center">
+                                <i class="ki-duotone ki-text-align-justify-center fs-2 me-2 text-primary"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                                Danh sách mã dự kiến (Preview List)
+                            </h5>
+                            <div class="text-muted fs-7 mt-1">Hiển thị 5 mã định danh tiếp theo sẽ được sinh ra</div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle table-row-dashed fs-6 gy-3 mb-0">
+                                <thead>
+                                    <tr class="text-start text-muted fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                        <th class="min-w-100px ps-4">Thứ tự (#)</th>
+                                        <th class="min-w-300px text-center">Mã định danh (Generated Code)</th>
+                                        <th class="min-w-150px text-center">Trạng thái</th>
+                                        <th class="min-w-100px text-end pe-4">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600 fw-semibold">
+                                    <tr>
+                                        <td class="ps-4">#000101</td>
+                                        <td class="text-center text-gray-900 fw-bold">NV-000101</td>
+                                        <td class="text-center"><span class="badge badge-light-success">DỰ KIẾN</span></td>
+                                        <td class="text-end pe-4"><button class="btn btn-icon btn-sm btn-light btn-active-light-primary"><i class="ki-duotone ki-copy fs-4"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">#000102</td>
+                                        <td class="text-center text-gray-900 fw-bold">NV-000102</td>
+                                        <td class="text-center"><span class="badge badge-light-success">DỰ KIẾN</span></td>
+                                        <td class="text-end pe-4"><button class="btn btn-icon btn-sm btn-light btn-active-light-primary"><i class="ki-duotone ki-copy fs-4"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">#000103</td>
+                                        <td class="text-center text-gray-900 fw-bold">NV-000103</td>
+                                        <td class="text-center"><span class="badge badge-light-success">DỰ KIẾN</span></td>
+                                        <td class="text-end pe-4"><button class="btn btn-icon btn-sm btn-light btn-active-light-primary"><i class="ki-duotone ki-copy fs-4"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">#000104</td>
+                                        <td class="text-center text-gray-900 fw-bold">NV-000104</td>
+                                        <td class="text-center"><span class="badge badge-light-success">DỰ KIẾN</span></td>
+                                        <td class="text-end pe-4"><button class="btn btn-icon btn-sm btn-light btn-active-light-primary"><i class="ki-duotone ki-copy fs-4"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">#000105</td>
+                                        <td class="text-center text-gray-900 fw-bold">NV-000105</td>
+                                        <td class="text-center"><span class="badge badge-light-success">DỰ KIẾN</span></td>
+                                        <td class="text-end pe-4"><button class="btn btn-icon btn-sm btn-light btn-active-light-primary"><i class="ki-duotone ki-copy fs-4"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="tab_menu" role="tabpanel"><h4 class="fw-bold fs-4 text-gray-900 mb-7">Cấu hình Menu & Điều hướng</h4></div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

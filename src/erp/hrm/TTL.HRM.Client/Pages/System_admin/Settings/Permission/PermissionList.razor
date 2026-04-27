@@ -1,0 +1,130 @@
+@page "/hrm/setting/permission"
+@using TTL.Shared.Models.HRM.System_admin
+
+<SectionContent SectionName="PageTitle">Danh sách nhóm quyền</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Hệ thống</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">Phân quyền</li>
+</SectionContent>
+
+<div class="d-flex flex-wrap flex-stack pb-7">
+    <!--begin::Title-->
+    <div class="d-flex flex-wrap align-items-center flex-column justify-content-start align-items-start my-1">
+        <h3 class="fw-bolder fs-1 mb-2 text-dark">Danh sách nhóm quyền</h3>
+        <span class="text-gray-500 fw-semibold fs-6">Quản lý và thiết lập quyền hạn truy cập cho các vai trò trong hệ thống ERP.</span>
+    </div>
+    <!--end::Title-->
+    <!--begin::Controls-->
+    <div class="d-flex flex-wrap my-1">
+        <button type="button" class="btn btn-sm btn-light bg-white border border-gray-300 fw-bold text-gray-700 hover-elevate-up">
+            <i class="ki-duotone ki-exit-down fs-3"><span class="path1"></span><span class="path2"></span></i> Xuất báo cáo
+        </button>
+    </div>
+    <!--end::Controls-->
+</div>
+
+<div class="card shadow-sm mb-5 mb-xl-8">
+    <div class="card-header border-0 pt-6 pb-2">
+        <div class="d-flex flex-wrap flex-stack w-100 gap-3">
+            <div class="position-relative w-100 w-md-300px">
+                <i class="ki-duotone ki-filter fs-3 text-gray-500 position-absolute top-50 translate-middle-y ms-3"><span class="path1"></span><span class="path2"></span></i>
+                <input type="text" class="form-control form-control-solid ps-10 bg-white border border-gray-300" placeholder="Lọc tên vai trò hoặc mô tả..." />
+            </div>
+            
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center">
+                    <span class="text-gray-600 fw-semibold me-2">Sắp xếp:</span>
+                    <select class="form-select form-select-solid form-select-sm w-125px bg-white border border-gray-300">
+                        <option value="newest">Mới nhất</option>
+                        <option value="oldest">Cũ nhất</option>
+                    </select>
+                </div>
+                
+                <button type="button" class="btn btn-sm btn-primary fw-bold">
+                    <i class="ki-duotone ki-plus fs-3"></i> Thêm nhóm quyền
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-body py-0">
+        <!--begin::Table-->
+        <div class="table-responsive">
+            <table class="table align-middle table-row-dashed fs-6 gy-5 border-top border-gray-200 mt-4">
+                <thead>
+                    <tr class="text-start text-gray-500 fw-bolder fs-8 text-uppercase gs-0">
+                        <th class="min-w-250px">TÊN NHÓM QUYỀN</th>
+                        <th class="min-w-300px">MÔ TẢ</th>
+                        <th class="min-w-100px">TRẠNG THÁI</th>
+                        <th class="min-w-200px">NHÂN VIÊN GÁN QUYỀN</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 fw-semibold">
+                    @foreach (var role in Roles)
+                    {
+                        var iconInfo = GetRoleIcon(role.role_code);
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-45px symbol-square me-5">
+                                        <span class="symbol-label bg-light-@iconInfo.color rounded-3">
+                                            <i class="ki-duotone @iconInfo.icon fs-1 text-@iconInfo.color"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <a href="javascript:;" class="text-gray-900 fw-bold text-hover-primary fs-5 mb-1">@role.role_name</a>
+                                        <span class="text-muted fw-semibold d-block fs-8 text-uppercase">@role.role_code</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="text-gray-600 fs-6">@role.description</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-light-success fw-bold px-4 py-2 fs-7 rounded-pill">@role.status</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol-group symbol-hover me-3">
+                                        @foreach (var member in role.members.Take(3))
+                                        {
+                                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="@member.name">
+                                                <span class="symbol-label fw-bold @GetAvatarClass(member.name)">@GetInitial(member.name)</span>
+                                            </div>
+                                        }
+                                        @if (role.members.Count > 3)
+                                        {
+                                            <div class="symbol symbol-35px symbol-circle">
+                                                <span class="symbol-label bg-light-dark text-dark fw-bold fs-8">+@(role.members.Count - 3)</span>
+                                            </div>
+                                        }
+                                    </div>
+                                    <span class="text-gray-600 fs-7 fw-semibold">@role.members.Count thành viên</span>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!--end::Table-->
+
+        <!--begin::Pagination-->
+        <div class="d-flex flex-stack flex-wrap pt-4 pb-5">
+            <div class="fs-6 fw-semibold text-gray-500">
+                Hiển thị 1-3 trong số 12 nhóm quyền
+            </div>
+            <ul class="pagination pagination-outline">
+                <li class="page-item previous disabled"><a href="javascript:;" class="page-link text-muted"><i class="ki-outline ki-left fs-2"></i></a></li>
+                <li class="page-item active"><a href="javascript:;" class="page-link">1</a></li>
+                <li class="page-item"><a href="javascript:;" class="page-link">2</a></li>
+                <li class="page-item"><a href="javascript:;" class="page-link">3</a></li>
+                <li class="page-item next"><a href="javascript:;" class="page-link text-muted"><i class="ki-outline ki-right fs-2"></i></a></li>
+            </ul>
+        </div>
+        <!--end::Pagination-->
+    </div>
+</div>

@@ -1,0 +1,332 @@
+@page "/hrm/attendance/shifts/schedule"
+@rendermode InteractiveServer
+@using TTL.HRM.Client.Pages.Operations.Work_shifts
+
+<SectionContent SectionName="PageTitle">Ca làm việc</SectionContent>
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Quản trị nhân sự (HRM)</li>
+    <li class="breadcrumb-item text-muted">Vận hành nhân sự</li>
+    <li class="breadcrumb-item text-gray-900">Ca làm việc</li>
+</SectionContent>
+
+<!-- Top bar -->
+<div class="d-flex flex-stack mb-5">
+    <div></div>
+    <div class="d-flex align-items-center gap-2">
+        <div class="nav-group nav-group-outline nav-group-solid nav-group-sm">
+            <button type="button" class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 @(CurrentViewMode == ViewMode.Day ? "active" : "")" @onclick="() => SetViewMode(ViewMode.Day)">NGÀY</button>
+            <button type="button" class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 @(CurrentViewMode == ViewMode.Week ? "active" : "")" @onclick="() => SetViewMode(ViewMode.Week)">TUẦN</button>
+            <button type="button" class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 @(CurrentViewMode == ViewMode.Month ? "active" : "")" @onclick="() => SetViewMode(ViewMode.Month)">THÁNG</button>
+        </div>
+        <div class="d-flex align-items-center bg-light rounded px-3 py-1">
+            <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary"><i class="ki-outline ki-left fs-3"></i></button>
+            <span class="fs-6 fw-bold mx-4">@CurrentDateText</span>
+            <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary"><i class="ki-outline ki-right fs-3"></i></button>
+        </div>
+        <a href="/hrm/attendance/shifts" class="btn btn-sm btn-primary fw-bold">
+            <i class="ki-outline ki-category fs-3"></i> DANH MỤC CA
+        </a>
+    </div>
+</div>
+
+<!-- Shift Summaries -->
+<div class="row g-5 g-xl-8 mb-5 flex-nowrap overflow-auto pb-2">
+    @foreach(var shift in ShiftSummaries)
+    {
+        <div class="col-md-3 min-w-250px">
+            <div class="card card-flush @(shift.IsActive ? "border border-primary" : "border border-gray-200 border-dashed")">
+                <div class="card-body p-4">
+                    <div class="d-flex flex-stack mb-2">
+                        <div class="symbol symbol-35px symbol-circle me-3">
+                            <span class="symbol-label @(shift.IsActive ? "bg-primary text-white" : "bg-light text-gray-600") fw-bold fs-6">@shift.Code</span>
+                        </div>
+                        <span class="text-muted fs-8 fw-semibold">@shift.TimeRange</span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="fs-6 fw-bold text-gray-800 text-uppercase mb-1">@shift.Name</span>
+                        <span class="text-muted fs-8">@shift.AssignedCount nhân sự được phân bổ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Gantt Chart Container -->
+<div class="card mb-5">
+    <div class="card-body p-0">
+        <!-- Timeline Header -->
+        <div class="d-flex align-items-center border-bottom border-gray-200 py-3 bg-light-secondary px-5">
+            <div class="min-w-200px w-200px fw-bold text-gray-600 fs-7 text-uppercase ps-3">NHÂN SỰ</div>
+            
+            @if (CurrentViewMode == ViewMode.Day)
+            {
+                <div class="d-flex flex-grow-1 position-relative h-20px">
+                    @for(int i = 0; i < TimeSlots.Count; i++)
+                    {
+                        <div class="position-absolute fs-8 text-gray-500 fw-semibold text-center" style="left: @((i * 100.0) / TimeSlots.Count)%; transform: translateX(-50%); width: 40px;">
+                            @TimeSlots[i]
+                        </div>
+                    }
+                </div>
+            }
+            else if (CurrentViewMode == ViewMode.Week)
+            {
+                <div class="d-flex flex-grow-1 text-center">
+                    @foreach (var day in WeekDays)
+                    {
+                        <div class="flex-grow-1 d-flex flex-column @(day.IsWeekend ? "text-danger" : "text-gray-600")">
+                            <span class="fs-8 fw-semibold text-uppercase mb-1">@day.Title</span>
+                            <span class="fs-4 fw-bold">@day.DateString</span>
+                        </div>
+                    }
+                </div>
+            }
+            else if (CurrentViewMode == ViewMode.Month)
+            {
+                <div class="d-flex flex-grow-1 text-center">
+                    @foreach (var day in MonthDays)
+                    {
+                        <div class="flex-grow-1 @(day.IsWeekend ? "text-danger" : "text-gray-600") fs-8 fw-bold">
+                            @day.DateString
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Timeline Rows -->
+        <div class="mh-400px scroll-y">
+            @foreach(var emp in EmployeeShifts)
+            {
+                <div class="d-flex align-items-center border-bottom border-gray-200 py-3 px-5 hover-bg-light cursor-pointer" @onclick="() => OpenShiftDetails(emp)">
+                    <!-- Employee Info -->
+                    <div class="min-w-200px w-200px d-flex align-items-center ps-3">
+                        <div class="symbol symbol-35px symbol-circle me-3">
+                            <span class="symbol-label bg-light-primary text-primary fw-bold">@emp.EmployeeName.Substring(0, 1)</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="text-gray-800 fw-bold fs-7">@emp.EmployeeName</span>
+                            <span class="text-muted fs-8">@emp.EmployeeCode</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Shift Display -->
+                    <div class="d-flex flex-grow-1 @(CurrentViewMode == ViewMode.Day ? "position-relative h-40px align-items-center" : "h-100 py-2")">
+                        @if (CurrentViewMode == ViewMode.Day)
+                        {
+                            <div class="position-absolute h-30px bg-@emp.ColorClass rounded-pill d-flex align-items-center px-3" 
+                                 style="left: @emp.GetLeftPercentage(); width: @emp.GetWidthPercentage();">
+                                <span class="text-white fw-bold fs-8">@emp.ShiftCode</span>
+                            </div>
+                        }
+                        else if (CurrentViewMode == ViewMode.Week)
+                        {
+                            @foreach (var day in WeekDays)
+                            {
+                                <div class="flex-grow-1 d-flex justify-content-center align-items-center @(day != WeekDays.Last() ? "border-end border-gray-100" : "")">
+                                    <div class="w-6px h-6px rounded-circle bg-@emp.ColorClass"></div>
+                                </div>
+                            }
+                        }
+                        else if (CurrentViewMode == ViewMode.Month)
+                        {
+                            @foreach (var day in MonthDays)
+                            {
+                                <div class="flex-grow-1 d-flex justify-content-center align-items-center @(day != MonthDays.Last() ? "border-end border-gray-100" : "")">
+                                    <div class="w-4px h-4px rounded-circle bg-@emp.ColorClass opacity-75"></div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <!-- Legend -->
+        <div class="card-footer border-0 py-4 px-8 bg-light-secondary">
+            <div class="d-flex align-items-center flex-wrap gap-4">
+                <span class="fs-8 fw-semibold text-gray-500 me-2">Ghi chú:</span>
+                <div class="d-flex align-items-center">
+                    <span class="bullet bullet-dot bg-primary me-2"></span>
+                    <span class="fs-8 text-gray-700">Ca hành chính - thứ 2 - thứ 6</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="bullet bullet-dot bg-warning me-2"></span>
+                    <span class="fs-8 text-gray-700">Ca chiều (khô bắc)</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="bullet bullet-dot bg-success me-2"></span>
+                    <span class="fs-8 text-gray-700">Ca sáng (khô bắc)</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="bullet bullet-dot bg-danger me-2"></span>
+                    <span class="fs-8 text-gray-700">Ca bảy sáng</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="bullet bullet-dot bg-info me-2"></span>
+                    <span class="fs-8 text-gray-700">Ca part-time</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bottom Summary Info -->
+<div class="row g-5">
+    <div class="col-md-4">
+        <div class="card card-flush border border-gray-300 border-dashed bg-body h-100">
+            <div class="card-body p-6">
+                <span class="fs-7 fw-bold text-gray-500 text-uppercase d-block mb-1">TỔNG GIỜ CÔNG DỰ KIẾN</span>
+                <div class="d-flex align-items-baseline">
+                    <span class="fs-1 fw-bold text-gray-900 me-2">1,944.0</span>
+                    <span class="fs-6 fw-semibold text-gray-600">giờ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-flush border border-gray-300 border-dashed bg-body h-100">
+            <div class="card-body p-6">
+                <span class="fs-7 fw-bold text-gray-500 text-uppercase d-block mb-1">ĐANG CHỜ PHÊ DUYỆT</span>
+                <div class="d-flex align-items-baseline">
+                    <span class="fs-1 fw-bold text-gray-900 me-2">14</span>
+                    <span class="fs-6 fw-semibold text-gray-600">Bản ca</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-flush border border-danger border-dashed bg-light-danger h-100">
+            <div class="card-body p-6">
+                <span class="fs-7 fw-bold text-danger text-uppercase d-block mb-1">TRÙNG LẶP LỊCH</span>
+                <div class="d-flex align-items-baseline">
+                    <span class="fs-1 fw-bold text-danger me-2">03</span>
+                    <span class="fs-6 fw-semibold text-danger">Sự cố</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Info -->
+<div class="row g-5 mt-2">
+    <div class="col-md-4">
+        <div class="d-flex align-items-center bg-light-primary rounded p-4 h-100">
+            <div class="symbol symbol-40px me-4">
+                <div class="symbol-label bg-primary">
+                    <i class="ki-outline ki-arrows-loop fs-2x text-white"></i>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <span class="fw-bold text-gray-900 fs-7 mb-1">Tự động đồng bộ</span>
+                <span class="text-muted fs-8">Dữ liệu phân ca được đồng bộ trực tiếp với máy chấm công để check in/out chính xác.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex align-items-center bg-light-dark rounded p-4 h-100">
+            <div class="symbol symbol-40px me-4">
+                <div class="symbol-label bg-dark">
+                    <i class="ki-outline ki-setting-2 fs-2x text-white"></i>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <span class="fw-bold text-gray-900 fs-7 mb-1">Điều chỉnh linh hoạt</span>
+                <span class="text-muted fs-8">Hỗ trợ đổi ca, gán ca bổ sung hoặc điều chỉnh lịch làm việc thực tế vận hành.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex align-items-center bg-light-info rounded p-4 h-100">
+            <div class="symbol symbol-40px me-4">
+                <div class="symbol-label bg-info">
+                    <i class="ki-outline ki-chart-pie-3 fs-2x text-white"></i>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <span class="fw-bold text-gray-900 fs-7 mb-1">Báo cáo trực quan</span>
+                <span class="text-muted fs-8">Hệ thống cung cấp cái nhìn tổng quát về mật độ nhân sự trong ngày để tối ưu nguồn lực.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (IsOffcanvasOpen && SelectedEmployeeShift != null)
+{
+    <div class="drawer drawer-end drawer-on" style="width: 400px; display: flex; flex-direction: column; z-index: 1051; background-color: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1);">
+        <!-- Header -->
+        <div class="card-header border-bottom py-5 px-6 d-flex justify-content-between align-items-center">
+            <h3 class="card-title fw-bold text-gray-800 m-0">Chi tiết phân bổ ca</h3>
+            <button class="btn btn-sm btn-icon btn-active-color-primary" @onclick="CloseShiftDetails">
+                <i class="ki-outline ki-cross fs-1"></i>
+            </button>
+        </div>
+        
+        <!-- Body -->
+        <div class="card-body p-6 scroll-y flex-column-fluid">
+            <!-- Employee Section -->
+            <div class="d-flex align-items-center mb-7">
+                <div class="symbol symbol-50px symbol-circle me-4">
+                    <span class="symbol-label bg-light-primary text-primary fw-bold fs-3">@SelectedEmployeeShift.EmployeeName.Substring(0, 1)</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="text-gray-900 fw-bold fs-5">@SelectedEmployeeShift.EmployeeName</span>
+                    <span class="text-muted fs-7">@SelectedEmployeeShift.EmployeeCode</span>
+                </div>
+            </div>
+
+            <div class="separator separator-dashed mb-7"></div>
+
+            <!-- Shift Details -->
+            <div class="mb-7">
+                <h5 class="fw-bold text-gray-800 mb-4">Thông tin ca làm việc</h5>
+                
+                <div class="d-flex flex-stack mb-4">
+                    <span class="text-gray-500 fw-semibold">Loại ca:</span>
+                    <span class="badge badge-light-@SelectedEmployeeShift.ColorClass fw-bold fs-7">@(SelectedShiftDetails?.Name ?? "N/A")</span>
+                </div>
+                
+                <div class="d-flex flex-stack mb-4">
+                    <span class="text-gray-500 fw-semibold">Mã ca:</span>
+                    <span class="text-gray-800 fw-bold fs-7">@SelectedEmployeeShift.ShiftCode</span>
+                </div>
+
+                <div class="d-flex flex-stack mb-4">
+                    <span class="text-gray-500 fw-semibold">Thời gian:</span>
+                    <div class="d-flex align-items-center">
+                        <i class="ki-outline ki-time fs-4 text-gray-600 me-2"></i>
+                        <span class="text-gray-800 fw-bold fs-7">@(SelectedShiftDetails?.TimeRange ?? "N/A")</span>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-stack mb-4">
+                    <span class="text-gray-500 fw-semibold">Trạng thái:</span>
+                    <span class="badge badge-light-success fw-bold">Đã chốt</span>
+                </div>
+            </div>
+
+            <!-- Note -->
+            <div class="mb-7">
+                <label class="form-label fw-semibold text-gray-600">Ghi chú vận hành</label>
+                <textarea class="form-control form-control-solid" rows="3" placeholder="Nhập ghi chú (nếu có)..." readonly>Nhân sự đã được phân công ca chính thức theo định biên phòng ban.</textarea>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="card-footer border-top py-5 px-6 d-flex justify-content-between">
+            <button class="btn btn-light-danger fw-bold" @onclick="CloseShiftDetails">
+                <i class="ki-outline ki-trash fs-3 me-1"></i> Gỡ ca
+            </button>
+            <button class="btn btn-primary fw-bold" @onclick="CloseShiftDetails">
+                <i class="ki-outline ki-pencil fs-3 me-1"></i> Sửa phân ca
+            </button>
+        </div>
+    </div>
+    
+    <!-- Drawer backdrop -->
+    <div class="drawer-overlay" style="z-index: 1050; background-color: rgba(0,0,0,0.2);" @onclick="CloseShiftDetails"></div>
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "e4b5d8f2-1a3c-4b7d-8e9f-0a1b2c3d4e5f",
+    "name": "CEO",
+    "job_group": "Ban Giám đốc",
+    "level": "Quản lý cấp cao",
+    "headcount": 1,
+    "salary_range": "100,000,000 - 500,000,000",
+    "requests": 0,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "f5c6e9a3-2b4d-5c8e-9f0a-1b2c3d4e5f60",
+    "name": "HR-DIR",
+    "job_group": "Hành chính - Nhân sự",
+    "level": "Giám đốc chức năng",
+    "headcount": 1,
+    "salary_range": "40,000,000 - 70,000,000",
+    "requests": 1,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a5b-6c7d-8e9f0a1b2c3d",
+    "name": "IT-MGR",
+    "job_group": "Công nghệ thông tin",
+    "level": "Quản lý / Trưởng phòng",
+    "headcount": 1,
+    "salary_range": "40,000,000 - 60,000,000",
+    "requests": 0,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-5b6c-7d8e-9f0a1b2c3d4e",
+    "name": "QC-SR",
+    "job_group": "Kiểm soát chất lượng",
+    "level": "Chuyên viên cao cấp",
+    "headcount": 3,
+    "salary_range": "28,000,000 - 45,000,000",
+    "requests": 2,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-6c7d-8e9f-0a1b2c3d4e5f",
+    "name": "QC-JR",
+    "job_group": "Kiểm soát chất lượng",
+    "level": "Chuyên viên",
+    "headcount": 5,
+    "salary_range": "12,000,000 - 20,000,000",
+    "requests": 1,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-7d8e-9f0a-1b2c3d4e5f6a",
+    "name": "ACC-CHIEF",
+    "job_group": "Kế toán - Tài chính",
+    "level": "Trưởng phòng",
+    "headcount": 1,
+    "salary_range": "30,000,000 - 50,000,000",
+    "requests": 0,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-8e9f-0a1b-2c3d4e5f6a7b",
+    "name": "SALES-MGR",
+    "job_group": "Kinh doanh",
+    "level": "Trưởng phòng",
+    "headcount": 2,
+    "salary_range": "25,000,000 - 50,000,000",
+    "requests": 2,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-9f0a-1b2c-3d4e5f6a7b8c",
+    "name": "MKT-EXE",
+    "job_group": "Marketing",
+    "level": "Chuyên viên",
+    "headcount": 4,
+    "salary_range": "15,000,000 - 25,000,000",
+    "requests": 0,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-0a1b-2c3d-4e5f6a7b8c9d",
+    "name": "WH-KEEPER",
+    "job_group": "Kho vận",
+    "level": "Nhân viên",
+    "headcount": 6,
+    "salary_range": "10,000,000 - 15,000,000",
+    "requests": 0,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-1b2c-3d4e-5f6a7b8c9d0e",
+    "name": "GUARD",
+    "job_group": "Hành chính - Bảo vệ",
+    "level": "Nhân viên",
+    "headcount": 4,
+    "salary_range": "7,000,000 - 10,000,000",
+    "requests": 0,
+    "is_active": true,
+    "created_at": "2026-04-26T00:00:00Z",
+    "updated_at": "2026-04-26T00:00:00Z"
+  }
+]

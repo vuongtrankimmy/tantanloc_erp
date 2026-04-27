@@ -1,0 +1,132 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas_benefit_detail" style="width: 500px;">
+    <!--begin::Header-->
+    <div class="offcanvas-header border-bottom">
+        <div class="d-flex flex-column">
+            <h3 class="offcanvas-title fw-bold text-dark fs-4">Cấu hình chi tiết khoản chi</h3>
+            <span class="text-muted fs-7">Thiết lập định danh, công thức và điều kiện hưởng phụ cấp</span>
+        </div>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Body-->
+    <div class="offcanvas-body position-relative pb-20">
+        @if (BenefitItem != null)
+        {
+            <!-- Section 1: Thông tin định danh -->
+            <div class="mb-10">
+                <div class="d-flex align-items-center mb-5">
+                    <span class="badge badge-circle badge-primary fw-bold me-3">1</span>
+                    <h4 class="fw-bold m-0 text-uppercase fs-6">THÔNG TIN ĐỊNH DANH</h4>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-6">
+                        <label class="required form-label fw-semibold">Tên khoản chi</label>
+                        <input type="text" class="form-control" @bind="BenefitItem.name" />
+                    </div>
+                    <div class="col-6">
+                        <label class="required form-label fw-semibold">Mã khoản chi</label>
+                        <input type="text" class="form-control text-danger fw-bold" @bind="BenefitItem.id" />
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label fw-semibold">Nhóm khoản chi</label>
+                    <select class="form-select">
+                        <option value="1" selected>Phúc lợi nhân viên</option>
+                        <option value="2">Phụ cấp theo lương</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Section 2: Công thức tính -->
+            <div class="mb-10">
+                <div class="d-flex align-items-center mb-5">
+                    <span class="badge badge-circle badge-primary fw-bold me-3">2</span>
+                    <h4 class="fw-bold m-0 text-uppercase fs-6">CÔNG THỨC TÍNH</h4>
+                </div>
+                <ul class="nav nav-pills nav-pills-custom mb-5 d-flex" role="tablist">
+                    <li class="nav-item flex-fill border border-gray-300 rounded-start">
+                        <a class="nav-link w-100 text-center active bg-white" data-bs-toggle="tab" href="#kt_tab_fixed_amount">
+                            <span class="nav-text text-primary">Số tiền cố định</span>
+                        </a>
+                    </li>
+                    <li class="nav-item flex-fill border border-gray-300 border-start-0 rounded-end bg-light">
+                        <a class="nav-link w-100 text-center text-muted" data-bs-toggle="tab" href="#kt_tab_percent">
+                            <span class="nav-text">Tính theo % lương</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content border border-gray-300 rounded p-5">
+                    <div class="tab-pane fade show active" id="kt_tab_fixed_amount" role="tabpanel">
+                        <label class="form-label fw-bold">Số tiền (VND)</label>
+                        <div class="input-group mb-3 border border-gray-300 rounded">
+                            <input type="text" class="form-control text-primary fw-bold border-0" value="@BenefitItem.amount.ToString("N0")" />
+                            <span class="input-group-text bg-white border-0 fw-bold text-gray-800">đ</span>
+                        </div>
+                        <span class="text-muted fs-8">Hệ thống sẽ cộng trực tiếp số tiền này vào thu nhập tháng.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Quy tắc áp dụng -->
+            <div class="mb-10">
+                <div class="d-flex align-items-center mb-5">
+                    <span class="badge badge-circle badge-primary fw-bold me-3">3</span>
+                    <h4 class="fw-bold m-0 text-uppercase fs-6">QUY TẮC ÁP DỤNG</h4>
+                </div>
+                <label class="d-flex align-items-center p-5 border border-primary bg-light-primary rounded mb-5 cursor-pointer">
+                    <div class="form-check form-check-custom form-check-solid me-5">
+                        <input class="form-check-input" type="radio" name="apply_rule" value="1" checked="checked" />
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="fw-bold text-gray-800 fs-6">Tính theo ngày công thực tế</span>
+                        <span class="text-muted fs-8">Số tiền = (Số tiền / Ngày công chuẩn) * Ngày công đi làm thực tế</span>
+                    </div>
+                </label>
+                <label class="d-flex align-items-center p-5 border border-gray-300 rounded cursor-pointer">
+                    <div class="form-check form-check-custom form-check-solid me-5">
+                        <input class="form-check-input" type="radio" name="apply_rule" value="2" />
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="fw-bold text-gray-800 fs-6">Tính trọn tháng</span>
+                        <span class="text-muted fs-8">Chi trả đủ số tiền đã cấu hình nếu nhân viên có phát sinh công trong tháng</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Section 4: Điều kiện hưởng -->
+            <div class="mb-5">
+                <div class="d-flex align-items-center mb-5">
+                    <span class="badge badge-circle badge-primary fw-bold me-3">4</span>
+                    <h4 class="fw-bold m-0 text-uppercase fs-6">ĐIỀU KIỆN HƯỞNG</h4>
+                </div>
+                <label class="form-label fw-bold">Cấp bậc áp dụng</label>
+                <div class="border border-gray-300 rounded p-3 d-flex flex-wrap gap-2">
+                    <span class="badge badge-light text-gray-700 px-3 py-2 border border-gray-300">Nhân viên / Chuyên viên</span>
+                    <span class="badge badge-light text-gray-700 px-3 py-2 border border-gray-300">Trưởng / Phó phòng</span>
+                    <span class="badge badge-light-primary text-primary px-3 py-2 border border-primary border-dashed cursor-pointer">
+                        <i class="ki-outline ki-plus fs-7 text-primary me-1"></i> Thêm cấp bậc
+                    </span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex flex-column flex-center h-100">
+                <i class="ki-outline ki-setting-2 fs-5x text-gray-400 mb-3"></i>
+                <div class="fs-5 fw-bold text-gray-500 mb-2">Vui lòng chọn một khoản chi để cấu hình.</div>
+            </div>
+        }
+    </div>
+    <!--end::Body-->
+
+    <!--begin::Footer-->
+    @if (BenefitItem != null)
+    {
+        <div class="offcanvas-footer border-top p-5 d-flex justify-content-between bg-white position-absolute bottom-0 w-100" style="z-index: 10;">
+            <button class="btn btn-light fw-bold w-50 me-2" data-bs-dismiss="offcanvas">Hủy bỏ</button>
+            <button class="btn btn-primary fw-bold w-50 ms-2" @onclick="Save">Lưu cấu hình</button>
+        </div>
+    }
+    <!--end::Footer-->
+</div>

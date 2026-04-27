@@ -1,0 +1,12 @@
+[
+  { "Date": "26/04", "CheckIn": "08:55", "CheckOut": "18:40", "LateMinutes": 0, "EarlyMinutes": 0, "OtHours": 9.3 },
+  { "Date": "25/04", "CheckIn": "08:55", "CheckOut": "17:35", "LateMinutes": 10, "EarlyMinutes": 0, "OtHours": 0 },
+  { "Date": "24/04", "CheckIn": "08:26", "CheckOut": "18:20", "LateMinutes": 0, "EarlyMinutes": 0, "OtHours": 0.6 },
+  { "Date": "23/04", "CheckIn": "08:50", "CheckOut": "18:32", "LateMinutes": 0, "EarlyMinutes": 0, "OtHours": 0.1 },
+  { "Date": "22/04", "CheckIn": "09:02", "CheckOut": "-", "LateMinutes": 2, "EarlyMinutes": 0, "OtHours": 0 },
+  { "Date": "21/04", "CheckIn": "09:15", "CheckOut": "-", "LateMinutes": 15, "EarlyMinutes": 0, "OtHours": 0 },
+  { "Date": "20/04", "CheckIn": "08:30", "CheckOut": "18:32", "LateMinutes": 0, "EarlyMinutes": 0, "OtHours": 0 },
+  { "Date": "19/04", "CheckIn": "09:05", "CheckOut": "-", "LateMinutes": 5, "EarlyMinutes": 2, "OtHours": 0 },
+  { "Date": "18/04", "CheckIn": "08:54", "CheckOut": "18:40", "LateMinutes": 0, "EarlyMinutes": 0, "OtHours": 0.2 },
+  { "Date": "17/04", "CheckIn": "09:12", "CheckOut": "17:35", "LateMinutes": 12, "EarlyMinutes": 5, "OtHours": 0 }
+]

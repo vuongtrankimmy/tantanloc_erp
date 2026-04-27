@@ -1,0 +1,141 @@
+@using TTL.Shared.Models.HRM.Operations
+
+<div id="kt_drawer_attendance_detail" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="attendance_detail" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '600px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle=".kt_drawer_attendance_detail_toggle" data-kt-drawer-close="#kt_drawer_attendance_detail_close">
+    
+    <!--begin::Card-->
+    <div class="card w-100 border-0 rounded-0" id="kt_drawer_attendance_detail_card">
+        
+        <!--begin::Card header-->
+        <div class="card-header border-0 pb-0">
+            <div class="card-title flex-column">
+                <h3 class="fw-bold mb-1">Thông tin chi tiết tháng 4/2026</h3>
+                <div class="fs-7 text-muted">MÃ NV: @(Attendance?.EmployeeCode ?? "N/A")</div>
+            </div>
+            <div class="card-toolbar">
+                <button type="button" class="btn btn-sm btn-icon btn-active-light-primary me-n5" id="kt_drawer_attendance_detail_close">
+                    <i class="ki-outline ki-cross fs-1"></i>
+                </button>
+            </div>
+        </div>
+        <!--end::Card header-->
+
+        <!--begin::Card body-->
+        <div class="card-body scroll-y px-10 py-5" id="kt_drawer_attendance_detail_body">
+            @if (Attendance != null)
+            {
+                <!-- Employee Summary -->
+                <div class="d-flex align-items-center mb-8 border border-gray-300 border-dashed rounded p-5">
+                    <div class="symbol symbol-50px me-5">
+                        <div class="symbol-label fs-2 bg-light-@Attendance.AvatarColor text-@Attendance.AvatarColor">
+                            @Attendance.EmployeeName.Substring(0, 1)
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="text-gray-900 fw-bold fs-5 me-2">@Attendance.EmployeeName</span>
+                                <span class="badge @Attendance.StatusBadgeClass fw-bold badge-sm">@Attendance.Status</span>
+                            </div>
+                            <span class="badge badge-light-primary fw-bold fs-7 px-3 py-2">@Attendance.ActualDays công</span>
+                        </div>
+                        <div class="fs-7 text-muted mt-1">@Attendance.Department • Nhân viên</div>
+                    </div>
+                </div>
+
+                <!-- THỐNG KÊ TỔNG QUÁT -->
+                <h4 class="fw-bold text-gray-800 mb-4"><i class="ki-outline ki-chart-pie-4 fs-2 text-primary me-2"></i> Thống kê tổng quát</h4>
+                <div class="row g-4 mb-8">
+                    <div class="col-6">
+                        <div class="border border-gray-300 border-dashed rounded py-3 px-4 h-100">
+                            <div class="fw-bold fs-4 text-gray-800">0/0</div>
+                            <div class="fw-semibold fs-7 text-muted">Muộn (S/P/T)/Sớm (P)</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border border-gray-300 border-dashed rounded py-3 px-4 h-100">
+                            <div class="fw-bold fs-4 text-gray-800">@Attendance.TotalOTHours h</div>
+                            <div class="fw-semibold fs-7 text-muted">Tổng giờ OT (OT)</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border border-gray-300 border-dashed rounded py-3 px-4 h-100">
+                            <div class="fw-bold fs-4 text-gray-800">0/0</div>
+                            <div class="fw-semibold fs-7 text-muted">Phép / Lễ</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border border-gray-300 border-dashed rounded py-3 px-4 h-100">
+                            <div class="fw-bold fs-4 text-gray-800">100%</div>
+                            <div class="fw-semibold fs-7 text-muted">Làm/Chuẩn/Xoay/Nghỉ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NHẬT KÝ CHẤM CÔNG -->
+                <h4 class="fw-bold text-gray-800 mb-4"><i class="ki-outline ki-calendar-8 fs-2 text-primary me-2"></i> Nhật ký chấm công</h4>
+                <div class="table-responsive mb-5 border border-gray-300 border-dashed rounded">
+                    <table class="table table-row-bordered table-row-dashed gy-3 gs-3 align-middle fs-7 mb-0">
+                        <thead class="bg-light">
+                            <tr class="fw-bold text-gray-600 text-uppercase">
+                                <th class="min-w-60px">Ngày</th>
+                                <th class="text-center min-w-60px">Giờ vào</th>
+                                <th class="text-center min-w-60px">Giờ ra</th>
+                                <th class="text-center min-w-60px">Muộn (P)</th>
+                                <th class="text-center min-w-60px">Sớm (P)</th>
+                                <th class="text-center min-w-50px">OT</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            @foreach (var log in DailyLogs)
+                            {
+                                <tr>
+                                    <td class="fw-semibold">@log.Date</td>
+                                    <td class="text-center">@log.CheckIn</td>
+                                    <td class="text-center">@log.CheckOut</td>
+                                    <td class="text-center @GetLateClass(log.LateMinutes)">
+                                        @GetLateText(log.LateMinutes)
+                                    </td>
+                                    <td class="text-center @GetEarlyClass(log.EarlyMinutes)">
+                                        @GetEarlyText(log.EarlyMinutes)
+                                    </td>
+                                    <td class="text-center @GetOtClass(log.OtHours)">
+                                        @GetOtText(log.OtHours)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Alert -->
+                <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-4">
+                    <i class="ki-outline ki-information fs-2tx text-warning me-4"></i>
+                    <div class="d-flex flex-stack flex-grow-1">
+                        <div class="fw-semibold">
+                            <h5 class="text-gray-900 fw-bold">Lưu ý từ hệ thống</h5>
+                            <div class="fs-7 text-gray-700">Nhân viên này có 6 ngày đi muộn. Vui lòng kiểm tra kỹ hoặc giải trình nếu có.</div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="text-center text-muted py-10">Vui lòng chọn nhân viên để xem chi tiết</div>
+            }
+        </div>
+        <!--end::Card body-->
+
+        <!--begin::Card footer-->
+        <div class="card-footer border-0 pt-0 pb-10">
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-light" data-kt-drawer-dismiss="true">Đóng</button>
+                <button type="button" class="btn btn-primary">Chốt công nhanh</button>
+            </div>
+        </div>
+        <!--end::Card footer-->
+        
+    </div>
+    <!--end::Card-->
+</div>
+
+

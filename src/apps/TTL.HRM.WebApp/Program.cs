@@ -1,8 +1,12 @@
 using TTL.HRM.WebApp.Components;
 
+// Prevent IIS Express ThreadPool starvation deadlock when components make local HTTP requests
+ThreadPool.SetMinThreads(100, 100);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(sp.GetRequiredService<Microsoft.AspNetCore.Components.NavigationManager>().BaseUri) });
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -24,6 +28,6 @@ app.UseStaticFiles();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddAdditionalAssemblies(typeof(TTL.HRM.Client.Pages.Index.Index).Assembly, typeof(TTL.Auth.Client.Pages.Login.Account.Account).Assembly);
+    .AddAdditionalAssemblies(typeof(TTL.HRM.Client.Pages.Index.Index).Assembly, typeof(TTL.Auth.Client.Pages.Login.Account.Account).Assembly, typeof(TTL.WMS.Client.Pages.Suppliers.SupplierList).Assembly);
 
 app.Run();

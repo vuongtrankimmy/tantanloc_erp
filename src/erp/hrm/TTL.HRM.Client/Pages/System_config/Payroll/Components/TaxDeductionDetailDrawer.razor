@@ -1,0 +1,184 @@
+<div class="offcanvas offcanvas-end w-600px" tabindex="-1" id="offcanvas_tax_deduction_detail" aria-labelledby="offcanvas_tax_deduction_detail_label">
+    <!--begin::Header-->
+    <div class="offcanvas-header border-bottom py-4">
+        <div class="d-flex align-items-center">
+            <i class="ki-duotone ki-document fs-1 text-primary me-3">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+            <h2 class="offcanvas-title fw-bold" id="offcanvas_tax_deduction_detail_label">Chi tiết biểu thuế & Khấu trừ</h2>
+        </div>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Body-->
+    <div class="offcanvas-body p-6 pb-20">
+        <p class="text-muted fs-6 mb-8">Thiết lập biểu thuế thu nhập cá nhân lũy tiến và các khoản miễn trừ theo quy định nhà nước.</p>
+
+        <!--begin::Section 1-->
+        <div class="d-flex flex-stack mb-5">
+            <h3 class="fw-bold fs-4 m-0 text-gray-900">Biểu thuế lũy tiến từng phần</h3>
+            <button class="btn btn-sm btn-link text-primary fw-bold p-0">
+                <i class="ki-outline ki-plus fs-4 me-1"></i>Thêm bậc thuế
+            </button>
+        </div>
+
+        <div class="table-responsive border rounded mb-10">
+            <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4 m-0">
+                <thead class="bg-light">
+                    <tr class="fw-bold text-muted fs-7 text-uppercase gs-0">
+                        <th class="ps-5 min-w-50px">BẬC</th>
+                        <th class="min-w-150px">THU NHẬP TỪ (VND)</th>
+                        <th class="min-w-150px">THU NHẬP ĐẾN (VND)</th>
+                        <th class="min-w-100px">THUẾ SUẤT</th>
+                        <th class="pe-5 min-w-125px">SỐ TRỪ TƯƠNG ỨNG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ps-5 text-gray-600 fw-semibold">1</td>
+                        <td class="text-gray-800 fw-semibold">0</td>
+                        <td class="text-gray-800 fw-semibold">5.000.000</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control form-control-sm form-control-solid w-50px px-2 text-center me-2" value="5" />
+                                <span class="text-muted fw-bold">%</span>
+                            </div>
+                        </td>
+                        <td class="pe-5 text-muted fst-italic fs-7">Tự động tính</td>
+                    </tr>
+                    <tr>
+                        <td class="ps-5 text-gray-600 fw-semibold">2</td>
+                        <td class="text-gray-800 fw-semibold">5.000.001</td>
+                        <td class="text-gray-800 fw-semibold">10.000.000</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control form-control-sm form-control-solid w-50px px-2 text-center me-2" value="10" />
+                                <span class="text-muted fw-bold">%</span>
+                            </div>
+                        </td>
+                        <td class="pe-5 text-gray-600 fst-italic">250.000</td>
+                    </tr>
+                    <tr>
+                        <td class="ps-5 text-gray-600 fw-semibold">3</td>
+                        <td class="text-gray-800 fw-semibold">10.000.001</td>
+                        <td class="text-gray-800 fw-semibold">18.000.000</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control form-control-sm form-control-solid w-50px px-2 text-center me-2" value="15" />
+                                <span class="text-muted fw-bold">%</span>
+                            </div>
+                        </td>
+                        <td class="pe-5 text-gray-600 fst-italic">750.000</td>
+                    </tr>
+                    <tr>
+                        <td class="ps-5 text-primary fw-bolder">4</td>
+                        <td class="text-gray-800 fw-semibold">18.000.001</td>
+                        <td class="text-gray-800 fw-semibold">32.000.000</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control form-control-sm border-primary w-50px px-2 text-center text-primary fw-bold me-2" value="20" />
+                                <span class="text-primary fw-bold">%</span>
+                            </div>
+                        </td>
+                        <td class="pe-5 text-gray-600 fst-italic">1.650.000</td>
+                    </tr>
+                    <tr>
+                        <td class="ps-5 text-gray-600 fw-semibold">5</td>
+                        <td class="text-gray-800 fw-semibold">32.000.001</td>
+                        <td class="text-gray-800 fw-semibold">52.000.000</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control form-control-sm form-control-solid w-50px px-2 text-center me-2" value="25" />
+                                <span class="text-muted fw-bold">%</span>
+                            </div>
+                        </td>
+                        <td class="pe-5 text-gray-600 fst-italic">3.250.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--end::Section 1-->
+
+        <!--begin::Section 2-->
+        <h3 class="fw-bold fs-4 mb-5 text-gray-900">Cấu hình thu nhập miễn thuế (Tối đa/Tháng)</h3>
+        <div class="row g-5 mb-8">
+            <div class="col-md-6">
+                <label class="form-label fs-7 fw-semibold text-gray-700">Phụ cấp ăn trưa</label>
+                <div class="input-group input-group-sm input-group-solid border">
+                    <input type="text" class="form-control bg-white" value="730.000" />
+                    <span class="input-group-text bg-white text-muted fs-8">VND</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fs-7 fw-semibold text-gray-700">Phụ cấp điện thoại</label>
+                <div class="input-group input-group-sm input-group-solid border">
+                    <input type="text" class="form-control bg-white" value="500.000" />
+                    <span class="input-group-text bg-white text-muted fs-8">VND</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fs-7 fw-semibold text-gray-700">Phụ cấp trang phục (Năm)</label>
+                <div class="input-group input-group-sm input-group-solid border">
+                    <input type="text" class="form-control bg-white" value="5.000.000" />
+                    <span class="input-group-text bg-white text-muted fs-8">VND</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fs-7 fw-semibold text-gray-700">Mức giảm trừ gia cảnh (Bản thân)</label>
+                <div class="input-group input-group-sm input-group-solid border">
+                    <input type="text" class="form-control bg-white" value="11.000.000" />
+                    <span class="input-group-text bg-white text-muted fs-8">VND</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fs-7 fw-semibold text-gray-700">Mức giảm trừ người phụ thuộc</label>
+                <div class="input-group input-group-sm input-group-solid border">
+                    <input type="text" class="form-control bg-white" value="4.400.000" />
+                    <span class="input-group-text bg-white text-muted fs-8">VND</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fs-7 fw-semibold text-gray-700">Khác (Thưởng chuyên cần)</label>
+                <div class="input-group input-group-sm input-group-solid border">
+                    <input type="text" class="form-control bg-white" value="0" />
+                    <span class="input-group-text bg-white text-muted fs-8">VND</span>
+                </div>
+            </div>
+        </div>
+        <!--end::Section 2-->
+
+        <!--begin::Alert-->
+        <div class="alert bg-light-primary border border-primary border-opacity-20 d-flex align-items-center p-4 mb-0">
+            <i class="ki-duotone ki-information fs-2hx text-primary me-4">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+            </i>
+            <div class="d-flex flex-column">
+                <span class="text-primary fs-7">Hệ thống sẽ tự động cập nhật số trừ tương ứng khi các bậc thuế suất được thay đổi. Đảm bảo các mốc...</span>
+            </div>
+        </div>
+        <!--end::Alert-->
+
+    </div>
+    <!--end::Body-->
+
+    <!--begin::Footer-->
+    <div class="offcanvas-footer border-top p-5 d-flex justify-content-end bg-white position-absolute bottom-0 w-100" style="z-index: 10;">
+        <button type="button" class="btn btn-light fw-bold me-3" data-bs-dismiss="offcanvas">Hủy bỏ</button>
+        <button type="button" class="btn btn-primary fw-bold d-flex align-items-center">
+            <i class="ki-duotone ki-save-2 fs-4 me-2">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+            Lưu cấu hình
+        </button>
+    </div>
+    <!--end::Footer-->
+</div>
+
+@code {
+    // Add logic here if needed
+}

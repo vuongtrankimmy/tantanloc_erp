@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "template_name": "Hợp đồng thử việc 12 tháng",
+    "template_code": "HD-TV-02M",
+    "created_date": "2024-01-15T00:00:00Z",
+    "last_updated_by": "Nguyễn Văn An",
+    "status": "Đang sử dụng",
+    "type": "Hợp đồng thử việc",
+    "description": "Hợp đồng thử việc tiêu chuẩn cho nhân viên chính thức, thời gian 12 tháng (30 ngày).",
+    "content": "<p>Cộng hòa xã hội chủ nghĩa Việt Nam...</p><p>Độc lập - Tự do - Hạnh phúc</p><br><p><strong>HỢP ĐỒNG THỬ VIỆC</strong></p><p>Hôm nay, ngày {{Ngay_Ki_Hop_Dong}}, tại {{Dia_Chi_Cong_Ty}}...</p>",
+    "usage_count": 0
+  },
+  {
+    "id": "2",
+    "template_name": "Hợp đồng lao động chính thức (Dài hạn)",
+    "template_code": "QT-NS-02/2024",
+    "created_date": "2024-01-10T00:00:00Z",
+    "last_updated_by": "Trần Thị Bích",
+    "status": "Đang sử dụng",
+    "type": "Hợp đồng không xác định thời hạn",
+    "description": "Hợp đồng lao động chính thức dành cho nhân viên đã qua thời gian thử việc.",
+    "content": "<p>Cộng hòa xã hội chủ nghĩa Việt Nam...</p>",
+    "usage_count": 45
+  },
+  {
+    "id": "3",
+    "template_name": "Hợp đồng lao động thời vụ (Draft)",
+    "template_code": "QT-NS-TEMP-05",
+    "created_date": "2024-01-05T00:00:00Z",
+    "last_updated_by": "Lê Văn Cường",
+    "status": "Nháp",
+    "type": "Hợp đồng thời vụ",
+    "description": "Mẫu hợp đồng áp dụng cho nhân sự làm dự án ngắn hạn.",
+    "content": "",
+    "usage_count": 0
+  }
+]

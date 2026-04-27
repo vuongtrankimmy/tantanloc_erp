@@ -1,0 +1,70 @@
+@using TTL.Shared.Models.HRM.Organization
+
+@if (string.IsNullOrEmpty(Code))
+{
+    <div class="p-9 text-center text-muted">
+        <span>Vui lòng chọn chức vụ...</span>
+    </div>
+}
+else
+{
+    <div class="card border-0 shadow-none">
+        <div class="card-header border-0 cursor-pointer pt-5">
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0">Thông tin chung</h3>
+            </div>
+            <div class="card-toolbar">
+                <a href="/hrm/position/edit/@Code" class="btn btn-sm btn-light-primary align-self-center">Sửa</a>
+            </div>
+        </div>
+        <div class="card-body p-9">
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Mã chức vụ</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">@Code</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Tên chức danh</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Chức vụ @Code</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Chuyên môn</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Quản lý</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Cấp độ</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Cấp quản lý (Manager)</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Mức lương cơ sở</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">15.000.000 - 30.000.000 VNĐ</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Trạng thái</label>
+                <div class="col-lg-8">
+                    <span class="badge badge-light-primary">Hoạt động</span>
+                </div>
+            </div>
+            <div class="row mb-7">
+                <label class="col-lg-4 fw-semibold text-muted">Yêu cầu</label>
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">Có kinh nghiệm...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string? Code { get; set; }
+}

@@ -1,0 +1,121 @@
+<div class="offcanvas offcanvas-end w-500px" tabindex="-1" id="offcanvas_employee_shift_assignment" aria-labelledby="offcanvas_employee_shift_assignment_label">
+    <!--begin::Header-->
+    <div class="offcanvas-header border-bottom py-4 d-flex justify-content-between align-items-center">
+        <h2 class="offcanvas-title fw-bold fs-3" id="offcanvas_employee_shift_assignment_label">Phân ca nhân sự</h2>
+        <button type="button" class="btn btn-icon btn-sm btn-active-light-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+            <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
+        </button>
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Body-->
+    <div class="offcanvas-body p-0 pb-20 scroll-y">
+        <div class="p-6">
+            <form id="kt_modal_assign_shift_form" class="form">
+                
+                <!-- Nhân viên -->
+                <div class="d-flex flex-column mb-7 fv-row">
+                    <label class="required fs-6 fw-semibold mb-2">Nhân viên</label>
+                    <select class="form-select form-select-solid">
+                        <option value="">Chọn nhân viên...</option>
+                        <option value="1" selected>Nguyễn Văn An (NV-0284)</option>
+                        <option value="2">Lê Thị Bình (NV-0912)</option>
+                        <option value="3">Phạm Văn Cường (NV-1044)</option>
+                    </select>
+                </div>
+
+                <!-- Chọn Ca -->
+                <div class="d-flex flex-column mb-7 fv-row">
+                    <label class="required fs-6 fw-semibold mb-2">Chọn ca làm việc</label>
+                    <select class="form-select form-select-solid">
+                        <option value="">Chọn ca...</option>
+                        <option value="HC">Ca Hành chính (08:00 - 17:00)</option>
+                        <option value="S">Ca Sáng (06:00 - 14:00)</option>
+                        <option value="C">Ca Chiều (14:00 - 22:00)</option>
+                        <option value="D">Ca Đêm (22:00 - 06:00)</option>
+                    </select>
+                </div>
+
+                <!-- Chu kỳ lặp lại -->
+                <div class="d-flex flex-column mb-7 fv-row">
+                    <label class="fs-6 fw-semibold mb-2">Chu kỳ lặp lại</label>
+                    <div class="d-flex align-items-center gap-4">
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input" type="radio" name="cycle" value="weekly" checked />
+                            <span class="form-check-label text-gray-700 fw-bold">Hàng tuần</span>
+                        </label>
+                        <label class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input" type="radio" name="cycle" value="custom" />
+                            <span class="form-check-label text-gray-700 fw-bold">Tùy chỉnh</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Các ngày áp dụng -->
+                <div class="d-flex flex-column mb-7 fv-row">
+                    <label class="fs-6 fw-semibold mb-2">Ngày áp dụng trong tuần</label>
+                    <div class="d-flex flex-wrap gap-5">
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="2" checked />
+                            <label class="form-check-label fw-bold">T2</label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="3" checked />
+                            <label class="form-check-label fw-bold">T3</label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="4" checked />
+                            <label class="form-check-label fw-bold">T4</label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="5" checked />
+                            <label class="form-check-label fw-bold">T5</label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="6" checked />
+                            <label class="form-check-label fw-bold">T6</label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="7" />
+                            <label class="form-check-label fw-bold text-gray-500">T7</label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid form-check-sm">
+                            <input class="form-check-input" type="checkbox" value="CN" />
+                            <label class="form-check-label fw-bold text-gray-500">CN</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thời gian hiệu lực -->
+                <div class="row g-5 mb-7">
+                    <div class="col-md-6 fv-row">
+                        <label class="fs-6 fw-semibold mb-2">Bắt đầu từ</label>
+                        <input type="date" class="form-control form-control-solid" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-6 fv-row">
+                        <label class="fs-6 fw-semibold mb-2">Kết thúc</label>
+                        <input type="date" class="form-control form-control-solid" placeholder="Không giới hạn" />
+                        <div class="text-muted fs-8 mt-1">Bỏ trống nếu lặp vô thời hạn</div>
+                    </div>
+                </div>
+
+                <!-- Ghi chú -->
+                <div class="d-flex flex-column mb-7 fv-row">
+                    <label class="fs-6 fw-semibold mb-2">Ghi chú thêm</label>
+                    <textarea class="form-control form-control-solid" rows="3" placeholder="Nhập ghi chú..."></textarea>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!--end::Body-->
+
+    <!--begin::Footer-->
+    <div class="offcanvas-footer border-top p-5 d-flex justify-content-end bg-white position-absolute bottom-0 w-100" style="z-index: 10;">
+        <button type="button" class="btn btn-light fw-bold me-3" data-bs-dismiss="offcanvas">Hủy</button>
+        <button type="button" class="btn btn-primary fw-bold" data-bs-dismiss="offcanvas">
+            <i class="ki-duotone ki-check fs-4 me-2"><span class="path1"></span><span class="path2"></span></i> Lưu phân ca
+        </button>
+    </div>
+    <!--end::Footer-->
+</div>

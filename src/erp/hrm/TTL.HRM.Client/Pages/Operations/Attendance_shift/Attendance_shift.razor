@@ -1,6 +1,226 @@
-﻿@page "/attendance_shift"
-<h3>Attendance_shift</h3>
+@page "/hrm/attendance"
+@using TTL.Shared.Models.HRM.Operations
+@using TTL.HRM.Client.Pages.Operations.Attendance_shift.Attendance_detail
 
-@code {
+<SectionContent SectionName="PageTitle">Chấm công</SectionContent>
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Chấm công</li>
+</SectionContent>
 
-}
+<div class="row g-5 g-xl-8 mb-8">
+    <!-- TỔNG NHÂN SỰ -->
+    <div class="col-xl-3">
+        <div class="card bg-light-primary shadow-sm h-100">
+            <div class="card-body py-6">
+                <div class="fs-6 fw-bold text-gray-500 text-uppercase mb-2">Tổng nhân sự</div>
+                <div class="d-flex align-items-center">
+                    <div class="fs-2x fw-bolder text-gray-800 me-3">10</div>
+                    <span class="fs-7 fw-semibold text-gray-500">Tháng 4/2026</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TỔNG CÔNG THỰC TẾ -->
+    <div class="col-xl-3">
+        <div class="card bg-light-success shadow-sm h-100">
+            <div class="card-body py-6">
+                <div class="fs-6 fw-bold text-gray-500 text-uppercase mb-2">Tổng công thực tế</div>
+                <div class="d-flex align-items-center">
+                    <div class="fs-2x fw-bolder text-gray-800 me-3">136,4</div>
+                    <span class="fs-7 fw-semibold text-success"><i class="ki-outline ki-arrow-up text-success fs-5"></i> Ngày/giờ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TỔNG GIỜ OT -->
+    <div class="col-xl-3">
+        <div class="card bg-light-info shadow-sm h-100">
+            <div class="card-body py-6">
+                <div class="fs-6 fw-bold text-gray-500 text-uppercase mb-2">Tổng giờ OT</div>
+                <div class="d-flex align-items-center">
+                    <div class="fs-2x fw-bolder text-gray-800 me-3">65,6</div>
+                    <span class="fs-7 fw-semibold text-info">Giờ (OT)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TỔNG VI PHẠM -->
+    <div class="col-xl-3">
+        <div class="card bg-light-danger shadow-sm h-100">
+            <div class="card-body py-6">
+                <div class="fs-6 fw-bold text-gray-500 text-uppercase mb-2">Tổng vi phạm (Phút)</div>
+                <div class="d-flex align-items-center">
+                    <div class="fs-2x fw-bolder text-gray-800 me-3">0</div>
+                    <span class="fs-7 fw-semibold text-danger"><i class="ki-outline ki-arrow-down text-danger fs-5"></i> Phút (đi muộn/sớm)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap flex-stack pb-7">
+    <!--begin::Title-->
+    <div class="d-flex flex-wrap align-items-center my-1">
+        <h3 class="fw-bold me-5 my-1">Chi tiết chấm công (@Attendances.Count)</h3>
+    </div>
+    <!--end::Title-->
+    <!--begin::Controls-->
+    <div class="d-flex flex-wrap my-1">
+        <!--begin::Search-->
+        <div class="d-flex align-items-center position-relative me-4">
+            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
+                <span class="path1"></span><span class="path2"></span>
+            </i>
+            <input type="text" data-kt-user-table-filter="search" class="form-control form-control-sm form-control-solid w-200px ps-10" placeholder="Tìm tên, mã NV..." />
+        </div>
+        <!--end::Search-->
+        <!--begin::Actions-->
+        <div class="d-flex my-0">
+            <select class="form-select form-select-sm border-body bg-body w-200px me-4">
+                <option value="">Phòng ban: Tất cả</option>
+                <option value="1">Phòng Hành chính - Nhân sự</option>
+                <option value="2">Phòng Kỹ thuật</option>
+            </select>
+            <select class="form-select form-select-sm border-body bg-body w-150px me-5">
+                <option value="04/2026">Tháng 04/2026</option>
+                <option value="03/2026">Tháng 03/2026</option>
+            </select>
+            
+            <button type="button" class="btn btn-sm btn-light-primary me-3">
+                <i class="ki-outline ki-exit-up fs-2"></i> Xuất Excel
+            </button>
+            <button type="button" class="btn btn-sm btn-primary">
+                <i class="ki-outline ki-check-square fs-2"></i> Chốt công
+            </button>
+        </div>
+        <!--end::Actions-->
+    </div>
+    <!--end::Controls-->
+</div>
+
+<div class="card card-flush shadow-sm">
+    <div class="card-body pt-0">
+        <div class="table-responsive">
+            <table class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold" id="kt_table_attendance">
+                <thead class="fs-7 text-gray-500 text-uppercase">
+                    <tr>
+                        <th class="w-10px pe-2 ps-4 rounded-start">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </th>
+                        <th class="min-w-200px">Nhân viên</th>
+                        <th class="min-w-150px">Phòng ban</th>
+                        <th class="min-w-80px text-center">Chuẩn</th>
+                        <th class="min-w-80px text-center text-primary">Thực</th>
+                        <th class="min-w-100px text-center">Giờ đi muộn (M)</th>
+                        <th class="min-w-80px text-center">Đi sớm (S)</th>
+                        <th class="min-w-80px text-center text-danger">Phạt</th>
+                        <th class="min-w-80px text-center">Lễ</th>
+                        <th class="min-w-100px text-center text-info">Tổng giờ OT</th>
+                        <th class="min-w-125px">Trạng thái</th>
+                        <th class="text-end min-w-100px pe-4 rounded-end">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 fw-semibold">
+                    @if (Attendances != null && Attendances.Any())
+                    {
+                        foreach (var item in Attendances)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="@item.Code">
+                                    </div>
+                                </td>
+                                <td class="d-flex align-items-center">
+                                    <div class="symbol symbol-circle symbol-40px overflow-hidden me-3">
+                                        <div class="symbol-label fs-3 bg-light-@item.AvatarColor text-@item.AvatarColor">
+                                            @item.EmployeeName.Substring(0, 1)
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <span class="text-gray-800 fw-bold mb-1">@item.EmployeeName</span>
+                                        <span class="fs-7 text-muted">Mã: @item.EmployeeCode</span>
+                                    </div>
+                                </td>
+                                <td>@item.Department</td>
+                                <td class="text-center fw-bold">@item.StandardDays</td>
+                                <td class="text-center fw-bold text-primary">@item.ActualDays</td>
+                                <td class="text-center text-danger">@item.LateHours h</td>
+                                <td class="text-center">@item.EarlyLeaveHours</td>
+                                <td class="text-center text-danger">@item.PenaltyAmount</td>
+                                <td class="text-center">@item.HolidayDays</td>
+                                <td class="text-center fw-bold text-info">@item.TotalOTHours h</td>
+                                <td>
+                                    <div class="badge @item.StatusBadgeClass fw-bold">@item.Status</div>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                        <i class="ki-duotone ki-category fs-6">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                        </i>
+                                    </button>
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                        <div class="menu-item px-3">
+                                            <a href="/hrm/attendance/detail/@item.EmployeeCode" class="menu-link px-3">Xem chi tiết</a>
+                                        </div>
+                                        <div class="menu-item px-3">
+                                            <a href="javascript:void(0);" class="menu-link px-3">Chỉnh sửa</a>
+                                        </div>
+                                        <div class="separator my-2"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        
+                        <!-- LÀM TỔNG (Footer Row) -->
+                        <tr class="bg-light-warning">
+                            <td colspan="3" class="text-end fw-bolder text-gray-800 pe-5">LÀM_TOTAL (10 NV)</td>
+                            <td class="text-center fw-bolder text-gray-800">240</td>
+                            <td class="text-center fw-bolder text-primary">136,4</td>
+                            <td class="text-center fw-bolder text-danger">0,0 h</td>
+                            <td class="text-center fw-bolder text-gray-800">0</td>
+                            <td class="text-center fw-bolder text-danger">0</td>
+                            <td class="text-center fw-bolder text-gray-800">0</td>
+                            <td class="text-center fw-bolder text-info">65,6 h</td>
+                            <td colspan="2"></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="12" class="text-center py-10">Không có dữ liệu</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="px-7 py-5 border-top">
+            <div class="d-flex flex-stack flex-wrap pt-10">
+                <div class="fs-6 fw-bold text-gray-700">
+                    <span>Hiển thị 1 đến @Attendances.Count trong tổng số @Attendances.Count bản ghi</span>
+                </div>
+                <ul class="pagination">
+                    <li class="page-item previous disabled"><a href="javascript:;" class="page-link"><i class="ki-outline ki-left fs-2"></i></a></li>
+                    <li class="page-item active"><a href="javascript:;" class="page-link">1</a></li>
+                    <li class="page-item next disabled"><a href="javascript:;" class="page-link"><i class="ki-outline ki-right fs-2"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Attendance detail drawer removed, now using separate detail page -->
+
+

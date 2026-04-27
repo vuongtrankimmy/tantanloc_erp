@@ -1,0 +1,284 @@
+@page "/attendance/shifts/allocate/{ShiftId}"
+@using TTL.Shared.Models.HRM.Operations
+@using TTL.Shared.Models.HRM.Organization
+
+<SectionContent SectionName="PageTitle">Gán ca nhanh</SectionContent>
+<SectionContent SectionName="PageBreadcrumbs">
+    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
+        <li class="breadcrumb-item text-muted">
+            <a href="/" class="text-muted text-hover-primary">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+        </li>
+        <li class="breadcrumb-item text-muted">Chấm công</li>
+        <li class="breadcrumb-item">
+            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+        </li>
+        <li class="breadcrumb-item text-muted">Danh mục ca</li>
+        <li class="breadcrumb-item">
+            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+        </li>
+        <li class="breadcrumb-item text-dark">Gán ca nhanh</li>
+    </ul>
+</SectionContent>
+
+@if (Shift == null)
+{
+    <div class="d-flex justify-content-center p-10">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else
+{
+    <!-- Actions Toolbar -->
+    <div class="d-flex flex-stack mb-5">
+        <div></div>
+        <a href="/attendance/shifts" class="btn btn-sm btn-light-primary fw-bold">
+            <i class="ki-outline ki-arrow-left fs-2"></i> Trở về
+        </a>
+    </div>
+
+    <!-- Header Info -->
+    <div class="card mb-5 mb-xl-10 bg-light-primary border-0">
+        <div class="card-body p-5">
+            <div class="d-flex align-items-center">
+                <div class="symbol symbol-50px me-5">
+                    <span class="symbol-label bg-primary text-inverse-primary fw-bold fs-2">@Shift.ShiftCode</span>
+                </div>
+                <div class="d-flex flex-column flex-grow-1">
+                    <div class="d-flex align-items-center mb-1">
+                        <span class="text-dark fw-bold text-hover-primary fs-3 me-3">@Shift.Name</span>
+                        <span class="badge badge-light-@Shift.Color">@GetStatusText(Shift.StatusId)</span>
+                    </div>
+                    <div class="d-flex flex-wrap fw-semibold fs-7 text-gray-500 gap-5">
+                        <div class="d-flex align-items-center">
+                            <i class="ki-outline ki-time fs-5 me-1 text-primary"></i> Làm việc: <span class="fw-bold text-gray-700 ms-1">@Shift.StartTime - @Shift.EndTime</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="ki-outline ki-coffee fs-5 me-1 text-warning"></i> Nghỉ: <span class="fw-bold text-gray-700 ms-1">12:00 - 13:00</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="ki-outline ki-timer fs-5 me-1 text-info"></i> Tổng: <span class="fw-bold text-gray-700 ms-1">8h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex align-items-center mt-5">
+                <span class="fs-7 fw-semibold text-gray-500 me-4">Ngày áp dụng mặc định:</span>
+                <div class="d-flex gap-2">
+                    @foreach (var day in DaysOfWeek)
+                    {
+                        var isApplied = Shift.AppliedDays.Contains(day.Value);
+                        <span class="badge badge-@(isApplied ? "primary" : "light") fs-8 px-2 py-1">@day.Key</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-5 g-xl-10">
+        <!-- Main Content Column -->
+        <div class="col-xl-9">
+            
+            <!-- 1. THỜI GIAN ÁP DỤNG -->
+            <div class="card mb-5 mb-xl-10">
+                <div class="card-header border-0 pt-5">
+                    <h3 class="card-title align-items-start flex-column">
+                        <span class="card-label fw-bold fs-4 mb-1">1. THỜI GIAN ÁP DỤNG</span>
+                    </h3>
+                </div>
+                <div class="card-body pt-3">
+                    <div class="row g-5 mb-8">
+                        <div class="col-md-4">
+                            <div class="border border-primary border-dashed rounded p-4 text-center bg-light-primary">
+                                <span class="fs-7 text-gray-500 fw-semibold d-block mb-1">KỲ ÁP DỤNG</span>
+                                <span class="fs-4 fw-bold text-primary">THÁNG @DateTime.Now.Month / @DateTime.Now.Year</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border border-success border-dashed rounded p-4 text-center bg-light-success">
+                                <span class="fs-7 text-gray-500 fw-semibold d-block mb-1">TỪ NGÀY</span>
+                                <input type="date" class="form-control form-control-transparent form-control-sm text-center fw-bold fs-4 text-success p-0" @bind="AllocationFromDate" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border border-danger border-dashed rounded p-4 text-center bg-light-danger">
+                                <span class="fs-7 text-gray-500 fw-semibold d-block mb-1">ĐẾN NGÀY</span>
+                                <input type="date" class="form-control form-control-transparent form-control-sm text-center fw-bold fs-4 text-danger p-0" @bind="AllocationToDate" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-stack align-items-center">
+                        <div class="d-flex align-items-center flex-wrap gap-3">
+                            <span class="fs-7 fw-semibold text-gray-500 text-uppercase me-2">CHỌN CÁC THỨ ÁP DỤNG GÁN CA:</span>
+                            @foreach(var day in DaysOfWeek)
+                            {
+                                var isSelected = SelectedAllocationDays.Contains(day.Value);
+                                <button type="button" class="btn btn-sm @(isSelected ? "btn-primary" : "btn-light") fw-bold rounded-circle w-40px h-40px p-0 d-flex justify-content-center align-items-center" @onclick="() => ToggleAllocationDay(day.Value, !isSelected)">
+                                    @day.Key.Replace("Thứ ", "T").Replace("Chủ nhật", "CN")
+                                </button>
+                            }
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-sm btn-light-primary fw-bold" @onclick="SelectAllDays">CHỌN TẤT CẢ</button>
+                            <button type="button" class="btn btn-sm btn-light-danger fw-bold" @onclick="ClearAllDays">BỎ CHỌN HẾT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ĐỐI TƯỢNG ÁP DỤNG -->
+            <div class="card mb-5 mb-xl-10">
+                <div class="card-header border-0 pt-5">
+                    <h3 class="card-title align-items-start flex-column">
+                        <span class="card-label fw-bold fs-4 mb-1">2. ĐỐI TƯỢNG ÁP DỤNG</span>
+                    </h3>
+                    <div class="card-toolbar">
+                        <ul class="nav nav-pills nav-pills-custom mb-3">
+                            <li class="nav-item mb-3 me-3 me-lg-6">
+                                <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column flex-stack pt-3 pb-3 page-bg @(ActiveTab == "Department" ? "active show" : "")" data-bs-toggle="pill" href="javascript:void(0)" @onclick="@(() => ActiveTab = "Department")">
+                                    <span class="nav-text text-gray-800 fw-bold fs-7 lh-1">THEO PHÒNG BAN</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-3 me-3 me-lg-6">
+                                <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column flex-stack pt-3 pb-3 page-bg @(ActiveTab == "Employee" ? "active show" : "")" data-bs-toggle="pill" href="javascript:void(0)" @onclick="@(() => ActiveTab = "Employee")">
+                                    <span class="nav-text text-gray-800 fw-bold fs-7 lh-1">CHỌN NHÂN VIÊN</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body pt-3">
+                    <div class="tab-content">
+                        <!-- Department Tab -->
+                        <div class="tab-pane fade @(ActiveTab == "Department" ? "active show" : "")">
+                            <div class="row g-4">
+                                @foreach(var dept in Departments)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center border border-dashed border-gray-300 rounded p-4 cursor-pointer @(SelectedDepartments.Contains(dept) ? "border-primary bg-light-primary" : "")" @onclick="() => ToggleDepartment(dept)">
+                                            <div class="form-check form-check-custom form-check-solid me-4">
+                                                <input class="form-check-input" type="checkbox" checked="@SelectedDepartments.Contains(dept)" />
+                                            </div>
+                                            <div class="symbol symbol-40px me-4">
+                                                <span class="symbol-label bg-light-@GetRandomColor(dept) text-@GetRandomColor(dept) fw-bold fs-4">@dept.Substring(0,1)</span>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <span class="text-gray-900 fw-bold fs-6">@dept</span>
+                                                <span class="text-muted fw-semibold fs-8">25 Nhân viên</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Employee Tab -->
+                        <div class="tab-pane fade @(ActiveTab == "Employee" ? "active show" : "")">
+                            <!-- Search -->
+                            <div class="d-flex align-items-center position-relative mb-5">
+                                <i class="ki-outline ki-magnifier fs-3 position-absolute ms-4"></i>
+                                <input type="text" class="form-control form-control-solid ps-12" placeholder="Tìm kiếm nhân viên..." @bind="SearchEmployeeQuery" @bind:event="oninput" />
+                            </div>
+
+                            <div class="table-responsive h-300px">
+                                <table class="table align-middle table-row-dashed fs-6 gy-3">
+                                    <tbody class="fw-semibold text-gray-600">
+                                        @foreach(var emp in FilteredEmployees)
+                                        {
+                                            <tr class="cursor-pointer @(SelectedEmployees.Contains(emp) ? "bg-light-primary" : "")" @onclick="() => ToggleEmployee(emp)">
+                                                <td class="w-40px">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-check-input" type="checkbox" checked="@SelectedEmployees.Contains(emp)" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="symbol symbol-40px me-3">
+                                                            <span class="symbol-label fw-bold text-inverse-primary" style="background-color: #@emp.AvatarColor">@emp.FullName.Substring(0,1)</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <span class="text-gray-800 text-hover-primary mb-1">@emp.FullName</span>
+                                                            <span class="text-muted fs-8">@emp.Code</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>@emp.Position</td>
+                                                <td>@emp.Department</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Sidebar Summary Column -->
+        <div class="col-xl-3">
+            <div class="card card-flush border-0 shadow-sm mb-5 sticky-top" style="top: 100px;">
+                <div class="card-header pt-5 border-bottom">
+                    <h3 class="card-title align-items-start flex-column mb-3">
+                        <span class="card-label fw-bold fs-5 mb-1 text-gray-800">TỔNG HỢP GÁN CA</span>
+                    </h3>
+                </div>
+                <div class="card-body pt-5">
+                    <div class="d-flex flex-stack mb-5">
+                        <div class="d-flex flex-column">
+                            <span class="fs-2x fw-bold text-gray-900">@(ActiveTab == "Department" ? SelectedDepartments.Count : SelectedEmployees.Count)</span>
+                            <span class="fs-7 text-gray-500 text-uppercase">ĐỐI TƯỢNG ĐƯỢC CHỌN</span>
+                        </div>
+                        <span class="badge badge-light-primary">@(ActiveTab == "Department" ? "PHÒNG BAN" : "NHÂN VIÊN")</span>
+                    </div>
+                    
+                    <div class="mh-300px scroll-y me-n5 pe-5">
+                        @if (ActiveTab == "Department")
+                        {
+                            @foreach(var dept in SelectedDepartments)
+                            {
+                                <div class="d-flex align-items-center border-bottom border-dashed border-gray-200 py-3">
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <span class="text-gray-800 fw-bold">@dept</span>
+                                        <span class="text-muted fs-8">Phòng ban</span>
+                                    </div>
+                                    <button type="button" class="btn btn-icon btn-sm btn-light-danger" @onclick="() => ToggleDepartment(dept)">
+                                        <i class="ki-outline ki-cross fs-3"></i>
+                                    </button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            @foreach(var emp in SelectedEmployees)
+                            {
+                                <div class="d-flex align-items-center border-bottom border-dashed border-gray-200 py-3">
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <span class="text-gray-800 fw-bold">@emp.FullName</span>
+                                        <span class="text-muted fs-8">@emp.Code - @emp.Department</span>
+                                    </div>
+                                    <button type="button" class="btn btn-icon btn-sm btn-light-danger" @onclick="() => ToggleEmployee(emp)">
+                                        <i class="ki-outline ki-cross fs-3"></i>
+                                    </button>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    <div class="pt-5 mt-5">
+                        <button type="button" class="btn btn-danger w-100 fw-bold" @onclick="SaveAllocation">
+                            <i class="ki-outline ki-calendar-tick fs-2"></i> LƯU LỊCH LÀM VIỆC
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

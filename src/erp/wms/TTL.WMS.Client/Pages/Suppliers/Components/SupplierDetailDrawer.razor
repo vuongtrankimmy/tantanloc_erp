@@ -1,0 +1,511 @@
+@namespace TTL.WMS.Client.Pages.Suppliers.Components
+
+<!--begin::Supplier Detail Drawer-->
+<div id="@DrawerId" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="supplier_detail" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '700px'}" data-kt-drawer-direction="end">
+    
+    <!--begin::Card-->
+    <div class="card shadow-none rounded-0 w-100 h-100 border-0">
+        <!--begin::Header-->
+        <div class="card-header border-bottom">
+            <div class="card-title d-flex flex-column gap-1">
+                <div class="d-flex align-items-center gap-2">
+                    <h3 class="fw-bold fs-2 m-0 text-gray-900">Chi tiết nhà cung cấp</h3>
+                    <span class="badge badge-light-primary fw-bold">Hoạt động</span>
+                </div>
+                <div class="text-muted fs-6">Mã: NCC-2023-0852</div>
+            </div>
+            
+            <div class="card-toolbar d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sm btn-outline btn-outline-primary btn-active-light-primary">
+                    Sửa thông tin
+                </button>
+                <div class="btn btn-sm btn-icon btn-active-light-primary" data-kt-drawer-dismiss="true">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+        </div>
+        <!--end::Header-->
+
+        <!--begin::Body-->
+        <div class="card-body p-0 position-relative scroll-y">
+            <!--begin::Tabs-->
+            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-bottom px-9 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" href="#kt_supplier_tab_1">Thông tin chung</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#kt_supplier_tab_2">Danh mục vật tư</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#kt_supplier_tab_3">Lịch sử nhập hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#kt_supplier_tab_4">Hồ sơ & hợp đồng</a>
+                </li>
+            </ul>
+            <!--end::Tabs-->
+
+            <!--begin::Tab Content-->
+            <div class="tab-content">
+                <!--begin::Tab 1 (Thông tin chung)-->
+                <div class="tab-pane fade show active" id="kt_supplier_tab_1" role="tabpanel">
+                    <div class="p-9">
+                        
+                        <!--begin::Hồ sơ doanh nghiệp-->
+                        <div class="mb-10">
+                            <h4 class="text-gray-800 fw-bold text-uppercase fs-7 mb-5">Hồ sơ doanh nghiệp</h4>
+                            <div class="border border-gray-200 rounded p-6">
+                                <div class="row g-6">
+                                    <div class="col-lg-6">
+                                        <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Tên công ty</div>
+                                        <div class="text-gray-900 fs-5 fw-semibold">Công ty Cổ phần Giấy Việt Nhật</div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Mã số thuế</div>
+                                        <div class="text-gray-900 fs-5 fw-semibold">0101234567</div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Người đại diện</div>
+                                        <div class="text-gray-900 fs-5 fw-semibold">Nguyễn Văn A</div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Địa chỉ trụ sở</div>
+                                        <div class="text-gray-900 fs-5 fw-semibold">Số 123, đường Láng, Đống Đa, Hà Nội</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Hồ sơ doanh nghiệp-->
+
+                        <!--begin::Ghi chú-->
+                        <div class="mb-10">
+                            <h4 class="text-gray-800 fw-bold text-uppercase fs-7 mb-5">Ghi chú</h4>
+                            <div class="border border-gray-200 rounded p-6">
+                                <span class="text-gray-700 fs-6 fst-italic">Nhà cung cấp chiến lược khu vực phía Bắc. Đã ký hợp đồng nguyên tắc năm 2023. Ưu tiên thanh toán trong vòng 30 ngày kể từ ngày nhận hóa đơn tài chính hợp lệ.</span>
+                            </div>
+                        </div>
+                        <!--end::Ghi chú-->
+
+                        <!--begin::Kho & Nhà máy-->
+                        <div>
+                            <div class="d-flex flex-stack mb-5">
+                                <h4 class="text-gray-800 fw-bold text-uppercase fs-7 m-0">Kho & Nhà máy</h4>
+                                <a href="#" class="text-primary fw-bold text-hover-primary fs-7">+ Thêm kho hàng</a>
+                            </div>
+
+                            <!--begin::Card 1-->
+                            <div class="border border-gray-200 rounded p-6 mb-5">
+                                <div class="d-flex flex-stack mb-5">
+                                    <h5 class="text-gray-900 fw-bold m-0 fs-5">Kho Miền Bắc (Kho chính)</h5>
+                                    <a href="#" class="text-primary fw-semibold fs-7 text-hover-primary">Xem bản đồ</a>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-8">
+                                        <div class="mb-5">
+                                            <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Địa chỉ</div>
+                                            <div class="text-gray-900 fs-6 fw-semibold">KCN Quang Minh, Mê Linh, Hà Nội</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Người phụ trách</div>
+                                                <div class="text-gray-900 fs-6 fw-semibold">Lê Văn Kho</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">SĐT liên hệ</div>
+                                                <div class="text-gray-900 fs-6 fw-semibold">0987 654 321</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="bg-light-secondary rounded h-100 d-flex align-items-center justify-content-center" style="min-height: 100px;">
+                                            <i class="ki-duotone ki-geolocation fs-2x text-muted"><span class="path1"></span><span class="path2"></span></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Card 1-->
+
+                            <!--begin::Card 2-->
+                            <div class="border border-gray-200 rounded p-6">
+                                <div class="d-flex flex-stack mb-5">
+                                    <h5 class="text-gray-900 fw-bold m-0 fs-5">Nhà máy Bình Dương</h5>
+                                    <a href="#" class="text-primary fw-semibold fs-7 text-hover-primary">Xem bản đồ</a>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-8">
+                                        <div class="mb-5">
+                                            <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Địa chỉ</div>
+                                            <div class="text-gray-900 fs-6 fw-semibold">KCN Sóng Thần, Bình Dương</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">Người phụ trách</div>
+                                                <div class="text-gray-900 fs-6 fw-semibold">Trần Bình</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-muted fs-7 fw-semibold text-uppercase mb-1">SĐT liên hệ</div>
+                                                <div class="text-gray-900 fs-6 fw-semibold">0912 345 678</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="bg-light-secondary rounded h-100 d-flex align-items-center justify-content-center" style="min-height: 100px;">
+                                            <i class="ki-duotone ki-geolocation fs-2x text-muted"><span class="path1"></span><span class="path2"></span></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Card 2-->
+                        </div>
+                        <!--end::Kho & Nhà máy-->
+
+                    </div>
+                </div>
+                <!--end::Tab 1-->
+
+                <!--begin::Tab 2 (Danh mục vật tư)-->
+                <div class="tab-pane fade" id="kt_supplier_tab_2" role="tabpanel">
+                    <div class="p-9">
+                        @if (MaterialTypes.Contains("Paper"))
+                        {
+                            <!--begin::Danh mục Giấy-->
+                            <div class="mb-10">
+                                <div class="d-flex flex-stack mb-5">
+                                    <h4 class="text-gray-800 fw-bold text-uppercase fs-7 m-0">Giấy cuộn Carton</h4>
+                                    <span class="badge badge-light-primary">3 mã vật tư</span>
+                                </div>
+                                <div class="table-responsive border border-gray-200 rounded">
+                                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                        <thead>
+                                            <tr class="border-bottom-0 bg-light-secondary text-muted fw-bold fs-7 text-uppercase gs-0">
+                                                <th class="ps-4 min-w-150px">Mã VT</th>
+                                                <th class="min-w-200px">Tên loại giấy</th>
+                                                <th class="min-w-100px">Định lượng</th>
+                                                <th class="pe-4 text-end min-w-100px">Đơn giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-4"><span class="text-gray-800 fw-bold">VT-P-001</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">Giấy Kraft Mặt Nâu</span></td>
+                                                <td><span class="badge badge-light-info fw-bold">150 gsm</span></td>
+                                                <td class="pe-4 text-end"><span class="text-gray-900 fw-bold">12,500 đ/kg</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><span class="text-gray-800 fw-bold">VT-P-002</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">Giấy Xeó</span></td>
+                                                <td><span class="badge badge-light-info fw-bold">115 gsm</span></td>
+                                                <td class="pe-4 text-end"><span class="text-gray-900 fw-bold">11,200 đ/kg</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><span class="text-gray-800 fw-bold">VT-P-003</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">Giấy Trắng In Offset</span></td>
+                                                <td><span class="badge badge-light-info fw-bold">200 gsm</span></td>
+                                                <td class="pe-4 text-end"><span class="text-gray-900 fw-bold">15,800 đ/kg</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end::Danh mục Giấy-->
+                        }
+
+                        @if (MaterialTypes.Contains("Chemical"))
+                        {
+                            <!--begin::Danh mục Keo/Hóa chất-->
+                            <div>
+                                <div class="d-flex flex-stack mb-5">
+                                    <h4 class="text-gray-800 fw-bold text-uppercase fs-7 m-0">Keo / Hóa chất</h4>
+                                    <span class="badge badge-light-warning">2 mã vật tư</span>
+                                </div>
+                                <div class="table-responsive border border-gray-200 rounded">
+                                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                        <thead>
+                                            <tr class="border-bottom-0 bg-light-secondary text-muted fw-bold fs-7 text-uppercase gs-0">
+                                                <th class="ps-4 min-w-150px">Mã VT</th>
+                                                <th class="min-w-200px">Tên sản phẩm</th>
+                                                <th class="min-w-100px">Quy cách</th>
+                                                <th class="pe-4 text-end min-w-100px">Đơn giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-4"><span class="text-gray-800 fw-bold">VT-C-001</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">Keo hồ tinh bột dạng lỏng</span></td>
+                                                <td><span class="badge badge-light-warning fw-bold">Phuy 200L</span></td>
+                                                <td class="pe-4 text-end"><span class="text-gray-900 fw-bold">8,500 đ/kg</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4"><span class="text-gray-800 fw-bold">VT-C-002</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">Keo dán biên pha sẵn</span></td>
+                                                <td><span class="badge badge-light-warning fw-bold">Thùng 20L</span></td>
+                                                <td class="pe-4 text-end"><span class="text-gray-900 fw-bold">22,000 đ/lít</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end::Danh mục Keo/Hóa chất-->
+                        }
+                        
+                        @if (!MaterialTypes.Contains("Paper") && !MaterialTypes.Contains("Chemical"))
+                        {
+                            <!--begin::Empty State-->
+                            <div class="d-flex flex-column align-items-center justify-content-center py-10">
+                                <i class="ki-duotone ki-box fs-5x text-muted mb-4"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                <div class="text-gray-800 fw-bold fs-5 mb-2">Chưa có danh mục vật tư</div>
+                                <div class="text-muted fs-6 mb-5">Nhà cung cấp này chưa được gán bất kỳ vật tư nào.</div>
+                                <button class="btn btn-sm btn-primary">Thêm vật tư</button>
+                            </div>
+                            <!--end::Empty State-->
+                        }
+                    </div>
+                </div>
+                <!--end::Tab 2-->
+
+                <!--begin::Tab 3 (Lịch sử nhập hàng)-->
+                <div class="tab-pane fade" id="kt_supplier_tab_3" role="tabpanel">
+                    <div class="p-9">
+                        <!--begin::Filter-->
+                        <div class="d-flex flex-stack mb-5">
+                            <div class="d-flex align-items-center position-relative my-1">
+                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span class="path1"></span><span class="path2"></span></i>
+                                <input type="text" class="form-control form-control-solid w-250px ps-12" placeholder="Tìm kiếm phiếu nhập...">
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <select class="form-select form-select-solid w-150px">
+                                    <option value="">Tất cả trạng thái</option>
+                                    <option value="1">Hoàn thành</option>
+                                    <option value="2">Đang xử lý</option>
+                                    <option value="3">Đã hủy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--end::Filter-->
+
+                        <!--begin::Table-->
+                        <div class="table-responsive border border-gray-200 rounded">
+                            <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                <thead>
+                                    <tr class="border-bottom-0 bg-light-secondary text-muted fw-bold fs-7 text-uppercase gs-0">
+                                        <th class="ps-4 min-w-100px">Ngày Nhập</th>
+                                        <th class="min-w-150px">Mã Phiếu</th>
+                                        <th class="min-w-200px">Vật Tư</th>
+                                        <th class="min-w-100px text-end">Số Lượng</th>
+                                        <th class="min-w-100px text-center">Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ps-4"><span class="text-gray-600 fw-semibold">15/04/2026</span></td>
+                                        <td><a href="#" class="text-primary fw-bold text-hover-primary">PN-2026-0415</a></td>
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                <span class="text-gray-800 fw-bold">Giấy Kraft Mặt Nâu</span>
+                                                <span class="text-muted fs-7">Cuộn 1m2 - 150gsm</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end"><span class="text-gray-900 fw-bold">5,000 kg</span></td>
+                                        <td class="text-center"><span class="badge badge-light-success fw-bold">Hoàn thành</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4"><span class="text-gray-600 fw-semibold">02/04/2026</span></td>
+                                        <td><a href="#" class="text-primary fw-bold text-hover-primary">PN-2026-0402</a></td>
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                <span class="text-gray-800 fw-bold">Keo hồ tinh bột</span>
+                                                <span class="text-muted fs-7">Phuy 200L</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end"><span class="text-gray-900 fw-bold">10 phuy</span></td>
+                                        <td class="text-center"><span class="badge badge-light-success fw-bold">Hoàn thành</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4"><span class="text-gray-600 fw-semibold">28/03/2026</span></td>
+                                        <td><a href="#" class="text-primary fw-bold text-hover-primary">PN-2026-0328</a></td>
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                <span class="text-gray-800 fw-bold">Giấy Xeó</span>
+                                                <span class="text-muted fs-7">Cuộn 1m - 115gsm</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end"><span class="text-gray-900 fw-bold">3,500 kg</span></td>
+                                        <td class="text-center"><span class="badge badge-light-warning fw-bold">Đang xử lý</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--end::Table-->
+                        
+                        <!--begin::Pagination-->
+                        <div class="d-flex flex-stack mt-5">
+                            <div class="text-muted fs-7">Đang xem 1 đến 3 trong số 3 mục</div>
+                            <ul class="pagination pagination-outline">
+                                <li class="page-item previous disabled"><a href="#" class="page-link"><i class="previous"></i></a></li>
+                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item next disabled"><a href="#" class="page-link"><i class="next"></i></a></li>
+                            </ul>
+                        </div>
+                        <!--end::Pagination-->
+                    </div>
+                </div>
+                <!--end::Tab 3-->
+
+                <!--begin::Tab 4 (Hồ sơ & hợp đồng)-->
+                <div class="tab-pane fade" id="kt_supplier_tab_4" role="tabpanel">
+                    <div class="p-9">
+                        <!--begin::Sub-Tabs-->
+                        <ul class="nav nav-pills nav-pills-custom mb-8 fs-6 fw-semibold">
+                            <li class="nav-item">
+                                <a class="nav-link px-4 py-2 me-4 text-gray-700 bg-active-light-primary text-active-primary active" data-bs-toggle="tab" href="#kt_supplier_subtab_1">Hồ sơ và hợp đồng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-4 py-2 text-gray-700 bg-active-light-primary text-active-primary" data-bs-toggle="tab" href="#kt_supplier_subtab_2">Quản lý PO</a>
+                            </li>
+                        </ul>
+                        <!--end::Sub-Tabs-->
+
+                        <div class="tab-content">
+                            <!--begin::Sub-Tab 1 (Hồ sơ và hợp đồng)-->
+                            <div class="tab-pane fade show active" id="kt_supplier_subtab_1" role="tabpanel">
+                                <div class="d-flex flex-stack mb-5">
+                                    <h4 class="text-gray-800 fw-bold text-uppercase fs-7 m-0">Hồ sơ & Hợp đồng</h4>
+                                    <a href="#" class="text-primary fw-bold text-hover-primary fs-7">+ Tải lên tài liệu</a>
+                                </div>
+                                <div class="table-responsive border border-gray-200 rounded">
+                                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                        <thead>
+                                            <tr class="border-bottom-0 bg-light-secondary text-muted fw-bold fs-8 text-uppercase gs-0">
+                                                <th class="ps-4 min-w-150px">Loại tài liệu</th>
+                                                <th class="min-w-150px">Số hiệu</th>
+                                                <th class="min-w-100px">Ngày ký</th>
+                                                <th class="min-w-100px">Ngày hết hạn</th>
+                                                <th class="pe-4 text-center min-w-100px">Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-file-down fs-2 text-danger me-2"><span class="path1"></span><span class="path2"></span></i>
+                                                        <span class="text-gray-800 fw-bold">Hợp đồng nguyên tắc</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="text-gray-600 fw-semibold">HDNT/2023/VJ-01</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">01/01/2023</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">31/12/2023</span></td>
+                                                <td class="pe-4 text-center"><span class="badge badge-light-success fw-bold">Còn hiệu lực</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-document fs-2 text-primary me-2"><span class="path1"></span><span class="path2"></span></i>
+                                                        <span class="text-gray-800 fw-bold">Đăng ký kinh doanh</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="text-gray-600 fw-semibold">0101234567</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">15/05/2015</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">Vô thời hạn</span></td>
+                                                <td class="pe-4 text-center"><span class="badge badge-light-warning fw-bold">Sắp hết hạn</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="ki-duotone ki-verify fs-2 text-warning me-2"><span class="path1"></span><span class="path2"></span></i>
+                                                        <span class="text-gray-800 fw-bold">Chứng chỉ ISO 9001</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="text-gray-600 fw-semibold">ISO-9001-2022-VJ</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">10/10/2022</span></td>
+                                                <td><span class="text-gray-600 fw-semibold">10/10/2025</span></td>
+                                                <td class="pe-4 text-center"><span class="badge badge-light-danger fw-bold">Hết hiệu lực</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end::Sub-Tab 1-->
+
+                            <!--begin::Sub-Tab 2 (Quản lý PO)-->
+                            <div class="tab-pane fade" id="kt_supplier_subtab_2" role="tabpanel">
+                                <div class="d-flex flex-stack mb-5">
+                                    <h4 class="text-gray-800 fw-bold text-uppercase fs-7 m-0">Danh sách đơn mua hàng (PO)</h4>
+                                    <button class="btn btn-sm btn-primary d-flex align-items-center" data-kt-drawer-show="true" data-kt-drawer-target="#kt_po_create_drawer">
+                                        <i class="ki-duotone ki-plus fs-3 me-1"></i> Tạo đơn hàng mới
+                                    </button>
+                                </div>
+                                <div class="table-responsive border border-gray-200 rounded">
+                                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                        <thead>
+                                            <tr class="border-bottom-0 bg-light-secondary text-muted fw-bold fs-8 text-uppercase gs-0">
+                                                <th class="ps-4 min-w-100px">Mã PO</th>
+                                                <th class="min-w-100px">Ngày đặt hàng</th>
+                                                <th class="min-w-100px text-end">Tổng tiền (VNĐ)</th>
+                                                <th class="min-w-100px text-center">Trạng thái PO</th>
+                                                <th class="pe-4 text-end min-w-50px">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <a href="#" class="text-primary fw-bold text-hover-primary">PO-2023-1001</a>
+                                                </td>
+                                                <td><span class="text-gray-600 fw-semibold">12/10/2023</span></td>
+                                                <td class="text-end"><span class="text-gray-900 fw-bold">45.000.000</span></td>
+                                                <td class="text-center"><span class="badge badge-light-primary fw-bold">Đang xử lý</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                        <i class="ki-duotone ki-eye fs-3 text-muted"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <a href="#" class="text-primary fw-bold text-hover-primary">PO-2023-0985</a>
+                                                </td>
+                                                <td><span class="text-gray-600 fw-semibold">05/10/2023</span></td>
+                                                <td class="text-end"><span class="text-gray-900 fw-bold">12.500.000</span></td>
+                                                <td class="text-center"><span class="badge badge-light-success fw-bold">Hoàn thành</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                        <i class="ki-duotone ki-eye fs-3 text-muted"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <a href="#" class="text-primary fw-bold text-hover-primary">PO-2023-0942</a>
+                                                </td>
+                                                <td><span class="text-gray-600 fw-semibold">20/09/2023</span></td>
+                                                <td class="text-end"><span class="text-gray-900 fw-bold">8.200.000</span></td>
+                                                <td class="text-center"><span class="badge badge-light-danger fw-bold">Đã hủy</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px">
+                                                        <i class="ki-duotone ki-eye fs-3 text-muted"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end::Sub-Tab 2-->
+                        </div>
+                    </div>
+                </div>
+                <!--end::Tab 4-->
+            </div>
+            <!--end::Tab Content-->
+        </div>
+        <!--end::Body-->
+
+        <!--begin::Footer-->
+        <div class="card-footer py-5 border-top d-flex justify-content-end gap-3 px-9">
+            <button type="button" class="btn btn-light" id="kt_supplier_detail_close_footer" data-kt-drawer-dismiss="true">Đóng</button>
+            <button type="button" class="btn btn-primary">Xuất báo cáo</button>
+        </div>
+        <!--end::Footer-->
+    </div>
+    <!--end::Card-->
+</div>
+<!--end::Supplier Detail Drawer-->

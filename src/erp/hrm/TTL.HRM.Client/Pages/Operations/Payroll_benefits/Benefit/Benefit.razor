@@ -1,0 +1,311 @@
+@page "/hrm/benefit"
+@rendermode InteractiveServer
+
+<SectionContent SectionName="PageTitle">Danh mục Phụ cấp & Phúc lợi</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">Cấu hình</li>
+    <li class="breadcrumb-item text-muted">Chính sách lương</li>
+    <li class="breadcrumb-item text-gray-900">Phụ cấp & Phúc lợi</li>
+</SectionContent>
+
+<div class="d-flex flex-wrap flex-stack mb-6">
+    <div class="d-flex flex-column">
+        <h3 class="fw-bold fs-2 text-dark my-1">Danh mục Phụ cấp & Phúc lợi</h3>
+        <span class="text-muted fs-6 fw-semibold">Quản lý danh sách và chính sách các khoản phụ cấp, phúc lợi cho nhân viên toàn doanh nghiệp.</span>
+    </div>
+    <div class="d-flex align-items-center my-1">
+        <button type="button" class="btn btn-sm btn-light bg-white border border-gray-300 me-3">
+            <i class="ki-duotone ki-exit-down fs-2 text-dark"><span class="path1"></span><span class="path2"></span></i> Xuất Excel
+        </button>
+        <button type="button" class="btn btn-sm btn-primary">
+            <i class="ki-duotone ki-plus fs-2"></i> Thêm mới
+        </button>
+    </div>
+</div>
+
+<div class="card card-flush">
+    <div class="card-header pt-5">
+        <!--begin::Tabs-->
+        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold w-100 flex-nowrap align-items-center">
+            <li class="nav-item">
+                <a class="nav-link text-active-primary active" data-bs-toggle="tab" href="#kt_tab_all">Tất cả</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-active-primary" data-bs-toggle="tab" href="#kt_tab_allowance">Phụ cấp</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-active-primary" data-bs-toggle="tab" href="#kt_tab_benefit">Phúc lợi</a>
+            </li>
+            <li class="nav-item ms-auto">
+                <button class="btn btn-sm btn-light text-muted fw-bold">
+                    <i class="ki-duotone ki-filter fs-4 me-1"><span class="path1"></span><span class="path2"></span></i> Loại chi phí
+                </button>
+            </li>
+        </ul>
+        <!--end::Tabs-->
+    </div>
+    <div class="card-body pt-0">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="kt_tab_all" role="tabpanel">
+                <table class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
+                    <thead class="fs-7 text-muted text-uppercase fw-bolder bg-light">
+                        <tr>
+                            <th class="ps-4 min-w-100px rounded-start">MÃ KHOẢN</th>
+                            <th class="min-w-250px">TÊN KHOẢN CHI</th>
+                            <th class="min-w-100px">LOẠI</th>
+                            <th class="min-w-150px">GIÁ TRỊ</th>
+                            <th class="min-w-150px">ĐỐI TƯỢNG ÁP DỤNG</th>
+                            <th class="text-end pe-4 rounded-end min-w-100px">HÀNH ĐỘNG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row 1 -->
+                        <tr>
+                            <td class="ps-4">
+                                <span class="text-primary fw-bolder fs-7">PC-XX-01</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px me-4">
+                                        <span class="symbol-label bg-light-primary rounded">
+                                            <i class="ki-duotone ki-car fs-2 text-primary"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <span class="text-dark fw-bolder fs-6 mb-1">Phụ cấp Xăng xe</span>
+                                        <span class="text-muted fw-semibold fs-7">Phụ cấp di chuyển hàng tháng</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-success text-success fw-bold px-2 py-1 fs-8">CỐ ĐỊNH</span>
+                            </td>
+                            <td>
+                                <span class="text-dark fw-bolder fs-6">500,000 VND</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Toàn công ty</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
+                                </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PC-XX-01", "Phụ cấp Xăng xe", "Phụ cấp di chuyển hàng tháng", "CỐ ĐỊNH", 500000, "Toàn công ty")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr>
+                            <td class="ps-4">
+                                <span class="text-primary fw-bolder fs-7">PL-SN-02</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px me-4">
+                                        <span class="symbol-label bg-light-danger rounded">
+                                            <i class="ki-duotone ki-gift fs-2 text-danger"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <span class="text-dark fw-bolder fs-6 mb-1">Quà sinh nhật</span>
+                                        <span class="text-muted fw-semibold fs-7">Phúc lợi dịp sinh nhật</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-warning text-warning fw-bold px-2 py-1 fs-8">BIẾN ĐỔI</span>
+                            </td>
+                            <td>
+                                <span class="text-dark fw-bolder fs-6">1,000,000 VND</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Chính thức</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
+                                </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PL-SN-02", "Quà sinh nhật", "Phúc lợi dịp sinh nhật", "BIẾN ĐỔI", 1000000, "Chính thức")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr>
+                            <td class="ps-4">
+                                <span class="text-primary fw-bolder fs-7">PC-AT-03</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px me-4">
+                                        <span class="symbol-label bg-light-info rounded">
+                                            <i class="ki-duotone ki-spoon fs-2 text-info"><span class="path1"></span><span class="path2"></span></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <span class="text-dark fw-bolder fs-6 mb-1">Phụ cấp Ăn trưa</span>
+                                        <span class="text-muted fw-semibold fs-7">Theo ngày công thực tế</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-success text-success fw-bold px-2 py-1 fs-8">CỐ ĐỊNH</span>
+                            </td>
+                            <td>
+                                <span class="text-dark fw-bolder fs-6">30,000 VND/ngày</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Toàn công ty</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
+                                </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PC-AT-03", "Phụ cấp Ăn trưa", "Theo ngày công thực tế", "CỐ ĐỊNH", 30000, "Toàn công ty")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr>
+                            <td class="ps-4">
+                                <span class="text-primary fw-bolder fs-7">PC-ĐT-04</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px me-4">
+                                        <span class="symbol-label bg-light-primary rounded">
+                                            <i class="ki-duotone ki-phone fs-2 text-primary"><span class="path1"></span><span class="path2"></span></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <span class="text-dark fw-bolder fs-6 mb-1">Phụ cấp Điện thoại</span>
+                                        <span class="text-muted fw-semibold fs-7">Dành cho bộ phận kinh doanh</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-success text-success fw-bold px-2 py-1 fs-8">CỐ ĐỊNH</span>
+                            </td>
+                            <td>
+                                <span class="text-dark fw-bolder fs-6">200,000 VND</span>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column gap-1 align-items-start">
+                                    <span class="badge bg-light-primary text-primary fw-semibold px-3 py-1">Phòng Kinh doanh</span>
+                                    <span class="badge bg-light-info text-info fw-semibold px-3 py-1">CSKH</span>
+                                </div>
+                            </td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
+                                </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PC-ĐT-04", "Phụ cấp Điện thoại", "Dành cho bộ phận kinh doanh", "CỐ ĐỊNH", 200000, "Phòng Kinh doanh")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Row 5 -->
+                        <tr>
+                            <td class="ps-4">
+                                <span class="text-primary fw-bolder fs-7">PL-BH-05</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40px me-4">
+                                        <span class="symbol-label bg-light-purple rounded" style="background-color: #F8F5FF;">
+                                            <i class="ki-duotone ki-briefcase fs-2 text-purple" style="color: #A020F0;"><span class="path1"></span><span class="path2"></span></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <span class="text-dark fw-bolder fs-6 mb-1">Bảo hiểm sức khỏe</span>
+                                        <span class="text-muted fw-semibold fs-7">PVI Care cao cấp</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-success text-success fw-bold px-2 py-1 fs-8">CỐ ĐỊNH</span>
+                            </td>
+                            <td>
+                                <span class="text-dark fw-bolder fs-6">5,000,000 VND/năm</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-gray-700 fw-semibold px-3 py-1">Cấp Quản lý</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary show menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <i class="ki-duotone ki-category fs-6">
+                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                                    </i>
+                                </button>
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true" data-popper-placement="bottom-end">
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_benefit_detail" @onclick='() => SelectBenefit("PL-BH-05", "Bảo hiểm sức khỏe", "PVI Care cao cấp", "CỐ ĐỊNH", 5000000, "Cấp Quản lý")'>Cấu hình chi tiết</a>
+                                    </div>
+                                    <div class="menu-item px-3">
+                                        <a href="javascript:void(0);" class="menu-link px-3 text-danger" data-kt-users-table-filter="delete_row">Xóa khoản chi</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="px-7 py-5 border-top">
+                    <div class="d-flex flex-stack flex-wrap pt-3">
+                        <div class="fs-6 fw-semibold text-muted">
+                            <span>Hiển thị 1 - 5 trong 24 khoản chi</span>
+                        </div>
+                        <ul class="pagination">
+                            <li class="page-item previous disabled"><a href="javascript:;" class="page-link"><i class="ki-outline ki-left fs-2"></i></a></li>
+                            <li class="page-item active"><a href="javascript:;" class="page-link">1</a></li>
+                            <li class="page-item"><a href="javascript:;" class="page-link">2</a></li>
+                            <li class="page-item"><a href="javascript:;" class="page-link">3</a></li>
+                            <li class="page-item next"><a href="javascript:;" class="page-link"><i class="ki-outline ki-right fs-2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="kt_tab_allowance" role="tabpanel">
+                <!-- Allowance Tab Content -->
+            </div>
+            
+            <div class="tab-pane fade" id="kt_tab_benefit" role="tabpanel">
+                <!-- Benefit Tab Content -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<BenefitDetailDrawer BenefitItem="SelectedBenefit" OnSave="SaveBenefit" />
+

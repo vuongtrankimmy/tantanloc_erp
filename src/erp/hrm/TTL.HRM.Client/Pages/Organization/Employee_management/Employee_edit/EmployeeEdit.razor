@@ -1,0 +1,435 @@
+@page "/hrm/employee/create"
+@page "/hrm/employee/edit/{Code}"
+@using TTL.Shared.Models.HRM.Organization
+@using System.Net.Http.Json
+
+<SectionContent SectionName="PageTitle">@(!string.IsNullOrEmpty(Code) ? "Chỉnh sửa nhân viên" : "Thêm nhân viên mới")</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Home</a>
+    </li>
+    <li class="breadcrumb-item text-muted">Tổ chức & Nhân sự</li>
+    <li class="breadcrumb-item text-muted">
+        <a href="/hrm/employee" class="text-muted text-hover-primary">Nhân viên</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">@(!string.IsNullOrEmpty(Code) ? "Chỉnh sửa" : "Thêm nhân viên mới")</li>
+</SectionContent>
+
+<!-- Header Title -->
+<div class="mb-8">
+    <h1 class="fs-2x fw-bold text-gray-900 mb-2">@(!string.IsNullOrEmpty(Code) ? "Chỉnh sửa nhân sự" : "Thêm nhân viên mới")</h1>
+    <div class="fs-5 text-gray-500">@(!string.IsNullOrEmpty(Code) ? "Cập nhật các thông tin cá nhân và công việc của nhân sự." : "Điền đầy đủ các thông tin bên dưới để khởi tạo hồ sơ nhân sự.")</div>
+</div>
+
+<div class="row g-7">
+    <!-- Left Column (Main Form) -->
+    <div class="col-lg-8 col-xl-9">
+        
+        <!-- THÔNG TIN CÁ NHÂN -->
+        <div class="card card-flush shadow-sm mb-7">
+            <div class="card-header border-0 pt-6 pb-2">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="fw-bold fs-4 text-gray-800 text-uppercase"><i class="ki-outline ki-profile-circle fs-2 text-primary me-2"></i> Thông tin cá nhân</span>
+                </h3>
+            </div>
+            <div class="card-body py-4">
+                
+                @if (string.IsNullOrEmpty(Code))
+                {
+                    <!-- Scan CCCD Feature (Only for Create) -->
+                    <div class="bg-light-primary rounded border border-primary border-dashed p-7 mb-8 text-center">
+                        <i class="ki-outline ki-scan-barcode fs-3x text-primary mb-3"></i>
+                        <h4 class="fw-bold text-gray-900 mb-2">Tính năng Scan CCCD Thông minh</h4>
+                        <div class="text-gray-600 fs-6 mb-5">Tiết kiệm 80% thời gian nhập liệu. Hệ thống sẽ tự động trích xuất<br/>thông tin từ thẻ CCCD gắn chip hoặc mã QR.</div>
+                        <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_scan_cccd">
+                            <i class="ki-outline ki-focus fs-4"></i> Nhập liệu từ thẻ CCCD
+                        </button>
+                    </div>
+                }
+
+                <div class="row g-5 mb-5">
+                    <div class="col-md-6">
+                        <label class="form-label required">Họ và tên</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="VD: Nguyễn Văn A" @bind="Model.FullName" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label required">Mã nhân viên</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="VD: NV001" @bind="Model.Code" />
+                    </div>
+                </div>
+
+                <div class="row g-5 mb-5">
+                    <div class="col-md-6">
+                        <label class="form-label required">Căn cước công dân</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Số CCCD/CMND" @bind="Model.CitizenId" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label required">Giới tính</label>
+                        <select class="form-select form-select-solid" @bind="Model.Gender">
+                            <option value="">Chọn giới tính</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-5 mb-5">
+                    <div class="col-md-6">
+                        <label class="form-label">Ngày sinh</label>
+                        <input type="date" class="form-control form-control-solid" @bind="DateOfBirthDate" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="09xx xxx xxx" @bind="Model.PhoneNumber" />
+                    </div>
+                </div>
+                
+                <div class="row g-5 mb-5">
+                    <div class="col-md-6">
+                        <label class="form-label required">Email liên hệ</label>
+                        <input type="email" class="form-control form-control-solid" placeholder="email@company.com" @bind="Model.Email" />
+                    </div>
+                </div>
+                
+                <div class="mb-0">
+                    <label class="form-label">Địa chỉ thường trú</label>
+                    <textarea class="form-control form-control-solid" rows="3" placeholder="Nhập địa chỉ" @bind="Model.Address"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- THÔNG TIN CÔNG VIỆC -->
+        <div class="card card-flush shadow-sm mb-7">
+            <div class="card-header border-0 pt-6 pb-2">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="fw-bold fs-4 text-gray-800 text-uppercase"><i class="ki-outline ki-briefcase fs-2 text-primary me-2"></i> Thông tin công việc</span>
+                </h3>
+            </div>
+            <div class="card-body py-4">
+                <div class="row g-5">
+                    <div class="col-md-4">
+                        <label class="form-label required">Phòng ban</label>
+                        <select class="form-select form-select-solid" @bind="Model.Department">
+                            <option value="">Chọn phòng ban</option>
+                            <option value="Kỹ thuật">Kỹ thuật</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Tài chính">Tài chính</option>
+                            <option value="Nhân sự">Nhân sự</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label required">Chức vụ</label>
+                        <select class="form-select form-select-solid" @bind="Model.Position">
+                            <option value="">Chọn chức vụ</option>
+                            <option value="Kỹ sư phần mềm">Kỹ sư phần mềm</option>
+                            <option value="Trưởng phòng">Trưởng phòng</option>
+                            <option value="Kế toán viên">Kế toán viên</option>
+                            <option value="Nhân viên">Nhân viên</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label required">Trạng thái</label>
+                        <select class="form-select form-select-solid" @bind="Model.StatusId">
+                            <option value="1">Đang làm việc</option>
+                            <option value="2">Thử việc</option>
+                            <option value="3">Nghỉ phép</option>
+                            <option value="4">Thôi việc</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THÔNG TIN NGÂN HÀNG -->
+        <div class="card card-flush shadow-sm mb-7">
+            <div class="card-header border-0 pt-6 pb-2">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="fw-bold fs-4 text-gray-800 text-uppercase"><i class="ki-outline ki-bank fs-2 text-primary me-2"></i> Tài chính & Ngân hàng</span>
+                </h3>
+            </div>
+            <div class="card-body py-4">
+                <div class="row g-5 mb-5">
+                    <div class="col-md-6">
+                        <label class="form-label">Ngân hàng</label>
+                        <select class="form-select form-select-solid" @bind="Model.BankName">
+                            <option value="">-- Chọn ngân hàng --</option>
+                            <option value="Vietcombank">Vietcombank</option>
+                            <option value="Techcombank">Techcombank</option>
+                            <option value="MBBank">MBBank</option>
+                            <option value="ACB">ACB</option>
+                            <option value="BIDV">BIDV</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Số tài khoản</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="STK ngân hàng" @bind="Model.BankAccountNumber" />
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-6">
+                        <label class="form-label">Mã số thuế</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="MST cá nhân" @bind="Model.TaxId" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Số bảo hiểm</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Số BHXH" @bind="Model.SocialInsuranceNumber" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIÊN HỆ KHẨN CẤP -->
+        <div class="card card-flush shadow-sm mb-7">
+            <div class="card-header border-0 pt-6 pb-2">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="fw-bold fs-4 text-gray-800 text-uppercase"><i class="ki-outline ki-call fs-2 text-primary me-2"></i> Liên hệ khẩn cấp</span>
+                </h3>
+            </div>
+            <div class="card-body py-4">
+                @foreach (var contact in Model.EmergencyContacts)
+                {
+                    <div class="border border-dashed border-gray-300 rounded px-7 py-5 mb-5">
+                        <!-- Top Action Row -->
+                        <div class="d-flex flex-stack mb-5">
+                            <div class="d-flex align-items-center">
+                                <div class="form-check form-switch form-check-custom form-check-solid form-check-success me-4" title="Liên hệ chính">
+                                    <input class="form-check-input cursor-pointer" type="checkbox" 
+                                           checked="@contact.IsPrimary" 
+                                           @onchange="@((ChangeEventArgs e) => TogglePrimaryContact(contact, e))" id="switch_@contact.GetHashCode()" />
+                                    <label class="form-check-label fw-semibold text-gray-700" for="switch_@contact.GetHashCode()">
+                                        Liên hệ chính
+                                    </label>
+                                </div>
+                            </div>
+                            @if (Model.EmergencyContacts.Count > 1)
+                            {
+                                <button type="button" class="btn btn-icon btn-light-danger btn-sm" title="Xóa liên hệ" @onclick="() => RemoveEmergencyContact(contact)">
+                                    <i class="ki-outline ki-trash fs-2"></i>
+                                </button>
+                            }
+                        </div>
+                        
+                        <!-- Input Fields Row -->
+                        <div class="row g-5">
+                            <div class="col-md-4">
+                                <label class="form-label required">Họ tên người liên hệ</label>
+                                <input type="text" class="form-control form-control-solid" placeholder="VD: Nguyễn Văn B" @bind="contact.Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label required">Mối quan hệ</label>
+                                <select class="form-select form-select-solid" @bind="contact.Relationship">
+                                    <option value="">-- Chọn --</option>
+                                    <option value="Vợ/Chồng">Vợ/Chồng</option>
+                                    <option value="Bố/Mẹ">Bố/Mẹ</option>
+                                    <option value="Anh/Chị/Em">Anh/Chị/Em</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label required">Số điện thoại</label>
+                                <input type="text" class="form-control form-control-solid" placeholder="09xx xxx xxx" @bind="contact.PhoneNumber" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+                <div class="mt-4">
+                    <button type="button" class="btn btn-light-primary fw-bold" @onclick="AddEmergencyContact">
+                        <i class="ki-outline ki-plus fs-2"></i> Thêm liên hệ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-7">
+            <!-- HỢP ĐỒNG BAN ĐẦU -->
+            <div class="col-md-6">
+                <div class="card card-flush shadow-sm h-100 mb-7">
+                    <div class="card-header border-0 pt-6 pb-2">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="fw-bold fs-4 text-gray-800 text-uppercase"><i class="ki-outline ki-document fs-2 text-primary me-2"></i> Hợp đồng ban đầu</span>
+                        </h3>
+                    </div>
+                    <div class="card-body py-4">
+                        <div class="mb-5">
+                            <label class="form-label">Loại hợp đồng</label>
+                            <select class="form-select form-select-solid" @bind="Model.ContractType">
+                                <option value="Hợp đồng thử việc">Hợp đồng thử việc</option>
+                                <option value="Chính thức">Chính thức (1 năm)</option>
+                                <option value="Vô thời hạn">Vô thời hạn</option>
+                            </select>
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Mức lương cơ bản (VNĐ)</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="VD: 10,000,000" @bind="Model.BasicSalary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TÀI LIỆU ĐÍNH KÈM -->
+            <div class="col-md-6">
+                <div class="card card-flush shadow-sm h-100 mb-7">
+                    <div class="card-header border-0 pt-6 pb-2">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="fw-bold fs-4 text-gray-800 text-uppercase"><i class="ki-outline ki-paper-clip fs-2 text-primary me-2"></i> Tài liệu đính kèm</span>
+                        </h3>
+                    </div>
+                    <div class="card-body py-4">
+                        <!-- CCCD File -->
+                        <div class="d-flex flex-stack border border-dashed border-gray-300 rounded p-4 mb-4">
+                            <div class="d-flex align-items-center me-3">
+                                <i class="ki-outline ki-file fs-1 text-gray-400 me-3"></i>
+                                <div class="d-flex flex-column">
+                                    <a href="javascript:void(0)" class="fs-6 fw-bold text-gray-900 text-hover-primary mb-1">CMND / CCCD</a>
+                                    <span class="fs-8 fw-semibold text-gray-500">PDF, JPG, PNG (Max 5MB)</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-light-primary fw-bold">Tải lên</button>
+                        </div>
+
+                        <!-- Degree File -->
+                        <div class="d-flex flex-stack border border-dashed border-gray-300 rounded p-4">
+                            <div class="d-flex align-items-center me-3">
+                                <i class="ki-outline ki-file fs-1 text-gray-400 me-3"></i>
+                                <div class="d-flex flex-column">
+                                    <a href="javascript:void(0)" class="fs-6 fw-bold text-gray-900 text-hover-primary mb-1">Bằng cấp / Chứng chỉ</a>
+                                    <span class="fs-8 fw-semibold text-gray-500">PDF, JPG, PNG (Max 5MB)</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-light-primary fw-bold">Tải lên</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end mt-8 mb-10">
+            <a href="/hrm/employee" class="btn btn-light me-3">Hủy bỏ</a>
+            <button type="button" class="btn btn-primary" @onclick="SaveEmployee">
+                <i class="ki-outline ki-check fs-2"></i> @(!string.IsNullOrEmpty(Code) ? "Lưu thay đổi" : "Khởi tạo nhân viên")
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Right Column (Sidebar) -->
+    <div class="col-lg-4 col-xl-3">
+        <!-- Summary/Status Card -->
+        <div class="card card-flush shadow-sm mb-7">
+            <div class="card-header border-0 pt-6">
+                <h3 class="card-title">
+                    <span class="fw-bold fs-4 text-gray-800 text-uppercase">Trạng thái hồ sơ</span>
+                </h3>
+            </div>
+            <div class="card-body py-4">
+                <div class="d-flex align-items-center mb-5">
+                    <div class="w-10px h-10px @(!string.IsNullOrEmpty(Code) ? "bg-success" : "bg-warning") rounded-circle me-3"></div>
+                    <span class="fw-semibold text-gray-700">@(!string.IsNullOrEmpty(Code) ? "Đang hoạt động" : "Đang khởi tạo")</span>
+                </div>
+                <div class="separator separator-dashed my-5"></div>
+                <div class="fs-7 text-gray-500">Vui lòng điền các trường bắt buộc có dấu <span class="text-danger">*</span> trước khi lưu hồ sơ.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Scan CCCD -->
+<div class="modal fade" id="kt_modal_scan_cccd" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mw-900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="fw-bold">Xác nhận thông tin quét CCCD</h2>
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
+                    <i class="ki-outline ki-cross fs-1"></i>
+                </div>
+            </div>
+            <div class="modal-body py-10 px-lg-17">
+                <div class="text-gray-500 fs-6 mb-8">Vui lòng kiểm tra và đối soát thông tin bóc tách từ ảnh thẻ căn cước.</div>
+                
+                <div class="row g-10">
+                    <!-- Image Preview -->
+                    <div class="col-md-5">
+                        <div class="d-flex flex-column h-100">
+                            <div class="fw-bold fs-6 text-gray-800 mb-3"><i class="ki-outline ki-picture fs-3 me-2 text-primary"></i> Ảnh thẻ căn cước đã tải lên</div>
+                            <div class="bg-dark rounded p-4 flex-grow-1 d-flex align-items-center justify-content-center position-relative min-h-250px">
+                                <!-- Mockup ID Card -->
+                                <div class="bg-body rounded w-100 h-150px position-relative opacity-75">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column p-3">
+                                        <div class="w-50 h-10px bg-gray-300 rounded mb-4 mx-auto"></div>
+                                        <div class="w-75 h-10px bg-gray-300 rounded mb-2"></div>
+                                        <div class="w-60 h-10px bg-gray-300 rounded mb-2"></div>
+                                        <div class="w-40 h-10px bg-gray-300 rounded mb-2"></div>
+                                    </div>
+                                    <!-- Scan highlight mock -->
+                                    <div class="position-absolute border border-warning border-2 w-75 h-20px top-25 start-10"></div>
+                                    <div class="position-absolute border border-success border-2 w-50 h-20px top-50 start-10"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-sm btn-light w-45"><i class="ki-outline ki-magnifier fs-4"></i> Phóng to</button>
+                                <button type="button" class="btn btn-sm btn-light w-45"><i class="ki-outline ki-arrows-circle fs-4"></i> Xoay ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Extracted Data -->
+                    <div class="col-md-7">
+                        <div class="fw-bold fs-6 text-gray-800 mb-3"><i class="ki-outline ki-text-align-left fs-3 me-2 text-primary"></i> Dữ liệu bóc tách</div>
+                        
+                        <div class="mb-5">
+                            <label class="form-label fs-7 fw-semibold">Họ và tên</label>
+                            <div class="position-relative">
+                                <input type="text" class="form-control form-control-solid border-success" @bind="ScannedData.FullName" />
+                                <i class="ki-outline ki-check-circle fs-2 text-success position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label class="form-label fs-7 fw-semibold d-flex align-items-center">
+                                Số CCCD/CMND 
+                                <span class="badge badge-light-warning ms-2 fs-9">Độ tin cậy thấp</span>
+                            </label>
+                            <input type="text" class="form-control form-control-solid border-warning" @bind="ScannedData.CitizenId" />
+                            <div class="text-warning fs-8 mt-1">Vui lòng đối soát kỹ trường này với ảnh gốc.</div>
+                        </div>
+                        
+                        <div class="row g-5 mb-5">
+                            <div class="col-6">
+                                <label class="form-label fs-7 fw-semibold">Ngày sinh</label>
+                                <input type="text" class="form-control form-control-solid" @bind="ScannedData.DateOfBirth" />
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fs-7 fw-semibold">Giới tính</label>
+                                <select class="form-select form-select-solid" @bind="ScannedData.Gender">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label class="form-label fs-7 fw-semibold">Quê quán</label>
+                            <input type="text" class="form-control form-control-solid" value="Phường Liễu Giai, Quận Ba Đình, Hà Nội" readonly />
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label class="form-label fs-7 fw-semibold">Nơi thường trú</label>
+                            <input type="text" class="form-control form-control-solid" @bind="ScannedData.Address" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer flex-center">
+                <button type="button" class="btn btn-light me-3" data-bs-dismiss="modal">Hủy, quét lại</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="ApplyScannedData">
+                    <i class="ki-outline ki-copy fs-4"></i> Áp dụng điền vào form
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
