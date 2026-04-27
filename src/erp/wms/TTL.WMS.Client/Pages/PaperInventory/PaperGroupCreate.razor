@@ -1,0 +1,276 @@
+@page "/wms/paper-inventory/groups/create"
+@namespace TTL.WMS.Client.Pages.PaperInventory
+
+<div class="d-flex flex-column flex-column-fluid">
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1 mb-2">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted text-hover-primary">Quản lý vật tư</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                    </li>
+                    <li class="breadcrumb-item text-primary">Nhóm Giấy Dùng Chung</li>
+                </ul>
+                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-2 flex-column justify-content-center my-0">Thiết lập Nhóm Giấy Dùng Chung</h1>
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <a href="/wms/paper-inventory/groups" class="btn btn-sm bg-white btn-color-gray-700 fw-bold border border-gray-300 btn-active-light-primary">
+                    Hủy bỏ
+                </a>
+                <button type="button" class="btn btn-sm btn-primary fw-bold">
+                    Lưu thay đổi
+                </button>
+            </div>
+            <!--end::Actions-->
+        </div>
+    </div>
+    <!--end::Toolbar-->
+
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <div id="kt_app_content_container" class="app-container container-fluid">
+            <!--begin::General Info-->
+            <div class="card card-flush border border-gray-200 shadow-sm mb-8">
+                <div class="card-header border-0 pt-5">
+                    <h3 class="card-title align-items-start flex-column">
+                        <span class="card-label fw-bold fs-6 mb-1 text-gray-800 text-uppercase d-flex align-items-center">
+                            <i class="ki-duotone ki-information-5 text-primary fs-3 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            THÔNG TIN CHUNG
+                        </span>
+                    </h3>
+                </div>
+                <div class="card-body py-5">
+                    <div class="row g-9 mb-7">
+                        <div class="col-md-6 fv-row">
+                            <label class="required fs-8 fw-bold mb-2 text-muted text-uppercase">TÊN NHÓM GIẤY</label>
+                            <input type="text" class="form-control form-control-solid bg-light" placeholder="Ví dụ: Giấy Kraft định lượng trung bình" />
+                        </div>
+                        <div class="col-md-3 fv-row">
+                            <label class="required fs-8 fw-bold mb-2 text-muted text-uppercase">MÃ NHÓM</label>
+                            <input type="text" class="form-control form-control-solid bg-light" value="GRP-KRAFT-01" />
+                        </div>
+                        <div class="col-md-3 fv-row">
+                            <label class="required fs-8 fw-bold mb-2 text-muted text-uppercase">ĐỊNH LƯỢNG (GSM)</label>
+                            <div class="input-group input-group-solid bg-light">
+                                <input type="text" class="form-control form-control-solid bg-light" value="125" />
+                                <span class="input-group-text bg-light text-muted fw-bold">GSM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-9 mb-7">
+                        <div class="col-md-3 fv-row">
+                            <label class="required fs-8 fw-bold mb-2 text-muted text-uppercase">KHỔ GIẤY MẶC ĐỊNH (MM)</label>
+                            <div class="input-group input-group-solid bg-light">
+                                <input type="text" class="form-control form-control-solid bg-light" value="1100" />
+                                <span class="input-group-text bg-light text-muted fw-bold">MM</span>
+                            </div>
+                        </div>
+                        <div class="col-md-9 fv-row">
+                            <label class="fs-8 fw-bold mb-2 text-muted text-uppercase">MÔ TẢ CHI TIẾT</label>
+                            <textarea class="form-control form-control-solid bg-light" rows="2" placeholder="Nhập ghi chú hoặc yêu cầu kỹ thuật đặc biệt..."></textarea>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex flex-stack text-start p-3 w-200px border-primary bg-light-primary rounded">
+                            <div class="d-flex align-items-center me-2">
+                                <div class="form-check form-check-custom form-check-solid form-check-primary me-3">
+                                    <input class="form-check-input h-20px w-20px" type="checkbox" checked="checked" />
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="text-primary fw-bold fs-6">Đang kích hoạt</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--end::General Info-->
+
+            <div class="row g-8">
+                <!--begin::Left Col-->
+                <div class="col-xl-5">
+                    <div class="card card-flush border border-gray-200 shadow-sm h-100">
+                        <div class="card-header pt-7 border-0">
+                            <h3 class="card-title align-items-start flex-column">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="ki-duotone ki-magnifier text-primary fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                    <span class="card-label fw-bold text-gray-800 fs-6 text-uppercase">TÌM KIẾM VẬT TƯ</span>
+                                </div>
+                            </h3>
+                            <div class="card-toolbar">
+                                <span class="badge badge-light-primary text-primary fw-bold px-3 py-2">32 Vật tư sẵn có</span>
+                            </div>
+                        </div>
+                        <div class="card-body pt-5">
+                            <div class="d-flex align-items-center position-relative mb-6">
+                                <i class="ki-duotone ki-filter fs-3 position-absolute ms-4 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+                                <input type="text" class="form-control form-control-solid ps-12 bg-light" placeholder="Tìm theo mã hoặc tên vật tư..." />
+                            </div>
+
+                            <div class="d-flex flex-column gap-4">
+                                <!-- Item 1 -->
+                                <div class="border border-gray-200 rounded p-4 d-flex flex-column hover-elevate-up bg-white">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge badge-light-primary text-primary fw-bold px-3 py-1">KN-125-1100</span>
+                                        <button class="btn btn-icon btn-sm btn-light-primary rounded-circle w-25px h-25px">
+                                            <i class="ki-duotone ki-plus fs-4 m-0"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-gray-900 fw-bold fs-5 mb-3">Kraft Nâu 125gsm - Khổ 1100</div>
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold gap-4 text-uppercase">
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-design-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span></i> 1100MM</div>
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-note-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i> 125GSM</div>
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-cube-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> 4,200KG</div>
+                                    </div>
+                                </div>
+                                <!-- Item 2 -->
+                                <div class="border border-gray-200 rounded p-4 d-flex flex-column hover-elevate-up bg-white">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge badge-light-primary text-primary fw-bold px-3 py-1">KN-175-1200</span>
+                                        <button class="btn btn-icon btn-sm btn-light-primary rounded-circle w-25px h-25px">
+                                            <i class="ki-duotone ki-plus fs-4 m-0"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-gray-900 fw-bold fs-5 mb-3">Kraft Nâu 175gsm - Khổ 1200</div>
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold gap-4 text-uppercase">
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-design-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span></i> 1200MM</div>
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-note-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i> 175GSM</div>
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-cube-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> 1,850KG</div>
+                                    </div>
+                                </div>
+                                <!-- Item 3 -->
+                                <div class="border border-gray-200 rounded p-4 d-flex flex-column hover-elevate-up bg-white">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge badge-light text-gray-700 fw-bold px-3 py-1">TW-150-1050</span>
+                                        <button class="btn btn-icon btn-sm btn-light-primary rounded-circle w-25px h-25px">
+                                            <i class="ki-duotone ki-plus fs-4 m-0"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-gray-900 fw-bold fs-5 mb-3">Testliner White 150gsm</div>
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold gap-4 text-uppercase">
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-design-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span></i> 1050MM</div>
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-note-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i> 150GSM</div>
+                                    </div>
+                                </div>
+                                <!-- Item 4 -->
+                                <div class="border border-gray-200 rounded p-4 d-flex flex-column hover-elevate-up bg-white">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge badge-light-primary text-primary fw-bold px-3 py-1">KL-125-1100</span>
+                                        <button class="btn btn-icon btn-sm btn-light-primary rounded-circle w-25px h-25px">
+                                            <i class="ki-duotone ki-plus fs-4 m-0"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-gray-900 fw-bold fs-5 mb-3">Kraft Liner 125gsm</div>
+                                    <div class="d-flex align-items-center text-gray-500 fs-8 fw-semibold gap-4 text-uppercase">
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-design-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span></i> 1100MM</div>
+                                        <div class="d-flex align-items-center gap-1"><i class="ki-duotone ki-note-2 fs-6 text-gray-500"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i> 125GSM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Left Col-->
+
+                <!--begin::Right Col-->
+                <div class="col-xl-7">
+                    <div class="card card-flush border border-gray-200 shadow-sm h-100 d-flex flex-column">
+                        <div class="card-header pt-7 border-0">
+                            <h3 class="card-title align-items-start flex-column">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="ki-duotone ki-element-11 text-primary fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                                    <span class="card-label fw-bold text-gray-800 fs-6 text-uppercase">DANH SÁCH VẬT TƯ THUỘC NHÓM</span>
+                                </div>
+                            </h3>
+                            <div class="card-toolbar">
+                                <span class="badge badge-primary fw-bold px-3 py-2 text-uppercase">ĐÃ CHỌN: 04</span>
+                            </div>
+                        </div>
+                        <div class="card-body pt-5 flex-grow-1 p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0 px-5 w-100">
+                                    <thead class="bg-white">
+                                        <tr class="text-start text-gray-600 fw-bold fs-8 text-uppercase gs-0 border-bottom border-gray-200">
+                                            <th class="w-50px text-center ps-4">STT</th>
+                                            <th class="min-w-125px">MÃ VẬT TƯ</th>
+                                            <th class="min-w-200px">TÊN VẬT TƯ</th>
+                                            <th class="min-w-100px">KHỔ THỰC TẾ</th>
+                                            <th class="text-center w-75px pe-4">TÁC VỤ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fw-semibold text-gray-700">
+                                        <tr>
+                                            <td class="text-center ps-4 fw-bold">01</td>
+                                            <td><a href="#" class="text-primary fw-bold text-hover-primary">KN-125-1100</a></td>
+                                            <td class="text-gray-900">Kraft Nâu 125gsm</td>
+                                            <td>1100 mm</td>
+                                            <td class="text-center pe-4">
+                                                <button class="btn btn-icon btn-sm btn-light-danger w-30px h-30px">
+                                                    <i class="ki-duotone ki-trash fs-5 m-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ps-4 fw-bold">02</td>
+                                            <td><a href="#" class="text-primary fw-bold text-hover-primary">KN-125-1050</a></td>
+                                            <td class="text-gray-900">Kraft Nâu 125gsm</td>
+                                            <td>1050 mm</td>
+                                            <td class="text-center pe-4">
+                                                <button class="btn btn-icon btn-sm btn-light-danger w-30px h-30px">
+                                                    <i class="ki-duotone ki-trash fs-5 m-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ps-4 fw-bold">03</td>
+                                            <td><a href="#" class="text-primary fw-bold text-hover-primary">KN-125-900</a></td>
+                                            <td class="text-gray-900">Kraft Nâu 125gsm</td>
+                                            <td>900 mm</td>
+                                            <td class="text-center pe-4">
+                                                <button class="btn btn-icon btn-sm btn-light-danger w-30px h-30px">
+                                                    <i class="ki-duotone ki-trash fs-5 m-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ps-4 fw-bold">04</td>
+                                            <td><a href="#" class="text-primary fw-bold text-hover-primary">KN-125-800</a></td>
+                                            <td class="text-gray-900">Kraft Nâu 125gsm</td>
+                                            <td>800 mm</td>
+                                            <td class="text-center pe-4">
+                                                <button class="btn btn-icon btn-sm btn-light-danger w-30px h-30px">
+                                                    <i class="ki-duotone ki-trash fs-5 m-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer border-top border-gray-200 py-4 px-6 bg-light d-flex justify-content-between align-items-center mt-auto rounded-bottom">
+                            <span class="text-muted fs-8 fst-italic">Hiển thị 4 trong tổng số 4 vật tư đã gán</span>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm bg-white fw-bold border border-gray-300 text-gray-700 btn-active-light-primary">
+                                    Tải danh sách (.xlsx)
+                                </button>
+                                <button class="btn btn-sm btn-light-danger text-danger fw-bold">
+                                    Xóa tất cả
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Right Col-->
+            </div>
+
+        </div>
+    </div>
+    <!--end::Content-->
+</div>

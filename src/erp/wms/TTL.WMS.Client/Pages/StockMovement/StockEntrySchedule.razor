@@ -1,0 +1,264 @@
+@page "/wms/stock-movements"
+@namespace TTL.WMS.Client.Pages.StockMovement
+@using TTL.WMS.Client.Pages.StockMovement.Components
+
+<StockEntryCreateDrawer />
+
+<SectionContent SectionName="PageTitle">Biến động kho</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/wms/dashboard" class="text-muted text-hover-primary">Quản lý kho</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">Lịch nhập hàng</li>
+</SectionContent>
+
+<div class="d-flex flex-column flex-column-fluid">
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Lịch nhập hàng</h1>
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <div class="m-0">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-primary active">Tháng</button>
+                        <button type="button" class="btn btn-sm btn-light">Tuần</button>
+                        <button type="button" class="btn btn-sm btn-light">Ngày</button>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-dark d-flex align-items-center gap-2" data-kt-drawer-show="true" data-kt-drawer-target="#kt_drawer_stock_entry_create">
+                    <i class="ki-duotone ki-plus fs-2"></i> Thêm lịch nhập mới
+                </button>
+            </div>
+            <!--end::Actions-->
+        </div>
+    </div>
+    <!--end::Toolbar-->
+
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <div id="kt_app_content_container" class="app-container container-fluid">
+            <div class="row g-7">
+                <!--begin::Calendar Column-->
+                <div class="col-lg-8">
+                    <div class="card card-flush h-lg-100">
+                        <div class="card-header pt-7">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold text-gray-900">Tháng 10, 2024</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <div class="d-flex align-items-center gap-3">
+                                    <button class="btn btn-sm btn-icon btn-light"><i class="ki-duotone ki-left fs-2"></i></button>
+                                    <button class="btn btn-sm btn-icon btn-light"><i class="ki-duotone ki-right fs-2"></i></button>
+                                    <div class="d-flex align-items-center gap-4 ms-5">
+                                        <div class="d-flex align-items-center gap-1">
+                                            <span class="bullet bullet-dot bg-warning w-8px h-8px"></span>
+                                            <span class="fs-8 fw-bold text-gray-600">Sắp đến</span>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-1">
+                                            <span class="bullet bullet-dot bg-success w-8px h-8px"></span>
+                                            <span class="fs-8 fw-bold text-gray-600">Đã giao</span>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-1">
+                                            <span class="bullet bullet-dot bg-danger w-8px h-8px"></span>
+                                            <span class="fs-8 fw-bold text-gray-600">Trễ hẹn</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-5">
+                            <div class="calendar-grid border rounded overflow-hidden">
+                                <!--Header Days-->
+                                <div class="row g-0 border-bottom bg-light">
+                                    @foreach(var day in new[] {"THỨ 2", "THỨ 3", "THỨ 4", "THỨ 5", "THỨ 6", "THỨ 7", "CHỦ NHẬT"})
+                                    {
+                                        <div class="col text-center py-3 border-end">
+                                            <span class="fs-8 fw-bold text-gray-500">@day</span>
+                                        </div>
+                                    }
+                                </div>
+                                
+                                <!--Grid Rows (Simplified Simulation)-->
+                                @for(int r = 0; r < 5; r++)
+                                {
+                                    <div class="row g-0 border-bottom" style="height: 120px;">
+                                        @for(int c = 0; c < 7; c++)
+                                        {
+                                            int dayNum = (r * 7) + c - 0; // Offset logic
+                                            bool isCurrentMonth = dayNum > 0 && dayNum <= 31;
+                                            bool isSelected = dayNum == 6;
+                                            
+                                            <div class="col border-end p-2 @(isSelected ? "bg-light-primary" : "") @(!isCurrentMonth ? "bg-light opacity-50" : "")">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="fs-7 fw-bold @(isCurrentMonth ? "text-gray-800" : "text-gray-400")">@(isCurrentMonth ? dayNum.ToString() : "")</span>
+                                                </div>
+                                                
+                                                <!--Events-->
+                                                @if(dayNum == 1) {
+                                                    <div class="badge badge-light-success d-flex align-items-center gap-1 p-2 mb-1">
+                                                        <span class="bullet bullet-vertical bg-success h-10px w-3px me-1"></span>
+                                                        <span class="fs-9 fw-bold">ĐÃ GIAO<br/>PO-1021</span>
+                                                    </div>
+                                                }
+                                                @if(dayNum == 2) {
+                                                    <div class="badge badge-light-success d-flex align-items-center gap-1 p-2 mb-1">
+                                                        <span class="bullet bullet-vertical bg-success h-10px w-3px me-1"></span>
+                                                        <span class="fs-9 fw-bold">ĐÃ GIAO<br/>PO-1022</span>
+                                                    </div>
+                                                }
+                                                @if(dayNum == 6) {
+                                                    <div class="badge badge-light-warning d-flex align-items-center gap-1 p-2 mb-1">
+                                                        <span class="bullet bullet-vertical bg-warning h-10px w-3px me-1"></span>
+                                                        <span class="fs-9 fw-bold">SẮP ĐẾN<br/>PO-1024</span>
+                                                    </div>
+                                                }
+                                                @if(dayNum == 7) {
+                                                    <div class="badge badge-light-danger d-flex align-items-center gap-1 p-2 mb-1">
+                                                        <span class="bullet bullet-vertical bg-danger h-10px w-3px me-1"></span>
+                                                        <span class="fs-9 fw-bold">TRỄ HẸN<br/>PO-1025</span>
+                                                    </div>
+                                                }
+                                                @if(dayNum == 8) {
+                                                    <div class="badge badge-light-warning d-flex align-items-center gap-1 p-2 mb-1">
+                                                        <span class="bullet bullet-vertical bg-warning h-10px w-3px me-1"></span>
+                                                        <span class="fs-9 fw-bold">SẮP ĐẾN<br/>PO-1026</span>
+                                                    </div>
+                                                }
+                                                @if(dayNum == 10) {
+                                                    <div class="badge badge-light-success d-flex align-items-center gap-1 p-2 mb-1">
+                                                        <span class="bullet bullet-vertical bg-success h-10px w-3px me-1"></span>
+                                                        <span class="fs-9 fw-bold">ĐÃ GIAO<br/>PO-1027</span>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Calendar Column-->
+
+                <!--begin::Details Column-->
+                <div class="col-lg-4">
+                    <div class="card card-flush h-lg-100">
+                        <div class="card-header pt-7">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="fs-8 fw-bold text-primary text-uppercase mb-1">ĐANG XEM NGÀY</span>
+                                <span class="card-label fw-bold text-gray-900 fs-3">Thứ 3, 06 Tháng 10</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-8">
+                                <div class="d-flex align-items-center mb-5">
+                                    <span class="fw-bold text-gray-800 text-uppercase fs-7">CHI TIẾT CHUYỂN NHẬP PO-1024</span>
+                                </div>
+                                
+                                <div class="timeline-container ps-5 border-start border-2 border-primary position-relative">
+                                    <!--Time-->
+                                    <div class="mb-7">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <i class="ki-duotone ki-time fs-2 text-gray-500 me-3"></i>
+                                            <span class="text-muted fs-8 fw-bold text-uppercase">DỰ KIẾN ĐẾN</span>
+                                        </div>
+                                        <div class="fs-6 fw-bold text-gray-800 ms-9">09:30 AM</div>
+                                    </div>
+
+                                    <!--Supplier-->
+                                    <div class="mb-7">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <i class="ki-duotone ki-truck fs-2 text-gray-500 me-3"></i>
+                                            <span class="text-muted fs-8 fw-bold text-uppercase">NHÀ CUNG CẤP</span>
+                                        </div>
+                                        <div class="fs-6 fw-bold text-gray-800 ms-9">Chánh Dương Paper Co.</div>
+                                    </div>
+
+                                    <!--Material-->
+                                    <div class="mb-7">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <i class="ki-duotone ki-cube-2 fs-2 text-gray-500 me-3"></i>
+                                            <span class="text-muted fs-8 fw-bold text-uppercase">VẬT TƯ & SỐ LƯỢNG</span>
+                                        </div>
+                                        <div class="fs-6 fw-bold text-gray-800 ms-9">Kraft Liner 125gsm<br/><span class="text-primary">15,000 kg / 20 cuộn</span></div>
+                                    </div>
+
+                                    <!--Location-->
+                                    <div class="mb-7">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <i class="ki-duotone ki-geolocation fs-2 text-gray-500 me-3"></i>
+                                            <span class="text-muted fs-8 fw-bold text-uppercase">KHU VỰC HẠ TẦNG</span>
+                                        </div>
+                                        <div class="fs-6 fw-bold text-gray-800 ms-9">Gate 4 - Zone A2</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Actions-->
+                            <div class="d-flex flex-column gap-3 mb-10">
+                                <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                                    <i class="ki-duotone ki-entrance-right fs-2"></i> Nhập kho
+                                </button>
+                                <button class="btn btn-light-primary">Chỉnh sửa lịch trình</button>
+                                <button class="btn btn-light-danger">Báo cáo sự cố</button>
+                            </div>
+
+                            <!--Summary Stats Widget-->
+                            <div class="card bg-primary p-6">
+                                <div class="d-flex flex-column gap-5">
+                                    <div class="d-flex flex-column">
+                                        <span class="text-white opacity-75 fs-8 fw-bold text-uppercase">TỔNG QUAN THÁNG 10</span>
+                                    </div>
+                                    <div class="d-flex flex-stack">
+                                        <div class="d-flex flex-column">
+                                            <span class="text-white fs-2tx fw-bold">24</span>
+                                            <span class="text-white opacity-75 fs-8 text-uppercase">ĐÃ HOÀN THÀNH</span>
+                                        </div>
+                                        <div class="d-flex flex-column align-items-end">
+                                            <span class="text-white fs-2tx fw-bold">08</span>
+                                            <span class="text-white opacity-75 fs-8 text-uppercase">ĐANG CHỜ</span>
+                                        </div>
+                                    </div>
+                                    <div class="h-4px w-100 bg-white bg-opacity-25 rounded">
+                                        <div class="bg-white rounded h-100" style="width: 75%"></div>
+                                    </div>
+                                    <span class="text-white fs-8 fst-italic">Đạt 75% chỉ tiêu nhập kho</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Details Column-->
+            </div>
+        </div>
+    </div>
+    <!--end::Content-->
+</div>
+
+<style>
+    .calendar-grid .col {
+        border-right: 1px solid #eff2f5;
+        min-width: 14.28%;
+    }
+    .calendar-grid .row:last-child {
+        border-bottom: none;
+    }
+    .bg-light-primary {
+        background-color: #f1faff !important;
+    }
+    .timeline-container::before {
+        content: '';
+        position: absolute;
+        left: -2px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: #009ef7;
+    }
+</style>

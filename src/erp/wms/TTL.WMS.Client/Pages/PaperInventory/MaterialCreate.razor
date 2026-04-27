@@ -1,0 +1,149 @@
+@page "/wms/paper-inventory/create"
+@namespace TTL.WMS.Client.Pages.PaperInventory
+
+<div class="d-flex flex-column flex-column-fluid">
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-2 flex-column justify-content-center my-0">Thêm Vật Tư Mới</h1>
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="/wms/paper-inventory" class="text-muted text-hover-primary">Danh mục tồn kho</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                    </li>
+                    <li class="breadcrumb-item text-gray-900">Thêm mới</li>
+                </ul>
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <a href="/wms/paper-inventory" class="btn btn-sm btn-light fw-bold text-gray-700 bg-white border border-gray-300">Quay lại</a>
+                <button type="button" class="btn btn-sm btn-primary fw-bold d-flex align-items-center gap-2">
+                    <i class="ki-duotone ki-check fs-3"></i>
+                    Lưu vật tư
+                </button>
+            </div>
+            <!--end::Actions-->
+        </div>
+    </div>
+    <!--end::Toolbar-->
+
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <div id="kt_app_content_container" class="app-container container-fluid">
+            <form class="form d-flex flex-column flex-lg-row">
+                <!--begin::Main column-->
+                <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                    
+                    <!--begin::General options-->
+                    <div class="card card-flush py-4 border border-gray-200 shadow-sm">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="bg-primary w-4px h-25px me-3 rounded"></div>
+                                <h2>Thông tin cơ bản</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row g-8">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required form-label">Mã vật tư</label>
+                                    <input type="text" class="form-control form-control-solid fw-bold" placeholder="Tự động hoặc nhập tay (vd: G-COU-300-79)" />
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required form-label">Tên vật tư</label>
+                                    <input type="text" class="form-control form-control-solid" placeholder="vd: Giấy Couche Gloss - 300gsm" />
+                                </div>
+                                <div class="col-md-12 fv-row mt-6">
+                                    <label class="required form-label">Nhà cung cấp</label>
+                                    <select class="form-select form-select-solid" data-control="select2" data-placeholder="Chọn nhà cung cấp">
+                                        <option></option>
+                                        <option value="1">Giấy Toàn Cầu</option>
+                                        <option value="2">Tân Mai Group</option>
+                                        <option value="3">Việt Trí Paper</option>
+                                        <option value="4">Supplier C</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::General options-->
+
+                    <!--begin::Technical specs-->
+                    <div class="card card-flush py-4 border border-gray-200 shadow-sm">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="bg-info w-4px h-25px me-3 rounded"></div>
+                                <h2>Thông số kỹ thuật</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row g-8">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required form-label">Loại giấy</label>
+                                    <select class="form-select form-select-solid" data-control="select2" data-placeholder="Chọn loại giấy">
+                                        <option></option>
+                                        <option value="couche">Couche</option>
+                                        <option value="ivory">Ivory</option>
+                                        <option value="ford">Ford</option>
+                                        <option value="duplex">Duplex</option>
+                                        <option value="kraft">Kraft</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required form-label">Khổ giấy (cm)</label>
+                                    <input type="number" class="form-control form-control-solid" placeholder="vd: 79" />
+                                </div>
+                                <div class="col-md-6 fv-row mt-6">
+                                    <label class="required form-label">Định lượng (gsm)</label>
+                                    <input type="number" class="form-control form-control-solid" placeholder="vd: 300" />
+                                </div>
+                                <div class="col-md-6 fv-row mt-6">
+                                    <label class="required form-label">Đơn vị tính</label>
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true">
+                                        <option value="cuon" selected>Cuộn</option>
+                                        <option value="to">Tờ</option>
+                                        <option value="kg">Kg</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Technical specs-->
+
+                    <!--begin::Inventory settings-->
+                    <div class="card card-flush py-4 border border-gray-200 shadow-sm">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="bg-warning w-4px h-25px me-3 rounded"></div>
+                                <h2>Cài đặt tồn kho</h2>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row g-8">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required form-label">Định mức tồn tối thiểu (kg)</label>
+                                    <input type="number" class="form-control form-control-solid" placeholder="Cảnh báo khi dưới mức này" />
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required form-label">Trọng lượng cuộn chuẩn (kg)</label>
+                                    <input type="number" class="form-control form-control-solid" placeholder="Trọng lượng trung bình 1 cuộn" />
+                                </div>
+                                <div class="col-md-12 fv-row mt-6">
+                                    <label class="form-label">Ghi chú</label>
+                                    <textarea class="form-control form-control-solid" rows="3" placeholder="Ghi chú thêm về vật tư này..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Inventory settings-->
+                </div>
+                <!--end::Main column-->
+            </form>
+        </div>
+    </div>
+    <!--end::Content-->
+</div>
