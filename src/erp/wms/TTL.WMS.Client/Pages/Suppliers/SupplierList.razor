@@ -1,4 +1,5 @@
 @page "/wms/suppliers"
+@using TTL.WMS.Client.Pages.Suppliers.Components
 @rendermode InteractiveServer
 
 <SectionContent SectionName="PageTitle">Nhà cung cấp</SectionContent>
@@ -23,9 +24,9 @@
             </i>
             Xuất Excel
         </button>
-        <button class="btn btn-sm btn-primary d-flex align-items-center">
+        <a href="/wms/suppliers/create" class="btn btn-sm btn-primary d-flex align-items-center">
             <i class="ki-duotone ki-plus fs-3 me-2"></i> Thêm NCC mới
-        </button>
+        </a>
     </div>
 </div>
 <!--end::Header-->
@@ -83,7 +84,7 @@
                     {
                         <tr>
                             <td class="ps-4">
-                                <a href="#" class="text-primary fw-bold text-hover-primary mb-1">@supplier.Code</a>
+                                <a href="javascript:void(0)" class="text-primary fw-bold text-hover-primary mb-1" data-kt-drawer-show="true" data-kt-drawer-target="#kt_supplier_detail_drawer">@supplier.Code</a>
                             </td>
                             <td>
                                 <div class="d-flex flex-column">
@@ -139,3 +140,8 @@
     </div>
 </div>
 <!--end::Card-->
+
+<!--begin::Drawers-->
+<SupplierDetailDrawer />
+<PoCreateDrawer />
+<!--end::Drawers-->

@@ -1,0 +1,198 @@
+@namespace TTL.WMS.Client.Pages.Suppliers.Components
+
+<!--begin::PO Create Drawer-->
+<div id="kt_po_create_drawer" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="po_create" data-kt-drawer-activate="true" data-kt-drawer-overlay="false" data-kt-drawer-width="{default:'300px', 'md': '800px'}" data-kt-drawer-direction="end">
+    
+    <!--begin::Card-->
+    <div class="card shadow-none rounded-0 w-100 h-100 border-0">
+        <!--begin::Header-->
+        <div class="card-header border-bottom">
+            <div class="card-title d-flex align-items-center gap-3">
+                <div class="symbol symbol-40px symbol-light-primary">
+                    <span class="symbol-label">
+                        <i class="ki-duotone ki-handcart fs-2x text-primary"><span class="path1"></span><span class="path2"></span></i>
+                    </span>
+                </div>
+                <div class="d-flex flex-column gap-1">
+                    <h3 class="fw-bold fs-3 m-0 text-gray-900">Tạo đơn mua hàng mới</h3>
+                    <span class="text-muted fs-7">Purchase Order (PO)</span>
+                </div>
+            </div>
+            
+            <div class="card-toolbar">
+                <div class="btn btn-sm btn-icon btn-active-light-primary" data-kt-drawer-dismiss="true">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+        </div>
+        <!--end::Header-->
+
+        <!--begin::Body-->
+        <div class="card-body p-9 position-relative scroll-y">
+            
+            <!--begin::Section: THÔNG TIN CHUNG-->
+            <div class="mb-10">
+                <h4 class="text-gray-800 fw-bold text-uppercase fs-7 mb-5">THÔNG TIN CHUNG</h4>
+                <div class="border border-gray-200 rounded p-6">
+                    <div class="row g-6">
+                        <div class="col-lg-6">
+                            <label class="form-label text-muted fs-7 fw-semibold text-uppercase mb-2">Nhà cung cấp <span class="text-danger">*</span></label>
+                            <select class="form-select form-select-solid" data-control="select2" data-placeholder="Chọn nhà cung cấp">
+                                <option></option>
+                                <option value="1" selected>Công ty Cổ phần Giấy Việt Nhật</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label text-muted fs-7 fw-semibold text-uppercase mb-2">Ngày đặt hàng</label>
+                            <div class="input-group input-group-solid">
+                                <input class="form-control form-control-solid" placeholder="Chọn ngày" id="kt_datepicker_1" value="10/27/2023"/>
+                                <span class="input-group-text">
+                                    <i class="ki-duotone ki-calendar-8 fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label text-muted fs-7 fw-semibold text-uppercase mb-2">Kho nhận hàng <span class="text-danger">*</span></label>
+                            <select class="form-select form-select-solid" data-control="select2" data-placeholder="Chọn kho nhận">
+                                <option></option>
+                                <option value="1">Kho Miền Bắc</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label text-muted fs-7 fw-semibold text-uppercase mb-2">Người phụ trách</label>
+                            <input type="text" class="form-control form-control-solid bg-light-secondary" value="Nguyễn Văn A" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Section: THÔNG TIN CHUNG-->
+
+            <!--begin::Section: DANH SÁCH VẬT TƯ-->
+            <div class="mb-10">
+                <div class="d-flex flex-stack mb-5">
+                    <h4 class="text-gray-800 fw-bold text-uppercase fs-7 m-0">DANH SÁCH VẬT TƯ</h4>
+                    <button type="button" class="btn btn-sm btn-light-primary fw-bold d-flex align-items-center rounded-pill px-4">
+                        <i class="ki-duotone ki-plus fs-3 me-1"></i> Thêm dòng
+                    </button>
+                </div>
+                
+                <div class="table-responsive border border-gray-200 rounded">
+                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                        <thead>
+                            <tr class="border-bottom-0 bg-light-secondary text-muted fw-bold fs-8 text-uppercase gs-0">
+                                <th class="ps-4 w-50px">STT</th>
+                                <th class="min-w-200px">Mã / Tên vật tư</th>
+                                <th class="w-125px text-center">Số lượng</th>
+                                <th class="w-150px text-center">Đơn giá</th>
+                                <th class="pe-4 w-150px text-end">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--Row 1-->
+                            <tr>
+                                <td class="ps-4 text-muted fw-semibold">1</td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <a href="#" class="text-primary fw-bold text-hover-primary mb-1">Vat-001 <i class="ki-duotone ki-down fs-7 text-primary ms-1"></i> Giấy</a>
+                                        <span class="text-muted fs-7">Cuộn</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control form-control-sm form-control-solid text-center" value="10" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm form-control-solid text-end" value="500.000" />
+                                </td>
+                                <td class="pe-4 text-end">
+                                    <span class="text-gray-900 fw-bold">5.000.000</span>
+                                </td>
+                            </tr>
+                            <!--Row 2-->
+                            <tr>
+                                <td class="ps-4 text-muted fw-semibold">2</td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <a href="#" class="text-gray-500 fw-bold text-hover-primary mb-1">Chọn vật tư <i class="ki-duotone ki-down fs-7 text-gray-500 ms-1"></i></a>
+                                        <span class="text-muted fs-7">Đơn vị tính...</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control form-control-sm form-control-solid text-center" value="0" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm form-control-solid text-end" value="0" />
+                                </td>
+                                <td class="pe-4 text-end">
+                                    <span class="text-gray-400 fw-bold">0</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end::Section: DANH SÁCH VẬT TƯ-->
+
+            <!--begin::Footer blocks-->
+            <div class="row g-6">
+                <!--begin::Notes-->
+                <div class="col-lg-6">
+                    <h4 class="text-gray-800 fw-bold text-uppercase fs-7 mb-5">Ghi chú đơn hàng</h4>
+                    <textarea class="form-control form-control-solid h-100" rows="5" placeholder="Nhập yêu cầu đặc biệt về vận chuyển, đóng gói hoặc thời gian giao hàng..."></textarea>
+                </div>
+                <!--end::Notes-->
+
+                <!--begin::Summary-->
+                <div class="col-lg-6">
+                    <div class="border border-gray-200 rounded p-6 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex flex-stack mb-4">
+                                <span class="text-gray-700 fw-semibold">Tổng tiền vật tư:</span>
+                                <span class="text-gray-900 fw-bold">5.000.000 VNĐ</span>
+                            </div>
+                            <div class="d-flex flex-stack mb-6">
+                                <span class="text-gray-700 fw-semibold">Thuế GTGT (10%):</span>
+                                <span class="text-gray-900 fw-bold">500.000 VNĐ</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="border-top border-gray-200 pt-5 mb-5 d-flex flex-stack">
+                                <span class="text-gray-900 fw-bold text-uppercase fs-6 mt-2">Tổng thanh toán:</span>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="text-primary fw-bolder fs-2tx">5.500.000</span>
+                                    <span class="text-muted fs-7 fw-semibold">VNĐ</span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex align-items-start mt-2">
+                                <i class="ki-duotone ki-information-5 fs-5 text-muted me-2 mt-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                <span class="text-muted fs-8 fst-italic">Dữ liệu được tính toán dựa trên cấu hình giá NCC hiện hành.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Summary-->
+            </div>
+            <!--end::Footer blocks-->
+
+        </div>
+        <!--end::Body-->
+
+        <!--begin::Footer-->
+        <div class="card-footer py-5 border-top d-flex flex-stack px-9">
+            <div class="d-flex align-items-center text-muted fs-7 fw-semibold">
+                <i class="ki-duotone ki-check-circle fs-2 text-success me-2"><span class="path1"></span><span class="path2"></span></i>
+                Đã lưu nháp lúc 14:30
+            </div>
+            <div class="d-flex gap-3">
+                <button type="button" class="btn btn-light fw-bold" id="kt_po_create_save_draft">Lưu nháp</button>
+                <button type="button" class="btn btn-primary fw-bold d-flex align-items-center">
+                    Xác nhận tạo đơn <i class="ki-duotone ki-send fs-3 ms-2"><span class="path1"></span><span class="path2"></span></i>
+                </button>
+            </div>
+        </div>
+        <!--end::Footer-->
+    </div>
+    <!--end::Card-->
+</div>
+<!--end::PO Create Drawer-->

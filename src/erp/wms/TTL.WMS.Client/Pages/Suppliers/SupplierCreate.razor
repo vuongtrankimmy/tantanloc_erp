@@ -1,0 +1,224 @@
+@page "/wms/suppliers/create"
+@rendermode InteractiveServer
+
+<SectionContent SectionName="PageTitle">Thêm mới nhà cung cấp</SectionContent>
+
+<SectionContent SectionName="PageBreadcrumbs">
+    <li class="breadcrumb-item text-muted">
+        <a href="/" class="text-muted text-hover-primary">Hệ thống</a>
+    </li>
+    <li class="breadcrumb-item text-muted">
+        <a href="/wms/suppliers" class="text-muted text-hover-primary">Danh mục</a>
+    </li>
+    <li class="breadcrumb-item text-muted">
+        <a href="/wms/suppliers" class="text-muted text-hover-primary">Nhà cung cấp</a>
+    </li>
+    <li class="breadcrumb-item text-gray-900">Thêm mới</li>
+</SectionContent>
+
+<!--begin::Header-->
+<div class="d-flex flex-stack mb-7">
+    <div>
+        <h3 class="fw-bold fs-2 text-gray-900 mb-1">Thêm mới nhà cung cấp</h3>
+        <span class="text-muted fs-6">Thiết lập thông tin đối tác cung ứng nguyên vật liệu và hồ sơ năng lực.</span>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+        <a href="/wms/suppliers" class="btn btn-light btn-sm border d-flex align-items-center">
+            <i class="ki-duotone ki-cross fs-3"><span class="path1"></span><span class="path2"></span></i> Hủy bỏ
+        </a>
+        <button class="btn btn-primary btn-sm d-flex align-items-center">
+            <i class="ki-duotone ki-save-2 fs-3"><span class="path1"></span><span class="path2"></span></i> Lưu thông tin
+        </button>
+    </div>
+</div>
+<!--end::Header-->
+
+<div class="row g-7">
+    <!--begin::Main column-->
+    <div class="col-lg-8">
+        <!--begin::Card 1: Thông tin công ty-->
+        <div class="card mb-7">
+            <div class="card-header border-0 pt-6">
+                <div class="card-title m-0 d-flex align-items-center">
+                    <span class="svg-icon svg-icon-primary svg-icon-2hx me-3">
+                        <i class="ki-duotone ki-information-5 text-primary fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                    </span>
+                    <h3 class="fw-bold m-0 text-gray-800 text-uppercase fs-6">Thông tin công ty</h3>
+                </div>
+            </div>
+            <div class="card-body pt-4">
+                <div class="row mb-6">
+                    <div class="col-lg-6">
+                        <label class="form-label required fw-semibold text-gray-700">Mã số thuế</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control form-control-solid pe-10" placeholder="Ví dụ: 0101234567" @bind="Model.TaxCode" />
+                            <a href="#" class="position-absolute text-primary fw-bold text-hover-primary" style="top: 50%; right: 15px; transform: translateY(-50%); text-decoration: none;">Tra cứu</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="form-label required fw-semibold text-gray-700">Tên nhà cung cấp</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Nhập tên đầy đủ của doanh nghiệp" @bind="Model.Name" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label class="form-label fw-semibold text-gray-700">Mã nhà cung cấp <span class="text-muted fw-normal">(Tự động)</span></label>
+                        <input type="text" class="form-control form-control-solid bg-secondary" disabled @bind="Model.Code" />
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="form-label fw-semibold text-gray-700">Nhóm nguyên liệu cung ứng</label>
+                        <div class="d-flex align-items-center gap-5">
+                            <label class="form-check form-check-custom form-check-solid border p-3 rounded flex-row-fluid">
+                                <input class="form-check-input" type="checkbox" @bind="Model.SuppliesPaper" />
+                                <span class="form-check-label text-gray-800">Giấy cuộn</span>
+                            </label>
+                            <label class="form-check form-check-custom form-check-solid border p-3 rounded flex-row-fluid">
+                                <input class="form-check-input" type="checkbox" @bind="Model.SuppliesOther" />
+                                <span class="form-check-label text-gray-800">Keo/Mực/Khác</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Card 1-->
+
+        <!--begin::Card 2: Liên hệ kinh doanh-->
+        <div class="card mb-7">
+            <div class="card-header border-0 pt-6">
+                <div class="card-title m-0 d-flex align-items-center">
+                    <span class="svg-icon svg-icon-primary svg-icon-2hx me-3">
+                        <i class="ki-duotone ki-user-square text-primary fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                    </span>
+                    <h3 class="fw-bold m-0 text-gray-800 text-uppercase fs-6">Liên hệ kinh doanh</h3>
+                </div>
+            </div>
+            <div class="card-body pt-4">
+                <div class="row mb-6">
+                    <div class="col-lg-6">
+                        <label class="form-label fw-semibold text-gray-700">Người liên hệ trực tiếp</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Họ và tên người đại diện" @bind="Model.ContactPerson" />
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="form-label fw-semibold text-gray-700">Số điện thoại</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Ví dụ: 0912 xxx xxx" @bind="Model.PhoneNumber" />
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="form-label fw-semibold text-gray-700">Email giao dịch</label>
+                    <input type="email" class="form-control form-control-solid" placeholder="email@company.com" @bind="Model.Email" />
+                </div>
+                <div>
+                    <div class="d-flex flex-stack mb-2">
+                        <label class="form-label fw-semibold text-gray-700 m-0">Địa chỉ văn phòng</label>
+                        <a href="#" class="text-primary fw-bold text-hover-primary d-flex align-items-center">
+                            <i class="ki-duotone ki-map fs-4 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> Xem trên bản đồ
+                        </a>
+                    </div>
+                    <textarea class="form-control form-control-solid" rows="3" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" @bind="Model.OfficeAddress"></textarea>
+                </div>
+            </div>
+        </div>
+        <!--end::Card 2-->
+
+        <!--begin::Card 3: Liên hệ logistics-->
+        <div class="card">
+            <div class="card-header border-0 pt-6">
+                <div class="card-title m-0 d-flex align-items-center">
+                    <span class="svg-icon svg-icon-primary svg-icon-2hx me-3">
+                        <i class="ki-duotone ki-truck text-primary fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                    </span>
+                    <h3 class="fw-bold m-0 text-gray-800 text-uppercase fs-6">Liên hệ logistics</h3>
+                </div>
+            </div>
+            <div class="card-body pt-4">
+                <div class="row mb-6">
+                    <div class="col-lg-6">
+                        <label class="form-label fw-semibold text-gray-700">Tên kho</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Ví dụ: Kho thành phẩm A" @bind="Model.WarehouseName" />
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="form-label fw-semibold text-gray-700">Người phụ trách kho</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="Họ và tên người nhận hàng" @bind="Model.WarehouseManager" />
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <div class="d-flex flex-stack mb-2">
+                        <label class="form-label fw-semibold text-gray-700 m-0">Địa chỉ lấy hàng/Xưởng sản xuất</label>
+                        <a href="#" class="text-primary fw-bold text-hover-primary d-flex align-items-center">
+                            <i class="ki-duotone ki-map fs-4 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> Xem trên bản đồ
+                        </a>
+                    </div>
+                    <textarea class="form-control form-control-solid" rows="2" placeholder="Địa chỉ cụ thể nơi sản xuất hoặc kho lấy hàng" @bind="Model.WarehouseAddress"></textarea>
+                </div>
+                
+                <div class="border border-dashed border-gray-300 rounded p-4 text-center cursor-pointer bg-light-primary text-primary fw-bold text-hover-primary">
+                    <i class="ki-duotone ki-plus fs-3 text-primary me-2"></i> Thêm kho hàng khác
+                </div>
+            </div>
+        </div>
+        <!--end::Card 3-->
+    </div>
+    <!--end::Main column-->
+
+    <!--begin::Side column-->
+    <div class="col-lg-4">
+        <!--begin::Card 4: Hồ sơ & Tài liệu-->
+        <div class="card mb-7">
+            <div class="card-header border-0 pt-6">
+                <div class="card-title m-0 d-flex align-items-center">
+                    <span class="svg-icon svg-icon-primary svg-icon-2hx me-3">
+                        <i class="ki-duotone ki-file text-primary fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </span>
+                    <h3 class="fw-bold m-0 text-gray-800 text-uppercase fs-6">Hồ sơ & Tài liệu</h3>
+                </div>
+            </div>
+            <div class="card-body pt-4">
+                <div class="text-muted fs-7 mb-4">Đính kèm Hồ sơ năng lực hoặc Hợp đồng nguyên tắc (PDF, DOCX, JPG - Tối đa 10MB)</div>
+                
+                <div class="dropzone dropzone-queue mb-4 border border-dashed border-gray-300 rounded d-flex flex-column align-items-center justify-content-center p-8 bg-light-primary">
+                    <i class="ki-duotone ki-cloud-change fs-3x text-muted mb-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                    <div class="text-gray-900 fw-bold mb-1">Tải tệp lên hoặc kéo thả vào đây</div>
+                    <div class="text-muted fs-7">Hỗ trợ định dạng .pdf, .docx, .png, .jpg</div>
+                </div>
+                
+                <div class="d-flex align-items-center border border-gray-200 rounded p-3 mb-2 bg-light-danger">
+                    <div class="symbol symbol-30px me-3">
+                        <span class="symbol-label bg-white">
+                            <i class="ki-duotone ki-document text-danger fs-1"><span class="path1"></span><span class="path2"></span></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1">
+                        <a href="#" class="fs-6 fw-bold text-gray-900 text-hover-primary mb-1">Ho-so-nang-luc.pdf</a>
+                        <span class="fs-7 text-muted">2.4 MB</span>
+                    </div>
+                    <button class="btn btn-icon btn-sm btn-active-light-danger ms-2">
+                        <i class="ki-duotone ki-trash fs-3 text-muted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--end::Card 4-->
+
+        <!--begin::Card 5: Ghi chú bổ sung-->
+        <div class="card">
+            <div class="card-header border-0 pt-6">
+                <div class="card-title m-0 d-flex align-items-center">
+                    <span class="svg-icon svg-icon-primary svg-icon-2hx me-3">
+                        <i class="ki-duotone ki-notepad-edit text-primary fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </span>
+                    <h3 class="fw-bold m-0 text-gray-800 text-uppercase fs-6">Ghi chú bổ sung</h3>
+                </div>
+            </div>
+            <div class="card-body pt-4">
+                <textarea class="form-control form-control-solid mb-4" rows="6" placeholder="Các lưu ý đặc biệt về nhà cung cấp này (ví dụ: tiến độ giao hàng, công nợ...)" @bind="Model.Notes"></textarea>
+                
+                <div class="d-flex align-items-center text-muted fs-7">
+                    <span class="bullet bullet-dot bg-primary me-2"></span> Trạng thái: Đang thiết lập
+                </div>
+            </div>
+        </div>
+        <!--end::Card 5-->
+    </div>
+    <!--end::Side column-->
+</div>

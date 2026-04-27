@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System.Collections.Generic;
 
 namespace TTL.WMS.Client.Pages.Suppliers
@@ -17,7 +18,11 @@ namespace TTL.WMS.Client.Pages.Suppliers
 
     public partial class SupplierList : ComponentBase
     {
+        [Inject]
+        public IJSRuntime JS { get; set; } = default!;
+
         public List<SupplierModel> Suppliers { get; set; } = new();
+        private bool _dataLoaded = false;
 
         protected override void OnInitialized()
         {
@@ -79,6 +84,26 @@ namespace TTL.WMS.Client.Pages.Suppliers
                     Status = "Ngừng hợp tác"
                 }
             };
+            _dataLoaded = true;
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender || _dataLoaded)
+            {
+                // Reset flag
+                bool isFullInit = _dataLoaded;
+                _dataLoaded = false;
+
+                await Task.Delay(150);
+                await JS.InvokeVoidAsync("KTDrawer.createInstances");
+                
+                if (firstRender)
+                {
+                    await JS.InvokeVoidAsync("KTDrawer.handleShow");
+                    await JS.InvokeVoidAsync("KTDrawer.handleDismiss");
+                }
+            }
         }
 
         protected string GetCategoryColor(string category)
